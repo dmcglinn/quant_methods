@@ -12,4 +12,4 @@ see things that need improving.
 
 I plan to add a better front-end webpage to provide better access to these
 teaching materials, but for now this repo serves the purpose. Please see the
-[syllabus](syllabus.md]) for more information about the course.
+[syllabus](syllabus.md) for more information about the course.
