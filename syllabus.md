@@ -62,7 +62,6 @@ Student Evaluation:
     - 25% project code
 
 
-
 **_Project_** - The project in this course may span a wide range of potential
 topics to be discussed as the course progresses.
 
@@ -73,9 +72,23 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Week 1 - Introduction to R
-* Week 2 -
-
+* Jan 14 - Week 01 - Introduction to R
+* Jan 21 - Week 02 - Introduction to Version Control and the Terminal
+* Jan 28 - Week 03 - Regression and Model Selection
+* Feb 04 - Week 04 - Multivariate Models
+* Feb 11 - Week 05 - Spatial Models
+* Feb 18 - Week 06 - GIS manipulations
+* Feb 25 - Week 07 - Simulations and Null models
+* Mar 04 - Week 08 - Spring Break (no class)
+* Mar 11 - Week 09 - Project Pitch (oral presentation)
+* Mar 18 - Week 10 - Work on class project
+* Mar 25 - Week 11 - Work on class project
+* Apr 01 - Week 12 - Work on class project
+* Apr 08 - Week 13 - Peer Code Review and Peer Feedback
+* Apr 15 - Week 14 - Work on class project
+* Apr 22 - Week 15 - Finalize class projects - Code and Written project
+  components due Friday Apr 24
+* Apr 29 - Week 16 - Project Presentations
 
 ----------------
 Course Policies:
@@ -84,6 +97,51 @@ Course Policies:
 **_Class time_** - Our time in class will be used primarily for 1) learning
 new quantitative methods, 2) working on exercises, 3) presenting to the rest of
 the class, and 4) developing student projects.
+
+**_Assignments_** - Most weeks during the first half of the semester there will
+be a homework assignment associated with the content learned in lecture. Your
+code and a written explanation of your solution are required. Although I
+encourage collaboration on code development, your explanation of your solution
+should be written in your own words. The assignment should be submitted via
+email to mcglinndj@cofc.edu with the subject line: Programming Assignment X,
+where X is the number of the assignment. One problem from each assignment
+(selected at my discretion after the assignments have been submitted) will
+receive a thorough code review and a detailed grade. Other problems will be
+graded as follows:
+
+* Produces the correct answer using the requested approach: 100%
+* Generally uses the right approach, but a minor mistake results in an incorrect
+  answer: 90%
+* Attempts to solve the problem and makes some progress using the core concept:
+  50%
+* Answer demonstrates a lack of understanding of the core concept: 0%
+
+Late assignments will be docked 20% and will not be accepted after Sunday Night
+at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
+documented by the student or in cases where this has been discussed and approved
+in advance. This policy is based on the idea that in order to learn how to
+program well students should be programming at least every other day. Time has
+been allotted in class for working on assignments and you are expected to work
+on them outside of class. It is intended that you should have finished as much
+of the assignment as you can based on what we have covered in class by the
+following class period. Therefore, even if something unexpected happens at the
+last minute you should already be close to done with the assignment. It also
+allows me to provide rapid feedback by returning assignments quickly, which is
+crucial to learning.
+
+Final grades will be assigned based on the following scale:
+
+- **A 93-100**
+- **A- 90-92**
+- **B+ 87-89**
+- **B 83-86**
+- **B- 80-82**
+- **C+ 77-79**
+- **C 73-76**
+- **C- 70-72**
+- **D+ 67-69**
+- **D 60-66**
+- **F \<60**
 
 **_Students with Disabilities and Special Needs_** - The College will make
 reasonable accommodations for persons with documented disabilities. If you have
