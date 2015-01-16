@@ -2,7 +2,7 @@
 title: "Applied Quantitative Methods (EVSS 695 / BIOL 453)"
 author: "Dan McGlinn"
 date: "January 13, 2015"
-output: html_document
+output: pdf_document
 ---
 
 College of Charleston, Department of Biology, Spring 2015
