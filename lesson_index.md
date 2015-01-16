@@ -1,6 +1,7 @@
 Quantitative topics covered in this course include:
 
-* [Introduction to R](./lessons/R_introduction.R)
+* Introduction to R [(lesson)](./lessons/R_introduction.R), 
+[(assignment)](./assignments/R_basics.md)
 * Introduction to Version Control and the Terminal
 * Regression and Model Selection
 * Multivariate Models
