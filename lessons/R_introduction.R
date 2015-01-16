@@ -1,3 +1,12 @@
+## Introduction to R
+## Dan McGlinn
+## 01/16/2015
+
+# The purpose of this lesson is to introduce students to the R programming 
+# enviornment for the first time. The lesson builds off the Software Carpentry
+# Lesson developed here: 
+# http://software-carpentry.org/v5/novice/r/01-starting-with-data.html
+
 ## Arithmetic ------------------------------------------------------------------
 
 3 + 4       # summation
