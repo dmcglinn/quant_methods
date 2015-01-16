@@ -2,7 +2,7 @@
 title: "Applied Quantitative Methods (EVSS 695 / BIOL 453)"
 author: "Dan McGlinn"
 date: "January 13, 2015"
-output: pdf_document
+output: html_document
 ---
 
 College of Charleston, Department of Biology, Spring 2015
@@ -72,7 +72,7 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 14 - Week 01 - Introduction to R
+* Jan 14 - Week 01 - [Introduction to R](./lessons/R_introduction.R)
 * Jan 21 - Week 02 - Introduction to Version Control and the Terminal
 * Jan 28 - Week 03 - Regression and Model Selection
 * Feb 04 - Week 04 - Multivariate Models
