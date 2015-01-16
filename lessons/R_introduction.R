@@ -1,14 +1,44 @@
-## arithmetic ------------------------------------------------------------------
+## Arithmetic ------------------------------------------------------------------
 
-3 + 4
+3 + 4       # summation
 
-3 > 4
+3 * 4       # multiplication
 
-3 != 4
+3 / 4       # division
 
-3 == 4
+3^4         # exponents
 
-3 == 3
+log(3)      # log base e
+
+log(3, 10)  # log base 10
+
+log10(3)    # log base 10
+
+exp(log(3)) # e
+
+## Logical operations ---------------------------------------------------------
+
+3 > 4        # greater than
+
+3 < 4        # less than
+
+3 >= 4       # greater than or equal to
+
+3 <= 4       # less than or equal to 
+
+3 != 4       # not equal to 
+
+3 == 4       # equal to
+
+TRUE         # True
+T            # True
+TRUE == 1    # True is set to one in R
+
+FALSE        # False
+F            # False
+FALSE == 0   # False is set to zero in R
+
+T + T + F    # what would this equal?
 
 ## variable assignment ---------------------------------------------------------
 
