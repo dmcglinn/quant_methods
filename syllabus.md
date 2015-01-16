@@ -72,7 +72,8 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 14 - Week 01 - [Introduction to R](./lessons/R_introduction.R)
+* Jan 14 - Week 01 - Introduction to R [lesson](./lessons/R_introduction.R)
+[assignment](./assignment/R_basics.md)
 * Jan 21 - Week 02 - Introduction to Version Control and the Terminal
 * Jan 28 - Week 03 - Regression and Model Selection
 * Feb 04 - Week 04 - Multivariate Models
@@ -171,7 +172,7 @@ unintentional, is forbidden by the honor code.  Please consult the instructor
 if you have any questions or concerns about how to use and cite sources to
 avoid plagiarism.
 
-**_Collaboration_** - Many of your assigments will involve working with
+**_Collaboration_** - Many of your assignments will involve working with
 other students.  Nevertheless, the work you submit must be completed
 independently and must represent your own independent ideas, unless the
 instructor specifically requires a joint product.  Please be sure that you
