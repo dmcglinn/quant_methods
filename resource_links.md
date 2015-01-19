@@ -28,4 +28,8 @@ http://software-carpentry.org/v5/novice/r/index.html
 * Advanced R by Hadley Wickham: http://adv-r.had.co.nz/
     - One of the best references for taking your R to the next level
 
-
+Statistics
+----------
+* Jack Weiss's courses on statistics for ecologists and environmental scientists
+    - http://www.unc.edu/courses/2010fall/ecol/563/001/
+    - http://www.unc.edu/courses/2010spring/ecol/562/001/
