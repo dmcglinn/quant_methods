@@ -3,6 +3,7 @@ External Learning Resources Links
 
 Best Practices
 --------------
+* Software Carpentry. http://software-carpentry.org
 * Wilson, G. et al. 2014. Best Practices for Scientific Computing. PLoS Biol
 12(1): e1001745. doi:10.1371/journal.pbio.1001745. URL: 
 http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745
@@ -28,4 +29,8 @@ http://software-carpentry.org/v5/novice/r/index.html
 * Advanced R by Hadley Wickham: http://adv-r.had.co.nz/
     - One of the best references for taking your R to the next level
 
-
+Statistics
+----------
+* Jack Weiss's courses on statistics for ecologists and environmental scientists
+    - http://www.unc.edu/courses/2010fall/ecol/563/001/
+    - http://www.unc.edu/courses/2010spring/ecol/562/001/
