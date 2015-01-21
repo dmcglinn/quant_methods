@@ -1,3 +1,8 @@
+---
+layout: page
+title: Resources
+---
+
 External Learning Resources Links
 =================================
 

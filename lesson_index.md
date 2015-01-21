@@ -1,3 +1,7 @@
+---
+layout: page
+title: Lessons
+---
 Quantitative topics covered in this course include:
 
 * Introduction to R [(lesson)](./lessons/R_introduction.R), 
