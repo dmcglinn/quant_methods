@@ -17,9 +17,9 @@ Index
 
 Licence
 -------
-Everything is open source (MIT) and open access (CC-BY) licensed, so please feel
-free to use these materials in your own classes and contribute changes if you
-see things that need improving.
+The [license](LICENSE.md) file describes that you are encourage to reuse or
+modify these materials with attribution (Creative Commons Attribution 4.0 license),
+and submit issues or contribute changes if you see things that need improving.
 
 Acknowledgements
 ----------------
