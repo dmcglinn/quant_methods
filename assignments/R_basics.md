@@ -22,8 +22,7 @@ names) unlike the example we examined in class.
 
 2. How many rows and columns does this data file have?
 
-3. What kind of object is each data column? Hint: combine two functions that we
-learned in lecture. 
+3. What kind of object is each data column? Hint: checkout the function sapply().
 
 4. What are the values of the the datafile for rows 1, 5, and 8 at columns 3, 
 7, and 10
