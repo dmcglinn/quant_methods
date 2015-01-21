@@ -11,19 +11,14 @@ of your repository click on the settings button (a wrench and a screw driver)
 and add my user name dmcglinn as a collaborator. 
 
 2. Clone the repository to your local machine with the following command
-```
-git clone https://github.com/your_user_name/your_repo_name.git
-```
-where you replace "your_user_name" with your user name and "your_repo_name" with
-the repo name you have chosen.
+`git clone https://github.com/your_user_name/your_repo_name.git` where you
+replace "your_user_name" with your user name and "your_repo_name" with the repo
+name you have chosen.
 
 3. Copy and paste your class materials in this directory on your local machine
 
 4. Stage and commit files to your repository and then push them to GitHub with
-the command:
-```
-git push origin master
-```
+the command `git push origin master`
 
 5. Send me a link to your repository. 
 
