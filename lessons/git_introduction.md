@@ -16,7 +16,7 @@ and source code as you develop quantiative projects.
 
 > ### Windows Users
 > It is a good idea that you ensure that you ahve a text editor that can be run
-> from the terminal. Newer installs of git ship with an editor called `nano`
+> from the terminal. Newer installs of git ship with an editor called nano
 > In the bash terminal type `nano` and hit Enter. 
 > If this does not bring up a text editor window in the terminal then you will
 > need to install nano manually. 
@@ -24,7 +24,7 @@ and source code as you develop quantiative projects.
 > http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
 > Unzip the file and paste the files that have either a .exe or .dll extension
 > in the directory: C:/Windows/System/
-> Now try to call `nano` from the terminal, it should work.
+> Now try to call nano from the terminal, it should work.
 
 ### Version control with Git
 We will work through one of the SWC lesson's on Git
@@ -41,6 +41,7 @@ will have to be using an Rstudio Project.
 #### Create and Rstudio Project
 To create a Project in the `planets` directory that we created in the lesson
 follow these steps:
+
 1. Click File > New Project
 2. Chose from "Existing Directory"
 3. Navigate to the `planets` directory and click on it.
@@ -48,6 +49,7 @@ follow these steps:
 #### Configure Git within Rstudio
 You must tell Rstudio where to find Git on your system so that it can be
 integrated into your workflow. Follow these steps
+
 1. Click Tools > Global Options
 2. Click Git/SVN 
 3. Find the box labled "Git executabile" and browse to the directory on your
