@@ -13,7 +13,7 @@ output are for each question.**
 Download and read in the datafile "./quant_methods/data/tgpp.csv" from the class
 website. This dataset represents the vascular plant species richness that was
 collected from the Tallgrass Prairie Preserve from 10 x 10 m quadrats. Species
-richness is simply the number of plants that occur within a quadrat. 
+richness is simply the number of species that occur within a quadrat. 
 
 Read the data into R, note this datafile has a header (i.e., it has column
 names) unlike the example we examined in class.  
@@ -22,7 +22,8 @@ names) unlike the example we examined in class.
 
 2. How many rows and columns does this data file have?
 
-3. What kind of object is each data column? Hint: combine two functions that we learned in lecture. 
+3. What kind of object is each data column? Hint: combine two functions that we
+learned in lecture. 
 
 4. What are the values of the the datafile for rows 1, 5, and 8 at columns 3, 
 7, and 10
