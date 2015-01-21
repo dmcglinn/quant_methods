@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Applied Quantitative Methods"
+title: Applied Quantitative Methods
 ---
 
 College of Charleston, Department of Biology, Spring 2015
