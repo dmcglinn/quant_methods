@@ -38,9 +38,9 @@ your projects. Note that Rstudio is not required to use Git, but it is very
 convient for 90% of the tasks you will be confronted with. To set this up you
 will have to be using an Rstudio Project. 
 
-#### Create and Rstudio Project
-To create a Project in the `planets` directory that we created in the lesson
-follow these steps:
+#### Create an Rstudio Project
+To create a Project in the `planets` directory (which we created in the lesson
+above) follow these steps:
 
 1. Click File > New Project
 2. Chose from "Existing Directory"
@@ -55,6 +55,14 @@ integrated into your workflow. Follow these steps
 3. Find the box labled "Git executabile" and browse to the directory on your
 machine where this file is located. On my windows machine this is 
 `C:\Program Files (x86)\Git\bin`
+
+### Important Note:
+If setup an Rstudio project in a directory that was not a git directory then 
+Rstudio will not recognize that it is a git directory until you recreate the 
+Rstudio project. This is not difficult just follow the instructions for 
+"Create and Rstudio Project" which is above.
+
+### 
 
 ### Additional Links
 * https://stat545-ubc.github.io/git01_git-install.html#but-first-why
