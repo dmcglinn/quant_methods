@@ -102,11 +102,66 @@ for(i in 1:ncol(dat)) {
     }
 }
 
+
 # In one liner situations you can also use the 
 # function ifelse()
 
 x = 1:10
 ifelse(x > 5 , 'sweet!', 'crap!')
+
+for(i in x) {
+    if(i > 5)
+        print('sweet')
+    else
+        print('crap')
+}
+
+## assignment 1
+x = 1:10
+y = NULL
+for(i in 1:length(x)) {
+    y[i] = sum(x[1:i])
+}
+
+
+## put this into a function
+
+eval_class = function(x) {
+    if (class(x) != 'data.frame'){
+        stop('x must be a data.frame()')
+    }
+    else {
+        x_classes = NULL
+        for(i in 1:ncol(x)) {
+            x_classes[i] = class(x[ , i])
+            if(x_classes[i] == "integer") {
+                print('sweet!')
+            }
+            else if (x_classes[i] == 'factor') {
+                print('ok')
+            }
+            else {
+                print('crap')
+            }
+        }
+    }
+    return(x_classes)
+}
+
+sum_numbers = function(x) {
+    y = sum(x)
+    return(y)
+}
+
+
+
+## debug functions using
+debug(eval_class)
+
+## you have to turn off the debugger when your done
+undebug(eval_class)
+
+
 
 
 
