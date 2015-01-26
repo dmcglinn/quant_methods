@@ -44,3 +44,5 @@ http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf
 * Jack Weiss's courses on statistics for ecologists and environmental scientists
     - http://www.unc.edu/courses/2010fall/ecol/563/001/
     - http://www.unc.edu/courses/2010spring/ecol/562/001/
+* Jason Fridley's R based plant ecology course: 
+http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html
