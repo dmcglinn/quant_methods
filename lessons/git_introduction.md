@@ -12,19 +12,28 @@ and source code as you develop quantiative projects.
 
 ### Install Git
 
-* Follow the instructions here: https://help.github.com/articles/set-up-git/
+* Follow the instructions for installing Git for your OS here: 
+http://software-carpentry.org/v5/setup.html
 
-> ### Windows Users
-> It is a good idea that you ensure that you ahve a text editor that can be run
-> from the terminal. Newer installs of git ship with an editor called nano
-> In the bash terminal type `nano` and hit Enter. 
-> If this does not bring up a text editor window in the terminal then you will
-> need to install nano manually. 
-> Download the program from here: 
-> http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
-> Unzip the file and paste the files that have either a .exe or .dll extension
-> in the directory: C:/Windows/System/
-> Now try to call nano from the terminal, it should work.
+## Text edtior checks
+### Windows Users
+It is a good idea that you ensure that you have a text editor that can be run
+from the terminal. Newer installs of git ship with an editor called nano
+In the bash terminal type `nano` and hit Enter. 
+If this does not bring up a text editor window in the terminal then you will
+need to install nano manually. 
+Download the program from here: 
+http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
+Unzip the file and paste the files that have either a .exe or .dll extension
+in the directory: C:/Windows/System/
+Now try to call nano from the terminal, it should work.
+
+### Mac Users
+Your OS may ship with the nano text editor. To examine if it is already 
+functional on your machine. Open the terminal and type `nano` and hit Enter.
+If is is not installed then I recommend you try Text wrangler: 
+http://www.barebones.com/products/textwrangler/
+
 
 ### Version control with Git
 We will work through one of the SWC lesson's on Git
@@ -61,8 +70,6 @@ If setup an Rstudio project in a directory that was not a git directory then
 Rstudio will not recognize that it is a git directory until you recreate the 
 Rstudio project. This is not difficult just follow the instructions for 
 "Create and Rstudio Project" which is above.
-
-### 
 
 ### Additional Links
 * https://stat545-ubc.github.io/git01_git-install.html#but-first-why
