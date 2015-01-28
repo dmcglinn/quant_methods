@@ -48,4 +48,5 @@ http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf
     - http://www.unc.edu/courses/2010spring/ecol/562/001/
 * Jason Fridley's R based plant ecology course: 
 http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html
-* Linear Models with R (free ebook): http://www.maths.bath.ac.uk/~jjf23/LMR/
+* Linear Models with R (free ebook): http://www.maths.bath.ac.uk/~jjf23/LMR/  
+* Ordination webpage: http://ordination.okstate.edu/
