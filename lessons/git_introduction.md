@@ -15,7 +15,7 @@ and source code as you develop quantiative projects.
 * Follow the instructions for installing Git for your OS here: 
 http://software-carpentry.org/v5/setup.html
 
-## Text edtior checks
+## Text editor checks
 ### Windows Users
 It is a good idea that you ensure that you have a text editor that can be run
 from the terminal. Newer installs of git ship with an editor called nano
@@ -26,7 +26,10 @@ Download the program from here:
 http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
 Unzip the file and paste the files that have either a .exe or .dll extension
 in the directory: C:/Windows/System/
-Now try to call nano from the terminal, it should work.
+Now try to call nano from the terminal, if it still does not work then I 
+suggest that you follow the install instructions at: 
+http://software-carpentry.org/v5/setup.html for Python and the Software
+Carpentry Installer which will add nano to your system. 
 
 ### Mac Users
 Your OS may ship with the nano text editor. To examine if it is already 
