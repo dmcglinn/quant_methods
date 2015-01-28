@@ -19,6 +19,8 @@ doi:10.1186/1751-0473-8-7 http://www.scfbm.org/content/8/1/7
 
 ##R Programming
 ###Basics
+* Free manuals and tutorials provided by R users: 
+http://cran.r-project.org/other-docs.html
 * R programming style guide: http://adv-r.had.co.nz/Style.html
 * Tryr by codeschool: http://tryr.codeschool.com/
     - Interactive online lesson for learning R basics
@@ -46,3 +48,4 @@ http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf
     - http://www.unc.edu/courses/2010spring/ecol/562/001/
 * Jason Fridley's R based plant ecology course: 
 http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html
+* Linear Models with R (free ebook): http://www.maths.bath.ac.uk/~jjf23/LMR/
