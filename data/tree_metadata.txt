@@ -1,0 +1,15 @@
+The dataset includes tree abundances from a subset of a vegetation database of Great Smoky Mountains National Park (TN, NC).
+
+plotID: unique code for each spatial unit (note some sampled more than once)
+date: when species occurrence recorded
+plotsize: size of quadrat in m2
+spcode: unique 7-letter code for each species
+species: species name
+cover: local abundance measured as estimated horizontal cover (ie, relative area of shadow if sun is directly above) classes 1-10 are: 1=trace, 2=0-1%, 3=1-2%, 4=2-5%, 5=5-10%, 6=10-25%, 7=25-50%, 8=50-75%, 9=75-95%, 10=95-100%
+utme: plot UTM Easting, zone 17 (NAD27 Datum)
+utmn: plot UTM Northing, zone 17 (NAD27 Datum)
+elev: elevation in meters from a digital elevation model (10 m res)
+tci: topographic convergence index, or site "water potential"; measured as the upslope contributing area divided by the tangent of the slope angle (Beven and Kirkby 1979)
+streamdist: distance of plot from the nearest permanent stream (meters)
+disturb: plot disturbance history (from a Park report); CORPLOG=corporate logging; SETTLE=concentrated settlement, VIRGIN="high in virgin attributes", LT-SEL=light or selective logging
+beers: transformed slope aspect ('heat load index'); 0 is SW (hottest), 2 is NE (coolest)
