@@ -70,6 +70,9 @@ FALSE        # False
 F            # False
 FALSE == 0   # False is set to zero in R
 
+!FALSE       # reverse the value of a logical a !
+!TRUE 
+
 T + T + F    # what would this equal?
 ```
 
@@ -85,7 +88,6 @@ weight_kg
 2.2 * weight_kg
 
 weight_kg <- 57.5
-
 
 # weight in kilograms is now
 weight_kg

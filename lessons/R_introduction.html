@@ -128,6 +128,10 @@ img {
 <pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>FALSE == 0   # False is set to zero in R</code></pre>
 <pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>!FALSE       # reverse the value of a logical a !</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>!TRUE </code></pre>
+<pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>T + T + F    # what would this equal?</code></pre>
 <pre><code>## [1] 2</code></pre>
 </div>
@@ -167,7 +171,7 @@ weight_lb</code></pre>
 <h2><a href="#read" name="read">#</a>Reading in data</h2>
 <p>First check what your working directory is:</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/Daniel/Dropbox/teaching/quant_methods&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/Daniel/Documents/quant_methods&quot;</code></pre>
 <p>On my system this returns “/home/danmcglinn/Dropbox/teaching/quant_methods” because I have setup an Rstudio Project in the quant_methods folder I can make my path’s releative to this location.</p>
 <p>Let’s read in the datafile “inflammation-01.csv” which is located in the directory: “/home/danmcglinn/Dropbox/teaching/quant_methods/data”. Because my working directory is already set to: “/home/danmcglinn/Dropbox/teaching/quant_methods/” I can shorten the path to “./data/inflammation-01.csv”</p>
 <pre class="r"><code>dat &lt;- read.csv(file = &quot;./data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
