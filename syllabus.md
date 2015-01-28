@@ -1,6 +1,7 @@
 ---
+title: "Applied Quantitative Methods"
+output: pdf_document
 layout: page
-title: Applied Quantitative Methods
 ---
 
 College of Charleston, Department of Biology, Spring 2015
@@ -89,7 +90,7 @@ Course Schedule:
   components due Friday Apr 24
 * Apr 29 - Week 16 - Project Presentations
 
-----------------
+
 Course Policies:
 ---------------
 
