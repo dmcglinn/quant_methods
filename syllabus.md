@@ -44,6 +44,7 @@ Course Objectives:
 Student Evaluation:
 -------------------
 **Graduate Students** will be evaluated based on the following criteria:
+
 * 5% Participation
 * 5% Peer Teaching
 * 45% Assignments
@@ -54,6 +55,7 @@ Student Evaluation:
        a paper)
 
 **Undergraduate Students** will be evaluated based on the following criteria:
+
 * 5% Participation
 * 45% Assignments
 * 50% Project
