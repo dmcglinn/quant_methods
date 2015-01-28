@@ -8,7 +8,7 @@ for loop that will produce a vector "y" that contains the sum of x up to that
 index of x. So for example the elements are x are 1, 2, 3, and so on and the 
 elements of y would be 1, 3, 6, and so on. 
 
-2. Modify your for loop so that if the sum is great than 10 the value of y
+2. Modify your for loop so that if the sum is greater than 10 the value of y
 is set to NA
 
 3. Place your for loop into a function that accepts as its argument any vector
