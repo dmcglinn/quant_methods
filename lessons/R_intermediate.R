@@ -125,7 +125,7 @@ for(i in 1:ncol(dat)) {
         print('sweet!')
     }
     else {
-        print('crap')
+        print('sour')
     }
 }
 
@@ -142,7 +142,7 @@ for(i in 1:ncol(dat)) {
             print('ok')
         }
         else {
-            print('crap')
+            print('sour')
         }
     }
 }
@@ -159,7 +159,7 @@ for(i in 1:ncol(dat)) {
             print('ok')
     }
     else {
-            print('crap')
+            print('sour')
     }
 }
 
@@ -168,13 +168,13 @@ for(i in 1:ncol(dat)) {
 # function ifelse()
 
 x = 1:10
-ifelse(x > 5 , 'sweet!', 'crap!')
+ifelse(x > 5 , 'sweet!', 'sour!')
 
 for(i in x) {
     if(i > 5)
         print('sweet')
     else
-        print('crap')
+        print('sour')
 }
 
 ## Functions ------------------------------
@@ -197,8 +197,9 @@ eval_class = function(x) {
             print('ok')
         }
         else {
-            print('crap')
+            print('sour')
         }
+    }
     return(dat_classes)
 }
 
@@ -233,7 +234,7 @@ eval_class = function(x) {
                 print('ok')
             }
             else {
-                print('crap')
+                print('sour')
             }
         }
     }    
@@ -243,6 +244,8 @@ eval_class = function(x) {
     return(x_classes)
 }
 
+my_obj = 1:10
+eval_class(my_obj)
 
 ## debug functions using
 debug(eval_class)
