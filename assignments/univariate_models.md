@@ -2,9 +2,10 @@
 
 ##Univariate Assignment
 
-## read in tree data
-## metadata can be found in ./data/tree_metadata.txt
-trees = read.csv('./data/treedata.csv')
+Fead in tree data, metadata can be found in 
+`./data/tree_metadata.txt`
+
+`trees = read.csv('./data/treedata.csv')`
 
 1) Using the tree's dataset develop seperate models for the following species:
 "Acer rubrum", "Pinus strobus", "Abies fraseri". For each species which of the 
