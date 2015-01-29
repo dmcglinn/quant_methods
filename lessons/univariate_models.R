@@ -24,10 +24,12 @@ sim_data = data.frame(x1, x2, x3)
 #create noise b/c there is always error in real life
 epsilon = rnorm(90, 0, 3)
 #generate response: additive model plus noise, intercept=0
-sim_data$y = 2*x1 + x2 + 3 * x3 + epsilon
+sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
 #simple linear regression with x1 as predictor
+
 mod1 = lm(y ~ x1, data=sim_data)
 mod1
+
 #plot regression line and mean line
 plot(y ~ x1, data=sim_data)
 abline(h=mean(sim_data$y), col='pink', lwd=3)
@@ -38,10 +40,11 @@ mod3 = lm(y ~ x3, data=sim_data)
 plot(y ~ x3, data=sim_data)
 abline(mod3)
 abline(h=mean(sim_data$y), col=2, lwd=2)
+legend('topleft', c('OLS fit', 'mean'), col=c('black', 'pink'), lty=1)
 
 # let's examine the statistics of these model fits
 #remove outlier in x3 space
-sim_data_sub = sim_data[sim_data$x3 < 25,]
+sim_data_sub = sim_data[sim_data$y < 25,]
 #verify that one observation was removed
 dim(sim_data)
 dim(sim_data_sub)
@@ -62,14 +65,21 @@ summary(mod_main)
 
 ## interaction effects -----------------------------------------------
 
+lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3)
+
+lm(y ~ 1)
+
 mod_full = update(mod_main, ~ . + x1*x2*x3)
-summary(mod_main)
+summary(mod_full)
 
 anova(mod_main, mod_full)
 
 AIC(mod_full)
 AIC(mod_main)
 
+#install.packages('MASS')
 library(MASS)
 stepAIC(mod_full)
+
+
 
