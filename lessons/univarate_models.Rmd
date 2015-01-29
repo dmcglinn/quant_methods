@@ -1,0 +1,143 @@
+---
+title: "univariate models"
+author: "Dan McGlinn"
+date: "Thursday, January 29, 2015"
+output: html_document
+---
+
+The goals of this lesson are to introduce univariate modeling using simple and
+multivariate Ordinary Least Squares (OLS) regression, and to gain exposure to
+the concept and methods of model comparison.
+
+The content from this lesson is modified in part from lessons developed by Jack Weiss and Jason Fridley. The original lessons can be found at the following links:
+
+* http://www.unc.edu/courses/2010fall/ecol/563/001/docs/lectures/lecture1.htm
+* http://plantecology.syr.edu/fridley/bio793/lm.html
+
+## Lesson Outline
+* Modeling philosophy
+* Simulate Data
+* Model building
+* 
+
+## Modeling Philosophy
+One of the simplest and most important ideas when constructing models can be 
+stated succinctly:
+
+> "All models are wrong but some models are useful" G.E. Box 
+
+As scientists we have to be on guard that we are not too attached to our
+models. Additionally it is often difficult to decide when a model is useful
+or not because there are three general reasons for building a model:
+
+* Hypothesis testing
+* Explaining or exploring data
+* Predicting data
+
+These different goals of model building require different approaches and modes
+of evaluation of model efficitiveness. A full discussion of the differences in 
+the philosophies and approaches is beyond the scope of this lesson. 
+
+## Simulate Hypothetical Data
+R is an excellent environment for learning about how models work in part because
+of the ease to generate data with known properties. This provides us the ability
+to not only check that a model is performing as expected but also helps to 
+indicate strengths and weaknesses of various model fitting and effect size 
+strength measures. 
+
+```{r}
+#generate data for example
+set.seed(10)
+x1 = runif(90)
+x2 = rbinom(90, 10, .5)
+x3 = rgamma(90, .1, .1)
+
+#organize predictors in data frame
+sim_data = data.frame(x1, x2, x3)
+#create noise b/c there is always error in real life
+epsilon = rnorm(90, 0, 3)
+#generate response: additive model plus noise, intercept=0
+sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
+```
+
+Above we have defined response variable "y" as a linear function of the three
+simulated independent variables (the x variables). Epsilon refers to the 
+error in the model and in line with OLS regression assumptions we have made 
+this is a normally distributed variable centered at zero.
+
+Now that we have simulated our data let's examine how we build OLS models in 
+R and plot the result.
+
+```{r}
+#simple linear regression with x1 as predictor
+mod1 = lm(y ~ x1, data=sim_data)
+#plot regression line and mean line
+plot(y ~ x1, data=sim_data)
+abline(h=mean(sim_data$y), col='pink', lwd=3)
+abline(mod1, lty=2)
+#simple linear regression with x3 as a predictor
+mod3 = lm(y ~ x3, data=sim_data)
+#graph regression line and mean line
+plot(y ~ x3, data=sim_data)
+abline(mod3)
+abline(h=mean(sim_data$y), col='pink', lwd=2)
+legend('topleft', c('OLS fit', 'mean'), col=c('black', 'pink'), lty=1, lwd=c(1,2))
+```
+
+Now that we've build our two models let's examine the model fits and the 
+statistical significance of the explanatory variables. 
+
+```{r}
+summary(mod1)
+```
+
+R provides several useful pieces of information above. The coefficients table
+
+```
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   9.6623     2.4493   3.945  0.00016 ***
+x1           -0.5975     4.8060  -0.124  0.90134    
+```
+Has the estimates of \(\beta\B0\) and beta1 
+
+
+#remove outlier in x3 space
+sim_data_sub = sim_data[sim_data$y < 25,]
+#verify that one observation was removed
+dim(sim_data)
+dim(sim_data_sub)
+#refit model to reduced data
+mod3_sub = lm(y ~ x3, data=sim_data_sub)
+summary(mod3_sub)
+
+# so R^2 is highly sensative to outliers but coefficients not so much
+
+## Question: create a plot of both models along side the data, how much
+## to they visually differ from one another. Examine the arguments to abline()
+## including lty and lwd
+
+## multiple regression --------------------------------------------------
+mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
+mod_main
+summary(mod_main)
+
+## interaction effects -----------------------------------------------
+
+lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3)
+
+lm(y ~ 1)
+
+mod_full = update(mod_main, ~ . + x1*x2*x3)
+summary(mod_full)
+
+anova(mod_main, mod_full)
+
+AIC(mod_full)
+AIC(mod_main)
+
+#install.packages('MASS')
+library(MASS)
+stepAIC(mod_full)
+
+
