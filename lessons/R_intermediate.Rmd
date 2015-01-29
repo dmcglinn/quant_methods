@@ -1,3 +1,9 @@
+---
+title: "R intermediate"
+author: "Dan McGlinn"
+date: "Thursday, January 29, 2015"
+output: html_document
+---
 The goals of this lesson are to increase student's
 familarity with the R programming language by discussing
 how to control program flow and use functions
@@ -15,8 +21,9 @@ how to control program flow and use functions
 * <a href="#debug">Debug</a>
 
 ```{r setup, echo=FALSE}
-  library(knitr)
-  opts_knit$set(root.dir='../')
+# setup the R enviornment for kniting markdown doc properly
+library(knitr)
+opts_knit$set(root.dir='../')
 ```
 
 ```{r import}
@@ -88,7 +95,9 @@ First we have to define an empty object we'll call this dat_classes
 dat_classes = NULL
 ```
 
-Once the empty object is initialized we can simply index is R is smart enough to convert this object to a vector of arbitrary size on the fly. This is not a wise move if memory or time is a necessity but it makes for easy programming. 
+Once the empty object is initialized we can simply index is R is smart enough to
+convert this object to a vector of arbitrary size on the fly. This is not a wise
+move if memory or time is a necessity but it makes for easy programming. 
 
 ```{r}
 for(i in 1:11) {
