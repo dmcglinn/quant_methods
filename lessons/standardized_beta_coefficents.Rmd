@@ -48,7 +48,17 @@ epsilon = rnorm(n, 0, 3)
 sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
 ```
 
-We can use the function `scale()` to standardize the independent and
+Before standardizing variables it is worthwhile to highlight that the 
+relationship between correlation and regression statistics. Specifically, 
+the t-statistic one can compute from a simple correlation coefficient is 
+exactly what is reported for the beta_1 coefficient in a regression model
+
+```{r}
+cor.test(sim_data$y, sim_data$x1)$statistic
+summary(lm(y ~ x1, data=sim_data))$coef
+```
+
+Now let's use the function `scale()` to standardize the independent and
 dependent variables. 
 
 ```{r}
