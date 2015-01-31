@@ -64,12 +64,14 @@ cor(sim_data$y, sim_data$x3)
 
 ```
 
-Notice that above the t- and p-values between `mod` and `mod_std` don't change
-(with the exception of the intercept term which is always 0 in a regression of
-standaridized variables.
+Notice that above the t-statistics and consequently the p-values between `mod`
+and `mod_std` don't change (with the exception of the intercept term which is
+always 0 in a regression of standaridized variables). This is because the 
+t-statistic is a pivotal statistic meaning that its value doesn't depend on the
+scale of the difference. 
 
 Additionally notice that the individual correlation coefficients are very 
-similar to the beta estimates in `mod_std` why might they not exactly the same?
+similar to the beta estimates in `mod_std`. Why might they not exactly the same?
 Here's a hint - what would happen if their was strong multicollinarity between
 the explanatory variables?
 
