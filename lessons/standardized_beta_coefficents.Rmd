@@ -1,0 +1,81 @@
+---
+title: "Standarized beta coefficients"
+author: "Dan McGlinn"
+output: html_document
+---
+
+This mini-lesson is to introduce the concept of standarized regression
+coefficients in R. A standarized regression coefficient is simply the 
+beta estimate from a regression on standardized variables. A standardized
+variable is a variable that has a mean of 0 and a standard deviation of 1.
+
+One reason for standardizing variables is that you can interpret the beta
+estimates as partial correlation coefficients. In other words now that the
+variables are standardized you can compare how correlated they are to the 
+response variable using their regression coefficients. Below is a
+demo of this.
+
+```{r}
+## We will use this function to plot the data and correlations 
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- abs(cor(x, y))
+    txt <- format(c(r, 0.123456789), digits = digits)[1]
+    txt <- paste0(prefix, txt)
+    if(missing(cex.cor)) 
+        cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor)
+}
+```
+
+Simulate some data for running models. Here to provide a clear demonstration
+we need explanatory variables that are independent normal variates.
+
+```{r}
+set.seed(10)
+n = 90
+x1 = rnorm(n)
+x2 = rnorm(n)
+x3 = rnorm(n)
+
+#organize predictors in data frame
+sim_data = data.frame(x1, x2, x3)
+#create noise b/c there is always error in real life
+epsilon = rnorm(n, 0, 3)
+#generate response: additive model plus noise, intercept=0
+sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
+```
+
+We can use the function `scale()` to standardize the independent and
+dependent variables. 
+
+```{r}
+sim_data_std = data.frame(scale(sim_data))
+
+mod = lm(y  ~ x1 + x2 + x3, data=sim_data)
+mod_std = lm(y  ~ x1 + x2 + x3, data=sim_data_std)
+round(summary(mod)$coef, 3)
+round(summary(mod_std)$coef, 3)
+cor(sim_data$y, sim_data$x1)
+cor(sim_data$y, sim_data$x2)
+cor(sim_data$y, sim_data$x3)
+
+```
+
+Notice that above the t- and p-values between `mod` and `mod_std` don't change
+(with the exception of the intercept term which is always 0 in a regression of
+standaridized variables.
+
+Additionally notice that the individual correlation coefficients are very 
+similar to the beta estimates in `mod_std` why might they not exactly the same?
+Here's a hint - what would happen if their was strong multicollinarity between
+the explanatory variables?
+
+Let's plot the variables against one another and also display their individual
+pearson correlation coefficients to get a visual perspective on the problem
+
+```{r}
+pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
+```
