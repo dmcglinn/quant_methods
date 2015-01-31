@@ -1,11 +1,11 @@
 ---
-title: "Standarized beta coefficients"
+title: "Standardized beta coefficients"
 author: "Dan McGlinn"
 output: html_document
 ---
 
-This mini-lesson is to introduce the concept of standarized regression
-coefficients in R. A standarized regression coefficient is simply the 
+This mini-lesson is to introduce the concept of standardized regression
+coefficients in R. A standardized regression coefficient is simply the 
 beta estimate from a regression on standardized variables. A standardized
 variable is a variable that has a mean of 0 and a standard deviation of 1.
 
@@ -78,7 +78,7 @@ cor(sim_data$y, sim_data$x3)
 
 Notice that above the t-statistics and consequently the p-values between `mod`
 and `mod_std` don't change (with the exception of the intercept term which is
-always 0 in a regression of standaridized variables). This is because the 
+always 0 in a regression of standardized variables). This is because the 
 t-statistic is a pivotal statistic meaning that its value doesn't depend on the
 scale of the difference. 
 
@@ -88,7 +88,7 @@ Here's a hint - what would happen if their was strong multicollinarity between
 the explanatory variables?
 
 Let's plot the variables against one another and also display their individual
-pearson correlation coefficients to get a visual perspective on the problem
+Pearson correlation coefficients to get a visual perspective on the problem
 
 ```{r}
 pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
