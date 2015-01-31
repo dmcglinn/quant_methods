@@ -50,8 +50,8 @@ sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
 
 Before standardizing variables it is worthwhile to highlight that the 
 relationship between correlation and regression statistics. Specifically, 
-the t-statistic one can compute from a simple correlation coefficient is 
-exactly what is reported for the beta_1 coefficient in a regression model
+the t-statistic from a simple correlation coefficient is exactly what is
+reported for the beta_1 coefficient in a regression model.
 
 ```{r}
 cor.test(sim_data$y, sim_data$x1)$statistic
@@ -83,7 +83,7 @@ t-statistic is a pivotal statistic meaning that its value doesn't depend on the
 scale of the difference. 
 
 Additionally notice that the individual correlation coefficients are very 
-similar to the beta estimates in `mod_std`. Why might they not exactly the same?
+similar to the beta estimates in `mod_std`. Why are these not exactly the same?
 Here's a hint - what would happen if their was strong multicollinarity between
 the explanatory variables?
 
