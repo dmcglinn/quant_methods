@@ -8,9 +8,9 @@ Read in tree data, metadata can be found in
 `trees = read.csv('./data/treedata.csv')`
 
 1) Using the tree's dataset develop separate models for the following species:
-"Acer rubrum", "Pinus strobus", "Abies fraseri". For each species which of the 
-available explanatory variables seems to be most strongly correlated to the 
-cover of that tree. 
+"Acer rubrum", "Pinus strobus", "Abies fraseri". For the cover of each species
+which of the available explanatory variables seems to be the srongest
+explanatory variable?
 
 2) From the tree data construct a new species richness variable which summarizes
 how many unique species occur in each plot. Summarize this richness variable 
