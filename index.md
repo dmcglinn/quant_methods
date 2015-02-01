@@ -9,7 +9,7 @@ quantitative methods, and providing students an opportunity to apply these tools
 towards their own projects.
 
 * [syllabus](./syllabus)
-* [lessons](./lessons_index)
+* [lessons](./lesson_index)
 * [online resources](./resource_links)
 
 ##License
