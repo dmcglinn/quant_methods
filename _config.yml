@@ -11,7 +11,7 @@ title:            Applied Quantiative Methods
 tagline:          'An open course'
 description:      'Teaching students how to build and interpret models in R'
 url:              dmcglinn.github.io/quant_methods
-baseurl:          /quant_methods
+baseurl:          /quant_methods/
 
 author:
   name:           'Dan McGlinn'
