@@ -7,7 +7,7 @@ permalink:        pretty
 relative_permalinks: true
 
 # Setup
-title:            Applied Quantiative Methods
+title:            Applied Quantitative Methods
 tagline:          'An open course'
 description:      'Teaching students how to build and interpret models in R'
 url:              dmcglinn.github.io/quant_methods
