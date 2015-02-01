@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Home
 ---
 
@@ -8,9 +8,9 @@ Methods. The course is aimed at developing a small set of core skills in
 quantitative methods, and providing students an opportunity to apply these tools
 towards their own projects.
 
-* [syllabus](./syllabus.md)
-* [lessons](./lessons.md)
-* [online resources](./resource_links.md)
+* [syllabus](./syllabus)
+* [lessons](./lessons)
+* [online resources](./resource_links)
 
 ##License
 
