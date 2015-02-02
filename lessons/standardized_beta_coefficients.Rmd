@@ -40,12 +40,12 @@ x1 = rnorm(n)
 x2 = rnorm(n)
 x3 = rnorm(n)
 
-#organize predictors in data frame
-sim_data = data.frame(x1, x2, x3)
 #create noise b/c there is always error in real life
 epsilon = rnorm(n, 0, 3)
 #generate response: additive model plus noise, intercept=0
-sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
+y = 2*x1 + x2 + 3*x3 + epsilon
+#organize predictors in data frame
+sim_data = data.frame(y, x1, x2, x3)
 ```
 
 Before standardizing variables it is worthwhile to highlight that the 
@@ -91,5 +91,5 @@ Let's plot the variables against one another and also display their individual
 Pearson correlation coefficients to get a visual perspective on the problem
 
 ```{r}
-pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
+pairs(sim_data, lower.panel = panel.cor, upper.panel = panel.smooth)
 ```
