@@ -73,8 +73,7 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 14 - Week 01 - Introduction to R [(lesson)](./lessons/R_introduction.R), 
-[(assignment)](./assignment/R_basics.md)
+* Jan 14 - Week 01 - Introduction to R 
 * Jan 21 - Week 02 - Introduction to Version Control and the Terminal
 * Jan 28 - Week 03 - Regression and Model Selection
 * Feb 04 - Week 04 - Multivariate Models
