@@ -1,8 +1,6 @@
 ---
-title: "R basics"
-author: "Dan McGlinn"
-date: "01/16/2015"
-output: html_document
+title: R basics
+layout: page
 ---
 
 We covered some of the basics of creating and working with objects in R during

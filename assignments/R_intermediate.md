@@ -1,4 +1,6 @@
-
+---
+layout: page
+---
 ## Intermediate R assignment
 
 Now that you have some familiarity with R lets examine a few additional techniques.

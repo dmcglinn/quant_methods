@@ -1,4 +1,6 @@
-
+---
+layout: page
+---
 ## Git Assignment
 
 The purpose of this assignment is to build your familarity with Git and to 
