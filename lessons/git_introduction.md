@@ -1,3 +1,8 @@
+---
+layout: page
+title: Introduction to Git
+---
+
 Introduction to Git
 -------------------
 
