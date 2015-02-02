@@ -4,8 +4,9 @@ title: Assignments
 ---
 
 * Introduction to R
-    - [basic](./assignments/R_basics) 
-    - [intermediate](./assignments/R_intermediate)
+    - [basic](./R_basics) 
+    - [intermediate](./R_intermediate)
 * Version Control
-    - [Setup remote git repo](./assignments/git_basics.md)
+    - [Setup remote git repo](./git_basics)
 * Univariate Models
+    - [Modeling tree cover and richness](./univariate_models)
