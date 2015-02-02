@@ -13,7 +13,7 @@ Course and Instructor info:
 * Email: mcglinndj@cofc.edu
 * Office: HWWE 203
 * Phone: 843-953-0190
-* Office hours: 11:30 - 12:30 p.m M or email by an appointment
+* Office hours: 11:30 - 12:30 p.m F or email by an appointment
 
 Course Description:
 -------------------
