@@ -99,7 +99,7 @@ Coefficients:
 (Intercept)   9.6623     2.4493   3.945  0.00016 ***
 x1           -0.5975     4.8060  -0.124  0.90134    
 ```
-Has the estimates of \(\beta\B0\) and beta1 
+Has the estimates of \(beta\)
 
 
 #remove outlier in x3 space
