@@ -10,7 +10,7 @@ on real datasets and towards their own projects.
 
 * [syllabus](./syllabus)
 * [lessons](./lessons)
-* [online resources](./resource_links)
+* [online resources](./resources)
 
 ##License
 
