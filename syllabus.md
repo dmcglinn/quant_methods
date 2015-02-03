@@ -117,8 +117,8 @@ graded as follows:
   50%
 * Answer demonstrates a lack of understanding of the core concept: 0%
 
-Late assignments will be docked 20% and will not be accepted after Sunday Night
-at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
+Late assignments will be docked 5% per day and will not be accepted after Tuesday
+night at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
 documented by the student or in cases where this has been discussed and approved
 in advance. This policy is based on the idea that in order to learn how to
 program well students should be programming at least every other day. Time has
