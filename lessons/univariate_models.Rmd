@@ -1,7 +1,5 @@
 ---
 title: "univariate models"
-author: "Dan McGlinn"
-date: "Thursday, January 29, 2015"
 output: html_document
 ---
 
@@ -69,6 +67,19 @@ Now that we have simulated our data let's examine how we build OLS models in
 R and plot the result.
 
 ```{r}
+#First we will demonstrate the simplest possible model 
+#the intercept only model
+mod = lm(sim_data$y ~ 1)
+mod 
+summary(mod)
+#Note that the estimate for the intercept is equilalent to the mean of y
+mean(sim_data$y)
+```
+
+We can easily accomodate more complex models but simply including them in our 
+call to lm. Be default models will always include an intercept.
+
+```{r}
 #simple linear regression with x1 as predictor
 mod1 = lm(y ~ x1, data=sim_data)
 #plot regression line and mean line
@@ -99,45 +110,63 @@ Coefficients:
 (Intercept)   9.6623     2.4493   3.945  0.00016 ***
 x1           -0.5975     4.8060  -0.124  0.90134    
 ```
-Has the estimates of \(beta\)
 
+which provides the estimate, standard error, t-statistic, and p-value for:
+ 
+* \(\hat{\beta_0}\) the y-intercept - 1st row of the table
+* \(\hat{\beta_1}\) the slope of the regression line - 2nd row of the table
 
-#remove outlier in x3 space
+We noticed that there was a large outlier in the previous plot. Let's remove it
+to see how this changes the fitted regression model. 
+
+```{r}
 sim_data_sub = sim_data[sim_data$y < 25,]
 #verify that one observation was removed
 dim(sim_data)
 dim(sim_data_sub)
 #refit model to reduced data
 mod3_sub = lm(y ~ x3, data=sim_data_sub)
+summary(mod3)
 summary(mod3_sub)
+```
 
-# so R^2 is highly sensative to outliers but coefficients not so much
+So it appears that \(R^2\) is highly sensative to outliers but the \(beta\) 
+coefficients are more robust. 
 
-## Question: create a plot of both models along side the data, how much
-## to they visually differ from one another. Examine the arguments to abline()
-## including lty and lwd
+### Excercise: 
+Create a single plot that displays the model of y given x3 before and after the
+outliers were removed. How much to they visually differ from one another.
+Examine the arguments to `abline()` including `lty` and `lwd`.
 
-## multiple regression --------------------------------------------------
+## Multiple regression 
+
+```{r}
 mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
-mod_main
 summary(mod_main)
+```
 
-## interaction effects -----------------------------------------------
+## Interaction effects
 
-lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3)
-
-lm(y ~ 1)
-
+```{r}
+# you can build the model by writing out every interaction
+lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3, data=sim_data)
+# or you can simply update the main effects model
 mod_full = update(mod_main, ~ . + x1*x2*x3)
 summary(mod_full)
+```
 
+## Model comparisons
+
+```{r}
+# we can carry out a nested model comparison
 anova(mod_main, mod_full)
 
+# examine the AIC scores of the two models, smaller number is better
 AIC(mod_full)
 AIC(mod_main)
 
-#install.packages('MASS')
+# run a stepwise regerssion analysis on the full model.
 library(MASS)
 stepAIC(mod_full)
-
+```
 

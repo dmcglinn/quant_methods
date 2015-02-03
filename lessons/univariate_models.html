@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-<meta name="author" content="Dan McGlinn" />
 
 
 <title>univariate models</title>
@@ -62,8 +61,6 @@ img {
 
 <div id="header">
 <h1 class="title">univariate models</h1>
-<h4 class="author"><em>Dan McGlinn</em></h4>
-<h4 class="date"><em>Thursday, January 29, 2015</em></h4>
 </div>
 
 
@@ -113,6 +110,37 @@ epsilon = rnorm(90, 0, 3)
 sim_data$y = 2*x1 + x2 + 3*x3 + epsilon</code></pre>
 <p>Above we have defined response variable “y” as a linear function of the three simulated independent variables (the x variables). Epsilon refers to the error in the model and in line with OLS regression assumptions we have made this is a normally distributed variable centered at zero.</p>
 <p>Now that we have simulated our data let’s examine how we build OLS models in R and plot the result.</p>
+<pre class="r"><code>#First we will demonstrate the simplest possible model 
+#the intercept only model
+mod = lm(sim_data$y ~ 1)
+mod </code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = sim_data$y ~ 1)
+## 
+## Coefficients:
+## (Intercept)  
+##         9.4</code></pre>
+<pre class="r"><code>summary(mod)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = sim_data$y ~ 1)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -11.925  -4.402  -2.024   1.421  97.816 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    9.400      1.243   7.561 3.42e-11 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 11.79 on 89 degrees of freedom</code></pre>
+<pre class="r"><code>#Note that the estimate for the intercept is equilalent to the mean of y
+mean(sim_data$y)</code></pre>
+<pre><code>## [1] 9.400383</code></pre>
+<p>We can easily accomodate more complex models but simply including them in our call to lm. Be default models will always include an intercept.</p>
 <pre class="r"><code>#simple linear regression with x1 as predictor
 mod1 = lm(y ~ x1, data=sim_data)
 #plot regression line and mean line
@@ -153,39 +181,198 @@ legend('topleft', c('OLS fit', 'mean'), col=c('black', 'pink'), lty=1, lwd=c(1,2
             Estimate Std. Error t value Pr(&gt;|t|)    
 (Intercept)   9.6623     2.4493   3.945  0.00016 ***
 x1           -0.5975     4.8060  -0.124  0.90134    </code></pre>
-<p>Has the estimates of <span class="math">\(beta\)</span></p>
+<p>which provides the estimate, standard error, t-statistic, and p-value for:</p>
+<ul>
+<li><span class="math">\(\hat{\beta_0}\)</span> the y-intercept - 1st row of the table</li>
+<li><span class="math">\(\hat{\beta_1}\)</span> the slope of the regression line - 2nd row of the table</li>
+</ul>
+<p>We noticed that there was a large outlier in the previous plot. Let’s remove it to see how this changes the fitted regression model.</p>
+<pre class="r"><code>sim_data_sub = sim_data[sim_data$y &lt; 25,]
+#verify that one observation was removed
+dim(sim_data)</code></pre>
+<pre><code>## [1] 90  4</code></pre>
+<pre class="r"><code>dim(sim_data_sub)</code></pre>
+<pre><code>## [1] 87  4</code></pre>
+<pre class="r"><code>#refit model to reduced data
+mod3_sub = lm(y ~ x3, data=sim_data_sub)
+summary(mod3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x3, data = sim_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.0089 -2.4768 -0.3318  1.7561 10.3645 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   6.3972     0.3965   16.13   &lt;2e-16 ***
+## x3            3.1489     0.1080   29.16   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.632 on 88 degrees of freedom
+## Multiple R-squared:  0.9062, Adjusted R-squared:  0.9051 
+## F-statistic: 850.3 on 1 and 88 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>summary(mod3_sub)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x3, data = sim_data_sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.0532 -2.2486 -0.3859  1.6277 10.2378 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   6.5243     0.4289  15.212  &lt; 2e-16 ***
+## x3            2.7373     0.3722   7.354 1.11e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.641 on 85 degrees of freedom
+## Multiple R-squared:  0.3888, Adjusted R-squared:  0.3816 
+## F-statistic: 54.08 on 1 and 85 DF,  p-value: 1.111e-10</code></pre>
+<p>So it appears that <span class="math">\(R^2\)</span> is highly sensative to outliers but the <span class="math">\(beta\)</span> coefficients are more robust.</p>
+<div id="excercise" class="section level3">
+<h3>Excercise:</h3>
+<p>Create a single plot that displays the model of y given x3 before and after the outliers were removed. How much to they visually differ from one another. Examine the arguments to <code>abline()</code> including <code>lty</code> and <code>lwd</code>.</p>
 </div>
-<div id="remove-outlier-in-x3-space" class="section level1">
-<h1>remove outlier in x3 space</h1>
-<p>sim_data_sub = sim_data[sim_data$y &lt; 25,] #verify that one observation was removed dim(sim_data) dim(sim_data_sub) #refit model to reduced data mod3_sub = lm(y ~ x3, data=sim_data_sub) summary(mod3_sub)</p>
-</div>
-<div id="so-r2-is-highly-sensative-to-outliers-but-coefficients-not-so-much" class="section level1">
-<h1>so R^2 is highly sensative to outliers but coefficients not so much</h1>
-<div id="question-create-a-plot-of-both-models-along-side-the-data-how-much" class="section level2">
-<h2>Question: create a plot of both models along side the data, how much</h2>
-</div>
-<div id="to-they-visually-differ-from-one-another.-examine-the-arguments-to-abline" class="section level2">
-<h2>to they visually differ from one another. Examine the arguments to abline()</h2>
-</div>
-<div id="including-lty-and-lwd" class="section level2">
-<h2>including lty and lwd</h2>
 </div>
 <div id="multiple-regression" class="section level2">
-<h2>multiple regression ————————————————–</h2>
-<p>mod_main = lm(y ~ x1 + x2 + x3, data=sim_data) mod_main summary(mod_main)</p>
+<h2>Multiple regression</h2>
+<pre class="r"><code>mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
+summary(mod_main)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = sim_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -8.3681 -2.0349 -0.2121  1.6987 10.0899 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   2.3468     1.5363   1.528   0.1303    
+## x1            2.6665     1.4303   1.864   0.0657 .  
+## x2            0.5756     0.2646   2.175   0.0324 *  
+## x3            3.1128     0.1073  29.014   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.517 on 86 degrees of freedom
+## Multiple R-squared:  0.9141, Adjusted R-squared:  0.9111 
+## F-statistic:   305 on 3 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="interaction-effects" class="section level2">
-<h2>interaction effects ———————————————–</h2>
-<p>lm(y ~ x1 + x2 + x3 + x1<em>x2 + x1</em>x3 + x2<em>x3 + x1</em>x2*x3)</p>
-<p>lm(y ~ 1)</p>
-<p>mod_full = update(mod_main, ~ . + x1<em>x2</em>x3) summary(mod_full)</p>
-<p>anova(mod_main, mod_full)</p>
-<p>AIC(mod_full) AIC(mod_main)</p>
+<h2>Interaction effects</h2>
+<pre class="r"><code># you can build the model by writing out every interaction
+lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3, data=sim_data)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3 + x1 * x2 + x1 * x3 + x2 * x3 + 
+##     x1 * x2 * x3, data = sim_data)
+## 
+## Coefficients:
+## (Intercept)           x1           x2           x3        x1:x2  
+##      3.9131      -0.9381       0.2030       5.5606       0.8836  
+##       x1:x3        x2:x3     x1:x2:x3  
+##     -6.3719      -0.3052       0.8125</code></pre>
+<pre class="r"><code># or you can simply update the main effects model
+mod_full = update(mod_main, ~ . + x1*x2*x3)
+summary(mod_full)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3 + x1:x2:x3, 
+##     data = sim_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.9378 -1.9017 -0.3867  1.5942 10.0821 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)   3.9131     2.9114   1.344  0.18264   
+## x1           -0.9381     5.9513  -0.158  0.87513   
+## x2            0.2030     0.5351   0.379  0.70535   
+## x3            5.5606     1.8483   3.009  0.00349 **
+## x1:x2         0.8836     1.1137   0.793  0.42983   
+## x1:x3        -6.3719     4.6214  -1.379  0.17171   
+## x2:x3        -0.3052     0.2494  -1.224  0.22445   
+## x1:x2:x3      0.8125     0.7073   1.149  0.25396   
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.516 on 82 degrees of freedom
+## Multiple R-squared:  0.9181, Adjusted R-squared:  0.9111 
+## F-statistic: 131.4 on 7 and 82 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-</div>
-<div id="install.packagesmass" class="section level1">
-<h1>install.packages(‘MASS’)</h1>
-<p>library(MASS) stepAIC(mod_full)</p>
+<div id="model-comparisons" class="section level2">
+<h2>Model comparisons</h2>
+<pre class="r"><code># we can carry out a nested model comparison
+anova(mod_main, mod_full)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: y ~ x1 + x2 + x3
+## Model 2: y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3 + x1:x2:x3
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1     86 1063.7                           
+## 2     82 1013.7  4    50.068 1.0125 0.4059</code></pre>
+<pre class="r"><code># examine the AIC scores of the two models, smaller number is better
+AIC(mod_full)</code></pre>
+<pre><code>## [1] 491.3455</code></pre>
+<pre class="r"><code>AIC(mod_main)</code></pre>
+<pre><code>## [1] 487.6846</code></pre>
+<pre class="r"><code># run a stepwise regerssion analysis on the full model.
+library(MASS)
+stepAIC(mod_full)</code></pre>
+<pre><code>## Start:  AIC=233.94
+## y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3 + x1:x2:x3
+## 
+##            Df Sum of Sq    RSS    AIC
+## - x1:x2:x3  1    16.315 1030.0 233.37
+## &lt;none&gt;                  1013.7 233.94
+## 
+## Step:  AIC=233.37
+## y ~ x1 + x2 + x3 + x1:x2 + x1:x3 + x2:x3
+## 
+##         Df Sum of Sq    RSS    AIC
+## - x2:x3  1    2.4648 1032.4 231.59
+## - x1:x3  1   17.3503 1047.3 232.88
+## - x1:x2  1   18.7868 1048.8 233.00
+## &lt;none&gt;               1030.0 233.37
+## 
+## Step:  AIC=231.59
+## y ~ x1 + x2 + x3 + x1:x2 + x1:x3
+## 
+##         Df Sum of Sq    RSS    AIC
+## - x1:x3  1    15.851 1048.3 230.96
+## - x1:x2  1    19.351 1051.8 231.26
+## &lt;none&gt;               1032.4 231.59
+## 
+## Step:  AIC=230.96
+## y ~ x1 + x2 + x3 + x1:x2
+## 
+##         Df Sum of Sq     RSS    AIC
+## - x1:x2  1      15.4  1063.7 230.28
+## &lt;none&gt;                1048.3 230.96
+## - x3     1   10355.5 11403.8 443.77
+## 
+## Step:  AIC=230.28
+## y ~ x1 + x2 + x3
+## 
+##        Df Sum of Sq     RSS    AIC
+## &lt;none&gt;               1063.7 230.28
+## - x1    1      43.0  1106.7 231.84
+## - x2    1      58.5  1122.2 233.09
+## - x3    1   10412.6 11476.4 442.34</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x1 + x2 + x3, data = sim_data)
+## 
+## Coefficients:
+## (Intercept)           x1           x2           x3  
+##      2.3468       2.6665       0.5756       3.1128</code></pre>
 </div>
 
 
