@@ -9,8 +9,8 @@ the concept and methods of model comparison.
 
 The content from this lesson is modified in part from lessons developed by Jack Weiss and Jason Fridley. The original lessons can be found at the following links:
 
-* http://www.unc.edu/courses/2010fall/ecol/563/001/docs/lectures/lecture1.htm
-* http://plantecology.syr.edu/fridley/bio793/lm.html
+* <http://www.unc.edu/courses/2010fall/ecol/563/001/docs/lectures/lecture1.htm>
+* <http://plantecology.syr.edu/fridley/bio793/lm.html>
 
 ## Lesson Outline
 * Modeling philosophy

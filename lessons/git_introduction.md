@@ -18,7 +18,7 @@ and source code as you develop quantiative projects.
 ### Install Git
 
 * Follow the instructions for installing Git for your OS here: 
-http://software-carpentry.org/v5/setup.html
+<http://software-carpentry.org/v5/setup.html>
 
 ## Text editor checks
 ### Windows Users
@@ -28,19 +28,19 @@ In the bash terminal type `nano` and hit Enter.
 If this does not bring up a text editor window in the terminal then you will
 need to install nano manually. 
 Download the program from here: 
-http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip
+<http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip>
 Unzip the file and paste the files that have either a .exe or .dll extension
 in the directory: C:/Windows/System/
 Now try to call nano from the terminal, if it still does not work then I 
 suggest that you follow the install instructions at: 
-http://software-carpentry.org/v5/setup.html for Python and the Software
+<http://software-carpentry.org/v5/setup.html> for Python and the Software
 Carpentry Installer which will add nano to your system. 
 
 ### Mac Users
 Your OS may ship with the nano text editor. To examine if it is already 
 functional on your machine. Open the terminal and type `nano` and hit Enter.
 If is is not installed then I recommend you try Text wrangler: 
-http://www.barebones.com/products/textwrangler/
+<http://www.barebones.com/products/textwrangler/>
 
 
 ### Version control with Git
@@ -80,4 +80,4 @@ Rstudio project. This is not difficult just follow the instructions for
 "Create and Rstudio Project" which is above.
 
 ### Additional Links
-* https://stat545-ubc.github.io/git01_git-install.html#but-first-why
+* <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>

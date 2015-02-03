@@ -8,7 +8,7 @@ output: html_document
 The purpose of this lesson is to introduce students to the R programming 
 enviornment for the first time. The lesson builds off the 
 [Software Carpentry](http://software-carpentry.org/) Lesson developed here: 
-http://software-carpentry.org/v5/novice/r/01-starting-with-data.html
+<http://software-carpentry.org/v5/novice/r/01-starting-with-data.html>
 
 ## Lesson Outline
 * <a href="#arith">Arithmetic</a>

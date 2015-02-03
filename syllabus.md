@@ -161,7 +161,7 @@ cheating are violations of the College’s honor code.  Any honor code violation
 that occur will be handled as outlined in the student handbook.  Please be
 absolutely sure that you understand what the honor code requires of you (see
 pages 10-12 of the student handbook,
-http://cofc.edu/generaldocuments/handbook.pdf).   If you have any questions or
+<http://cofc.edu/generaldocuments/handbook.pdf>).   If you have any questions or
 concerns about honor code expectations or about how to avoid violations, please
 consult with the instructor.
 
