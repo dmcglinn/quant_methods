@@ -37,7 +37,7 @@ http://cran.r-project.org/other-docs.html
 
 ##Git
 * Version Control by Software Carpentry: 
-http://software-carpentry.org/v5/novice/git/index.html
+<http://software-carpentry.org/v5/novice/git/index.html>
 * Git reference card: 
 <http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf>
 
