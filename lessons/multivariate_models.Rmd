@@ -5,17 +5,73 @@ output: html_document
 
 The goals of this lesson are to introduce multivariate ordination analyses.
 
-## Additional Reading
-* On the web see [The Ordination Webpage](http://ordination.okstate.edu/).
-* Chapters 5 and 6 of *Numerical Ecology with R*. 
-
-Ordination is a term that 
+##Outline
+* Overview of ordination methods
+* Indirect or Unconstrained Ordination
+    - Principle Components Analysis (PCA)
+    - Correspondance Anlysis (CA) 
+    - Detrended Coresspondance Analysis (DCA)
+    - Non-metric Multidimenstional Scaling (NMDS)
+* Direct or Constrained Ordination
+    - Redundancy Analysis (RDA)
+    - Cononical Correspondance Analysis (CCA)
+    - Hypothesis Testing
+    - Model Comparison
 
 ```{r setup, echo=FALSE}
 # setup the R enviornment for kniting markdown doc properly
 library(knitr)
 opts_knit$set(root.dir='../')
 ```
+
+## Load data and create community matrix
+```{r}
+library(vegan)
+source('./scripts/cleanplot.pca.R')
+
+# load data
+trees = read.csv('./data/treedata.csv')
+# create a community site x species matrix
+comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
+comm[1:5, 1:5]
+# replace the NAs with zeros
+comm = ifelse(is.na(comm), 0, comm)
+comm[1:5, 1:5]
+# visually explore the cover variable between species and sites
+sp_sum = apply(comm, 2, sum)
+site_sum = apply(comm, 1, sum)
+par(mfrow=c(2,2))
+hist(sp_sum)
+plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
+     xlab='Sp Rank', ylab='Sum Cover')
+hist(site_sum)
+plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
+     xlab='Site Rank', ylab='Sum Cover')
+
+## Overview of ordination methods
+
+<insert_table>
+
+## Indirect or Unconstrained Ordination
+### Principle Components Analysis (PCA)
+
+tree_pca = rda(comm, scale=TRUE)
+plot(tree_pca)
+biplot(tree_pca)
+cleanplot.pca(tree_pca)
+
+
+## Reading
+* Chapters 5 and 6 of *Numerical Ecology with R*
+
+## Online Docs
+* [The Ordination Webpage](http://ordination.okstate.edu/)
+    - great for term definitions, layman's explanation of how the methods
+    differ, and how ecologists should interpret
+* [Vegan: an introduction to ordination](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
+    - A brief demonstration of an ordination analysis in the R package vegan
+* [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
+    - A more thorough demonstation of ordiation in the R package vegan
 
 Table of 
 <table cellpadding="0" cellspacing="2">
