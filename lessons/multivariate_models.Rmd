@@ -3,10 +3,23 @@ title: "Multivariate models"
 output: html_document
 ---
 
-The goals of this lesson are to introduce multivariate ordination analyses.
+The goal of this lesson are to introduce multivariate ordination analyses.
+
+## Readings
+* Chapters 5 and 6 of *Numerical Ecology with R*
+
+## Online Docs
+* [The Ordination Webpage](http://ordination.okstate.edu/)
+    - great for term definitions, layman's explanation of how the methods
+    differ, and how ecologists should interpret
+* [Vegan: an introduction to ordination](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
+    - A brief demonstration of an ordination analysis in the R package vegan
+* [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
+    - A more thorough  of ordiation in the R package vegan
 
 ##Outline
 * Overview of ordination methods
+* Create a community matrix.
 * Indirect or Unconstrained Ordination
     - Principle Components Analysis (PCA)
     - Correspondance Anlysis (CA) 
@@ -19,6 +32,32 @@ The goals of this lesson are to introduce multivariate ordination analyses.
     - Model Comparison
     - Variance partitioning
 
+## Overview of ordination methods
+
+There are generally considered to be two types of ordination. 
+
+1. Indirect or unconstrained ordination in which only a single matrix is analyzed
+2. Direct or constrained ordination in which one matrix is used to explain the 
+variance of another matrix. 
+
+Today we will demonstrate both types. In general ordination is frequenty used
+when exploring patterns in datasets and has particular strengths when graphed. 
+
+The term ordination derives from the idea to ordinate or put things into order.
+With ordination approaches were are attempting to take high-deminstional 
+data matrix and explain their patterns with a small number of most important
+dimensions.
+
+Despite their sometimes terrifying names ordination has a close kinship with 
+multiple regression. One key difference is that the response variable is 
+multivariate rather than univariate; however, with many approaches the underlying
+algebra is very similar between regression and ordindation.
+
+The [Ordination methods table](http://dmcglinn.github.io/quant_methods/lessons/ordination_methods_table)
+provides a simple overview for some of the more popular ordination approaches. 
+
+Additionally this [key](http://ordination.okstate.edu/key.htm) created by Mike
+Palmer provides a decision tree that can help to guide your choice of methods.
 
 ```{r setup, echo=FALSE}
 # setup the R enviornment for kniting markdown doc properly
@@ -26,16 +65,20 @@ library(knitr)
 opts_knit$set(root.dir='../')
 ```
 
-## Load data and create community matrix
+## Create a community matrix
 ```{r}
+# load relevant packages and code for today's lesson
 library(vegan)
 source('./scripts/cleanplot.pca.R')
 
 # load data
 trees = read.csv('./data/treedata.csv')
-# In class Excersise 1: create a community site x species matrix
+# create a community site x species matrix
 comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
+# In class excercise 1:
+# How could you construct a site x species matrix using a for loop?
 
+# examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
@@ -52,36 +95,59 @@ plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Site Rank', ylab='Sum Cover')
 ```
 
-## Overview of ordination methods
+## Create an explanatory matrix
+```{r}
+head(trees)
+cols_to_keep = c('utme', 'utmn', 'elev', 'tci', 'streamdist', 'disturb', 'beers')
+env = aggregate(trees[ , cols_to_keep], by = list(trees$plotID), function(x) x[1])
+head(env)
+# drop first column and make it a row name
+row.names(env) = env[ , 1]
+env = env[ , -1]
+head(env)
 
-There are generally considered to be two types of ordination. 
-
-1. Indirect or unconstrained ordination in which only a single matrix is analyzed
-2. Direct or constrained ordination in which one matrix is used to explain the 
-variance of another matrix. 
-
-Today we will discuss both types. In general ordination is considered be an ideal
-approach 
-
-[Ordination methods table](http://dmcglinn.github.io/quant_methods/lessons/ordination_methods_table)
+# Am I missing anything...?
+# In class Excercise 2: ... 
+```
 
 ## Indirect or Unconstrained Ordination
 ### Principle Components Analysis (PCA)
+```{r}
+# PCA on enviornmental data
+# must drop categorical variable
+env_scaled = scale(env[ , names(env) != 'disturb'])
+#rda(env_scaled)
+#rda(env_scaled, na.action = na.omit)
+#env_pca = rda(env_scaled, subset=!is.na(disturb))
 
 tree_pca = rda(comm, scale=TRUE)
 plot(tree_pca)
 biplot(tree_pca)
 cleanplot.pca(tree_pca)
+# p120-121 of Numerical Ecology in R:
+# Scaling 1 = distance biplot: the eigenvectors are scaled to unit length. (1)
+# Distances among objects in the biplot are approximations of their
+# Euclidean distances in multidimensional space. (2) The angles among
+# descriptor vectors are meaningless.
+# Scaling 2 = correlation biplot: each eigenvector is scaled to the square root of
+# its eigenvalue. (1) Distances among objects in the biplot are not approximations
+# of their Euclidean distances in multidimensional space. (2) The angles
+# between descriptors in the biplot reflect their correlations.
+```
+
+### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
+
+```{r}
+tree_ca = cca(comm)
+tree_dca = decorana(comm)
+tree_mds = metaMDS(comm, trymax = 5)
+```
+
+* Direct or Constrained Ordination
+    - Redundancy Analysis (RDA)
+    - Cononical Correspondance Analysis (CCA)
+    - Hypothesis Testing
+    - Model Comparison
+    - Variance partitioning
 
 
-## Reading
-* Chapters 5 and 6 of *Numerical Ecology with R*
-
-## Online Docs
-* [The Ordination Webpage](http://ordination.okstate.edu/)
-    - great for term definitions, layman's explanation of how the methods
-    differ, and how ecologists should interpret
-* [Vegan: an introduction to ordination](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
-    - A brief demonstration of an ordination analysis in the R package vegan
-* [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
-    - A more thorough demonstation of ordiation in the R package vegan
