@@ -3,7 +3,7 @@ output: html_document
 ---
 
 
-Overview of Ordination methods (adpated from http://ordination.okstate.edu/terminol.htm)
+Overview of Ordination methods (adpated from <http://ordination.okstate.edu/terminol.htm>)
 
 
 <table width="762" cellpadding="4" cellspacing="0">
@@ -117,7 +117,7 @@ Overview of Ordination methods (adpated from http://ordination.okstate.edu/termi
 			Analysis</font></font></p>
 		</td>
 		<td width="117" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
-			<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt">Direct</font></font></p>
+			<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt">direct</font></font></p>
 		</td>
 		<td width="175" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
 			<p><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt">Eigenanalysis,
