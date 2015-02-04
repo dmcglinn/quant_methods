@@ -17,6 +17,8 @@ The goals of this lesson are to introduce multivariate ordination analyses.
     - Cononical Correspondance Analysis (CCA)
     - Hypothesis Testing
     - Model Comparison
+    - Variance partitioning
+
 
 ```{r setup, echo=FALSE}
 # setup the R enviornment for kniting markdown doc properly
@@ -31,8 +33,9 @@ source('./scripts/cleanplot.pca.R')
 
 # load data
 trees = read.csv('./data/treedata.csv')
-# create a community site x species matrix
+# In class Excersise 1: create a community site x species matrix
 comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
+
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
@@ -47,10 +50,20 @@ plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
 hist(site_sum)
 plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Site Rank', ylab='Sum Cover')
+```
 
 ## Overview of ordination methods
 
-<insert_table>
+There are generally considered to be two types of ordination. 
+
+1. Indirect or unconstrained ordination in which only a single matrix is analyzed
+2. Direct or constrained ordination in which one matrix is used to explain the 
+variance of another matrix. 
+
+Today we will discuss both types. In general ordination is considered be an ideal
+approach 
+
+[Ordination methods table](http://dmcglinn.github.io/quant_methods/lessons/ordination_methods_table)
 
 ## Indirect or Unconstrained Ordination
 ### Principle Components Analysis (PCA)
@@ -72,124 +85,3 @@ cleanplot.pca(tree_pca)
     - A brief demonstration of an ordination analysis in the R package vegan
 * [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
     - A more thorough demonstation of ordiation in the R package vegan
-
-Table of 
-<table cellpadding="0" cellspacing="2">
-    <tr>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>Acronym</b></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>Name</b>&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>type
-			of analysis</b></font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>Algorithm</b>&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><b>R
-			function</b></font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td width="97" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><i>PCA</i></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Principal
-			Components Analysis&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">indirect</font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Eigenanalysis,
-			SVD&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Many</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td width="97" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><i>CA</i></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Correspondence
-			Analysis&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">indirect</font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">RA,&nbsp;eigenanalysis,
-			SVD&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">DECORANA,
-			CANOCO, others</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td width="97" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><i>DCA</i></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Detrended
-			Correspondence Analysis&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">indirect</font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">RA
-			with detrending and rescaling&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">DECORANA,
-			CANOCO</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td width="97" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><i>CCA&nbsp;</i></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Canonical
-			Correspondence Analysis&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">direct</font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">RA
-			with regressions,eigenanalysis&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">CANOCO</font></font></p>
-		</td>
-	</tr>
-	<tr>
-		<td width="97" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt"><i>DCCA</i></font></font></p>
-		</td>
-		<td width="150" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Detrended
-			Canonical Correspondence Analysis&nbsp;</font></font></p>
-		</td>
-		<td width="113" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">direct</font></font></p>
-		</td>
-		<td width="124" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">RA
-			with regressions and detrending&nbsp;</font></font></p>
-		</td>
-		<td width="148" style="border: none; padding: 0in">
-			<p><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">CANOCO</font></font></p>
-		</td>
-	</tr>
-</table>
-
