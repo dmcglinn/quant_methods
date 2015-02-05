@@ -69,11 +69,25 @@ opts_knit$set(root.dir='../')
 ```{r}
 # load relevant packages and code for today's lesson
 library(vegan)
+library(dummies)
 source('./scripts/cleanplot.pca.R')
 
 # load data
 trees = read.csv('./data/treedata.csv')
 # create a community site x species matrix
+uni_sp = unique(trees$spcode)
+uni_site = unique(trees$plotID)
+comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
+colnames(comm) = uni_sp
+rownames(comm) = uni_site
+for(i in seq_along(uni_sp)) {
+    for(j in seq_along(uni_site)) {
+        comm[j , i] = sum(trees$cover[trees$spcode == uni_sp[i] &
+                              trees$plotID == uni_site[j]])
+    }
+}
+comm[1:5, 1:5]
+
 comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
 # In class excercise 1:
 # How could you construct a site x species matrix using a for loop?
@@ -88,6 +102,8 @@ sp_sum = apply(comm, 2, sum)
 site_sum = apply(comm, 1, sum)
 par(mfrow=c(2,2))
 hist(sp_sum)
+col = colorRamp(c('red', 'orange', 'blue'))
+sp_cols = col(length(uni_sp))
 plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Sp Rank', ylab='Sum Cover')
 hist(site_sum)
@@ -115,8 +131,17 @@ head(env)
 ```{r}
 # PCA on enviornmental data
 # must drop categorical variable
-env_scaled = scale(env[ , names(env) != 'disturb'])
-#rda(env_scaled)
+summary(env)
+env_noNA = env[!is.na(env$streamdist), ]
+env_scaled = scale(env_noNA[ , names(env_noNA) != 'disturb'])
+env_pca = rda(env_scaled)
+names(env_pca)
+sum(1.6703, 1.3109, 1.0054, 0.9099, 0.7711, 0.3325)
+
+plot(env_pca)
+cleanplot.pca(env_pca)
+
+
 #rda(env_scaled, na.action = na.omit)
 #env_pca = rda(env_scaled, subset=!is.na(disturb))
 
@@ -149,5 +174,35 @@ tree_mds = metaMDS(comm, trymax = 5)
     - Hypothesis Testing
     - Model Comparison
     - Variance partitioning
+
+```{r}
+rda_trees = rda(comm, env)
+## we have an NA need to drop it
+summary(env)
+which_row_to_drop = which(is.na(env$streamdist))
+comm = comm[-which_row_to_drop, ]
+env = env[-which_row_to_drop, ]
+rda_trees = rda(comm, env)
+# the above breaks b/c we have a categorical factor in env 
+
+# vegan requires that we write out each term if we are not going to 
+# convert the factor to a dummy matrix 
+rda_trees = rda(comm ~ env$utme + env$utmn + env$elev + 
+                       env$tci + env$streamdist + env$disturb + 
+                       env$beers)
+
+rda_trees
+plot(rda_trees)
+anova(rda_trees, by='margin')
+
+## variance partitioning
+
+moisture = env[, c('elev', 'tci', 'beers', 'streamdist')]
+geog = env[, c('utme', 'utmn')]
+# because the variable disturb is a factor we need to convert it into 
+# a dummy matrix using the function dummies::dummy
+disturb = dummy(env$disturb)
+varpart(comm, env[, c('elev', 'tci', 'beers')], env[, c('utme', 'utmn')], disturb)
+```
 
 
