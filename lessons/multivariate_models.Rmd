@@ -34,10 +34,6 @@ The goal of this lesson are to introduce multivariate ordination analyses.
 
 ## Overview of ordination methods
 
-This [presentation](./community_structure_slides_with_notes.pdf) by 
-[Abel Valdivia](http://www.unc.edu/~abelvald/) provides a good overview
-of the types of ordination and provides examples of their graphical output. 
-
 There are generally considered to be two types of ordination. 
 
 1. Indirect or unconstrained ordination in which only a single matrix is analyzed
@@ -59,6 +55,10 @@ algebra is very similar between regression and ordination.
 
 The [Ordination methods table](./ordination_methods_table.html)
 provides a simple overview for some of the more popular ordination approaches. 
+
+This [presentation](./community_structure_slides_with_notes.pdf) by 
+[Abel Valdivia](http://www.unc.edu/~abelvald/) provides a review of the types of
+ordination and provides examples of their graphical output. 
 
 Additionally this [key](http://ordination.okstate.edu/key.htm) created by Mike
 Palmer provides a decision tree that can help to guide your choice of methods.
