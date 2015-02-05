@@ -15,24 +15,28 @@ The goal of this lesson are to introduce multivariate ordination analyses.
 * [Vegan: an introduction to ordination](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
     - A brief demonstration of an ordination analysis in the R package vegan
 * [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
-    - A more thorough  of ordiation in the R package vegan
+    - A more thorough  of ordination in the R package vegan
 
 ##Outline
 * Overview of ordination methods
 * Create a community matrix.
 * Indirect or Unconstrained Ordination
     - Principle Components Analysis (PCA)
-    - Correspondance Anlysis (CA) 
-    - Detrended Coresspondance Analysis (DCA)
-    - Non-metric Multidimenstional Scaling (NMDS)
+    - Correspondence Analysis (CA) 
+    - Detrended Correspondence Analysis (DCA)
+    - Non-metric Multidimensional Scaling (NMDS)
 * Direct or Constrained Ordination
     - Redundancy Analysis (RDA)
-    - Cononical Correspondance Analysis (CCA)
+    - Canonical Correspondence Analysis (CCA)
     - Hypothesis Testing
     - Model Comparison
     - Variance partitioning
 
 ## Overview of ordination methods
+
+This [presentation](./community_structure_slides_with_notes.pdf) by 
+[Abel Valdivia](http://www.unc.edu/~abelvald/) provides a good overview
+of the types of ordination and provides examples of their graphical output. 
 
 There are generally considered to be two types of ordination. 
 
@@ -40,20 +44,20 @@ There are generally considered to be two types of ordination.
 2. Direct or constrained ordination in which one matrix is used to explain the 
 variance of another matrix. 
 
-Today we will demonstrate both types. In general ordination is frequenty used
-when exploring patterns in datasets and has particular strengths when graphed. 
+Today we will demonstrate both types. In general, ordination is frequently used
+when exploring patterns in datasets graphically; however, it can also be used 
+to carry out hypothesis testing. 
 
 The term ordination derives from the idea to ordinate or put things into order.
-With ordination approaches were are attempting to take high-deminstional 
-data matrix and explain their patterns with a small number of most important
-dimensions.
+With ordination approaches were are attempting to take a high-dimensional 
+data matrix and explain its patterns with a small number of axes. 
 
 Despite their sometimes terrifying names ordination has a close kinship with 
 multiple regression. One key difference is that the response variable is 
 multivariate rather than univariate; however, with many approaches the underlying
-algebra is very similar between regression and ordindation.
+algebra is very similar between regression and ordination.
 
-The [Ordination methods table](http://dmcglinn.github.io/quant_methods/lessons/ordination_methods_table)
+The [Ordination methods table](./ordination_methods_table.html)
 provides a simple overview for some of the more popular ordination approaches. 
 
 Additionally this [key](http://ordination.okstate.edu/key.htm) created by Mike
@@ -81,7 +85,7 @@ trees = read.csv('./data/treedata.csv')
 uni_sp = unique(trees$spcode)
 uni_site = unique(trees$plotID)
 ```
-```{r, eval=FALSE)
+```{r, eval=FALSE}
 comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
 colnames(comm) = uni_sp
 rownames(comm) = uni_site
@@ -175,7 +179,7 @@ tree_mds = metaMDS(comm, trymax = 5)
 
 * Direct or Constrained Ordination
     - Redundancy Analysis (RDA)
-    - Cononical Correspondance Analysis (CCA)
+    - Canonical Correspondence Analysis (CCA)
     - Hypothesis Testing
     - Model Comparison
     - Variance partitioning
