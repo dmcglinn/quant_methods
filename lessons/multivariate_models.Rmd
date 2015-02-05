@@ -74,9 +74,14 @@ source('./scripts/cleanplot.pca.R')
 
 # load data
 trees = read.csv('./data/treedata.csv')
-# create a community site x species matrix
+```
+```{r}
+# create a community site x species matrix by summing species cover values
+# we can do this with a for loop but it take a while to run
 uni_sp = unique(trees$spcode)
 uni_site = unique(trees$plotID)
+```
+```{r, eval=FALSE)
 comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
 colnames(comm) = uni_sp
 rownames(comm) = uni_site
@@ -87,17 +92,17 @@ for(i in seq_along(uni_sp)) {
     }
 }
 comm[1:5, 1:5]
-
+```
+```{r}
+# altneratively we can use a tapply function 
 comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
-# In class excercise 1:
-# How could you construct a site x species matrix using a for loop?
-
 # examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
 # visually explore the cover variable between species and sites
+uni_sp = unique(trees$spcode)
 sp_sum = apply(comm, 2, sum)
 site_sum = apply(comm, 1, sum)
 par(mfrow=c(2,2))
@@ -162,7 +167,7 @@ cleanplot.pca(tree_pca)
 
 ### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
 
-```{r}
+```{r, eval=FALSE}
 tree_ca = cca(comm)
 tree_dca = decorana(comm)
 tree_mds = metaMDS(comm, trymax = 5)
@@ -175,7 +180,7 @@ tree_mds = metaMDS(comm, trymax = 5)
     - Model Comparison
     - Variance partitioning
 
-```{r}
+```{r, error=TRUE}
 rda_trees = rda(comm, env)
 ## we have an NA need to drop it
 summary(env)
@@ -202,7 +207,9 @@ geog = env[, c('utme', 'utmn')]
 # because the variable disturb is a factor we need to convert it into 
 # a dummy matrix using the function dummies::dummy
 disturb = dummy(env$disturb)
-varpart(comm, env[, c('elev', 'tci', 'beers')], env[, c('utme', 'utmn')], disturb)
+
+# examine the explanatory variable of each class of variables.
+varpart(comm, moisture, geog, disturb)
 ```
 
 
