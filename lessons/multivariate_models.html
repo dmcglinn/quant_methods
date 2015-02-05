@@ -84,7 +84,7 @@ img {
 </ul></li>
 <li><a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf">Multivariate Analysis of Ecological Communities in R: vegan tutorial</a>
 <ul>
-<li>A more thorough of ordiation in the R package vegan</li>
+<li>A more thorough of ordination in the R package vegan</li>
 </ul></li>
 </ul>
 </div>
@@ -96,14 +96,14 @@ img {
 <li>Indirect or Unconstrained Ordination
 <ul>
 <li>Principle Components Analysis (PCA)</li>
-<li>Correspondance Anlysis (CA)</li>
-<li>Detrended Coresspondance Analysis (DCA)</li>
-<li>Non-metric Multidimenstional Scaling (NMDS)</li>
+<li>Correspondence Analysis (CA)</li>
+<li>Detrended Correspondence Analysis (DCA)</li>
+<li>Non-metric Multidimensional Scaling (NMDS)</li>
 </ul></li>
 <li>Direct or Constrained Ordination
 <ul>
 <li>Redundancy Analysis (RDA)</li>
-<li>Cononical Correspondance Analysis (CCA)</li>
+<li>Canonical Correspondence Analysis (CCA)</li>
 <li>Hypothesis Testing</li>
 <li>Model Comparison</li>
 <li>Variance partitioning</li>
@@ -112,15 +112,16 @@ img {
 </div>
 <div id="overview-of-ordination-methods" class="section level2">
 <h2>Overview of ordination methods</h2>
+<p>This <a href="./community_structure_slides_with_notes.pdf">presentation</a> by <a href="http://www.unc.edu/~abelvald/">Abel Valdivia</a> provides a good overview of the types of ordination and provides examples of their graphical output.</p>
 <p>There are generally considered to be two types of ordination.</p>
 <ol style="list-style-type: decimal">
 <li>Indirect or unconstrained ordination in which only a single matrix is analyzed</li>
 <li>Direct or constrained ordination in which one matrix is used to explain the variance of another matrix.</li>
 </ol>
-<p>Today we will demonstrate both types. In general ordination is frequenty used when exploring patterns in datasets and has particular strengths when graphed.</p>
-<p>The term ordination derives from the idea to ordinate or put things into order. With ordination approaches were are attempting to take high-deminstional data matrix and explain their patterns with a small number of most important dimensions.</p>
-<p>Despite their sometimes terrifying names ordination has a close kinship with multiple regression. One key difference is that the response variable is multivariate rather than univariate; however, with many approaches the underlying algebra is very similar between regression and ordindation.</p>
-<p>The <a href="http://dmcglinn.github.io/quant_methods/lessons/ordination_methods_table">Ordination methods table</a> provides a simple overview for some of the more popular ordination approaches.</p>
+<p>Today we will demonstrate both types. In general, ordination is frequently used when exploring patterns in datasets graphically; however, it can also be used to carry out hypothesis testing.</p>
+<p>The term ordination derives from the idea to ordinate or put things into order. With ordination approaches were are attempting to take a high-dimensional data matrix and explain its patterns with a small number of axes.</p>
+<p>Despite their sometimes terrifying names ordination has a close kinship with multiple regression. One key difference is that the response variable is multivariate rather than univariate; however, with many approaches the underlying algebra is very similar between regression and ordination.</p>
+<p>The <a href="./ordination_methods_table.html">Ordination methods table</a> provides a simple overview for some of the more popular ordination approaches.</p>
 <p>Additionally this <a href="http://ordination.okstate.edu/key.htm">key</a> created by Mike Palmer provides a decision tree that can help to guide your choice of methods.</p>
 </div>
 <div id="create-a-community-matrix" class="section level2">
@@ -140,7 +141,16 @@ trees = read.csv('./data/treedata.csv')</code></pre>
 # we can do this with a for loop but it take a while to run
 uni_sp = unique(trees$spcode)
 uni_site = unique(trees$plotID)</code></pre>
-<p><code>{r, eval=FALSE) comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site)) colnames(comm) = uni_sp rownames(comm) = uni_site for(i in seq_along(uni_sp)) {     for(j in seq_along(uni_site)) {         comm[j , i] = sum(trees$cover[trees$spcode == uni_sp[i] &amp;                               trees$plotID == uni_site[j]])     } } comm[1:5, 1:5]</code></p>
+<pre class="r"><code>comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
+colnames(comm) = uni_sp
+rownames(comm) = uni_site
+for(i in seq_along(uni_sp)) {
+    for(j in seq_along(uni_site)) {
+        comm[j , i] = sum(trees$cover[trees$spcode == uni_sp[i] &amp;
+                              trees$plotID == uni_site[j]])
+    }
+}
+comm[1:5, 1:5]</code></pre>
 <pre class="r"><code># altneratively we can use a tapply function 
 comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
 # examine the community matrix
@@ -286,7 +296,7 @@ tree_mds = metaMDS(comm, trymax = 5)</code></pre>
 <li>Direct or Constrained Ordination
 <ul>
 <li>Redundancy Analysis (RDA)</li>
-<li>Cononical Correspondance Analysis (CCA)</li>
+<li>Canonical Correspondence Analysis (CCA)</li>
 <li>Hypothesis Testing</li>
 <li>Model Comparison</li>
 <li>Variance partitioning</li>
