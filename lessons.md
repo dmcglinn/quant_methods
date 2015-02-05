@@ -12,6 +12,7 @@ Quantitative topics covered in this course include:
     - <a href='./univariate_models.html'>OLS modeling and model selection</a>
     - <a href='./standardized_beta_coefficients.html'>Standardized regression coefficients</a>
 * Multivariate Models
+    - <a href='./multivariate-models.html'>Multivariate ordination models</a>
 * Spatial Models
 * GIS manipulations
 * Simulations and Null models
