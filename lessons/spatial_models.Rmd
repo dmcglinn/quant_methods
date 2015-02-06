@@ -19,3 +19,54 @@ correlated errors
 * Univariate modeling
 * Multivariate modeling
 
+## Detecting spatial dependence
+
+```{r}
+library(vegan)
+library(spdep)
+# Oribatid mite data. 70 soil cores collected by Daniel Borcard in 1989.
+# See Borcard et al. (1992, 1994) for details.
+data(mite)
+data(mite.env)
+data(mite.xy)
+
+head(mite)
+head(mite.env)
+head(mite.xy)
+```
+```{r}
+plot(mite.xy)
+
+sr = apply(mite, 1, function(x) sum(x > 0))
+hist(sr)
+
+plot(mite.xy, cex=sr/max(sr))
+
+col_brks = hist(sr, plot=F)$breaks
+col_indices = as.numeric(cut(sr, col_brks))
+cols = rev(terrain.colors(length(col_brks)))
+plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
+```
+
+```{r}
+sr_dist = dist(sr)
+xy_dist = dist(mite.xy)
+plot(xy_dist, sr_dist)
+lines(lowess(xy_dist, sr_dist), lwd=2, col='red')
+obs_cor = cor(xy_dist, sr_dist)
+obs_cor
+
+## let's do a permutation test for significance:
+nperm = 5000
+null_cor1 = null_cor2 = obs_cor
+for (i in 2:nperm) {
+    tmp_xy = mite.xy[sample(nrow(mite.xy)), ]
+    tmp_mite = mite[sample(nrow(mite)), ]
+    null_cor1[i] = cor(dist(tmp_xy), dist(mite))
+    null_cor2[i] = cor(dist(mite.xy), dist(tmp_mite))
+}
+sum(null_cor1 >= obs_cor) / nperm 
+sum(null_cor2 >= obs_cor) / nperm
+1/nperm
+
+```
