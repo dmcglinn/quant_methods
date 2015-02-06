@@ -5,8 +5,8 @@ output: html_document
 
 > Premature optimization is the root of all evil -- Donald Knuth
 
-The humble for loop is often considered distasteful for many seasoned programmers
-because of it is inefficient; however, the for loop is one of the most useful and
+The humble for loop is often considered distasteful by seasoned programmers
+because it is inefficient; however, the for loop is one of the most useful and
 generalizable programming structures in R. If you can learn how to construct and
 understand for loops then you can code almost any iterative task. Once your loop
 works you can always work to optimize your code and increase its efficiency.
