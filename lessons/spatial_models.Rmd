@@ -1,0 +1,21 @@
+---
+title: "Spatial Models"
+output: html_document
+---
+
+The goals of this lesson are to introduce how spatial dependendence is tested 
+for and how it can be corrected for or explained in uni- and multi-variate 
+modeling frameworks. 
+
+## Readings
+
+* The R Book p778-785 on Generalized Least Squares models with spatially
+correlated errors
+* Numerical Ecology in R, p228-238 on detecting spatial dependence.
+
+## Outline
+
+* Detecting spatial dependence
+* Univariate modeling
+* Multivariate modeling
+
