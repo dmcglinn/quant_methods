@@ -3,13 +3,12 @@ layout: page
 title: Home
 ---
 
-This site contains teaching materials for a course on applied quantitative
-methods. The course is aimed at developing a set of core skills in
-quantitative methods, and providing students an opportunity to apply these tools
-on real datasets and towards their own projects.
+This site contains teaching materials for applied quantitative methods. The course is aimed at developing a set of core skills using the R programming 
+language, and providing students an opportunity to apply these tools on real datasets and towards their own projects.
 
 * [syllabus](./syllabus)
 * [lessons](./lessons)
+* [assignments](./assignments)
 * [online resources](./resources)
 
 ##License
