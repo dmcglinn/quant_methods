@@ -16,6 +16,8 @@ data. Ideas in Ecology and Evolution. 6(2): 1-10. URL:
 * Ram, K. 2013. Git can facilitate greater reproducibility and increased
 transparency in science. Source Code for Biology and Medicine. 8:7.
 doi:10.1186/1751-0473-8-7 URL: <http://www.scfbm.org/content/8/1/7>
+* A data science blog greared towards beginneers with a mixture of R and python
+content <http://www.dataschool.io/>
 
 ##R Programming
 ###Basics
