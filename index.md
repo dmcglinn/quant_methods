@@ -13,7 +13,8 @@ language, and providing students an opportunity to apply these tools on real dat
 
 ##License
 
-This course material is open source (MIT) and open access (CC-BY) licensed, so please feel free to use these materials in your own classes and contribute changes if you see things that need improving.
+This course material is open source (MIT) and open access (CC-BY) licensed, so please feel free to use these materials in your own classes and contribute changes if you see things that need improving. The more explicit license can 
+be found [here](./LICENSE)
 
 ##Acknowledgements
 
