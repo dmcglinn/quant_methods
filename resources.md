@@ -45,6 +45,8 @@ content <http://www.dataschool.io/>
     - <http://software-carpentry.org/v5/novice/git/index.html>
 * Git reference card: 
     - <http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf>
+* Git quick reference for beginners
+    - <http://www.dataschool.io/git-quick-reference-for-beginners/>
 
 ##Statistics
 * Jack Weiss's courses on statistics for ecologists and environmental scientists
