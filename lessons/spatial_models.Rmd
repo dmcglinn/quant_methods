@@ -57,16 +57,16 @@ obs_cor = cor(xy_dist, sr_dist)
 obs_cor
 
 ## let's do a permutation test for significance:
-nperm = 5000
-null_cor1 = null_cor2 = obs_cor
+nperm = 1000
+null_cor = obs_cor
 for (i in 2:nperm) {
     tmp_xy = mite.xy[sample(nrow(mite.xy)), ]
-    tmp_mite = mite[sample(nrow(mite)), ]
-    null_cor1[i] = cor(dist(tmp_xy), dist(mite))
-    null_cor2[i] = cor(dist(mite.xy), dist(tmp_mite))
+    null_cor[i] = cor(dist(tmp_xy), dist(mite))
 }
-sum(null_cor1 >= obs_cor) / nperm 
-sum(null_cor2 >= obs_cor) / nperm
-1/nperm
+sum(null_cor >= obs_cor) / nperm 
+1/(nperm)
+mantel(xy_dist, sr_dist)
+hist(null_cor)
+abline(v=obs_cor, col='red')
 
 ```
