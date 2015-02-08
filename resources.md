@@ -34,7 +34,8 @@ content <http://www.dataschool.io/>
     - The software carpentry team have some of the best lessons for learning
     computational tools on the web.
     - <http://software-carpentry.org/v5/novice/r/index.html>
-
+* Five useful R functions for manipulating data
+    - <http://rpubs.com/danmirman/Rgroup-part1>
 ###Advanced
 * Advanced R by Hadley Wickham: 
     - One of the best references for taking your R to the next level
