@@ -131,7 +131,7 @@ summary(mod3)
 summary(mod3_sub)
 ```
 
-So it appears that \(R^2\) is highly sensative to outliers but the \(beta\) 
+So it appears that \(R^2\) is highly sensative to outliers but the \(\beta\) 
 coefficients are more robust. 
 
 ### Excercise: 
