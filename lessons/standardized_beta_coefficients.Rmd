@@ -1,6 +1,6 @@
 ---
 title: Standardized \(\beta\) coefficients
-output: pdf_document
+output: html_document
 ---
 
 This mini-lesson is to introduce the concept of standardized regression
