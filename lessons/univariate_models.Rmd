@@ -13,12 +13,13 @@ The content from this lesson is modified in part from lessons developed by Jack 
 * <http://plantecology.syr.edu/fridley/bio793/lm.html>
 
 ## Lesson Outline
-* Modeling philosophy
-* Simulate Data
-* Model building
-* 
+* <a href="#phil">Modeling philosophy</a>
+* <a href="#sim">Simulate Data</a>
+* <a href="#mult">Multiple regression</a>
+* <a href="#inter">Interaction Effects</a>
+* <a href="#comp">Model comparisons</a>
 
-## Modeling Philosophy
+## <a href="#phil" name="phil">#</a> Modeling Philosophy
 One of the simplest and most important ideas when constructing models can be 
 stated succinctly:
 
@@ -36,7 +37,7 @@ These different goals of model building require different approaches and modes
 of evaluation of model efficitiveness. A full discussion of the differences in 
 the philosophies and approaches is beyond the scope of this lesson. 
 
-## Simulate Hypothetical Data
+## <a href="#sim" name="sim">#</a> Simulate Hypothetical Data
 R is an excellent environment for learning about how models work in part because
 of the ease to generate data with known properties. This provides us the ability
 to not only check that a model is performing as expected but also helps to 
@@ -138,14 +139,14 @@ Create a single plot that displays the model of y given x3 before and after the
 outliers were removed. How much to they visually differ from one another.
 Examine the arguments to `abline()` including `lty` and `lwd`.
 
-## Multiple regression 
+## <a href="#mult" name="mult">#</a> Multiple regression 
 
 ```{r}
 mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
 summary(mod_main)
 ```
 
-## Interaction effects
+## <a href="#inter" name="inter">#</a> Interaction effects
 
 ```{r}
 # you can build the model by writing out every interaction
@@ -155,7 +156,7 @@ mod_full = update(mod_main, ~ . + x1*x2*x3)
 summary(mod_full)
 ```
 
-## Model comparisons
+## <a href="#comp" name="comp">#</a> Model comparisons
 
 ```{r}
 # we can carry out a nested model comparison
