@@ -1,19 +1,16 @@
 ---
-title: "Standardized beta coefficients"
-author: "Dan McGlinn"
-output: html_document
+title: Standardized \(\beta\) coefficients
+output: pdf_document
 ---
 
 This mini-lesson is to introduce the concept of standardized regression
 coefficients in R. A standardized regression coefficient is simply the 
-beta estimate from a regression on standardized variables. A standardized
+\(\beta\) estimate from a regression on standardized variables. A standardized
 variable is a variable that has a mean of 0 and a standard deviation of 1.
 
-One reason for standardizing variables is that you can interpret the beta
-estimates as partial correlation coefficients. In other words now that the
+One reason for standardizing variables is that you can interpret the \(\beta\) estimates as partial correlation coefficients. In other words now that the
 variables are standardized you can compare how correlated they are to the 
-response variable using their regression coefficients. Below is a
-demo of this.
+response variable using their regression coefficients. Below is a demo of this.
 
 ```{r}
 ## We will use this function to plot the data and correlations 
@@ -51,17 +48,17 @@ sim_data = data.frame(y, x1, x2, x3)
 Before standardizing variables it is worthwhile to highlight that the 
 relationship between correlation and regression statistics. Specifically, 
 the t-statistic from a simple correlation coefficient is exactly what is
-reported for the beta_1 coefficient in a regression model.
+reported for the \(\beta_1\)  coefficient in a regression model.
 
 ```{r}
 cor.test(sim_data$y, sim_data$x1)$statistic
 summary(lm(y ~ x1, data=sim_data))$coef
 ```
 
-The beta coefficient reported by the regression is not equal to the correlation
-coefficient though because the beta is in the units of the x1 variable 
-(i.e., it has not been standardized). Now let's use the function `scale()` to
-standardize the independent and dependent variables. 
+The \(\beta\) coefficient reported by the regression is not equal to the
+correlation coefficient though because the \(\beta\) is in the units of the 
+\(x_1\) variable (i.e., it has not been standardized). Now let's use the function 
+`scale()` to standardize the independent and dependent variables. 
 
 ```{r}
 sim_data_std = data.frame(scale(sim_data))
@@ -83,7 +80,7 @@ t-statistic is a pivotal statistic meaning that its value doesn't depend on the
 scale of the difference. 
 
 Additionally notice that the individual correlation coefficients are very 
-similar to the beta estimates in `mod_std`. Why are these not exactly the same?
+similar to the \(\beta\) estimates in `mod_std`. Why are these not exactly the same?
 Here's a hint - what would happen if their was strong multicollinarity between
 the explanatory variables?
 
