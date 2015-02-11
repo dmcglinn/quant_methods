@@ -73,14 +73,15 @@ img {
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
-<li>Modeling philosophy</li>
-<li>Simulate Data</li>
-<li>Model building</li>
-<li></li>
+<li><a href="#phil">Modeling philosophy</a></li>
+<li><a href="#sim">Simulate Data</a></li>
+<li><a href="#mult">Multiple regression</a></li>
+<li><a href="#inter">Interaction Effects</a></li>
+<li><a href="#comp">Model comparisons</a></li>
 </ul>
 </div>
 <div id="modeling-philosophy" class="section level2">
-<h2>Modeling Philosophy</h2>
+<h2><a href="#phil" name="phil">#</a> Modeling Philosophy</h2>
 <p>One of the simplest and most important ideas when constructing models can be stated succinctly:</p>
 <blockquote>
 <p>“All models are wrong but some models are useful” G.E. Box</p>
@@ -94,7 +95,7 @@ img {
 <p>These different goals of model building require different approaches and modes of evaluation of model efficitiveness. A full discussion of the differences in the philosophies and approaches is beyond the scope of this lesson.</p>
 </div>
 <div id="simulate-hypothetical-data" class="section level2">
-<h2>Simulate Hypothetical Data</h2>
+<h2><a href="#sim" name="sim">#</a> Simulate Hypothetical Data</h2>
 <p>R is an excellent environment for learning about how models work in part because of the ease to generate data with known properties. This provides us the ability to not only check that a model is performing as expected but also helps to indicate strengths and weaknesses of various model fitting and effect size strength measures.</p>
 <pre class="r"><code>#generate data for example
 set.seed(10)
@@ -240,7 +241,7 @@ summary(mod3)</code></pre>
 </div>
 </div>
 <div id="multiple-regression" class="section level2">
-<h2>Multiple regression</h2>
+<h2><a href="#mult" name="mult">#</a> Multiple regression</h2>
 <pre class="r"><code>mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
 summary(mod_main)</code></pre>
 <pre><code>## 
@@ -265,7 +266,7 @@ summary(mod_main)</code></pre>
 ## F-statistic:   305 on 3 and 86 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="interaction-effects" class="section level2">
-<h2>Interaction effects</h2>
+<h2><a href="#inter" name="inter">#</a> Interaction effects</h2>
 <pre class="r"><code># you can build the model by writing out every interaction
 lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3, data=sim_data)</code></pre>
 <pre><code>## 
@@ -308,7 +309,7 @@ summary(mod_full)</code></pre>
 ## F-statistic: 131.4 on 7 and 82 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div id="model-comparisons" class="section level2">
-<h2>Model comparisons</h2>
+<h2><a href="#comp" name="comp">#</a> Model comparisons</h2>
 <pre class="r"><code># we can carry out a nested model comparison
 anova(mod_main, mod_full)</code></pre>
 <pre><code>## Analysis of Variance Table
