@@ -3,7 +3,7 @@ title: "Spatial Models"
 output: html_document
 ---
 
-The goals of this lesson are to introduce how spatial dependendence is tested 
+The goals of this lesson are to introduce how spatial dependence is tested 
 for and how it can be corrected for or explained in uni- and multi-variate 
 modeling frameworks. 
 
@@ -48,25 +48,95 @@ cols = rev(terrain.colors(length(col_brks)))
 plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
 ```
 
+Visually it appears that low richness sites (i.e., brown circles) are more 
+likely to be near other low richness sites - this indicates a pattern of 
+spatial dependence. We can carry out some very simple analyses to
+examine if this relationship is stronger than we would expect under a 
+null model of randomly shuffled spatial positions. Our test statistic in this 
+context is the Pearson correlation coefficient between the difference in the
+response variable (i.e., richness) and the difference in spatial proximity. 
+
 ```{r}
+# calculate Euclidean distance between richness and spatial coordinates
 sr_dist = dist(sr)
 xy_dist = dist(mite.xy)
+
+# plot result
 plot(xy_dist, sr_dist)
-lines(lowess(xy_dist, sr_dist), lwd=2, col='red')
+abline(lm(sr_dist ~ xy_dist), lwd=3, col='red')
+lines(lowess(xy_dist, sr_dist), lwd=3, col='pink')
+
+# compute correlation
 obs_cor = cor(xy_dist, sr_dist)
 obs_cor
 
-## let's do a permutation test for significance:
+# carry out a permutation test for significance:
 nperm = 1000
 null_cor = obs_cor
 for (i in 2:nperm) {
+    # shuffle the rows of the spatial coordinates
     tmp_xy = mite.xy[sample(nrow(mite.xy)), ]
-    null_cor[i] = cor(dist(tmp_xy), dist(mite))
+    # correlation between the shuffled spatial coordinates and sr_dist
+    null_cor[i] = cor(dist(tmp_xy), sr_dist)
 }
+# compute the p-value
 sum(null_cor >= obs_cor) / nperm 
-1/(nperm)
-mantel(xy_dist, sr_dist)
-hist(null_cor)
+
+# carry out the same analysis using the function mantel()
+sr_mantel = mantel(xy_dist, sr_dist)
+sr_mantel
+
+# compare the two approaches graphically using stacked boxplots
+boxplot(list(null_cor, sr_mantel$perm), horizontal = T, boxwex = 0.5,
+        names = c('mine', 'theirs'), xlab='Correlation')
 abline(v=obs_cor, col='red')
 
+# as expected they look almost identical and the observed value is 
+# much larger than then null realizations indicating that there is a 
+# signficant difference between the observed spatial pattern and one due to
+# random chance.
 ```
+
+This preliminary analysis suggests that there is a significant relationship 
+between the spatial distance that two points are separated and the difference
+in species richness of the points. We can undertake a similar approach to 
+examining a multivariate response variable such as species composition
+
+```{r}
+## compute bray curtis distance for the community matrix
+comm_dist = vegdist(mite)
+plot(xy_dist, comm_dist)
+abline(lm(comm_dist ~ xy_dist), lwd=3, col='red')
+lines(lowess(xy_dist, comm_dist), lwd=3, col='pink')
+comm_mantel = mantel(xy_dist, comm_dist)
+comm_mantel
+```
+
+The previous plots included both the linear regression model which is what the 
+mantel analysis is based upon and the lowess smoother line. The smoother can
+help to identify if the relationship is non-linear and how the strength of the 
+relationship varies with spatial distance. 
+
+```{r}
+sr_corlog = mantel.correlog(sr_dist, xy_dist)
+comm_corlog = mantel.correlog(comm_dist, xy_dist)
+sr_corlog
+comm_corlog
+
+par(mfrow=c(1,2))
+plot(sr_corlog)
+plot(comm_corlog)
+```
+
+Induced vs True gradients
+
+```{r}
+head(mite.env)
+env_dist = dist(mite.env[ , 1:2])
+plot(xy_dist, env_dist)
+lines(lowess(xy_dist, env_dist), lwd=3, col='pink')
+```
+
+
+
+
