@@ -14,5 +14,6 @@ Quantitative topics covered in this course include:
 * Multivariate Models
     - <a href='./multivariate_models.html'>Multivariate ordination models</a>
 * Spatial Models
+    - <a href='./spatial_models.html'>Spatial Detecting and Modeling</a>
 * GIS manipulations
 * Simulations and Null models
