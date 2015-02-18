@@ -1,0 +1,26 @@
+---
+title: "Spatial Models"
+output: html_document
+---
+
+## Spatial modeling assignment
+
+```{r}
+library(vegan)
+library(BiodiversityR)
+data(BCI)
+data(BCI.env)
+head(BCI)
+head(BCI.env)
+```
+
+1) Examine if there is evidence of spatial dependence in a rare and a common
+species in the BCI tree dataset
+
+
+2) Model the species richness of the trees using the available enviornmental
+information (not the spatial coordinates). 
+Are the errors of this model still spatially autocorrelated?
+
+3) Model species composition using the enviornmental data and an RDA. 
+Does the environment explain the degree of spatial dependence observed
