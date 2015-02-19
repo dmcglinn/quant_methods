@@ -39,7 +39,6 @@ There is no statistical way to distinguish false from true gradients.
 ```{r}
 library(vegan)
 library(nlme)
-#library(spdep)
 # Oribatid mite data. 70 soil cores collected by Daniel Borcard in 1989.
 # See Borcard et al. (1992, 1994) for details.
 data(mite)
@@ -159,7 +158,11 @@ sr_dat = data.frame(sr, mite.env, mite.xy)
 
 sr_lm = gls(sr ~ SubsDens, data=sr_dat)
 
+par(mfrow=c(1,1))
 plot(Variogram(sr_lm, form= ~ x + y))
+res = residuals(sr_lm)
+plot(dist(sr_dat[, c('x', 'y')]), dist(res))
+lines(lowess(dist(sr_dat[, c('x', 'y')]), dist(res)), col='red', lwd=2)
 
 sr_exp = update(sr_lm, corr=corExp(1, form=~x + y))
 plot(Variogram(sr_exp, resType='n'))
@@ -167,14 +170,33 @@ plot(Variogram(sr_exp, resType='n'))
 sr_spher = update(sr_lm, corr=corSpher(c(6, .2), form=~x + y, nugget=T))
 plot(Variogram(sr_spher, resType='n'))
 
+sr_lin = update(sr_lm, corr=corLin(form=~x+y, nugget=F))
+plot(Variogram(sr_spher, resType='n'))
+
 AIC(sr_lm)
 AIC(sr_exp)
 AIC(sr_spher)
+AIC(sr_lin)
 
 summary(sr_spher)
-
 ```
 
+Examine spatial dependence in multivariate response such as species
+composition in a modeling framework
+
+```{r}
+mite_rda = rda(mite, mite.env[ , 1:2])
+
+plot(mite_rda)
+anova(mite_rda)
+
+mite_mso_raw = mso(rda(mite), mite.xy, permutations = 1000)
+mite_mso = mso(mite_rda, mite.xy, permutations = 1000)
+mite_mso
+par(mfrow=c(1,1))
+msoplot(mite_mso_raw)
+msoplot(mite_mso)
+```
 
 
 
