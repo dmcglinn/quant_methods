@@ -1,7 +1,8 @@
 ---
-title: "Spatial Modeling Assignment"
-output: html_document
+layout: page
 ---
+
+## Spatial Modeling Assignment
 
 ```{r eval=FALSE}
 library(vegan)
