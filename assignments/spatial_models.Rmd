@@ -18,9 +18,19 @@ head(BCI.env)
 species in the BCI tree dataset
 
 
-2) Model the species richness of the trees using the available enviornmental
+2) Use the tallgrass prairie dataset to examine spatial dependence in richness.
+Model the species richness of the plants using the available enviornmental
 information (not the spatial coordinates). 
 Are the errors of this model still spatially autocorrelated?
 
-3) Model species composition using the enviornmental data and an RDA. 
+```{r}
+tgp = read.csv('./data/tgpp.csv')
+# only look at the 100 m2 spatial grain
+tgp = subset(tgp, subset=scale==100)
+```
+
+3) Model species composition using the enviornmental data with TGP and an RDA. 
 Does the environment explain the degree of spatial dependence observed
+
+
+
