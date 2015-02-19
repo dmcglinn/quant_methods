@@ -21,8 +21,9 @@ species in the BCI tree dataset
 Specifically examine the following species as predictor variables:
 
 ```{r eval=FALSE}
-sp_ids = c("Cordia.lasiocalyx", "Hirtella.triandra", "Picramnia.latifolia",
-           "Quassia.amara", "Tabernaemontana.arborea", "Trattinnickia.aspera", 
+sp_ids = c("Cordia.lasiocalyx", "Hirtella.triandra",
+           "Picramnia.latifolia", "Quassia.amara",
+           "Tabernaemontana.arborea", "Trattinnickia.aspera", 
            "Xylopia.macrantha")
 ```
 Note renaming the species ids to something a little easier to work with like
