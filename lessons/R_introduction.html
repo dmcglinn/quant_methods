@@ -104,6 +104,8 @@ img {
 </div>
 <div id="logical-operations" class="section level2">
 <h2><a href="#logic" name="logic">#</a>Logical operations</h2>
+<pre class="r"><code>?logical </code></pre>
+<pre><code>## starting httpd help server ... done</code></pre>
 <pre class="r"><code>3 &gt; 4        # greater than</code></pre>
 <pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>3 &lt; 4        # less than</code></pre>
@@ -128,12 +130,31 @@ img {
 <pre><code>## [1] FALSE</code></pre>
 <pre class="r"><code>FALSE == 0   # False is set to zero in R</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>!FALSE       # reverse the value of a logical a !</code></pre>
+<pre class="r"><code>## operations 
+# ! reverses a logical
+!FALSE</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>!TRUE </code></pre>
+<pre class="r"><code># &amp; can be used as an &quot;and&quot; statement
+T &amp; T</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>T &amp; F</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>T + T + F    # what would this equal?</code></pre>
+<pre class="r"><code># | can be used as an &quot;or&quot; statement
+T | T</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>T | F</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>## logical algebra
+# T is treated as a 1 
+# F is treated as a 0
+T + T + F    # what would this equal?</code></pre>
 <pre><code>## [1] 2</code></pre>
+<pre class="r"><code>## useful functions
+# any() and all()
+any(c(T, F))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>all(c(T, F))</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="variable-assignment" class="section level2">
 <h2><a href="#vars" name="vars">#</a>Variable assignment</h2>
@@ -147,7 +168,6 @@ weight_kg</code></pre>
 2.2 * weight_kg</code></pre>
 <pre><code>## [1] 121</code></pre>
 <pre class="r"><code>weight_kg &lt;- 57.5
-
 
 # weight in kilograms is now
 weight_kg</code></pre>

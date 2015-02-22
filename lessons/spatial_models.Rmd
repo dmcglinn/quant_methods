@@ -15,15 +15,30 @@ correlated errors
 
 ## Outline
 
-* Detecting spatial dependence
+* Spatial autocorrelation and induced spatial dependence
+* Detecting a spatial signal
 * Univariate modeling
 * Multivariate modeling
 
-## Detecting spatial dependence
+## Spatial autocorrelation and induced spatial dependence
+
+There are two general reasons why spatial dependence may 
+exist in a response variable.
+
+1) autocorrelation - the variable is simply inherently aggregated due its own
+internal dynamics. In ecology this is sometimes referred to as a false gradient
+
+2) induced spatial dependence: the variable is inherently spatially structured 
+but the driving factors that it responses to are. In ecology this is sometimes
+referred to as a true gradient
+
+There is no statistical way to distinguish false from true gradients.
+
+## Detecting a spatial signal
 
 ```{r}
 library(vegan)
-library(spdep)
+library(nlme)
 # Oribatid mite data. 70 soil cores collected by Daniel Borcard in 1989.
 # See Borcard et al. (1992, 1994) for details.
 data(mite)
@@ -125,17 +140,64 @@ comm_corlog
 
 par(mfrow=c(1,2))
 plot(sr_corlog)
+mtext(side=3, 'Species Richness')
 plot(comm_corlog)
+mtext(side=3, 'Community Composition')
 ```
 
-Induced vs True gradients
+
+## Univariate Modeling 
+Spatial (and temporal) dependence is a potential problem for inferential
+statistics because of an assumption of independence of error. However, if 
+sufficient data is available it is often possible to model the spatial 
+component of error and thus "correct" for the lack of independence in a model's
+error. 
 
 ```{r}
-head(mite.env)
-env_dist = dist(mite.env[ , 1:2])
-plot(xy_dist, env_dist)
-lines(lowess(xy_dist, env_dist), lwd=3, col='pink')
+sr_dat = data.frame(sr, mite.env, mite.xy)
+
+sr_lm = gls(sr ~ SubsDens, data=sr_dat)
+
+par(mfrow=c(1,1))
+plot(Variogram(sr_lm, form= ~ x + y))
+res = residuals(sr_lm)
+plot(dist(sr_dat[, c('x', 'y')]), dist(res))
+lines(lowess(dist(sr_dat[, c('x', 'y')]), dist(res)), col='red', lwd=2)
+
+sr_exp = update(sr_lm, corr=corExp(1, form=~x + y))
+plot(Variogram(sr_exp, resType='n'))
+
+sr_spher = update(sr_lm, corr=corSpher(c(6, .2), form=~x + y, nugget=T))
+plot(Variogram(sr_spher, resType='n'))
+
+sr_lin = update(sr_lm, corr=corLin(form=~x+y, nugget=F))
+plot(Variogram(sr_spher, resType='n'))
+
+AIC(sr_lm)
+AIC(sr_exp)
+AIC(sr_spher)
+AIC(sr_lin)
+
+summary(sr_spher)
 ```
+
+Examine spatial dependence in multivariate response such as species
+composition in a modeling framework
+
+```{r}
+mite_rda = rda(mite, mite.env[ , 1:2])
+
+plot(mite_rda)
+anova(mite_rda)
+
+mite_mso_raw = mso(rda(mite), mite.xy, permutations = 1000)
+mite_mso = mso(mite_rda, mite.xy, permutations = 1000)
+mite_mso
+par(mfrow=c(1,1))
+msoplot(mite_mso_raw)
+msoplot(mite_mso)
+```
+
 
 
 

@@ -50,6 +50,8 @@ exp(log(3)) # e
 ## <a href="#logic" name="logic">#</a>Logical operations
 
 ```{r logical operations}
+?logical 
+
 3 > 4        # greater than
 
 3 < 4        # less than
@@ -70,10 +72,27 @@ FALSE        # False
 F            # False
 FALSE == 0   # False is set to zero in R
 
-!FALSE       # reverse the value of a logical a !
-!TRUE 
+## operations 
+# ! reverses a logical
+!FALSE
 
+# & can be used as an "and" statement
+T & T
+T & F
+
+# | can be used as an "or" statement
+T | T
+T | F
+
+## logical algebra
+# T is treated as a 1 
+# F is treated as a 0
 T + T + F    # what would this equal?
+
+## useful functions
+# any() and all()
+any(c(T, F))
+all(c(T, F))
 ```
 
 ## <a href="#vars" name="vars">#</a>Variable assignment 
