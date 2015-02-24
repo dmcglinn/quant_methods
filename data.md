@@ -17,7 +17,7 @@ A list of data sources and software for data aquisitian
 * [The Global Population Dynamics Database](http://www3.imperial.ac.uk/cpb/databases/gpdd)
 * [Long-Term Ecological Research](http://www.lternet.edu/)
 
-### Single data sources
+### Single data source
 #### Multi-taxon
 * [GBIF](http://www.gbif.org/)
     - [R package](https://github.com/ropensci/rgbif)
@@ -32,3 +32,13 @@ A list of data sources and software for data aquisitian
 #### Plants
 * [North American Plants](http://plants.usda.gov/)
 * [North American Tree range maps](http://esp.cr.usgs.gov/data/little/)
+* [Global Forest Watch](http://www.globalforestwatch.org/map/)
+
+#### Human health
+* [Influenza Research Database](http://www.fludb.org/)
+* [Vaccine-Preventable Outbreaks](http://www.cfr.org/interactives/GH_Vaccine_Map/#map)
+
+#### Enviornment
+* [WorldClim Climate Data](http://www.worldclim.org/)
+    - [BioClim](http://www.worldclim.org/bioclim)
+* [Climatic Research Unit](http://www.cru.uea.ac.uk/data)
