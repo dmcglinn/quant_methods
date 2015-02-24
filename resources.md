@@ -3,8 +3,6 @@ layout: page
 title: Resources
 ---
 
-#External Learning Resources Links
-
 ##Best Practices
 * Software Carpentry. <http://software-carpentry.org>
 * Wilson, G. et al. 2014. Best Practices for Scientific Computing. PLoS Biol
