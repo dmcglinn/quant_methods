@@ -6,9 +6,6 @@ title: Introduction to Git
 Introduction to Git
 -------------------
 
-Dan McGlinn
-01/16/2015
-
 The purpose of this lesson is to get students exposed to using Git and GitHub
 from the command line and within R studio
 
@@ -81,3 +78,5 @@ Rstudio project. This is not difficult just follow the instructions for
 
 ### Additional Links
 * <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>
+
+![dynamite](figures/serious_git.png)
