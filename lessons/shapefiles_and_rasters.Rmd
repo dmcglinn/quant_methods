@@ -194,6 +194,8 @@ spplot(firenc, 'TEMP', xlim=c(-85,-75), ylim=c(33.5,37), cuts=q5$brks,
 writeOGR(firenc, "firenctemp.kml", "TEMP", "KML")
 
 ## Rasters ----------------------------------------
+## download Rdata file here:
+## https://www.dropbox.com/s/gafxazc9575nf3j/bioclim_10m.Rdata?dl=0
 load('./data/bioclim_10m.Rdata')
 plot(bioclim)
 ls()
