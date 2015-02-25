@@ -76,10 +76,20 @@ response variable (i.e., richness) and the difference in spatial proximity.
 sr_dist = dist(sr)
 xy_dist = dist(mite.xy)
 
+# for interpretation purposes a rule of thumb is not to interpret distances
+# great than 1/2 the maximum distance in the dataset. This is to avoid
+# examining spatial patterns that are underlaid by only a few samples. At
+# small to intermidate distances there are typically many more pairs of samples
+# where as at the extreme ends of a sampling grid there are only two sets of
+# samples (i.e., those that lie along the two diagonals corners from one another)
+
+max_dist = max(xy_dist) / 2
+
 # plot result
 plot(xy_dist, sr_dist)
 abline(lm(sr_dist ~ xy_dist), lwd=3, col='red')
 lines(lowess(xy_dist, sr_dist), lwd=3, col='pink')
+abline(v = max_dist, col='red', lwd=3, lty=2)
 
 # compute correlation
 obs_cor = cor(xy_dist, sr_dist)
@@ -123,6 +133,8 @@ comm_dist = vegdist(mite)
 plot(xy_dist, comm_dist)
 abline(lm(comm_dist ~ xy_dist), lwd=3, col='red')
 lines(lowess(xy_dist, comm_dist), lwd=3, col='pink')
+abline(v = max_dist, col='red', lwd=3, lty=2)
+
 comm_mantel = mantel(xy_dist, comm_dist)
 comm_mantel
 ```
@@ -141,8 +153,10 @@ comm_corlog
 par(mfrow=c(1,2))
 plot(sr_corlog)
 mtext(side=3, 'Species Richness')
+abline(v = max_dist, col='red', lwd=3, lty=2)
 plot(comm_corlog)
 mtext(side=3, 'Community Composition')
+abline(v = max_dist, col='red', lwd=3, lty=2)
 ```
 
 
@@ -152,6 +166,20 @@ statistics because of an assumption of independence of error. However, if
 sufficient data is available it is often possible to model the spatial 
 component of error and thus "correct" for the lack of independence in a model's
 error. 
+
+Crawley (2014) provides a straightforward description of these methods and a 
+few examples. Pinheiro and Bates (2000) provide a more detailed discussion with
+more examples and they provide a useful table and figure that is helpful when
+deciding which error model to chose from:
+
+This is Table 5.2 from Pinheiro and Bates (2000) in which *s* is the spatial lag
+and \(\rho\) is the correlation parameter. This is a subset of the models 
+presented in Cressie (1993). 
+![table](figures/isotropic_variogram_models_table.png)
+
+Graphically these models of spatial correlation can be visualized like this
+(Figure 5.9 of Pinheiro and Bates 2000):
+![plots](figures/isotropic_variogram_models_plots.png)
 
 ```{r}
 sr_dat = data.frame(sr, mite.env, mite.xy)
@@ -163,22 +191,44 @@ plot(Variogram(sr_lm, form= ~ x + y))
 res = residuals(sr_lm)
 plot(dist(sr_dat[, c('x', 'y')]), dist(res))
 lines(lowess(dist(sr_dat[, c('x', 'y')]), dist(res)), col='red', lwd=2)
+abline(v = max_dist, col='red', lwd=3, lty=2)
 
-sr_exp = update(sr_lm, corr=corExp(1, form=~x + y))
-plot(Variogram(sr_exp, resType='n'))
+sr_exp = update(sr_lm, corr=corExp(form=~x + y))
+# examine fit of error model to the raw model residuals
+# note this function defaults to displaying pearson standardized residuals
+# resType='p' or resType='pearson'
+plot(Variogram(sr_exp, maxDist = max_dist))
+# that doesn't look so good because clearly the model does not fit the error 
+# very well, it appears that there is a nugget (i.e., non-zero y-intercept)
+# Let's examine the normalized residuals in which the residuals are 
+# devided by the estimate of the variance-covariance matrix. If the model
+# fits well these residuals should be normally distributed.
+plot(Variogram(sr_exp, resType='normalized', maxDist = max_dist))
+# we see a little bit of a trend in the residuals but not too bad
+# actually which is a bit surprising given the output of the raw residuals
 
-sr_spher = update(sr_lm, corr=corSpher(c(6, .2), form=~x + y, nugget=T))
-plot(Variogram(sr_spher, resType='n'))
+# let's look at the same model but with a nugget
+sr_exp_nug = update(sr_exp, corr=corExp(form=~x + y, nugget=T))
+plot(Variogram(sr_exp_nug, maxDist = max_dist))
+plot(Variogram(sr_exp_nug, resType='n', maxDist = max_dist))
+# those look like they provide a better fit to the data
 
-sr_lin = update(sr_lm, corr=corLin(form=~x+y, nugget=F))
-plot(Variogram(sr_spher, resType='n'))
+# let's examine the rational quadratic error model
+sr_rat_nug = update(sr_lm, corr=corRatio(form=~x + y, nugget=T))
+# examine fit of error model to model residuals
+plot(Variogram(sr_rat_nug, maxDist = max_dist))
+plot(Variogram(sr_rat_nug, resType='n', maxDist = max_dist))
+# this model seems to fit about as a good as the exponential with the nugget
 
-AIC(sr_lm)
-AIC(sr_exp)
-AIC(sr_spher)
-AIC(sr_lin)
+# let's compare the models
+anova(sr_lm, sr_exp, sr_exp_nug, sr_rat_nug, test=F)
 
-summary(sr_spher)
+# so it appears that the exponential and rational models with the nuggets
+# fit equally as well and much better than models without spatial error terms
+# and better than a model with a nugget set to zero.
+
+summary(sr_exp_nug)
+summary(sr_rat_nug)
 ```
 
 Examine spatial dependence in multivariate response such as species
@@ -198,7 +248,11 @@ msoplot(mite_mso_raw)
 msoplot(mite_mso)
 ```
 
-
+## Literature Cited
+* Pinheiro, J, and D.M. Bates. 2000. Mixed-Effects Models in S and S-PLUS. 
+Springer. New York, NY, USA.
+* Crawley, M. 2014. The R Book, 2nd ed. Wiley, New York.
+* Cressie, N.A.C. 1993. Statistics for Spatial Data, Wiley, New York.
 
 
 
