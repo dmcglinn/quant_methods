@@ -173,7 +173,7 @@ more examples and they provide a useful table and figure that is helpful when
 deciding which error model to chose from:
 
 This is Table 5.2 from Pinheiro and Bates (2000) in which *s* is the spatial lag
-and \(\rho\) is the correlation parameter. This is a subset of the models 
+and *rho* is the correlation parameter. This is a subset of the models 
 presented in Cressie (1993). 
 ![table](figures/isotropic_variogram_models_table.png)
 
