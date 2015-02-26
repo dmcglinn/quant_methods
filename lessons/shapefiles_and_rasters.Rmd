@@ -7,11 +7,11 @@ output: html_document
 ```{r}
 # install.packages(c("maps","sp","maptools","rgdal","lattice","classInt"))
 
-library(maps) # use
-library(sp)
-library(maptools)
-library(rgdal)
-library(lattice)
+library(maps)     # convinient pkg for maps of the world
+library(sp)       # the main pkg for defining spatial classes in R
+library(maptools) # a package for converting the maps in the maps pkg to shapes
+library(rgdal)    # the spatial abstraction library for moving 
+library(lattice)  # a plotting package for making lattice graphics
 library(classInt) # used to do binning
 
 
@@ -24,7 +24,7 @@ world = map(database="world")
 names(world)
 world$names
 # names in world database can all be plot as a region. For example:
-map(database="world",regions=c("Cambodia","Thailand","Vietnam","Laos"))
+map(database="world", regions=c("Cambodia","Thailand","Vietnam","Laos"))
 
 map(database="state",regions=c("virginia","north carolina","south carolina"))
 # you can add cities using map.cities command.
@@ -41,7 +41,7 @@ IDs
 
 tri_sp = map2SpatialPolygons(triangle,IDs,CRS("+proj=longlat"))
 
-plot(tri_sp,axes=T)
+plot(tri_sp, axes=T)
 
 # add data to make spatial polygons data frame
 population = c(266132, 132272, 892409) # population data from office of state budget and management
@@ -49,13 +49,14 @@ tri_pop = data.frame(IDs, population)
 rownames(tri_pop) = IDs
 tri_pop
 
-tri_spdf = SpatialPolygonsDataFrame(tri_sp,tri_pop)
+tri_spdf = SpatialPolygonsDataFrame(tri_sp, tri_pop)
 
 # make a map of population by county
 
 spplot(tri_spdf, 'population')
 
-# If your data are in different projections, you need to change the projection so that they are all in 
+# If your data are in different projections, you need to change the projection
+# so that they are all in 
 # the same coordinate reference system.
 
 world = map(database="world", fill=T, plot=F)
@@ -67,12 +68,12 @@ world_merc = spTransform(world_longlat, CRS("+proj=merc"))
 # Lambert Azimuthal Equal Area
 world_laea = spTransform(world_longlat, CRS("+proj=laea"))
 # sinusoidal
-world_sinusoidal = spTransform(world_longlat,CRS("+proj=sinu"))
+world_sinusoidal = spTransform(world_longlat, CRS("+proj=sinu"))
 
 # plot the four together to see the difference. Mercator projection distorts area far from the 
 # equator. LAEA is accurately represents area but not angles. Sinusoidal is equal area and conserves 
 # distances along parallels. 
-par(mfrow=c(2,2))
+par(mfrow=c(1,1))
 plot(world_longlat)
 plot(world_merc)
 plot(world_laea)
@@ -85,10 +86,11 @@ plot(world_sinusoidal)
 
 read.shape = function(shape_name, path=NULL) {
     require(rgdal)
-    if (is.null(path))
+    if (is.null(path)) {
         path = getwd()
-     fileName = paste(shape_name, '.shp', sep='')    
-     shp = readOGR(file.path(path, fileName), shape_name)
+    }
+    fileName = paste(shape_name, '.shp', sep='')    
+    shp = readOGR(file.path(path, fileName), shape_name)
 }  
 
 # use readOGR to bring in data. First argument is data source name (in this case
@@ -105,6 +107,8 @@ class(fire2010)
 names(fire2010)  
 proj4string(fire2010)  # retrieves projection
 dim(fire2010)
+
+plot(fire2010)
 
 # get summary statistics for each attribute
 
@@ -134,7 +138,8 @@ USA_sp = map2SpatialPolygons(USA, IDs=USA$names, CRS(fire_proj))
 # USA_sp each point in firehot is. We then index that to names(USA_sp) to get
 # the name of the state for that index.
 
-fire$state = names(USA_sp)[over(fire, USA_sp)]
+indices = over(fire, USA_sp)
+fire$state = names(USA_sp)[indices]
 names(fire)
 
 # Then, subset the ones from NC. We have to use grep because there are actually
@@ -156,8 +161,9 @@ NC_sp = map2SpatialPolygons(NC, IDs=NC$names, proj)
 
 # here you have to make all the "layout parameters" first to put into the spplot
 # function. Make the NC # outline, the scale, North arrow, etc.
-nc_outline = list("sp.polygons",NC_sp)
-scale = list("SpatialPolygonsRescale",layout.scale.bar(),offset=c(-83.5,34),scale=2,fill=c("transparent","black"))
+nc_outline = list("sp.polygons", NC_sp)
+scale = list("SpatialPolygonsRescale", layout.scale.bar(), offset=c(-83.5,34),
+             scale=2, fill=c("transparent", "black"))
 # text for scale bar
 start = list("sp.text", c(-83.5, 34.2), "0", cex=0.7)
 stop = list("sp.text", c(-81.5, 34.2), "2 degrees", cex=0.7)
@@ -169,7 +175,7 @@ arrow = list("SpatialPolygonsRescale", layout.north.arrow(),
 # "ﬁxed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
 # "bclust", "ﬁsher", or "jenks". You don't need to specify breaks,
 # you'll get equal intervals by default.
-q5 = classIntervals(firenc$TEMP,n=5,style="quantile")
+q5 = classIntervals(firenc$TEMP, n=5, style="quantile")
 
 fire_layout = list(nc_outline, scale, start, stop, arrow)
 
@@ -196,10 +202,26 @@ writeOGR(firenc, "firenctemp.kml", "TEMP", "KML")
 ## Rasters ----------------------------------------
 ## download Rdata file here:
 ## https://www.dropbox.com/s/gafxazc9575nf3j/bioclim_10m.Rdata?dl=0
+library(raster)
+
 load('./data/bioclim_10m.Rdata')
-plot(bioclim)
-ls()
-plot(bioStack)
+plot(bioStack, "mat")
+
+?extract
+
+#bioStack_nad83 = spTransform(bioStack, 
+#                            CRSobj = CRS(proj4string(firenc)))
+
+fire_climate = extract(bioStack, firenc)
+class(fire_climate)
+head(fire_climate)
+nrow(fire_climate)
+
+firenc@data = cbind(firenc@data, fire_climate)
+head(firenc@data)
+plot(TEMP ~ ap, data=firenc@data) 
+```
+
 
 
 
