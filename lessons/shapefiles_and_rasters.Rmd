@@ -81,6 +81,8 @@ plot(world_sinusoidal)
 
 # A list of most of the projections supported by the PROJ4 framework is available here:
 # http://www.remotesensing.org/geotiff/proj_list/
+# A fun projection link
+# http://xkcd.com/977/
 
 # OK, some slightly more complicated stuff. Data from MODIS fire detections in the US in 2010.
 
