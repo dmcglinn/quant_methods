@@ -12,10 +12,12 @@ A list of data sources and software for data aquisitian
 ### Data aggregations
 * [Ecological Data Wiki](http://ecologicaldata.org/)
 * [DataOne](https://www.dataone.org/data)
+* [Geospatial Innovation Facility](http://gif.berkeley.edu/resources/data_subject.html)
 * [Ecology Data Papers](http://esapubs.org/archive/search.php)
 * [Natureserve](http://www.natureserve.org/conservation-tools/data-maps-tools)
 * [The Global Population Dynamics Database](http://www3.imperial.ac.uk/cpb/databases/gpdd)
 * [Long-Term Ecological Research](http://www.lternet.edu/)
+* [National Geophysical Data Center (NGDC)](http://www.ngdc.noaa.gov/)
 
 ### Single data source
 #### Multi-taxon
