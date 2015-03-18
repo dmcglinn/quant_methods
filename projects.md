@@ -67,7 +67,8 @@ Some projects will not use data and thus that portion can be skipped in those
 contexts.
 
 ### Written Description
-At a minimum this should include 
+At a minimum this should include:
+
 * Thesis statement (i.e., your question and predictions)
 * Methods
 * Results
