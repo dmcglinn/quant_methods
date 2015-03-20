@@ -16,4 +16,5 @@ Quantitative topics covered in this course include:
 * Spatial Models
     - <a href='./spatial_models.html'>Spatial pattern detection and modeling</a>
 * GIS manipulations
+    - <a href='./shapefiles_and_rasters.html'>Shapefiles and rasters</a>
 * Simulations and Null models
