@@ -4,6 +4,11 @@ author: "Naomi Schwartz and Dan McGlinn"
 output: html_document
 ---
 
+```{r setup, echo=FALSE}
+# setup the R enviornment for kniting markdown doc properly
+library(knitr)
+opts_knit$set(root.dir='../')
+```
 ```{r}
 # install.packages(c("maps","sp","maptools","rgdal","lattice","classInt"))
 
@@ -15,26 +20,28 @@ library(lattice)  # a plotting package for making lattice graphics
 library(classInt) # used to do binning
 
 
-# First, make some maps. The "maps" package has 
-# databases="world","usa","state", or "county". (There are also a 
-# few for foreign countries like France and Italy.) In each database,
-# you can plot any region or group of regions.
+# First, make some maps. The "maps" package has databases="world","usa","state",
+# or "county". (There are also a few for foreign countries like France and
+# Italy.) In each database, you can plot any region or group of regions.
 
 world = map(database="world")
 names(world)
-world$names
+head(world$names)
 # names in world database can all be plot as a region. For example:
 map(database="world", regions=c("Cambodia","Thailand","Vietnam","Laos"))
 
 map(database="state",regions=c("virginia","north carolina","south carolina"))
 # you can add cities using map.cities command.
 
-nc.county = map(database="county",regions="north carolina")
-nc.county$names
-triangle = map(database="county",regions=c("north carolina,orange","north carolina,wake","north carolina,durham"),fill=T,plot=F)
+nc_county = map(database="county",regions="north carolina")
+head(nc_county$names)
+triangle = map(database="county",
+               regions=c("north carolina,orange","north carolina,wake","north carolina,durham"),
+               fill=T, plot=F)
 triangle$names
 
-# We can turn a map into a spatial polygons object and fill it with data, turning it into a spatial polygon dataframe.
+# We can turn a map into a spatial polygons object and fill it with data,
+# turning it into a spatial polygon dataframe.
 
 IDs = sub("^north carolina,","",triangle$names)  
 IDs
@@ -44,7 +51,8 @@ tri_sp = map2SpatialPolygons(triangle,IDs,CRS("+proj=longlat"))
 plot(tri_sp, axes=T)
 
 # add data to make spatial polygons data frame
-population = c(266132, 132272, 892409) # population data from office of state budget and management
+population = c(266132, 132272, 892409) 
+# population data from office of state budget and management
 tri_pop = data.frame(IDs, population)
 rownames(tri_pop) = IDs
 tri_pop
@@ -70,9 +78,9 @@ world_laea = spTransform(world_longlat, CRS("+proj=laea"))
 # sinusoidal
 world_sinusoidal = spTransform(world_longlat, CRS("+proj=sinu"))
 
-# plot the four together to see the difference. Mercator projection distorts area far from the 
-# equator. LAEA is accurately represents area but not angles. Sinusoidal is equal area and conserves 
-# distances along parallels. 
+# plot the four together to see the difference. Mercator projection distorts
+# area far from the equator. LAEA is accurately represents area but not angles.
+# Sinusoidal is equal area and conserves distances along parallels.
 par(mfrow=c(1,1))
 plot(world_longlat)
 plot(world_merc)
@@ -84,7 +92,8 @@ plot(world_sinusoidal)
 # A fun projection link
 # http://xkcd.com/977/
 
-# OK, some slightly more complicated stuff. Data from MODIS fire detections in the US in 2010.
+# OK, some slightly more complicated stuff. Data from MODIS fire detections in
+# the US in 2010.
 
 read.shape = function(shape_name, path=NULL) {
     require(rgdal)
@@ -135,10 +144,10 @@ fire_proj = proj4string(fire)
 USA_sp = map2SpatialPolygons(USA, IDs=USA$names, CRS(fire_proj))
 
 
-# overlay performs a "point in polygon" operation--meaning that it 
-# will return us a vector giving the index of which polygon in 
-# USA_sp each point in firehot is. We then index that to names(USA_sp) to get
-# the name of the state for that index.
+# overlay performs a "point in polygon" operation--meaning that it will return
+# us a vector giving the index of which polygon in USA_sp each point in firehot
+# is. We then index that to names(USA_sp) to get the name of the state for that
+# index.
 
 indices = over(fire, USA_sp)
 fire$state = names(USA_sp)[indices]
@@ -173,32 +182,31 @@ stop = list("sp.text", c(-81.5, 34.2), "2 degrees", cex=0.7)
 arrow = list("SpatialPolygonsRescale", layout.north.arrow(), 
              offset=c(-84.2,33.7), scale=0.7)
 
-# specify where we want the breaks using classIntervals. Can do 
-# "ﬁxed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
-# "bclust", "ﬁsher", or "jenks". You don't need to specify breaks,
-# you'll get equal intervals by default.
+# specify where we want the breaks using classIntervals. Can do "ﬁxed", "sd",
+# "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "ﬁsher", or
+# "jenks". You don't need to specify breaks, you'll get equal intervals by
+# default.
 q5 = classIntervals(firenc$TEMP, n=5, style="quantile")
 
 fire_layout = list(nc_outline, scale, start, stop, arrow)
 
-# finally, use spplot to make the plot. First argument is the 
-# object (type spatial class), then attribute of interest. We need 
-# to specify xlim and ylim so the plotting area includes the whole 
-# state (default is to draw frame around data points). Cuts 
-# specifies where to put the breaks in the data (from class 
-# intervals above.) Layout is the list of all the layout items we 
-# added above. col.regions chooses the color pallette. Can use 
-# "colorbrewer" package for more color options). key.space moves 
-# the key and puts a border around it.
+# finally, use spplot to make the plot. First argument is the object (type
+# spatial class), then attribute of interest. We need to specify xlim and ylim
+# so the plotting area includes the whole state (default is to draw frame around
+# data points). Cuts specifies where to put the breaks in the data (from class 
+# intervals above.) Layout is the list of all the layout items we added above.
+# col.regions chooses the color pallette. Can use "colorbrewer" package for more
+# color options). key.space moves the key and puts a border around it.
 
 spplot(firenc, 'TEMP', xlim=c(-85,-75), ylim=c(33.5,37), cuts=q5$brks,
        sp.layout=fire_layout, col.regions=heat.colors(5)[5:1], cex=1,
        key.space=list(space="right", border=TRUE,cex=0.7))  
 
-# for the last step, let's export this as a KML (readable by google earth) using write OGR and plot 
-# the locations of fires in NC in google earth. The first argument is the object we want to export, 
-# the second is the filename (by default it will go in our working directory), the layer we want to 
-# export, and the file format.
+# for the last step, let's export this as a KML (readable by google earth) using
+# write OGR and plot the locations of fires in NC in google earth. The first
+# argument is the object we want to export, the second is the filename (by
+# default it will go in our working directory), the layer we want to export, and
+# the file format.
 writeOGR(firenc, "firenctemp.kml", "TEMP", "KML")
 
 ## Rasters ----------------------------------------
