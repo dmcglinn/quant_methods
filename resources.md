@@ -39,6 +39,8 @@ content <http://www.dataschool.io/>
     - <http://adv-r.had.co.nz/>
 
 ##Git
+* git - the simple guide
+    - <http://rogerdudler.github.io/git-guide/>
 * Version Control by Software Carpentry
     - <http://software-carpentry.org/v5/novice/git/index.html>
 * Git reference card: 
