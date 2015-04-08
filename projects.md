@@ -91,7 +91,7 @@ of the document.
     - Private repos:
         - [Response of roots to CO2 enrichment](https://github.com/Kvcross/Duke_FACE_Belowground)
         - [Response of rhizomorphs to CO2 and N2 enrichment](https://github.com/davidmhood/Rhizomorph_FACE)
-        - [Coral community composition in reponse to substrate](https://github.com/MRittinghouse/ThesisProject)
+        - [Coral community composition in response to substrate](https://github.com/MRittinghouse/ThesisProject)
         - [Modeling fish abundance and size](https://github.com/friedrichknuth/project)
 
 
