@@ -67,7 +67,7 @@ Student Evaluation:
 topics and for all students will include an evaluation of contributed code and 
 oral presentation. Graduate students will also contribute a scientific paper
 on the project topic. More information on the project assignments can be found 
-on the [Projects](./projects) page.
+on the [Projects](../projects) page.
 
 Prerequisites:
 --------------
