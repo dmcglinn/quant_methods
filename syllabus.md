@@ -1,6 +1,6 @@
 ---
 title: "Applied Quantitative Methods"
-output: pdf_document
+output: html_document
 layout: page
 ---
 
@@ -64,7 +64,10 @@ Student Evaluation:
 
 
 **_Project_** - The project in this course may span a wide range of potential
-topics to be discussed as the course progresses.
+topics and for all students will include an evaluation of contributed code and 
+oral presentation. Graduate students will also contribute a scientific paper
+on the project topic. More information on the project assignments can be found 
+on the [Projects](./projects) page.
 
 Prerequisites:
 --------------
