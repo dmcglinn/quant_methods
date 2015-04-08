@@ -82,5 +82,16 @@ would like to submit the finished product to.
 Scientific literature should be cited in the methods and interpretation sections
 of the document. 
 
+### Links to past student projects
+* Spring 2015
+    - Public repos:
+        - [Spatial decomposition of community variance in forests](https://github.com/claydustin/tree_vario)
+        - [Spatial cross validation methods](https://github.com/lesliedb/spatial_cv) 
+        - [Modeling influenza across the US](https://github.com/tswilkin/Influenza-Quant-Project)
+    - Private repos:
+        - [Response of roots to CO2 enrichment](https://github.com/Kvcross/Duke_FACE_Belowground)
+        - [Response of rhizomorphs to CO2 and N2 enrichment](https://github.com/davidmhood/Rhizomorph_FACE)
+        - [Coral community composition in reponse to substrate](https://github.com/MRittinghouse/ThesisProject)
+        - [Modeling fish abundance and size](https://github.com/friedrichknuth/project)
 
 
