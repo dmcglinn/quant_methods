@@ -57,6 +57,8 @@ content <http://www.dataschool.io/>
     - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
 * Linear Models with R (free ebook)
     - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
+* Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
+    - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
 * Ordination webpage
     - Amazing resource for multivariate approaches for analyzing community
     ecology data. 
