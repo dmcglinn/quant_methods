@@ -40,6 +40,10 @@ content <http://www.dataschool.io/>
     - <http://adv-r.had.co.nz/>
 
 ##Git
+* Git and GitHub by Hadley Wickham
+    - A very nice overview and step by step instructions for using git and 
+    integrating it with Rstudio.
+    - <http://r-pkgs.had.co.nz/git.html>
 * git - the simple guide
     - <http://rogerdudler.github.io/git-guide/>
 * Version Control by Software Carpentry
