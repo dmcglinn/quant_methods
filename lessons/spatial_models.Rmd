@@ -28,7 +28,7 @@ exist in a response variable.
 1) autocorrelation - the variable is simply inherently aggregated due its own
 internal dynamics. In ecology this is sometimes referred to as a false gradient
 
-2) induced spatial dependence: the variable is inherently spatially structured 
+2) induced spatial dependence: the variable is not inherently spatially structured 
 but the driving factors that it responses to are. In ecology this is sometimes
 referred to as a true gradient
 
