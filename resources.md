@@ -62,8 +62,9 @@ content <http://www.dataschool.io/>
     - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
 * Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
     - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
-* Anova – Type I/II/III SS explained
-    - <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
+* Anova
+    - Type I/II/III <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
+    - Contrasts <http://www.clayford.net/statistics/tag/sum-contrasts/> 
 * Ordination webpage
     - Amazing resource for multivariate approaches for analyzing community
     ecology data. 
