@@ -37,7 +37,7 @@ Course Objectives:
     - GIS tools
     - Spatial statistics
     - Multivariate Statistics
-2. To develop a project using some combination or these tools to addresses a
+2. To develop a project using some combination or these tools to address a
    scientific question.
 3. To improve oral presentation and peer-teaching skills
 
@@ -47,7 +47,8 @@ Student Evaluation:
 
 * 5% Participation
 * 5% Peer Teaching
-* 45% Assignments
+* 5% Quizzes
+* 40% Assignments
 * 45% Project
     - 15% oral presentation
     - 15% project code
@@ -57,7 +58,8 @@ Student Evaluation:
 **Undergraduate Students** will be evaluated based on the following criteria:
 
 * 5% Participation
-* 45% Assignments
+* 5% Quizzes
+* 40% Assignments
 * 50% Project
     - 25% oral presentation
     - 25% project code
@@ -105,12 +107,10 @@ the class, and 4) developing student projects.
 be a homework assignment associated with the content learned in lecture. Your
 code and a written explanation of your solution are required. Although I
 encourage collaboration on code development, your explanation of your solution
-should be written in your own words. The assignment should be submitted via
-email to mcglinndj@cofc.edu with the subject line: Programming Assignment X,
-where X is the number of the assignment. One problem from each assignment
-(selected at my discretion after the assignments have been submitted) will
-receive a thorough code review and a detailed grade. Other problems will be
-graded as follows:
+should be written in your own words. The assignment should be submitted via the 
+appropriate OAKs dropbox. One problem from each assignment (selected at my
+discretion after the assignments have been submitted) will receive a thorough
+code review and a detailed grade. Other problems will be graded as follows:
 
 * Produces the correct answer using the requested approach: 100%
 * Generally uses the right approach, but a minor mistake results in an incorrect
@@ -119,7 +119,8 @@ graded as follows:
   50%
 * Answer demonstrates a lack of understanding of the core concept: 0%
 
-Late assignments will be docked 5% per day and will not be accepted after Tuesday
+Typically assignments will be due on Friday morning. 
+Late assignments will be docked 5% per day and will not be accepted after Monday
 night at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
 documented by the student or in cases where this has been discussed and approved
 in advance. This policy is based on the idea that in order to learn how to
@@ -184,7 +185,4 @@ be dealt with according to the honor code.
 
 **_Re-using work_** - Please be aware that using work that you or anyone else
  has done for this or any other class or project, either in whole or in part, is
- a violation of the honor code, even if the work is revised.  Biology 211
- instructors keep copies of assignments submitted by students in previous
- semesters, and reuse or revision of such will result in reporting to the Dean
- of Students.
+ a violation of the honor code, even if the work is revised. 
