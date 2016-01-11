@@ -39,6 +39,12 @@ content <http://www.dataschool.io/>
     - <http://adv-r.had.co.nz/>
 
 ##Git
+* Git and GitHub by Hadley Wickham
+    - A very nice overview and step by step instructions for using git and 
+    integrating it with Rstudio.
+    - <http://r-pkgs.had.co.nz/git.html>
+* git - the simple guide
+    - <http://rogerdudler.github.io/git-guide/>
 * Version Control by Software Carpentry
     - <http://software-carpentry.org/v5/novice/git/index.html>
 * Git reference card: 
@@ -54,6 +60,11 @@ content <http://www.dataschool.io/>
     - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
 * Linear Models with R (free ebook)
     - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
+* Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
+    - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
+* Anova
+    - Type I/II/III <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
+    - Contrasts <http://www.clayford.net/statistics/tag/sum-contrasts/> 
 * Ordination webpage
     - Amazing resource for multivariate approaches for analyzing community
     ecology data. 

@@ -9,6 +9,11 @@ from the command line and within R studio
 Git is a version control system that allows you to track changes to your data
 and source code as you develop quantiative projects. 
 
+Hadley Wickham's book *R packages* contains a very useful overview and 
+step-by-step description of git and how it can be used with Rstudio. This
+material can be freely accessed here: <http://r-pkgs.had.co.nz/git.html>
+
+
 ### Install Git
 
 * Follow the instructions for installing Git for your OS here: 
