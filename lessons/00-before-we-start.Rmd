@@ -1,12 +1,12 @@
 ---
 layout: topic
 title: Before we start
-author: Data Carpentry contributors
+author: Dan McGlinn and other Data Carpentry contributors 
 minutes: 15
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
+knitr::opts_chunk$set(results='hide', fig.path='figures/')
 ```
 
 ------------
@@ -28,17 +28,17 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
   `Empty project`
 * Enter a name for this new folder, and choose a convenient location for
   it. This will be your **working directory** for the rest of the day
-  (e.g., `~/data-carpentry`)
+  (e.g., `~/quant_methods`)
 * Click on "Create project"
 * Under the `Files` tab on the right of the screen, click on `New Folder` and
-  create a folder named `data` within your newly created working directory.
-  (e.g., `~/data-carpentry/data`)
-* Create a new R script (File > New File > R script) and save it in your working
-  directory (e.g. `data-carpentry-script.R`)
+  create a folder named `scripts` within your newly created working directory.
+  (e.g., `~/quant_methods/scripts`)
+* Create a new R script (File > New File > R script) and save it in your scripts
+  directory (e.g. `./scripts/data-carpentry-script.R`)
 
 Your working directory should now look like this:
 
-![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
+![How it should look like at the beginning of this lesson](figures/r_starting_how_it_should_look.png)
 
 # Presentation of RStudio
 
@@ -96,6 +96,7 @@ for statistics but also data science. Inspired by the programming language S.
 * For people who have experience in programmming: R is both an object-oriented
   and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html)
 * Large and growing community of peers.
+* Additional [motivations](../motivations)
 
 ## Commenting
 
@@ -106,9 +107,10 @@ right of a `#` is ignored by R.
 
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
-be read as 3 **goes into** `x`.  You can also use `=` for assignments but not in
-all contexts so it is good practice to use `<-` for assignments. `=` should only
-be used to specify the values of arguments in functions, see below.
+be read as 3 **goes into** `x`.  You can also use `=` for assignments. Most R 
+users prefer to use the `<-` operator but I personally prefer `=` because it has 
+one less keystroke and is more asthesticly pleasing. The choice is ultimately
+up to the user. 
 
 In RStudio, typing `Alt + -` (push `Alt`, the key next to your space bar at the
 same time as the `-` key) will write ` <- ` in a single keystroke.
@@ -215,6 +217,10 @@ If you just need to remind yourself of the names of the arguments, you can use:
 ```{r, eval=FALSE, purl=FALSE}
 args(lm)
 ```
+
+Rstudio provides quick argument documentation using the tab key. Simply write a
+function's name with the leading the parentheses and hit the `Tab` key to get a
+list of arguments and a short description of each one.
 
 ### I want to use a function that does X, there must be a function for it but I don't know which one...
 
