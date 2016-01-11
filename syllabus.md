@@ -4,16 +4,16 @@ output: html_document
 layout: page
 ---
 
-College of Charleston, Department of Biology, Spring 2015
+College of Charleston, Department of Biology, Spring 2016
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 6:30-9:30 pm W; HWWE 307
+* Meeting time: 9:30-10:20 pm MWF; HWWE 307
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: HWWE 203
 * Phone: 843-953-0190
-* Office hours: 11:30 - 12:30 p.m F or email by an appointment
+* Office hours: 11:30 - 12:30 p.m R or email by an appointment
 
 Course Description:
 -------------------
@@ -76,24 +76,23 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 14 - Week 01 - Introduction to R 
-* Jan 21 - Week 02 - Introduction to Version Control and the Terminal
-* Jan 28 - Week 03 - Regression and Model Selection
-* Feb 04 - Week 04 - Multivariate Models
-* Feb 11 - Week 05 - Spatial Models
-* Feb 18 - Week 06 - GIS manipulations
-* Feb 25 - Week 07 - Simulations and Null models
-* Mar 04 - Week 08 - Spring Break (no class)
-* Mar 11 - Week 09 - Project Pitch (oral presentation)
-* Mar 18 - Week 10 - Work on class project
-* Mar 25 - Week 11 - Work on class project
-* Apr 01 - Week 12 - Work on class project
-* Apr 08 - Week 13 - Peer Code Review and Peer Feedback
-* Apr 15 - Week 14 - Work on class project
-* Apr 22 - Week 15 - Finalize class projects - Code and Written project
-  components due Friday Apr 24
-* Apr 29 - Week 16 - Project Presentations
-
+* Jan 11 - Week 01 - Introduction to R 
+* Jan 18 - Week 02 - Introduction to Version Control and the Terminal
+* Jan 25 - Week 03 - Regression and Model Selection
+* Feb 01 - Week 04 - Multivariate Models
+* Feb 08 - Week 05 - Spatial Models
+* Feb 15 - Week 06 - GIS manipulations
+* Feb 22 - Week 07 - Simulations and Null models
+* Feb 29 - Week 08 - Project Pitch (oral presentation)
+* Mar 29 - Week 08 - Work on class project
+* Mar 07 - Week 09 - Spring Break (no class)
+* Mar 14 - Week 10 - Work on class project
+* Mar 21 - Week 11 - Work on class project
+* Mar 28 - Week 12 - Work on class project
+* Apr 04 - Week 13 - Peer Code Review and Peer Feedback
+* Apr 11 - Week 14 - Work on class project
+* Apr 18 - Week 15 - Finalize class projects - Code and Written project
+  components due Wednesday Apr 20
 
 Course Policies:
 ---------------
