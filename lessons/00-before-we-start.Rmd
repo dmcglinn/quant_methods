@@ -1,8 +1,8 @@
 ---
-layout: page
 title: Before we start
 author: Dan McGlinn and other Data Carpentry contributors 
-minutes: 15
+date: "January 11, 2016"
+output: html_document
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
