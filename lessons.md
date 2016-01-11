@@ -5,8 +5,8 @@ title: Lessons
 Quantitative topics covered in this course include:
 
 * Background Information
-    - <a href='./motivation.html'>motivation</a>
-    - <a href='./00-before-we-start.html'>Before we start</a>
+    - <a href='../motivation.html'>motivation</a>
+    - <a href='./00-before-we-start.hmtl'>before we start</a>
 * Introduction to R
     - <a href='./R_introduction.html'>basic</a> 
     - <a href='./R_intermediate.html'>intermediate</a>
