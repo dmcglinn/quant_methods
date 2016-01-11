@@ -4,16 +4,16 @@ output: html_document
 layout: page
 ---
 
-College of Charleston, Department of Biology, Spring 2015
+College of Charleston, Department of Biology, Spring 2016
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 6:30-9:30 pm W; HWWE 307
+* Meeting time: 9:30-10:20 pm MWF; HWWE 307
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: HWWE 203
 * Phone: 843-953-0190
-* Office hours: 11:30 - 12:30 p.m F or email by an appointment
+* Office hours: 11:30 - 12:30 p.m R or email by an appointment
 
 Course Description:
 -------------------
@@ -37,7 +37,7 @@ Course Objectives:
     - GIS tools
     - Spatial statistics
     - Multivariate Statistics
-2. To develop a project using some combination or these tools to addresses a
+2. To develop a project using some combination or these tools to address a
    scientific question.
 3. To improve oral presentation and peer-teaching skills
 
@@ -47,7 +47,8 @@ Student Evaluation:
 
 * 5% Participation
 * 5% Peer Teaching
-* 45% Assignments
+* 5% Quizzes
+* 40% Assignments
 * 45% Project
     - 15% oral presentation
     - 15% project code
@@ -57,7 +58,8 @@ Student Evaluation:
 **Undergraduate Students** will be evaluated based on the following criteria:
 
 * 5% Participation
-* 45% Assignments
+* 5% Quizzes
+* 40% Assignments
 * 50% Project
     - 25% oral presentation
     - 25% project code
@@ -76,24 +78,23 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 14 - Week 01 - Introduction to R 
-* Jan 21 - Week 02 - Introduction to Version Control and the Terminal
-* Jan 28 - Week 03 - Regression and Model Selection
-* Feb 04 - Week 04 - Multivariate Models
-* Feb 11 - Week 05 - Spatial Models
-* Feb 18 - Week 06 - GIS manipulations
-* Feb 25 - Week 07 - Simulations and Null models
-* Mar 04 - Week 08 - Spring Break (no class)
-* Mar 11 - Week 09 - Project Pitch (oral presentation)
-* Mar 18 - Week 10 - Work on class project
-* Mar 25 - Week 11 - Work on class project
-* Apr 01 - Week 12 - Work on class project
-* Apr 08 - Week 13 - Peer Code Review and Peer Feedback
-* Apr 15 - Week 14 - Work on class project
-* Apr 22 - Week 15 - Finalize class projects - Code and Written project
-  components due Friday Apr 24
-* Apr 29 - Week 16 - Project Presentations
-
+* Jan 11 - Week 01 - Introduction to R 
+* Jan 18 - Week 02 - Introduction to Version Control and the Terminal
+* Jan 25 - Week 03 - Regression and Model Selection
+* Feb 01 - Week 04 - Multivariate Models
+* Feb 08 - Week 05 - Spatial Models
+* Feb 15 - Week 06 - GIS manipulations
+* Feb 22 - Week 07 - Simulations and Null models
+* Feb 29 - Week 08 - Project Pitch (oral presentation)
+* Mar 29 - Week 08 - Work on class project
+* Mar 07 - Week 09 - Spring Break (no class)
+* Mar 14 - Week 10 - Work on class project
+* Mar 21 - Week 11 - Work on class project
+* Mar 28 - Week 12 - Work on class project
+* Apr 04 - Week 13 - Peer Code Review and Peer Feedback
+* Apr 11 - Week 14 - Work on class project
+* Apr 18 - Week 15 - Finalize class projects - Code and Written project
+  components due Wednesday Apr 20
 
 Course Policies:
 ---------------
@@ -106,12 +107,10 @@ the class, and 4) developing student projects.
 be a homework assignment associated with the content learned in lecture. Your
 code and a written explanation of your solution are required. Although I
 encourage collaboration on code development, your explanation of your solution
-should be written in your own words. The assignment should be submitted via
-email to mcglinndj@cofc.edu with the subject line: Programming Assignment X,
-where X is the number of the assignment. One problem from each assignment
-(selected at my discretion after the assignments have been submitted) will
-receive a thorough code review and a detailed grade. Other problems will be
-graded as follows:
+should be written in your own words. The assignment should be submitted via the 
+appropriate OAKs dropbox. One problem from each assignment (selected at my
+discretion after the assignments have been submitted) will receive a thorough
+code review and a detailed grade. Other problems will be graded as follows:
 
 * Produces the correct answer using the requested approach: 100%
 * Generally uses the right approach, but a minor mistake results in an incorrect
@@ -120,7 +119,8 @@ graded as follows:
   50%
 * Answer demonstrates a lack of understanding of the core concept: 0%
 
-Late assignments will be docked 5% per day and will not be accepted after Tuesday
+Typically assignments will be due on Friday morning. 
+Late assignments will be docked 5% per day and will not be accepted after Monday
 night at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
 documented by the student or in cases where this has been discussed and approved
 in advance. This policy is based on the idea that in order to learn how to
@@ -185,7 +185,4 @@ be dealt with according to the honor code.
 
 **_Re-using work_** - Please be aware that using work that you or anyone else
  has done for this or any other class or project, either in whole or in part, is
- a violation of the honor code, even if the work is revised.  Biology 211
- instructors keep copies of assignments submitted by students in previous
- semesters, and reuse or revision of such will result in reporting to the Dean
- of Students.
+ a violation of the honor code, even if the work is revised. 
