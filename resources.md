@@ -72,3 +72,5 @@ content <http://www.dataschool.io/>
     - Amazing resource for multivariate approaches for analyzing community
     ecology data. 
     - <http://ordination.okstate.edu/>
+* Anscombe's quartet
+    - <http://en.wikipedia.org/wiki/Anscombe's_quartet>
