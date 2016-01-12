@@ -6,7 +6,7 @@ output: html_document
 ---
 
 The purpose of this lesson is to introduce students to the R programming 
-enviornment for the first time. The lesson builds off the 
+environment for the first time. The lesson builds off the 
 [Software Carpentry](http://software-carpentry.org/) Lesson developed here: 
 <http://software-carpentry.org/v5/novice/r/01-starting-with-data.html>
 
@@ -17,7 +17,7 @@ enviornment for the first time. The lesson builds off the
 * <a href="#read">Reading in data</a>
 * <a href="#help">Using the help</a>
 * <a href="#data">Examine data</a>
-* <a href="#subset">Subseting the data</a>
+* <a href="#subset">Subsetting the data</a>
 * <a href="#summary">Summary statistics</a>
 * <a href="#aggr">Aggregate across rows or columns</a>
 * <a href="#plot">Plot data
@@ -132,9 +132,9 @@ are two general rules that can help guide you:
 
 So for something like a file name which you'll only type probably once at read and
 write you should use a long descriptive name, but for objects in your R code you
-need to consider typability and readability when designing the name. A long name
+need to consider typeability and readability when designing the name. A long name
 like root_rhiz_prod_total_mm is very clear but is a pain to read and worse to 
-type. R has a built-in name compliction system but this doesn't completely 
+type. R has a built-in name completion system but this doesn't completely 
 remove the burden on you for using long object names. 
 s
 ## <a href="#read" name="read">#</a>Reading in data
@@ -145,16 +145,25 @@ getwd()
 ```
 On my system this returns "/home/danmcglinn/Dropbox/teaching/quant_methods"
 because I have setup an Rstudio Project in the quant_methods folder I can make
-my path's releative to this location.
+my path's relative to this location.
 
-Let's read in the datafile "inflammation-01.csv" which is located in the
-directory: "/home/danmcglinn/Dropbox/teaching/quant_methods/data".  Because
-my working directory is already set to:
-"/home/danmcglinn/Dropbox/teaching/quant_methods/" I can shorten the path to
-"./data/inflammation-01.csv"
+Let's read in the datafile "inflammation-01.csv" which is located online here:
+<http://dmcglinn.github.io/quant_methods/data/inflammation-01.csv>
+You can chose to download this file to your working directory. So for example,
+on my machine I download the file to the directory: "/home/danmcglinn/Dropbox/teaching/quant_methods/data".  Because my working
+directory is already set to: "/home/danmcglinn/Dropbox/teaching/quant_methods/" 
+I can shorten the path to "./data/inflammation-01.csv"
 
 ```{r read in data}
 dat <- read.csv(file = "./data/inflammation-01.csv", header = FALSE)
+```
+
+Alternatively and a bit more cleanly we can take advantage of the ability to 
+supply the function `read.csv` with a url as such
+
+```{r url import}
+dat <- read.csv('http://dmcglinn.github.io/quant_methods/data/inflammation-01.csv',
+               header=F)
 ```
 
 ## <a href="#help" name="help">#</a>Using the help
@@ -184,7 +193,7 @@ class(dat)
 dim(dat)
 ```
 
-## <a href="#subset" name="subset">#</a>Subseting the data
+## <a href="#subset" name="subset">#</a>Subsetting the data
 ```{r}
 # first value in dat
 dat[1, 1]
@@ -269,8 +278,8 @@ plot(avg_day_inflammation)
 ```
 
 Notice how R fills in lots of pieces of missing information automatically. 
-specifcially it assumes that the independent variable is simply an index from
-1 to the length of the object in this case avg_day_inflamation. A safer more 
+specifically it assumes that the independent variable is simply an index from
+1 to the length of the object in this case avg_day_inflammation. A safer more 
 clear way to accomplish the same plot is to use the following:
 
 ```{r}

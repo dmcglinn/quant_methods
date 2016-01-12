@@ -74,4 +74,4 @@ content <http://www.dataschool.io/>
     ecology data. 
     - <http://ordination.okstate.edu/>
 * Anscombe's quartet
-    - <http://en.wikipedia.org/wiki/Anscombe's_quartet>
+    - <https://en.wikipedia.org/wiki/Anscombe%27s_quartet>
