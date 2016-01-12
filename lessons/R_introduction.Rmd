@@ -136,7 +136,7 @@ need to consider typeability and readability when designing the name. A long nam
 like root_rhiz_prod_total_mm is very clear but is a pain to read and worse to 
 type. R has a built-in name completion system but this doesn't completely 
 remove the burden on you for using long object names. 
-s
+
 ## <a href="#read" name="read">#</a>Reading in data
 
 First check what your working directory is:
