@@ -5,12 +5,6 @@ date: "January 11, 2016"
 output: html_document
 ---
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='figures/')
-```
-
-------------
-
 > ## Learning Objectives
 >
 > * Articulating motivations for this lesson
