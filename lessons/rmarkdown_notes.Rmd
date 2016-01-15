@@ -1,0 +1,55 @@
+---
+title: "R Markdown Notes"
+author: "Dan McGlinn"
+date: "1/14/2016"
+output: html_document
+---
+
+R markdown is a convinent and professional way to communicate about R code
+and your statistical results in a cohesive way. An R markdown file is just a 
+plain text file but it has the file extention .Rmd. R markdown files respresent
+the combination of a markdown file (.md file) and an Rscript (.R file). 
+Markdown is a simple set of tags that allow for formatting of text it was designed 
+to be very simple and intutitive. There are lots of resources online about how
+to use markdown tags to format plain text. Here is a good one <http://rmarkdown.rstudio.com/> 
+
+# Using R Markdown in Rstudio
+
+To create an R markdown file simply click on "File > New File > R Markdown". 
+If this is your first time ever creating an R markdown file you will be prompted
+to install the necessary dependencies. Rstudio should take care of this for you 
+but in rare instances will result in errors that need to be chased down via 
+google searches. If errors persist I suggest completely removing the R markdown 
+libraries from your hardrive and then attempting to reinstall them fresh. 
+
+If their are no errors with installing the R package dependencies you will see a 
+dialogue box: 
+
+![](../figures/rmarkdown_dialogue.JPG)
+
+That provides you with a number of different output formating options. 
+Notice that if you chose to export to a pdf additional dependencies are 
+required. 
+Specifically: _*PDF output requires TeX (MiKTeX on Windows, MacText 2013+ on OS X, TeX Live 2013+ on Linux).*_
+
+If you attempt to compile a pdf without installing these additional dependencies
+you will recieve fairly informative errors that provide download links and 
+specific instructions for how to get the correct dependency. 
+
+## Installing MiKTeX on PC
+Unfortunately, although the R error instructions where helpful I still had
+to hack around to get this to work on my PC. Here are steps I had to take 
+
+1) download installer at this address <http://miktex.org/download> and run install
+2) R markdown still would not compile to pdf because of missing *.sty files
+3) Searches online suggested the following additional MiKTeX packages needed
+to be installed `framed` and `titling`. Luckily it is relatively easy to use
+the MiKTex Package Manager to install these additional two packages.
+4) turn off Rstudio and then turn it back on and you should be able to compile
+your .Rmd file into a bueatiful .pdf file (hopefully fingers crossed)
+
+## Additional topics to add
+* formatting of R code
+* error handeling and warnings
+* setting options
+* running code internally 
