@@ -10,6 +10,7 @@ Quantitative topics covered in this course include:
     - <a href='./rmarkdown_notes.html'>R markdown setup and usage</a>
 * Introduction to R
     - <a href='./R_introduction.html'>basic</a> 
+        - <a href='http://adv-r.had.co.nz/Data-structures.html'>data structures</a>
     - <a href='./R_intermediate.html'>intermediate</a>
 * [Introduction to Version Control and the Terminal](./git_introduction)
 * Univariate Models
