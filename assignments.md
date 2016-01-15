@@ -5,8 +5,7 @@ title: Assignments
 
 * Introduction to R
     - [basic](./R_basics) 
-    - [intermediate](./R_intermediate)
-    - [loops](./loop_excercises)
+    - <a href='./R_intermediate.html'>intermediate</a>
 * Version Control
     - [Setup remote git repo](./git_basics)
 * Univariate Models
