@@ -7,6 +7,7 @@ Quantitative topics covered in this course include:
 * Background Information
     - <a href='../motivation.html'>motivation</a>
     - <a href='./00-before-we-start.html'>before we start</a>
+    - <a href='./rmarkdown_notes.html'>R markdown setup and usage</a>
 * Introduction to R
     - <a href='./R_introduction.html'>basic</a> 
     - <a href='./R_intermediate.html'>intermediate</a>
