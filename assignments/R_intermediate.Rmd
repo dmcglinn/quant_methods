@@ -1,0 +1,79 @@
+---
+title: "R intermediate"
+author: "Dan McGlinn"
+date: "January 15, 2016"
+output: html_document
+---
+
+> Premature optimization is the root of all evil -- Donald Knuth
+
+The humble for loop is often considered distasteful by seasoned programmers
+because it is inefficient; however, the for loop is one of the most useful and
+generalizable programming structures in R. If you can learn how to construct and
+understand for loops then you can code almost any iterative task. Once your loop
+works you can always work to optimize your code and increase its efficiency.
+
+Before attempting these exercises you should review the lesson 
+[R intermediate](../lessons/R_intermediate) in which loops were covered. 
+
+Examine the following for loop, and then complete the exercises
+
+```{r}
+data(iris)
+head(iris)
+
+sp_ids = unique(iris$Species)
+
+output = matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
+rownames(output) = sp_ids
+colnames(output) = names(iris[ , -ncol(iris)])
+
+for(i in seq_along(sp_ids)) {
+    iris_sp = subset(iris, subset=Species == sp_ids[i], select=-Species)
+    for(j in 1:(ncol(iris_sp))) {
+        x = 0
+        y = 0
+        if (nrow(iris_sp) > 0) {
+            for(k in 1:nrow(iris_sp)) {
+                x = x + iris_sp[k, j]
+                y = y + 1
+            }
+            output[i, j] = x / y 
+        }
+    }
+}
+output
+```
+##Excercises
+###Iris loops
+
+1. Describe the values stored in the object `output`. In other words what did the 
+loops create?
+
+2. Describe using pseudo-code how `output` was calculated, for example,
+```{r, eval=FALSE}
+loop through ...
+   loop through ...
+      And so on ...
+```
+
+3. The variables in the loop were named so as to be vague. How can the objects
+`output`, `x`, and `y` could be renamed such that it is clearer what is occurring
+in the loop.
+
+4. It is possible to accomplish the same task using fewer lines of code? Please suggest one other way to calculate `output` that decreases the number of loops
+by 1. 
+
+###Sum of a sequence
+
+5. You have a vector `x` with the numbers 1:10. Write a
+for loop that will produce a vector `y` that contains the sum of `x` up to that
+index of `x`. So for example the elements of `x` are 1, 2, 3, and so on and the 
+elements of `y` would be 1, 3, 6, and so on. 
+
+6. Modify your for loop so that if the sum is greater than 10 the value of `y`
+is set to NA
+
+7. Place your for loop into a function that accepts as its argument any vector
+of arbitrary length and it will return `y`. 
+
