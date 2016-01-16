@@ -5,11 +5,11 @@ date: "Thursday, January 29, 2015"
 output: html_document
 ---
 The goals of this lesson are to increase student's
-familarity with the R programming language by discussing
+familiarity with the R programming language by discussing
 how to control program flow and use functions
 
 ## Lesson Outline
-* <a href="#rep">Programming for repetive tasks</a>
+* <a href="#rep">Programming for repetitive tasks</a>
 * <a href="#for">For loops</a>
     - <a href="#cap">Capturing output</a>
     - <a href="#gen">Make loops general</a>
@@ -33,7 +33,7 @@ dat = read.csv('./data/tgpp.csv')
 
 ## <a href="#rep" name="rep">#</a> Programming for repetive tasks
 
-Frequently in programming you have to carry out repretitive tasks
+Frequently in programming you have to carry out repetitive tasks
 for example you might want to know what the class of column of a data.frame
 you could simply write this as 
 
@@ -59,13 +59,13 @@ applying the function class() to each column of dat
 
 ## <a href="#for" name="for">#</a> For Loop 
 For loops are common feature of almost all programming languages. They are
-typically not the most efficient way to carry out a repetive or iterative
+typically not the most efficient way to carry out a repetitive or iterative
 task however, they are frequently easy to understand and relatively easy to 
-motify to include additional tasks. 
+modify to include additional tasks. 
 To use a for loop we need to create an iterator that will provide an index for
 the operation we would like to repeat. An iterative this is any variable you
 wish typically i, j, or k and so forth but could just as easily be "index" or
-"my_interator" although that is not recommended.
+"my_iterator" although that is not recommended.
 
 ```{r first loop}
 #In the example below we will asign the iterator the value of "i"
@@ -236,7 +236,7 @@ for(i in x) {
 
 ## <a href="#fun" name="fun">#</a>Functions
 Functions are one of the most important objects for unlocking R's power. The 
-provide a way to modularize repetive tasks that we need for our analyses. 
+provide a way to modularize repetitive tasks that we need for our analyses. 
 For example we can take the for loop that we wrote above which works on 
 the data.frame called "dat" and place it in a function so that the same
 code can work on any data.frame we provide it.
@@ -264,7 +264,7 @@ eval_class = function(x) {
 eval_class(dat)
 ```
 
-Above the only change we have made to our for loop is to substitue the object
+Above the only change we have made to our for loop is to substitute the object
 name "dat" for "x". For our function eval_class() x is a variable or argument. 
 Additionally we added the line `return(dat_classes` which ensures that the object
 is output by the function
@@ -278,9 +278,9 @@ eval_class(dbl_dat)
 ```
 
 It is best practice to program defensively by ensuring that the user
-supplies an object for the variable x that is sensiable. In our case it 
+supplies an object for the variable x that is sensible. In our case it 
 has to be a data.frame or a matrix object other types should return an 
-error with a resonable explanation
+error with a reasonable explanation
 
 ```{r, error=TRUE}
 eval_class = function(x) {
@@ -311,7 +311,7 @@ eval_class(my_obj)
 
 ## <a href="#debug" name="debug">#</a>Debug functions
 To debug your function in R use the functions `debug()` and `undebug()`. 
-Rstudio has made the debuging experience for R users much better than previously.
+Rstudio has made the debugging experience for R users much better than previously.
 Try out the following lines of code
 
 ```{r debug, eval=FALSE}
