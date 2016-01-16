@@ -4,7 +4,9 @@ output: html_document
 layout: page
 ---
 
+\begin{center}
 College of Charleston, Department of Biology, Spring 2016
+\end{center}
 
 Course and Instructor info:
 ---------------------------
@@ -27,8 +29,8 @@ Course Structure:
 The course will be roughly divided in half between time spend learning about
 tools and time spend developing one's own project.
 
-Course Objectives:
-------------------
+Course Learning Objectives:
+---------------------------
 1. To develop knowledge and exposure to modern quantitative methods such as (but
   not limited to):
     - R programming
@@ -37,9 +39,9 @@ Course Objectives:
     - GIS tools
     - Spatial statistics
     - Multivariate Statistics
-2. To develop a project using some combination or these tools to address a
-   scientific question.
-3. To improve oral presentation and peer-teaching skills
+2. To develop a scientific reserach project using some combination or these
+   tools to address a scientific question.
+3. To improve oral presentation and peer-teaching skills.
 
 Student Evaluation:
 -------------------
