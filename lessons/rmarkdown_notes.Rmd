@@ -5,51 +5,80 @@ date: "1/14/2016"
 output: html_document
 ---
 
-R markdown is a convinent and professional way to communicate about R code
-and your statistical results in a cohesive way. An R markdown file is just a 
-plain text file but it has the file extention .Rmd. R markdown files respresent
-the combination of a markdown file (.md file) and an Rscript (.R file). 
+R markdown is a convenient and professional way to communicate about R code
+and your statistical results in a single document.
+An R markdown file is just a plain text file but it has the file extension .Rmd. R markdown files represent the combination of a markdown file (.md file) and an Rscript (.R file). 
 Markdown is a simple set of tags that allow for formatting of text it was designed 
-to be very simple and intutitive. There are lots of resources online about how
+to be very simple and intuitive. There are lots of resources online about how
 to use markdown tags to format plain text. Here is a good one <http://rmarkdown.rstudio.com/> 
 
 # Using R Markdown in Rstudio
 
-To create an R markdown file simply click on "File > New File > R Markdown". 
+To create an R markdown file simply click on **File** > **New File** > 
+**R Markdown**. 
 If this is your first time ever creating an R markdown file you will be prompted
-to install the necessary dependencies. Rstudio should take care of this for you 
-but in rare instances will result in errors that need to be chased down via 
-google searches. If errors persist I suggest completely removing the R markdown 
-libraries from your hardrive and then attempting to reinstall them fresh. 
+to install the necessary dependencies. 
+Rstudio should take care of this for you but in rare instances will result in
+errors that need to be chased down via Google searches. 
+If errors persist I suggest completely removing the R markdown libraries from
+your hard drive and then attempting to re-install them fresh. 
 
 If their are no errors with installing the R package dependencies you will see a 
-dialogue box: 
+dialogue box that provides you with a number of different output formatting options:
 
 ![](../figures/rmarkdown_dialogue.JPG)
 
-That provides you with a number of different output formating options. 
-Notice that if you chose to export to a pdf additional dependencies are 
-required. 
+## Troubleshooting: Rendering a pdf using Rmarkdown
+
+Notice in the dialogue box shown above that that if you chose to export to a pdf
+additional dependencies are  required.  
 Specifically: _*PDF output requires TeX (MiKTeX on Windows, MacText 2013+ on OS X, TeX Live 2013+ on Linux).*_
 
 If you attempt to compile a pdf without installing these additional dependencies
-you will recieve fairly informative errors that provide download links and 
+you will receive fairly informative errors that provide download links and 
 specific instructions for how to get the correct dependency. 
 
-## Installing MiKTeX on PC
+### Installing MiKTeX on PC
 Unfortunately, although the R error instructions where helpful I still had
 to hack around to get this to work on my PC. Here are steps I had to take 
 
 1) download installer at this address <http://miktex.org/download> and run install
 2) R markdown still would not compile to pdf because of missing *.sty files
-3) Searches online suggested the following additional MiKTeX packages needed
-to be installed `framed` and `titling`. Luckily it is relatively easy to use
-the MiKTex Package Manager to install these additional two packages.
+3) Error messages from the Rmarkdown console and a little bit of Googling
+suggested the following additional MiKTeX packages needed to be installed
+`framed` and `titling`. 
+Luckily it is relatively easy to use the MiKTex Package Manager to install these additional two packages. Go ahead and do that.
 4) turn off Rstudio and then turn it back on and you should be able to compile
-your .Rmd file into a bueatiful .pdf file (hopefully fingers crossed)
+your .Rmd file into a beautiful .pdf file (hopefully fingers crossed)
+
+### Installing MacText 2013+ on OS X
+These instructions were useful as of 01/2016.
+There are two versions of MacText available online at
+<http://www.tug.org/mactex/index.html>. 
+One of the versions is very large (2.5GB) but a slimmed down version of the 
+program is also available known as BasicTeX. 
+These instructions will follow the route of using the smaller install of BasicTex.
+
+1) download the BasicText installer: 
+<http://tug.org/cgi-bin/mactex-download/BasicTeX.pkg> and run install
+2) install missing *.sty files `framed.sty` and `titling.sty` by running the
+following in your terminal
+
+```
+sudo tlmgr update --self
+sudo tlmgr install framed
+sudo tlmgr install titling
+```
+
+When using sudo you will be prompted for a password this is just your administrative
+password on your machine.
+If you don't know how to access mac's terminal simply search for it or use 
+Rstudio's terminal by clicking **Tools** > **shell**
+3) turn off Rstudio and then turn it back on and you should be able to compile
+your .Rmd file into a beautiful .pdf file (hopefully fingers crossed)
 
 ## Additional topics to add
 * formatting of R code
-* error handeling and warnings
+* error handling and warnings
 * setting options
 * running code internally 
