@@ -16,32 +16,40 @@ Course and Instructor info:
 * Office: HWWE 203
 * Phone: 843-953-0190
 * Office hours: 11:30 - 12:30 p.m R or email by an appointment
+* Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
 -------------------
-This course is a three hour seminar for graduate and advanced undergraduate
-students. The goals of the course are to expose students to more advanced and
-applied topics in statistical analyses, as well as, provide students the
-opportunity to apply these methods to their own projects.  
+This course is a three hour seminar for advanced undergraduate and graduate students. 
+The goals of the course are to develop students' knowledge of more advanced and
+applied topics in statistical analysis, as well as, provide students the
+opportunity to apply these methods to their own research projects.  
 
 Course Structure:
 ----------------
 The course will be roughly divided in half between time spend learning about
 tools and time spend developing one's own project.
 
-Course Learning Objectives:
+Student Learning Objectives:
 ---------------------------
-1. To develop knowledge and exposure to modern quantitative methods such as (but
-  not limited to):
+1. Students will demonstrate an understanding of the theoretical basis of
+modern quantitative methods such as (but not limited to):
     - R programming
     - Version control
     - Database SQL
     - GIS tools
     - Spatial statistics
     - Multivariate Statistics
-2. To develop a scientific reserach project using some combination or these
-   tools to address a scientific question.
-3. To improve oral presentation and peer-teaching skills.
+2. Students will demonstrate the ability to apply these methods in the
+development of weekly assignments and a research project.
+3. Students will demonstrate the ability to explain different 
+quantitative methods and their application through peer instruction which will 
+include but not be limited to peer interactions in the classroom, posting
+solutions to the course webpage, providing constructive feedback on peer 
+research projects. 
+4. Students will demonstrate the ability to develop, analyze, and synthesize results
+of a research project via a written manuscript and oral research project presentation.
+
 
 Student Evaluation:
 -------------------
