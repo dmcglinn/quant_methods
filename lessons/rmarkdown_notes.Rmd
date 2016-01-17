@@ -74,6 +74,7 @@ When using sudo you will be prompted for a password this is just your administra
 password on your machine.
 If you don't know how to access mac's terminal simply search for it or use 
 Rstudio's terminal by clicking **Tools** > **shell**
+
 3) turn off Rstudio and then turn it back on and you should be able to compile
 your .Rmd file into a beautiful .pdf file (hopefully fingers crossed)
 
