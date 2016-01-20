@@ -3,21 +3,21 @@ layout: page
 title: Introduction to Git
 ---
 
-The purpose of this lesson is to get students exposed to using Git and GitHub
-from the command line and within R studio
+The purpose of this lesson to start using Git and GitHub from the command line
+and within R studio.
 
 Git is a version control system that allows you to track changes to your data
 and source code as you develop quantiative projects. 
 
-Hadley Wickham's book *R packages* contains a very useful overview and 
-step-by-step description of git and how it can be used with Rstudio. This
-material can be freely accessed here: <http://r-pkgs.had.co.nz/git.html>
-
+We will follow the Git and Github section from Hadley Wickham's book *R packages* 
+which contains a very useful overview and step-by-step description of git and
+how it can be used with Rstudio. This material can be freely accessed here:
+<http://r-pkgs.had.co.nz/git.html>
 
 ### Install Git
 
-* Follow the instructions for installing Git for your OS here: 
-<http://software-carpentry.org/v5/setup.html>
+* Download Git for your OS here: 
+<https://git-scm.com/download>
 
 ## Text editor checks
 ### Windows Users
