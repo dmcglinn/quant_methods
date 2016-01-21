@@ -15,7 +15,7 @@ Course and Instructor info:
 * Email: mcglinndj@cofc.edu
 * Office: HWWE 203
 * Phone: 843-953-0190
-* Office hours: 11:30 - 12:30 p.m R or email by an appointment
+* Office hours: 12:40 - 1:40 p.m R or email by an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
