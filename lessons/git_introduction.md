@@ -30,10 +30,21 @@ need to install nano manually.
 Download the program from here: 
 <http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip>
 Unzip the file and paste the files that have either a .exe or .dll extension
-in the directory: C:/Windows/System32/
+in the directory: `C:/Windows/System32/`
+
+If none of the files appear to have a .exe file ending look for the file called
+`nano` (this also indicates to me that you must have the default windows
+option of hiding file extensions active - go turn it off when you get a chance).
+
 Restart the terminal and try the command `winpty nano test.txt` If everything
-is working this will create a file called test.txt in your working directory 
+is working this will create a file called `test.txt` in your working directory 
 for you to edit within the terminal. 
+
+If that still does not work not to fret you can always use the native text editor
+on Windows called `notepad`. 
+In the terminal simply type `notepad test.txt` to create a text file called
+`test.txt` for you to edit in a GUI interface (i.e., not within the terminal window). 
+Hit `Cntrl - c` at the terminal command prompt to close `notepad`. 
 
 ### Mac Users
 Your OS may ship with the nano text editor. To examine if it is already 
