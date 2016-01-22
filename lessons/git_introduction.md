@@ -26,13 +26,14 @@ from the terminal. Newer installs of git ship with an editor called nano
 In the bash terminal type `nano` and hit Enter. 
 If this does not bring up a text editor window in the terminal then you will
 need to install nano manually. 
+
 Download the program from here: 
 <http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip>
 Unzip the file and paste the files that have either a .exe or .dll extension
-in the directory: C:/Windows/System/
-Now try to call nano from the terminal, if it still does not work then try this
-installer <http://files.software-carpentry.org/SWCarpentryInstaller.exe> 
-which will add Python and nano to your system. 
+in the directory: C:/Windows/System32/
+Restart the terminal and try the command `winpty nano test.txt` If everything
+is working this will create a file called test.txt in your working directory 
+for you to edit within the terminal. 
 
 ### Mac Users
 Your OS may ship with the nano text editor. To examine if it is already 
