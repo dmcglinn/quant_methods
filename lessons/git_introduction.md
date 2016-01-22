@@ -30,10 +30,9 @@ Download the program from here:
 <http://www.nano-editor.org/dist/v2.2/NT/nano-2.2.6.zip>
 Unzip the file and paste the files that have either a .exe or .dll extension
 in the directory: C:/Windows/System/
-Now try to call nano from the terminal, if it still does not work then I 
-suggest that you follow the install instructions at: 
-<http://software-carpentry.org/v5/setup.html> for Python and the Software
-Carpentry Installer which will add nano to your system. 
+Now try to call nano from the terminal, if it still does not work then try this
+installer <http://files.software-carpentry.org/SWCarpentryInstaller.exe> 
+which will add Python and nano to your system. 
 
 ### Mac Users
 Your OS may ship with the nano text editor. To examine if it is already 
@@ -44,7 +43,7 @@ If is is not installed then I recommend you try Text wrangler:
 
 ### Version control with Git
 We will work through one of the SWC lesson's on Git
-[A Better Kind of Backup](http://software-carpentry.org/v5/novice/git/01-backup.html)
+[Version Control with Git](http://swcarpentry.github.io/git-novice/)
 
 This lesson will introduce us to the basics of using Git locally. 
 
