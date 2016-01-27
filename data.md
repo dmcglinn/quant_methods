@@ -53,4 +53,7 @@ A list of data sources and software for data acquisition
 * [Vaccine-Preventable Outbreaks](http://www.cfr.org/interactives/GH_Vaccine_Map/#map)
 * [Center for Disease Control](http://www.cdc.gov/DataStatistics/)
 
-
+#### Human behavior
+* [Religion in the US](http://www.thearda.com/Archive/Files/Descriptions/RCMSCY10.asp)
+    - [related blog post](http://www.arilamstein.com/blog/2016/01/25/mapping-us-religion-adherence-county-r/)
+    
