@@ -3,7 +3,9 @@ layout: page
 title: Projects
 ---
 
-Class projects may cover any topic that involves quantitative methods. 
+Class projects may cover any topic that involves quantitative methods.
+Take a look at the page of links to [datasets](../datasets) which could be 
+analyzed as part of a project.
 
 Students are expected to contribute:
 
