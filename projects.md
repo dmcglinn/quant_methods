@@ -29,12 +29,15 @@ The home directory of all projects should contain at least the following directo
 All R code in the scripts directory must assume that the working directory is 
 the project home directory and all file paths must be relative to the project
 home directory. 
-**Points will be deducted for absolute file pathes** as these decrease the portability
+**Points will be deducted for absolute file paths** as these decrease the portability
 and readability of code.
 
 Do not commit very large > 100 MB data files to the git repo. Instructions for 
 how to download these files or other justifications for why the data are not
 included with the code are sufficient. 
+
+If the data are not available to reproduce the results then at minimum a representative example portion of the data must be included to provide a means
+of generating example results.  
 
 The project directory should also contain a `README.md` file that describes:
 
@@ -45,7 +48,10 @@ The project directory should also contain a `README.md` file that describes:
 
 Although not required your instructor and your future-self will find it very
 useful if you include a master script that controls project flow. 
-See for example https://github.com/weecology/mete-spatial/blob/master/ddr_run_all.R
+See for example <https://github.com/weecology/mete-spatial/blob/master/ddr_run_all.R>
+Another very effective approach is to use an Rmarkdown document that walks a reader
+through you analysis with $ code and results interspersed with plain English 
+descriptions of motivations and methodology. See for example <http://richfitz.github.io/wood/wood.html>
 
 ### Oral Presentation
 
