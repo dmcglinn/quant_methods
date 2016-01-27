@@ -6,6 +6,11 @@ title: Introduction to Git
 The purpose of this lesson to start using Git and GitHub from the command line
 and within R studio.
 
+To complete the GitHub portion of this lesson you will need to create a 
+GitHub user account. If you are a student or teacher make sure to check out their
+eductation account options which offer free private repos: 
+<https://education.github.com/>
+
 Git is a version control system that allows you to track changes to your data
 and source code as you develop quantiative projects. 
 
@@ -92,4 +97,4 @@ Rstudio project. This is not difficult just follow the instructions for
 ### Additional Links
 * <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>
 
-![dynamite](./figures/serious_git.png)
+![dynamite](../figures/serious_git.png)
