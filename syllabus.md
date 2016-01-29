@@ -4,9 +4,7 @@ output: html_document
 layout: page
 ---
 
-\begin{center}
-College of Charleston, Department of Biology, Spring 2016
-\end{center}
+### College of Charleston, Department of Biology, Spring 2016
 
 Course and Instructor info:
 ---------------------------
