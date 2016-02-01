@@ -3,6 +3,18 @@ title: "univariate models"
 output: html_document
 ---
 
+<!--clickable code reveal: 
+    http://stackoverflow.com/questions/14127321/how-to-hide-code-in-rmarkdown-with-option-to-see-it
+-->
+<style>
+div.hidecode + pre {display: none}
+</style>
+<script>
+doclick = function(e){
+    e.nextSibling.nextSibling.style.display="block";
+}
+</script>
+
 The goals of this lesson are to introduce univariate modeling using simple and
 multivariate Ordinary Least Squares (OLS) regression, and to gain exposure to
 the concept and methods of model comparison.
@@ -194,6 +206,17 @@ coefficients are more robust.
 Create a single plot that displays the model of y given x3 before and after the
 outliers were removed. How much to they visually differ from one another.
 Examine the arguments to `abline()` including `lty` and `lwd`.
+
+<div class="hidecode" onclick="doclick(this);">[Show Code]</div>
+```{r}
+plot(y ~ x3, data=sim_data)
+points(y ~ x3, data=sim_data_sub, col='dodgerblue', pch=19)
+abline(mod3)
+abline(mod3_sub, col='dodgerblue', lwd=2)
+legend('topleft', c('fit with all data', 'fit w/o outliers'), 
+       col=c('black', 'dodgerblue'), pch=c(1, 19), lty=1, 
+       lwd=c(1,2), bty='n')
+```
 
 ## <a href="#mult" name="mult">#</a> Multiple regression 
 
