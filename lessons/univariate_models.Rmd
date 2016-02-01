@@ -7,16 +7,17 @@ The goals of this lesson are to introduce univariate modeling using simple and
 multivariate Ordinary Least Squares (OLS) regression, and to gain exposure to
 the concept and methods of model comparison.
 
-The content from this lesson is modified in part from lessons developed by Jack Weiss and Jason Fridley. The original lessons can be found at the following links:
+The content from this lesson is modified in part from lessons developed by
+Jack Weiss and Jason Fridley. The original lessons can be found at the following links:
 
 * <http://www.unc.edu/courses/2010fall/ecol/563/001/docs/lectures/lecture1.htm>
 * <http://plantecology.syr.edu/fridley/bio793/lm.html>
 
 ## Lesson Outline
 * <a href="#phil">Modeling philosophy</a>
-* <a href="#sim">Simulate Data</a>
+* <a href="#sim">Simulate data</a>
 * <a href="#mult">Multiple regression</a>
-* <a href="#inter">Interaction Effects</a>
+* <a href="#inter">Interaction effects</a>
 * <a href="#comp">Model comparisons</a>
 
 ## <a href="#phil" name="phil">#</a> Modeling Philosophy
@@ -30,12 +31,46 @@ models. Additionally it is often difficult to decide when a model is useful
 or not because there are three general reasons for building a model:
 
 * Hypothesis testing
-* Explaining or exploring data
+* Exploring data
 * Predicting data
 
 These different goals of model building require different approaches and modes
-of evaluation of model efficitiveness. A full discussion of the differences in 
-the philosophies and approaches is beyond the scope of this lesson. 
+of model evaluation. 
+Hypothesis testing is typically geared towards testing a small handful of carefully
+crafted ***A PRIORI*** hypotheses. 
+In this context they model is typically judged useful if it is statistically 
+significant.  
+However, many times though the investigator does not have a clear *_a priori_*
+hypothesis [(see post at Small Pond Science)](http://smallpondscience.com/2013/06/04/pretending-you-planned-to-test-that-hypothesis-the-whole-time/) 
+and is instead examining if a large number of possibly relevant variables are
+correlated with a response of interest. 
+The goal of this kind of exploratory analysis is to generate hypotheses that can
+be more carefully tested with **other datasets** and not with the dataset used
+to generate them. 
+Unfortunately very frequently and quite misleadingly the correlations that
+are found to be strong in the exploratory analysis are then presented in a
+hypo-deductive framework as if they were *_a prori_* [(see post on Dynamic Ecology)](https://dynamicecology.wordpress.com/2013/10/16/in-praise-of-exploratory-statistics/).
+When using models to make predictions we are typically less concerned about the 
+exact variables that are in the model and more concerned that we can predict 
+observations not included in the building of the model (i.e., cross-validate
+the model).
+
+There are many reasons that p-values and statistical significance are abused in
+science. For example, it can be very tempting to report statistics of
+significance in many analyses in which you did not have clear *_a prori_* 
+hypotheses because often times R will report such statistics without prompting
+from the user (e.g., `summary(my_ols_model)`). 
+Additionally there is a stigma in many fields of science against exploratory 
+analyses in favor of hypothesis testing which pushes some researchers to 
+re-frame their analyses as if they are confirmatory rather than exploratory. 
+And of course there is pressure during peer-review to only report on 
+statistics that are significant. 
+
+You might be wondering why this is a big deal. The reason is that you will inevitably
+get good fitting models (high R^2) and statistically significant results (p < 0.05)
+if you keep adding variables to a model even if those variables by definition are
+independent of the response variable.  [(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ).
+
 
 ## <a href="#sim" name="sim">#</a> Simulate Hypothetical Data
 R is an excellent environment for learning about how models work in part because
@@ -46,7 +81,7 @@ strength measures.
 
 ```{r}
 #generate data for example
-set.seed(10)
+set.seed(10) # this is done so that the same results are generated each time
 x1 = runif(90)
 x2 = rbinom(90, 10, .5)
 x3 = rgamma(90, .1, .1)
@@ -59,8 +94,8 @@ epsilon = rnorm(90, 0, 3)
 sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
 ```
 
-Above we have defined response variable "y" as a linear function of the three
-simulated independent variables (the x variables). Epsilon refers to the 
+Above we have defined response variable `y` as a linear function of the three
+simulated independent variables (the `x` variables). Epsilon refers to the 
 error in the model and in line with OLS regression assumptions we have made 
 this is a normally distributed variable centered at zero.
 
@@ -77,8 +112,8 @@ summary(mod)
 mean(sim_data$y)
 ```
 
-We can easily accomodate more complex models but simply including them in our 
-call to lm. Be default models will always include an intercept.
+We can easily accommodate more complex models but simply including them in our 
+call to `lm`. By default models will always include an intercept.
 
 ```{r}
 #simple linear regression with x1 as predictor
@@ -117,6 +152,26 @@ which provides the estimate, standard error, t-statistic, and p-value for:
 * \(\hat{\beta_0}\) the y-intercept - 1st row of the table
 * \(\hat{\beta_1}\) the slope of the regression line - 2nd row of the table
 
+The p-values can be used to assess statistical significance, and
+the t-statistics provide a measure of effect size.
+
+In addition to the coefficient table several statistics for 
+the entire model are also provided
+
+```
+Residual standard error: 11.86 on 88 degrees of freedom
+Multiple R-squared:  0.0001756,	Adjusted R-squared:  -0.01119 
+F-statistic: 0.01546 on 1 and 88 DF,  p-value: 0.9013
+```
+
+The multiple R-squared and adjusted R-squared provide estimates of variance 
+explained. 
+The later statistic adjusts for the number of variables included in the model.
+The F-statistic is a ratio of the mean sum of squares for the model to the 
+sum of squares of the residuals (i.e., the ratio of explained variance to 
+unexplained variance). The p-value associated with the F-statistic provides
+a means of examining the statistics significance of the entire model. 
+
 We noticed that there was a large outlier in the previous plot. Let's remove it
 to see how this changes the fitted regression model. 
 
@@ -131,7 +186,7 @@ summary(mod3)
 summary(mod3_sub)
 ```
 
-So it appears that \(R^2\) is highly sensative to outliers but the \(\beta\) 
+So it appears that \(R^2\) is highly sensitive to outliers but the \(\beta\) 
 coefficients are more robust. 
 
 ### Excercise: 
