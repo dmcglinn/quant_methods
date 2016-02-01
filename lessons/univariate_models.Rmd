@@ -25,6 +25,13 @@ Jack Weiss and Jason Fridley. The original lessons can be found at the following
 * <http://www.unc.edu/courses/2010fall/ecol/563/001/docs/lectures/lecture1.htm>
 * <http://plantecology.syr.edu/fridley/bio793/lm.html>
 
+## Readings
+*The R book* (1st ed) - Michael Crawley
+
+* Chapter 5 - Graphics 
+* Chapter 9 - Statistical Modeling
+
+
 ## Lesson Outline
 * <a href="#phil">Modeling philosophy</a>
 * <a href="#sim">Simulate data</a>
@@ -84,6 +91,28 @@ get good fitting models (high R^2) and statistically significant results (p < 0.
 if you keep adding variables to a model even if those variables by definition are
 independent of the response variable.  [(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ).
 
+### The Principle of Parsimony (Occam’s Razor)
+
+The principle of parsimony can be stated succinctly as: 
+
+> the correct explanation is the simplest explanation.
+
+In the context of model building, all else being equal the better model is the 
+model with the following properties (Crawley, 2007):
+
+* a model with n−1 parameters to a model with n parameters;
+* a model with k−1 explanatory variables to a model with k explanatory variables;
+* a linear model to a model which is curved;
+* a model without a hump to a model with a hump;
+* a model without interactions to a model containing interactions between factors.
+
+Thus model simplification is an important part of finding the most useful model.
+A simpler model that explains similar levels of deviance in a response should be
+considered a better model. 
+
+Crawley suggests the following steps for model simplicfication:
+
+[](./figures/
 
 ## <a href="#sim" name="sim">#</a> Simulate Hypothetical Data
 R is an excellent environment for learning about how models work in part because
@@ -220,15 +249,24 @@ legend('topleft', c('fit with all data', 'fit w/o outliers'),
 
 ## <a href="#mult" name="mult">#</a> Multiple regression 
 
+So far we have only examined models with a single variable but by design we
+know that y is influenced by three variables. Let's include all the relevant
+explanatory variables in one model now. 
+
 ```{r}
 mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
 summary(mod_main)
+coefficients(mod_main)
 ```
+
+Notice that in the output above the coefficient estimates are close to 
+what we set them at when we created the variable `y`. 
+
 
 ## <a href="#stan" name="stan">#</a> Standardized \(\beta\) coefficients
 A standardized \(\beta\) or regression coefficient is simply the 
 \(\beta\) estimate from a regression on standardized variables. The typical way
-of standardizeing a variable is to subtract its mean and devide it by its standard
+of standardizing a variable is to subtract its mean and divide it by its standard
 deviation. This transformation results in a variable a mean of zero and a
 standard deviation of one. There are other ways to standardize a variable but
 this is by far the most common.
