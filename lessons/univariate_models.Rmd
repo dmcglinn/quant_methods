@@ -17,6 +17,7 @@ Jack Weiss and Jason Fridley. The original lessons can be found at the following
 * <a href="#phil">Modeling philosophy</a>
 * <a href="#sim">Simulate data</a>
 * <a href="#mult">Multiple regression</a>
+* <a href="#stan">Standardized \(\beta\) coefficients</a>
 * <a href="#inter">Interaction effects</a>
 * <a href="#comp">Model comparisons</a>
 
@@ -199,6 +200,79 @@ Examine the arguments to `abline()` including `lty` and `lwd`.
 ```{r}
 mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
 summary(mod_main)
+```
+
+## <a href="#stan" name="stan">#</a> Standardized \(\beta\) coefficients
+A standardized \(\beta\) or regression coefficient is simply the 
+\(\beta\) estimate from a regression on standardized variables. The typical way
+of standardizeing a variable is to subtract its mean and devide it by its standard
+deviation. This transformation results in a variable a mean of zero and a
+standard deviation of one. There are other ways to standardize a variable but
+this is by far the most common.
+
+One reason for standardizing variables is that you can interpret the \(\beta\) estimates as partial correlation coefficients. In other words now that the
+variables are standardized you can compare how correlated they are to the 
+response variable using their regression coefficients. Below is a demo of this.
+
+```{r}
+## We will use this function to plot the data and correlations 
+panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
+{
+    usr <- par("usr"); on.exit(par(usr))
+    par(usr = c(0, 1, 0, 1))
+    r <- abs(cor(x, y))
+    txt <- format(c(r, 0.123456789), digits = digits)[1]
+    txt <- paste0(prefix, txt)
+    if(missing(cex.cor)) 
+        cex.cor <- 0.8/strwidth(txt)
+    text(0.5, 0.5, txt, cex = cex.cor)
+}
+```
+
+Before standardizing variables it is worthwhile to highlight that the 
+relationship between correlation and regression statistics. Specifically, 
+the t-statistic from a simple correlation coefficient is exactly what is
+reported for the \(\beta_1\)  coefficient in a regression model.
+
+```{r}
+cor.test(sim_data$y, sim_data$x1)$statistic
+summary(lm(y ~ x1, data=sim_data))$coef
+```
+
+The \(\beta\) coefficient reported by the regression is not equal to the
+correlation coefficient though because the \(\beta\) is in the units of the 
+\(x_1\) variable (i.e., it has not been standardized). Now let's use the function 
+`scale()` to standardize the independent and dependent variables. 
+
+```{r}
+sim_data_std = data.frame(scale(sim_data))
+
+mod = lm(y  ~ x1 + x2 + x3, data=sim_data)
+mod_std = lm(y  ~ x1 + x2 + x3, data=sim_data_std)
+round(summary(mod)$coef, 3)
+round(summary(mod_std)$coef, 3)
+cor(sim_data$y, sim_data$x1)
+cor(sim_data$y, sim_data$x2)
+cor(sim_data$y, sim_data$x3)
+
+```
+
+Notice that above the t-statistics and consequently the p-values between `mod`
+and `mod_std` don't change (with the exception of the intercept term which is
+always 0 in a regression of standardized variables). This is because the 
+t-statistic is a pivotal statistic meaning that its value doesn't depend on the
+scale of the difference. 
+
+Additionally notice that the individual correlation coefficients are very 
+similar to the \(\beta\) estimates in `mod_std`. Why are these not exactly the same?
+Here's a hint - what would happen if their was strong multicollinarity between
+the explanatory variables?
+
+Let's plot the variables against one another and also display their individual
+Pearson correlation coefficients to get a visual perspective on the problem
+
+```{r}
+pairs(sim_data, lower.panel = panel.cor, upper.panel = panel.smooth)
 ```
 
 ## <a href="#inter" name="inter">#</a> Interaction effects
