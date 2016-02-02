@@ -221,11 +221,27 @@ sum of squares of the residuals (i.e., the ratio of explained variance to
 unexplained variance). The p-value associated with the F-statistic provides
 a means of examining the statistics significance of the entire model. 
 
-We noticed that there was a large outlier in the previous plot. Let's remove it
-to see how this changes the fitted regression model. 
+We noticed that there was a large outlier in the previous plot. Let's run model 
+diagonstics to see if we should consider dropping that variable. 
 
 ```{r}
-sim_data_sub = sim_data[sim_data$y < 25,]
+par(mfrow=c(2,2))
+plot(mod1)
+par(mfrow=c(1,1))
+```
+
+From the diagonsitic plots you can see observations 26, 85, and 88 are consistently
+identified as having abnormally large residual values (Residuals vs Fitted plot),
+they cause the residuals to diverge from an expectation under normality (Normal Q-Q plot),
+and lastly they exert too much leverage (i.e., control on the slope of the 
+regression, Residuals vs Leverage plot). 
+
+Here is a case where if this was an actual analysis we would check to make sure 
+these values are not mistakes. Let's drop these points and examine the changes
+in the model statistics. 
+
+```{r}
+sim_data_sub = sim_data[-c(26, 85, 88), ]
 #verify that one observation was removed
 dim(sim_data)
 dim(sim_data_sub)
