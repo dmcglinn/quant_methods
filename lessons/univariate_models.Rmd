@@ -110,9 +110,16 @@ Thus model simplification is an important part of finding the most useful model.
 A simpler model that explains similar levels of deviance in a response should be
 considered a better model. 
 
-Crawley suggests the following steps for model simplicfication:
+Crawley (2007) suggests the following steps for backward model simplification:
 
-[](./figures/
+![model_simpl](../figures/crawley_2007_table9_2_model_simplification.png)
+
+These steps are reasonable if one is carrying out an exploratory data analysis; 
+however, I do not recommend this approach when formal hypothesis testing is the 
+goal of the analysis due to Freedman's pardox as explained above. Additionally,
+it may be worth pointing out that model building can procede from simple to more
+complex models as well evaulating with each additional term if it has significantly
+increased explanatory power. 
 
 ## <a href="#sim" name="sim">#</a> Simulate Hypothetical Data
 R is an excellent environment for learning about how models work in part because
