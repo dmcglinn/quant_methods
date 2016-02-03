@@ -29,11 +29,11 @@ Compare the p-values you observe using the function `Anova` to those generated u
 
 For each species address the following additional questions:
 
-* how well does the exploratory model appear to explain cover?
-* which explanatory variables are the most important?
-* do model diagnostics indicate any problems with violations of
-OLS assumptions?
-* are you able to explain variance in one species better than another?
+    * how well does the exploratory model appear to explain cover?
+    * which explanatory variables are the most important?
+    * do model diagnostics indicate any problems with violations of
+      OLS assumptions?
+    * are you able to explain variance in one species better than         another?
 
 2. You may have noticed that the variable cover is defined as 
 positive integers between 1 and 10. and is therefore better treated
@@ -44,14 +44,14 @@ perspective of a General Linear Model (GLM) with a Poisson error term
 The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
 Your new model calls will look as follows 
 
-   ```
+   ```{r}
    acer_glm = glm(cover ~ . , data= my_data, family='poisson')
    ```
 
 For assessing the degree of variation explained you can use a 
 pseudo-R-squared statistic (note this is just one of many possible)
 
-    ```
+    ```{r}
     pseudo_r2 = function(glm_mod) {
         1 -  glm_mod$deviance / glm_mod$null.deviance
     }
@@ -60,7 +60,7 @@ pseudo-R-squared statistic (note this is just one of many possible)
 Compare the residual sums of squares between the traditional OLS 
 and glm models using `anova` (Note: not `Anova`) as such
 
-    ```
+    ```{r}
     anova(acer_ols, acer_glm)
     ```
 
