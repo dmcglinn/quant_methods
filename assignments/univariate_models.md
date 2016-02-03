@@ -7,7 +7,7 @@ layout: page
 Read in tree data, metadata can be found in 
 `./data/tree_metadata.txt`
 
-`trees = read.csv('./data/treedata.csv')`
+`trees = read.csv('./data/treedata_subset.csv')`
 
 
 1. Carry out an exploratory analysis using the tree dataset. 
@@ -17,10 +17,10 @@ and a habitat specialist [_*Abies fraseri*_ (Frasier fir)](https://upload.wikime
 Because this dataset includes both continuous and discrete explanatory
 variables use the function `Anova` in the packages `car` as such
 
-```{r}
-library(car)
-Anova(my_mod, type=3)
-```
+    ```{r}
+    library(car)
+    Anova(my_mod, type=3)
+    ```
 
 This will estimate partial effect sizes, variance explained, and p-values for 
 each explanatory variable included in the model. 
@@ -44,25 +44,25 @@ perspective of a General Linear Model (GLM) with a Poisson error term
 The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
 Your new model calls will look as follows 
 
-```
-acer_glm = glm(cover ~ . , data= my_data, family='poisson')
-```
+   ```
+   acer_glm = glm(cover ~ . , data= my_data, family='poisson')
+   ```
 
 For assessing the degree of variation explained you can use a 
 pseudo-R-squared statistic (note this is just one of many possible)
 
-```
-pseudo_r2 = function(glm_mod) {
-    1 -  glm_mod$deviance / glm_mod$null.deviance
-}
-```
+    ```
+    pseudo_r2 = function(glm_mod) {
+        1 -  glm_mod$deviance / glm_mod$null.deviance
+    }
+    ```
 
 Compare the residual sums of squares between the traditional OLS 
 and glm models using `anova` (Note: not `Anova`) as such
 
-```
-anova(acer_ols, acer_glm)
-```
+    ```
+    anova(acer_ols, acer_glm)
+    ```
 
 Does it appear that changing the error distribution changed the
 results much? In what ways? 
