@@ -78,3 +78,7 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
     radius <- radius * const
     symbols(0, 0, circles=radius, inches=FALSE, add=TRUE, fg=2)
 }
+
+pseudo_r2 = function(glm_mod) {
+    1 -  glm_mod$deviance / glm_mod$null.deviance
+}
