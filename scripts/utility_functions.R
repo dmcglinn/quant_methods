@@ -36,7 +36,7 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
                                 }
                                 else
                                 {
-                                    text(res.pca, display="wa", choices=c(ax1, ax2), cex=cex, scaling=1)
+                                    #text(res.pca, display="wa", choices=c(ax1, ax2), cex=cex, scaling=1)
                                 }
                                 text(res.pca, display="sp", choices=c(ax1, ax2), cex=cex, pos=4, 
                                      col="red", scaling=1)
@@ -54,7 +54,7 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
                                 }
                                 else
                                 {
-                                    text(res.pca, display="wa", choices=c(ax1, ax2), cex=cex)
+                                    #text(res.pca, display="wa", choices=c(ax1, ax2), cex=cex)
                                 }
                                 text(res.pca, display="sp", choices=c(ax1, ax2), cex=cex, pos=4, col="red")
                                 arrows(0, 0, spe.sc2[,ax1], spe.sc2[,ax2], length=ahead, angle=20, col="red")

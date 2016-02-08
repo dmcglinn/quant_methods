@@ -74,16 +74,21 @@ opts_knit$set(root.dir='../')
 # load relevant packages and code for today's lesson
 library(vegan)
 library(dummies)
-source('./scripts/cleanplot.pca.R')
+source('./scripts/utility_functions.R')
 
 # load data
-trees = read.csv('./data/treedata.csv')
-```
-```{r}
+tree = read.csv('./data/treedata.csv')
+tree = subset(tree, plotsize == 1000)
+
+
+# construct a unique plot id
+tree$plotID = paste(tree$plotID, tree$date,
+                    tree$utme, tree$utmn, sep='_')
+
 # create a community site x species matrix by summing species cover values
 # we can do this with a for loop but it take a while to run
-uni_sp = unique(trees$spcode)
-uni_site = unique(trees$plotID)
+uni_sp = unique(tree$spcode)
+uni_site = unique(tree$plotID)
 ```
 ```{r, eval=FALSE}
 comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
@@ -91,22 +96,22 @@ colnames(comm) = uni_sp
 rownames(comm) = uni_site
 for(i in seq_along(uni_sp)) {
     for(j in seq_along(uni_site)) {
-        comm[j , i] = sum(trees$cover[trees$spcode == uni_sp[i] &
-                              trees$plotID == uni_site[j]])
+        comm[j , i] = sum(tree$cover[tree$spcode == uni_sp[i] &
+                          tree$plotID == uni_site[j]])
     }
 }
 comm[1:5, 1:5]
 ```
 ```{r}
-# altneratively we can use a tapply function 
-comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
+# alternatively we can use a tapply function 
+comm = tapply(tree$cover, INDEX = list(tree$plotID, tree$spcode), mean)
 # examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
 # visually explore the cover variable between species and sites
-uni_sp = unique(trees$spcode)
+uni_sp = unique(tree$spcode)
 sp_sum = apply(comm, 2, sum)
 site_sum = apply(comm, 1, sum)
 par(mfrow=c(2,2))
@@ -122,9 +127,9 @@ plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
 
 ## Create an explanatory matrix
 ```{r}
-head(trees)
-cols_to_keep = c('utme', 'utmn', 'elev', 'tci', 'streamdist', 'disturb', 'beers')
-env = aggregate(trees[ , cols_to_keep], by = list(trees$plotID), function(x) x[1])
+head(tree)
+cols_to_keep = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
+env = aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
 head(env)
 # drop first column and make it a row name
 row.names(env) = env[ , 1]
@@ -137,7 +142,13 @@ head(env)
 
 ## Indirect or Unconstrained Ordination
 ### Principle Components Analysis (PCA)
-```{r}
+
+Principle Components Analysis (PCA) is a useful tool for either
+
+1. examining correlations between the columns of a matrix
+2. potentially reducing the set of explanatory variables included in model
+
+```{r, eval=F}
 # PCA on enviornmental data
 # must drop categorical variable
 summary(env)
@@ -145,11 +156,10 @@ env_noNA = env[!is.na(env$streamdist), ]
 env_scaled = scale(env_noNA[ , names(env_noNA) != 'disturb'])
 env_pca = rda(env_scaled)
 names(env_pca)
-sum(1.6703, 1.3109, 1.0054, 0.9099, 0.7711, 0.3325)
+sum(1.6166, 0.9485, 0.8495, 0.5854)
 
-plot(env_pca)
+plot(env_pca, display=c('bp'))
 cleanplot.pca(env_pca)
-
 
 #rda(env_scaled, na.action = na.omit)
 #env_pca = rda(env_scaled, subset=!is.na(disturb))
@@ -185,24 +195,24 @@ tree_mds = metaMDS(comm, trymax = 5)
     - Variance partitioning
 
 ```{r, error=TRUE}
-rda_trees = rda(comm, env)
+rda_tree = rda(comm, env)
 ## we have an NA need to drop it
 summary(env)
 which_row_to_drop = which(is.na(env$streamdist))
 comm = comm[-which_row_to_drop, ]
 env = env[-which_row_to_drop, ]
-rda_trees = rda(comm, env)
+rda_tree = rda(comm, env)
 # the above breaks b/c we have a categorical factor in env 
 
 # vegan requires that we write out each term if we are not going to 
 # convert the factor to a dummy matrix 
-rda_trees = rda(comm ~ env$utme + env$utmn + env$elev + 
+rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + 
                        env$tci + env$streamdist + env$disturb + 
                        env$beers)
 
-rda_trees
-plot(rda_trees)
-anova(rda_trees, by='margin')
+rda_tree
+plot(rda_tree)
+anova(rda_tree, by='margin')
 
 ## variance partitioning
 
