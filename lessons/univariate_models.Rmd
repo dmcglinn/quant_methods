@@ -356,7 +356,7 @@ Let's plot the variables against one another and also display their individual
 Pearson correlation coefficients to get a visual perspective on the problem
 
 ```{r}
-pairs(sim_data, lower.panel = panel.cor, upper.panel = panel.smooth)
+pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
 ```
 
 ## <a href="#inter" name="inter">#</a> Interaction effects
