@@ -80,7 +80,6 @@ source('./scripts/utility_functions.R')
 tree = read.csv('./data/treedata.csv')
 tree = subset(tree, plotsize == 1000)
 
-
 # construct a unique plot id
 tree$plotID = paste(tree$plotID, tree$date,
                     tree$utme, tree$utmn, sep='_')
@@ -96,7 +95,7 @@ colnames(comm) = uni_sp
 rownames(comm) = uni_site
 for(i in seq_along(uni_sp)) {
     for(j in seq_along(uni_site)) {
-        comm[j , i] = sum(tree$cover[tree$spcode == uni_sp[i] &
+        comm[j , i] = mean(tree$cover[tree$spcode == uni_sp[i] &
                           tree$plotID == uni_site[j]])
     }
 }
@@ -123,12 +122,13 @@ plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
 hist(site_sum)
 plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Site Rank', ylab='Sum Cover')
+par(mfrow=c(1,1))
 ```
 
 ## Create an explanatory matrix
 ```{r}
 head(tree)
-cols_to_keep = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
+cols_to_keep = c('utme', 'utmn', 'elev', 'tci', 'streamdist', 'disturb', 'beers')
 env = aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
 head(env)
 # drop first column and make it a row name
@@ -136,8 +136,18 @@ row.names(env) = env[ , 1]
 env = env[ , -1]
 head(env)
 
-# Am I missing anything...?
-# In class Excercise 2: ... 
+# before we can use this explanatory matrix we need to check 
+# that its rows are in the same order as our response matrix
+
+all.equal(rownames(comm), rownames(env))
+
+# now that we've completed that check we can rename the rows to something 
+# more manageable
+
+rownames(comm) = 1:nrow(comm)
+rownames(env) = 1:nrow(env)
+
+# this should return a TRUE so we're ready for some analyses
 ```
 
 ## Indirect or Unconstrained Ordination
@@ -148,21 +158,17 @@ Principle Components Analysis (PCA) is a useful tool for either
 1. examining correlations between the columns of a matrix
 2. potentially reducing the set of explanatory variables included in model
 
-```{r, eval=F}
+```{r}
 # PCA on enviornmental data
-# must drop categorical variable
+# must drop categorical variable for PCA on standardized variables
 summary(env)
-env_noNA = env[!is.na(env$streamdist), ]
-env_scaled = scale(env_noNA[ , names(env_noNA) != 'disturb'])
-env_pca = rda(env_scaled)
+env_pca = rda(env[ , names(env) != 'disturb'], scale=TRUE)
+env_pca
 names(env_pca)
 sum(1.6166, 0.9485, 0.8495, 0.5854)
 
-plot(env_pca, display=c('bp'))
+plot(env_pca, display=c('sp'))
 cleanplot.pca(env_pca)
-
-#rda(env_scaled, na.action = na.omit)
-#env_pca = rda(env_scaled, subset=!is.na(disturb))
 
 tree_pca = rda(comm, scale=TRUE)
 plot(tree_pca)
@@ -182,10 +188,23 @@ cleanplot.pca(tree_pca)
 ### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
 
 ```{r, eval=FALSE}
+# each of these different indirect ordination approaches
+# has different strenghts and weaknesses
+# Correspondance analysis  (CA) examines differences on weighted
+# averages of the columns (i.e., species in this case)
 tree_ca = cca(comm)
+
+# Detrended correspondance analysis (DCA) is identical except it attempts
+# to account for a well known artefact of CA known as the arch-effect 
+# by detrending subsequent axes from previous axes. 
 tree_dca = decorana(comm)
+
+# Non-metric multidimenstional scaling (MDS) is unique in that you may 
+# specify one of a number of different distance metrics to use. By 
+# default the Bray-Curtis distance is used by metaMDS. 
 tree_mds = metaMDS(comm, trymax = 5)
 ```
+
 
 * Direct or Constrained Ordination
     - Redundancy Analysis (RDA)
@@ -196,34 +215,28 @@ tree_mds = metaMDS(comm, trymax = 5)
 
 ```{r, error=TRUE}
 rda_tree = rda(comm, env)
-## we have an NA need to drop it
-summary(env)
-which_row_to_drop = which(is.na(env$streamdist))
-comm = comm[-which_row_to_drop, ]
-env = env[-which_row_to_drop, ]
-rda_tree = rda(comm, env)
 # the above breaks b/c we have a categorical factor in env 
 
 # vegan requires that we write out each term if we are not going to 
 # convert the factor to a dummy matrix 
-rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + 
-                       env$tci + env$streamdist + env$disturb + 
-                       env$beers)
+rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
+               env$streamdist + env$disturb + env$beers)
 
 rda_tree
 plot(rda_tree)
-anova(rda_tree, by='margin')
+anova(rda_tree, by='margin', permutations = 10)
 
 ## variance partitioning
 
-moisture = env[, c('elev', 'tci', 'beers', 'streamdist')]
-geog = env[, c('utme', 'utmn')]
+moisture = env[ , c('elev', 'tci', 'beers', 'streamdist')]
+geog = env[ , c('utme', 'utmn')]
 # because the variable disturb is a factor we need to convert it into 
 # a dummy matrix using the function dummies::dummy
 disturb = dummy(env$disturb)
 
 # examine the explanatory variable of each class of variables.
 varpart(comm, moisture, geog, disturb)
+showvarparts(3)
 ```
 
 
