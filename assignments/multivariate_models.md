@@ -8,12 +8,12 @@ and Environment in Dutch Dune Meadows.
 
 To import the data and read the metadata run the following:
 
-    ```{r}
-    library(vegan)
-    data(dune)
-    data(dune.env)
-    ?dune
-    ```
+```
+library(vegan)
+data(dune)
+data(dune.env)
+?dune
+```
 
 1. Conduct an indirect ordination on the dune plant community. Specifically,
 visually examine a NMDS plot using the bray-curtis distance metric. Below is 
@@ -22,7 +22,7 @@ environmental variable "Moisture". Describe how you interpret the
 graphic. What is the goal of creating such a plot? Does this analysis suggest
 any interesting findings with respect to the dune vegetation?
 
-    ```{r}
+    ```r
     plot(dune_mds, type='n')
     text(dune_mds, 'sp', cex=.5)
     # generate vector of colors 
