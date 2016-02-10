@@ -4,11 +4,11 @@ layout: page
 
 ## Univariate Assignment
 
-Read in tree data, metadata can be found in 
-`./data/tree_metadata.txt`
+Read in tree data, metadata can be found in: `./data/tree_metadata.txt`
 
-`trees = read.csv('./data/treedata_subset.csv')`
-
+```{r}
+trees = read.csv('./data/treedata_subset.csv)
+```
 
 1. Carry out an exploratory analysis using the tree dataset. 
 Develop and compare models for species cover for a habitat generalist
@@ -43,7 +43,6 @@ perspective of a General Linear Model (GLM) with a Poisson error term
 (rather than a Gaussian one as in OLS). 
 The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
 Your new model calls will look as follows:
-
 
     ```{r}
     acer_glm = glm(cover ~ . , data= my_data, family='poisson')
