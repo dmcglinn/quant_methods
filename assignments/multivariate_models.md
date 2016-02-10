@@ -8,12 +8,12 @@ and Environment in Dutch Dune Meadows.
 
 To import the data and read the metadata run the following:
 
-```{r}
-library(vegan)
-data(dune)
-data(dune.env)
-?dune
-```
+    ```{r}
+    library(vegan)
+    data(dune)
+    data(dune.env)
+    ?dune
+    ```
 
 1. Conduct an indirect ordination on the dune plant community. Specifically,
 visually examine a NMDS plot using the bray-curtis distance metric. Below is 
@@ -22,15 +22,15 @@ environmental variable "Moisture". Describe how you interpret the
 graphic. What is the goal of creating such a plot? Does this analysis suggest
 any interesting findings with respect to the dune vegetation?
 
-```{r}
-plot(dune_mds, type='n')
-text(dune_mds, 'sp', cex=.5)
-# generate vector of colors 
-color_vect = rev(terrain.colors(6))[-1]
-points(dune_mds, 'sites', pch=19, col=color_vect[dune.env$Moisture])
-legend('topright', paste("Moisture =", 1:5, sep=''), col=color_vect,
-       pch=19)
-```
+    ```{r}
+    plot(dune_mds, type='n')
+    text(dune_mds, 'sp', cex=.5)
+    # generate vector of colors 
+    color_vect = rev(terrain.colors(6))[-1]
+    points(dune_mds, 'sites', pch=19, col=color_vect[dune.env$Moisture])
+    legend('topright', paste("Moisture =", 1:5, sep=''), col=color_vect,
+           pch=19)
+    ```
 
 2. Carry out a direct ordination using CCA in order to test any potential 
 hypotheses that you developed after examining the MDS plot. Specifically,
