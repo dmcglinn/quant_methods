@@ -223,7 +223,8 @@ rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
                env$streamdist + env$disturb + env$beers)
 
 rda_tree
-plot(rda_tree)
+plot(rda_tree, ylim=c(-6, 6), display=c('sp','bp'), scaling=1)
+
 anova(rda_tree, by='margin', permutations = 10)
 
 ## variance partitioning
