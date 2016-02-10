@@ -27,9 +27,10 @@ any interesting findings with respect to the dune vegetation?
     text(dune_mds, 'sp', cex=.5)
     # generate vector of colors 
     color_vect = rev(terrain.colors(6))[-1]
-    points(dune_mds, 'sites', pch=19, col=color_vect[dune.env$Moisture])
-    legend('topright', paste("Moisture =", 1:5, sep=''), col=color_vect,
-           pch=19)
+    points(dune_mds, 'sites', pch=19, 
+           col=color_vect[dune.env$Moisture])
+    legend('topright', paste("Moisture =", 1:5, sep=''), 
+           col=color_vect, pch=19)
     ```
 
 2. Carry out a direct ordination using CCA in order to test any potential 
