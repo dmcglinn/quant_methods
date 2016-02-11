@@ -3,7 +3,7 @@ title: "Multivariate models"
 output: html_document
 ---
 
-The goal of this lesson are to introduce multivariate ordination analyses.
+The goal of this lesson is to introduce multivariate ordination analyses.
 
 ## Readings
 * Chapters 5 and 6 of *Numerical Ecology with R*
@@ -171,6 +171,11 @@ plot(env_pca, display=c('sp'))
 cleanplot.pca(env_pca)
 
 tree_pca = rda(comm, scale=TRUE)
+tree_rda = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
+               env$streamdist + env$disturb + env$beers, scale=T)
+tree_pca
+tree_rda
+
 plot(tree_pca)
 biplot(tree_pca)
 cleanplot.pca(tree_pca)
