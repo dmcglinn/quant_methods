@@ -7,7 +7,7 @@ layout: page
 Read in tree data, metadata can be found in: `./data/tree_metadata.txt`
 
 ```{r}
-trees = read.csv('./data/treedata_subset.csv)
+trees = read.csv('./data/treedata_subset.csv')
 ```
 
 1. Carry out an exploratory analysis using the tree dataset. 
