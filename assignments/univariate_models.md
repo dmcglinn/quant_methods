@@ -25,7 +25,8 @@ variables use the function `Anova` in the packages `car` as such
     This will estimate partial effect sizes, variance explained, and p-values for 
     each explanatory variable included in the model. 
 
-    Compare the p-values you observe using the function `Anova` to those generated using     `summary`. 
+    Compare the p-values you observe using the function `Anova` to those generated
+    using `summary`. 
 
     For each species address the following additional questions:
 
