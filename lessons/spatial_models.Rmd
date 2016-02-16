@@ -233,10 +233,27 @@ summary(sr_exp_nug)
 summary(sr_rat_nug)
 ```
 
-Note that in the above model summaries both the regression coefficients and the
-associated t-statistics were shifted towards greater importance. In general, 
-it is thought that beta coefficients should be fairly robust to spatial dependence
-but that tests of significance will be highly sensative. 
+Note that in the above model summaries both the regression coefficients and the 
+associated t-statistics were shifted towards greater importance. In general, it
+is thought that beta coefficients should be fairly robust to spatial dependence 
+but that tests of significance will be highly sensative.
+
+Let's now examine our spatial map of richness and this time focus on the
+residuals of our model. Do they still look spatially structured?
+
+```{r}
+col_brks = hist(residuals(sr_exp_nug), plot=F)$breaks
+col_indices = as.numeric(cut(residuals(sr_exp_nug), col_brks))
+cols = rev(terrain.colors(length(col_brks)))
+plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
+```
+
+It does appear that they do still look spatially structured at least at large
+distances, it is difficult to tell at short distances.
+
+Excercise: Include the variable `WatrCont` along with `SubsDens` in the linear
+model of richness. Go back through the spatial modeling routines. Does the map
+of the residuals still seem to show the strong pattern of non-stationarity?
 
 Now let's examine spatial dependence in multivariate response such as species
 composition in a modeling framework
