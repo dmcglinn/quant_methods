@@ -4,7 +4,7 @@ layout: page
 
 ## Spatial Modeling Assignment
 
-```{r eval=FALSE}
+```{r}
 library(vegan)
 data(BCI)
 ## UTM Coordinates (in metres)
@@ -20,7 +20,7 @@ species in the BCI tree dataset
 *Drypetes standleyi* using the abundance of other tree species in the study site.
 Specifically examine the following species as predictor variables:
 
-```{r eval=FALSE}
+```{r}
 sp_ids = c("Cordia.lasiocalyx", "Hirtella.triandra",
            "Picramnia.latifolia", "Quassia.amara",
            "Tabernaemontana.arborea", "Trattinnickia.aspera", 
@@ -43,7 +43,4 @@ of the model?
 * Did including the spatial error terms significantly improve model fit (use 
 function `anova` to carry out model comparison)?
 
-* Explain why modeling the spatial errors has a large influence in the first
-model but not in the second model. 
-
-
+* Explain why you did or did not observe a difference in the influence of adding the spatial error term between the two models.
