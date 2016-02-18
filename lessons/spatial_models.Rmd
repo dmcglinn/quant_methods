@@ -261,7 +261,7 @@ composition in a modeling framework
 ```{r}
 mite_rda = rda(mite, mite.env[ , 1:2])
 
-plot(mite_rda)
+plot(mite_rda, display=c('sp', 'bp'))
 anova(mite_rda)
 
 mite_mso_raw = mso(rda(mite), mite.xy, permutations = 1000)
