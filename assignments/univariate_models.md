@@ -33,8 +33,9 @@ variables use the function `Anova` in the packages `car` as such
         * how well does the exploratory model appear to explain cover?
         * which explanatory variables are the most important?
         * do model diagnostics indicate any problems with violations of
-          OLS assumptions?
-        * are you able to explain variance in one species better than another?
+        OLS assumptions?
+        * are you able to explain variance in one species better than another, 
+        why might this be the case?
 
 2. You may have noticed that the variable cover is defined as 
 positive integers between 1 and 10. and is therefore better treated
