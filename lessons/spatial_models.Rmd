@@ -36,6 +36,9 @@ There is no statistical way to distinguish false from true gradients.
 
 ## Detecting a spatial signal
 
+We are going to examine spatial patterns of species richness (i.e., number of
+species in a site) in a dataset on Oribatid mites.
+
 ```{r}
 library(vegan)
 library(nlme)
@@ -44,10 +47,7 @@ library(nlme)
 data(mite)
 data(mite.env)
 data(mite.xy)
-
-head(mite)
-head(mite.env)
-head(mite.xy)
+?mite
 ```
 ```{r}
 plot(mite.xy)
@@ -75,14 +75,16 @@ response variable (i.e., richness) and the difference in spatial proximity.
 # calculate Euclidean distance between richness and spatial coordinates
 sr_dist = dist(sr)
 xy_dist = dist(mite.xy)
+```
 
-# for interpretation purposes a rule of thumb is not to interpret distances
-# great than 1/2 the maximum distance in the dataset. This is to avoid
-# examining spatial patterns that are underlaid by only a few samples. At
-# small to intermidate distances there are typically many more pairs of samples
-# where as at the extreme ends of a sampling grid there are only two sets of
-# samples (i.e., those that lie along the two diagonals corners from one another)
+For interpretation purposes a rule of thumb is not to interpret distances
+great than 1/2 the maximum distance in the dataset. This is to avoid
+examining spatial patterns that are underlaid by only a few samples. At
+small to intermidate distances there are typically many more pairs of samples
+where as at the extreme ends of a sampling grid there are only two sets of
+samples (i.e., those that lie along the two diagonals corners from one another)
 
+```{r}
 max_dist = max(xy_dist) / 2
 
 # plot result
@@ -115,12 +117,12 @@ sr_mantel
 boxplot(list(null_cor, sr_mantel$perm), horizontal = T, boxwex = 0.5,
         names = c('mine', 'theirs'), xlab='Correlation')
 abline(v=obs_cor, col='red')
-
-# as expected they look almost identical and the observed value is 
-# much larger than then null realizations indicating that there is a 
-# signficant difference between the observed spatial pattern and one due to
-# random chance.
 ```
+
+As expected they look almost identical and the observed value is 
+much larger than then null realizations indicating that there is a 
+signficant difference between the observed spatial pattern and one due to
+random chance.
 
 This preliminary analysis suggests that there is a significant relationship 
 between the spatial distance that two points are separated and the difference
@@ -231,13 +233,35 @@ summary(sr_exp_nug)
 summary(sr_rat_nug)
 ```
 
-Examine spatial dependence in multivariate response such as species
+Note that in the above model summaries both the regression coefficients and the 
+associated t-statistics were shifted towards greater importance. In general, it
+is thought that beta coefficients should be fairly robust to spatial dependence 
+but that tests of significance will be highly sensative.
+
+Let's now examine our spatial map of richness and this time focus on the
+residuals of our model. Do they still look spatially structured?
+
+```{r}
+col_brks = hist(residuals(sr_exp_nug), plot=F)$breaks
+col_indices = as.numeric(cut(residuals(sr_exp_nug), col_brks))
+cols = rev(terrain.colors(length(col_brks)))
+plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
+```
+
+It does appear that they do still look spatially structured at least at large
+distances, it is difficult to tell at short distances.
+
+Excercise: Include the variable `WatrCont` along with `SubsDens` in the linear
+model of richness. Go back through the spatial modeling routines. Does the map
+of the residuals still seem to show the strong pattern of non-stationarity?
+
+Now let's examine spatial dependence in multivariate response such as species
 composition in a modeling framework
 
 ```{r}
 mite_rda = rda(mite, mite.env[ , 1:2])
 
-plot(mite_rda)
+plot(mite_rda, display=c('sp', 'bp'))
 anova(mite_rda)
 
 mite_mso_raw = mso(rda(mite), mite.xy, permutations = 1000)

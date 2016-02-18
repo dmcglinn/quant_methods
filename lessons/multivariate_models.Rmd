@@ -3,7 +3,7 @@ title: "Multivariate models"
 output: html_document
 ---
 
-The goal of this lesson are to introduce multivariate ordination analyses.
+The goal of this lesson is to introduce multivariate ordination analyses.
 
 ## Readings
 * Chapters 5 and 6 of *Numerical Ecology with R*
@@ -74,16 +74,20 @@ opts_knit$set(root.dir='../')
 # load relevant packages and code for today's lesson
 library(vegan)
 library(dummies)
-source('./scripts/cleanplot.pca.R')
+source('./scripts/utility_functions.R')
 
 # load data
-trees = read.csv('./data/treedata.csv')
-```
-```{r}
+tree = read.csv('./data/treedata.csv')
+tree = subset(tree, plotsize == 1000)
+
+# construct a unique plot id
+tree$plotID = paste(tree$plotID, tree$date,
+                    tree$utme, tree$utmn, sep='_')
+
 # create a community site x species matrix by summing species cover values
 # we can do this with a for loop but it take a while to run
-uni_sp = unique(trees$spcode)
-uni_site = unique(trees$plotID)
+uni_sp = unique(tree$spcode)
+uni_site = unique(tree$plotID)
 ```
 ```{r, eval=FALSE}
 comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
@@ -91,22 +95,22 @@ colnames(comm) = uni_sp
 rownames(comm) = uni_site
 for(i in seq_along(uni_sp)) {
     for(j in seq_along(uni_site)) {
-        comm[j , i] = sum(trees$cover[trees$spcode == uni_sp[i] &
-                              trees$plotID == uni_site[j]])
+        comm[j , i] = mean(tree$cover[tree$spcode == uni_sp[i] &
+                          tree$plotID == uni_site[j]])
     }
 }
 comm[1:5, 1:5]
 ```
 ```{r}
-# altneratively we can use a tapply function 
-comm = tapply(trees$cover, INDEX = list(trees$plotID, trees$spcode), sum)
+# alternatively we can use a tapply function 
+comm = tapply(tree$cover, INDEX = list(tree$plotID, tree$spcode), mean)
 # examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
 # visually explore the cover variable between species and sites
-uni_sp = unique(trees$spcode)
+uni_sp = unique(tree$spcode)
 sp_sum = apply(comm, 2, sum)
 site_sum = apply(comm, 1, sum)
 par(mfrow=c(2,2))
@@ -118,43 +122,57 @@ plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
 hist(site_sum)
 plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Site Rank', ylab='Sum Cover')
+par(mfrow=c(1,1))
 ```
 
 ## Create an explanatory matrix
 ```{r}
-head(trees)
 cols_to_keep = c('utme', 'utmn', 'elev', 'tci', 'streamdist', 'disturb', 'beers')
-env = aggregate(trees[ , cols_to_keep], by = list(trees$plotID), function(x) x[1])
-head(env)
+env = aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
 # drop first column and make it a row name
 row.names(env) = env[ , 1]
 env = env[ , -1]
-head(env)
 
-# Am I missing anything...?
-# In class Excercise 2: ... 
+# before we can use this explanatory matrix we need to check 
+# that its rows are in the same order as our response matrix
+
+all.equal(rownames(comm), rownames(env))
+
+# now that we've completed that check we can rename the rows to something 
+# more manageable
+
+rownames(comm) = 1:nrow(comm)
+rownames(env) = 1:nrow(env)
+
+# this should return a TRUE so we're ready for some analyses
 ```
 
 ## Indirect or Unconstrained Ordination
 ### Principle Components Analysis (PCA)
+
+Principle Components Analysis (PCA) is a useful tool for either
+
+1. examining correlations between the columns of a matrix
+2. potentially reducing the set of explanatory variables included in model
+
 ```{r}
 # PCA on enviornmental data
-# must drop categorical variable
+# must drop categorical variable for PCA on standardized variables
 summary(env)
-env_noNA = env[!is.na(env$streamdist), ]
-env_scaled = scale(env_noNA[ , names(env_noNA) != 'disturb'])
-env_pca = rda(env_scaled)
+env_pca = rda(env[ , names(env) != 'disturb'], scale=TRUE)
+env_pca
 names(env_pca)
-sum(1.6703, 1.3109, 1.0054, 0.9099, 0.7711, 0.3325)
+sum(1.6166, 0.9485, 0.8495, 0.5854)
 
-plot(env_pca)
+plot(env_pca, display=c('sp'))
 cleanplot.pca(env_pca)
 
-
-#rda(env_scaled, na.action = na.omit)
-#env_pca = rda(env_scaled, subset=!is.na(disturb))
-
 tree_pca = rda(comm, scale=TRUE)
+tree_rda = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
+               env$streamdist + env$disturb + env$beers, scale=T)
+tree_pca
+tree_rda
+
 plot(tree_pca)
 biplot(tree_pca)
 cleanplot.pca(tree_pca)
@@ -172,10 +190,23 @@ cleanplot.pca(tree_pca)
 ### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
 
 ```{r, eval=FALSE}
+# each of these different indirect ordination approaches
+# has different strenghts and weaknesses
+# Correspondance analysis  (CA) examines differences on weighted
+# averages of the columns (i.e., species in this case)
 tree_ca = cca(comm)
+
+# Detrended correspondance analysis (DCA) is identical except it attempts
+# to account for a well known artefact of CA known as the arch-effect 
+# by detrending subsequent axes from previous axes. 
 tree_dca = decorana(comm)
+
+# Non-metric multidimenstional scaling (MDS) is unique in that you may 
+# specify one of a number of different distance metrics to use. By 
+# default the Bray-Curtis distance is used by metaMDS. 
 tree_mds = metaMDS(comm, trymax = 5)
 ```
+
 
 * Direct or Constrained Ordination
     - Redundancy Analysis (RDA)
@@ -184,36 +215,103 @@ tree_mds = metaMDS(comm, trymax = 5)
     - Model Comparison
     - Variance partitioning
 
+First let's carry out an RDA which expects a linear response of each species to
+the environmental variables. RDA is the most direct analog of OLS regression to 
+the multivariate response variable. 
+
 ```{r, error=TRUE}
-rda_trees = rda(comm, env)
-## we have an NA need to drop it
-summary(env)
-which_row_to_drop = which(is.na(env$streamdist))
-comm = comm[-which_row_to_drop, ]
-env = env[-which_row_to_drop, ]
-rda_trees = rda(comm, env)
+rda_tree = rda(comm, env)
 # the above breaks b/c we have a categorical factor in env 
 
 # vegan requires that we write out each term if we are not going to 
 # convert the factor to a dummy matrix 
-rda_trees = rda(comm ~ env$utme + env$utmn + env$elev + 
-                       env$tci + env$streamdist + env$disturb + 
-                       env$beers)
+rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
+               env$streamdist + env$disturb + env$beers)
+# alternatively we could use a shorthand approach
+rda_tree = rda(comm ~ . , data=env)
+rda_tree
+r2_adj_cca(rda_tree)
+```
 
-rda_trees
-plot(rda_trees)
-anova(rda_trees, by='margin')
+The output above provides us with some useful information. Inertia is another name
+for variation or variance in this case. "Total" refers to total variance, "Constrained"
+refers to the amount of variance explained by the explanatory variables, "Unconstrained"
+refers to the residual variance. Constrained + Unconstrained = Total. 
+An $R^2$ statistic can be derived simply as Constrained / Total. The function 
+`r2_adj_cca` computes $R^2$ and $R^2$-adjusted. 
+The variable "Rank" indicates the number of variables included. 
+The eigenvalues are displayed for both the constrained and unconstrained axes. 
+In this context these eigenvalues indicate how much variance each of the axes
+contribute to. 
 
+We can plot our model result to get a sense of which variables are correlating
+with with species along which axes. 
+
+```{r}
+plot(rda_tree, type='n', scaling=1)
+orditorp(rda_tree, display='sp', cex=0.5, scaling=1, col='blue')
+text(rda_tree, display='bp', col='red')
+```
+
+We interpret the plot above as we have interpreted the previously ordination
+plots with one important difference. The environmental variables are now
+displayed and their placement indicates their loading on the two displayed
+RDA axes. `elev` is loading heavily on RDA1 indicating that this variable explains
+a larger portion of the variance associated with axis 1. The location of the 
+species relative to the environmental variables indicates how strongly a species
+is associated with a particular environmental variable. So for example 
+ABIEFRA or *Abies fraseri* increases as elevation increases. 
+
+Now let's carry out hypothesis testing. 
+```{r}
+anova(rda_tree, permutations=10)
+anova(rda_tree, by='margin', permutations=10)
+```
+
+In a real analysis you would specify a much larger number of permutations (at least 1000). The first test examines overall model fit relative to a randomized or 
+permuted matrix of data. The second test examines the partial effects of the 
+individual variables included in the model. 
+
+Lastly let's carry out variance partitioning. We can use this approach to 
+examine how much of the explained variance is due to different groups of 
+variables. In other words this approach is really only useful if you are
+interested in comparing the relative importance of several variables to another
+set of variables. 
+
+Let's carry out a Cononical Correspondance Analysis (CCA) as well. CCA is appropriate
+for modeling unimodal or hump-shaped responses to explanatory variables (rather
+than linear as with RDA). 
+
+```{r}
+cca_tree = cca(comm ~ ., data=env)
+r2_adj_cca(cca_tree, 10)
+anova(cca_tree, permutations = 10)
+anova(cca_tree, by='margin', permutations = 10)
+
+plot(cca_tree, type='n', scaling=1)
+orditorp(cca_tree, display='sp', cex=0.5, scaling=1, col='blue')
+text(cca_tree, display='bp', col='red')
+```
+
+The CCA models don't explain as much variation and their plots look slightly
+diffrent but the general take home message has not changed much. 
+
+```{r}
 ## variance partitioning
 
-moisture = env[, c('elev', 'tci', 'beers', 'streamdist')]
-geog = env[, c('utme', 'utmn')]
+moisture = env[ , c('elev', 'tci', 'beers', 'streamdist')]
+geog = env[ , c('utme', 'utmn')]
 # because the variable disturb is a factor we need to convert it into 
 # a dummy matrix using the function dummies::dummy
 disturb = dummy(env$disturb)
 
 # examine the explanatory variable of each class of variables.
 varpart(comm, moisture, geog, disturb)
+showvarparts(3)
 ```
 
-
+The output indicates that the moisture group of variables has the largest 
+individual fraction of explained variance (10%), whereas, the geographical
+and disturbance groups of variables explain only approximately 1-2%.We can
+also see that there are not any really large fractions of shared variance 
+which indicates the variables effects are somewhat independent of one another. 

@@ -6,7 +6,7 @@ title: Data
 A list of data sources and software for data acquisition
 
 ### Software
-* [EcoData Retriever](ecodataretriever.org/)
+* [EcoData Retriever](http://www.ecodataretriever.org/)
     - [R package](https://github.com/ropensci/ecoretriever)
 * [rOpenSci](https://ropensci.org/)
     - [GitHub](https://github.com/ropensci/)
