@@ -94,11 +94,11 @@ of the document.
 * Spring 2016
     - Public repos:
         - [Modeling disease outbreaks](https://github.com/TomNash/vaccine-project)
-        - [Crab incubation](https://github.com/mackk1/Incubation-Analysis)
+        - [Crab incubation](https://github.com/mackk1/Project)
         - [Congitive skill as a predictor of infarct volume](https://github.com/andersenme/infarct_volume_analysis)
         - [Spatial analysis of shots from NBA players](https://github.com/oshimamh/nbaProj)
         - [Salt intrusion in freshwater aquifiers](https://github.com/mikala-randich/fwsw_proj)
-        - [Horse-shoe crab bleeding induced mortality](https://github.com/kristinlinesch/HSC_tagrecap)
+        - [Horse-shoe crab bleeding induced mortality](https://github.com/kristinlinesch/HSC_bleed)
         - [Shark morphometrics](https://github.com/Jordylacrosse/Shark-Morphometrics)
         - [Post-hurricane Hugo recovery of the Santee long-term fire experiment](https://github.com/smccau/santee_fire)
         - [Spatial and temporal trends in south Atlantic reef fish](https://github.com/walkermf/Reef_fish-)
