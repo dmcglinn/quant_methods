@@ -90,7 +90,19 @@ would like to submit the finished product to.
 Scientific literature should be cited in the methods and interpretation sections
 of the document. 
 
-### Links to past student projects
+### Links to student projects
+* Spring 2016
+    - Public repos:
+        - [Modeling disease outbreaks](https://github.com/TomNash/vaccine-project)
+        - [Crab incubation](https://github.com/mackk1/Incubation-Analysis)
+        - [Congitive skill as a predictor of infarct volume](https://github.com/andersenme/infarct_volume_analysis)
+        - [Spatial analysis of shots from NBA players](https://github.com/oshimamh/nbaProj)
+        - [Salt intrusion in freshwater aquifiers](https://github.com/mikala-randich/fwsw_proj)
+        - [Horse-shoe crab bleeding induced mortality](https://github.com/kristinlinesch/HSC_tagrecap)
+        - [Shark morphometrics](https://github.com/Jordylacrosse/Shark-Morphometrics)
+        - [Post-hurricane Hugo recovery of the Santee long-term fire experiment](https://github.com/smccau/santee_fire)
+        - [Spatial and temporal trends in south Atlantic reef fish](https://github.com/walkermf/Reef_fish-)
+        - [Contemporary patterns of refugee migration](https://github.com/sarahwie/refugee_migration_trends)
 * Spring 2015
     - Public repos:
         - [Spatial decomposition of community variance in forests](https://github.com/claydustin/tree_vario)
