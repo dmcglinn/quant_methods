@@ -103,6 +103,7 @@ of the document.
         - [Post-hurricane Hugo recovery of the Santee long-term fire experiment](https://github.com/smccau/santee_fire)
         - [Spatial and temporal trends in south Atlantic reef fish](https://github.com/walkermf/Reef_fish-)
         - [Contemporary patterns of refugee migration](https://github.com/sarahwie/refugee_migration_trends)
+        - [Modeling DMSP across depths along a longitudinal transect](https://github.com/shoresk/Savannah-June-2015-DMSP-Predictors)
 * Spring 2015
     - Public repos:
         - [Spatial decomposition of community variance in forests](https://github.com/claydustin/tree_vario)
