@@ -84,7 +84,7 @@ pseudo_r2 = function(glm_mod) {
     1 -  glm_mod$deviance / glm_mod$null.deviance
 }
 
-r2_adj_ord = function(ord_obj, nperm) {
+r2_adj_ord = function(ord_obj, nperm, print_progress=TRUE) {
     # From Eq. 4 and 5 of Peres-Neto et al. 2006 - Ecology
     # Returns
     # a vector of R2, R2adj
@@ -119,13 +119,17 @@ r2_adj_ord = function(ord_obj, nperm) {
             cca_rand = eval(parse(text=paste(ord_obj$call[1], '(',ord_obj$call[2], 
                                              ', data=', ord_obj$call[3], ')', 
                                              sep='')))
-            rand_r2[i] = cca.rand$CCA$tot.chi / ord_obj$tot.chi
-            if (i %% 100 == 0)  print(i)
+            rand_r2[i] = cca_rand$CCA$tot.chi / ord_obj$tot.chi
+            if (print_progress) {
+                if (i %% 100 == 0)  
+                    print(paste('perm:', i, 'r2adj:', 
+                                round(1 - ((1 - r2) / (1 - mean(rand_r2, na.rm=T))),3)))
+            }
         }
         # Eq 5 Peres-Neto
         out = c(r2, 
                 1 - ((1 - r2) / (1 - mean(rand_r2))))
     }
-    names(out) = c('r2', 'r2adj')
+    names(out) = c('r2raw', 'r2adj')
     return(out)
 }
