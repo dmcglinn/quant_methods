@@ -204,9 +204,12 @@ tree_dca = decorana(comm)
 # Non-metric multidimenstional scaling (MDS) is unique in that you may 
 # specify one of a number of different distance metrics to use. By 
 # default the Bray-Curtis distance is used by metaMDS. 
-tree_mds = metaMDS(comm, trymax = 5)
+tree_mds = metaMDS(comm)
 ```
 
+NMDS Maximizes rank-order correlation between distance measures and distance in
+ordination space. Points are moved to minimize "stress". Stress is a measure of
+the mismatch between the two kinds of distance.
 
 * Direct or Constrained Ordination
     - Redundancy Analysis (RDA)
