@@ -31,6 +31,7 @@ A list of data sources and software for data acquisition
     -[R package](https://github.com/ropensci/neotoma)
 
 ### Single data source
+
 #### Multi-taxon
 * [GBIF](http://www.gbif.org/)
     - [R package](https://github.com/ropensci/rgbif)
