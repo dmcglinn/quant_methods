@@ -133,3 +133,31 @@ r2_adj_ord = function(ord_obj, nperm, print_progress=TRUE) {
     names(out) = c('r2raw', 'r2adj')
     return(out)
 }
+
+get_spat_mods = function(gls_mod) {
+    err_mods = c('corExp', 'corGaus', 'corLin', 'corRatio', 'corSpher')
+    out = vector('list', length(err_mods))
+    names(out) = sub('cor', '', err_mods)
+    for(i in seq_along(err_mods)) {
+        mods = vector('list', 2)
+        names(mods) = c('nonug', 'nug')
+        mods[[1]] = try(eval(parse(text=paste('update(gls_mod, corr=',
+                                             err_mods[i],
+                            '(form = ~ x + y, nugget=F))', sep=''))))
+        mods[[2]] = try(eval(parse(text=paste('update(gls_mod, corr=',
+                                             err_mods[i],
+                            '(form = ~ x + y, nugget=T))', sep=''))))
+        out[[i]] = mods
+    }
+    out
+}
+
+get_spat_AIC = function(spat_mods) {
+    out = data.frame(mods = names(spat_mods), 
+                     AIC_no_nug = NA, AIC_nug=NA)
+    for(i in seq_along(spat_mods))
+        for(j in 1:2)
+            if(class(spat_mods[[i]][[j]]) == 'gls')
+                out[i, j + 1] = AIC(spat_mods[[i]][[j]])
+    out
+}
