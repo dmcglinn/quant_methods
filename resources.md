@@ -65,6 +65,8 @@ content <http://www.dataschool.io/>
     - <http://www.unc.edu/courses/2010spring/ecol/562/001/>
 * Jason Fridley's R based plant ecology course
     - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
+* Patrick Breheny courses on statistics for biologists
+    - <http://myweb.uiowa.edu/pbreheny/teaching.html>
 * Linear Models with R (free ebook)
     - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
 * Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
