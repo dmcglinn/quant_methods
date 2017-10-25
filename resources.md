@@ -46,7 +46,7 @@ content <http://www.dataschool.io/>
 * Anscombe's quartet
     - <https://en.wikipedia.org/wiki/Anscombe%27s_quartet>
 * Dynamic Ecology blog posts by Brian McGill related to statistics and data.
-    - [Why AIC appears to ecologists lowests instincts](https://dynamicecology.wordpress.com/2015/05/21/why-aic-appeals-to-ecologists-lowest-instincts/)
+    - [Why AIC appeals to ecologists lowests instincts](https://dynamicecology.wordpress.com/2015/05/21/why-aic-appeals-to-ecologists-lowest-instincts/)
     - [In praise of exporatory statistics](https://dynamicecology.wordpress.com/2013/10/16/in-praise-of-exploratory-statistics/)
     - Ecologists need to do a better job of prediction (4 part series)
         - [Part I – the insidious evils of ANOVA](https://dynamicecology.wordpress.com/2012/11/27/ecologists-need-to-do-a-better-job-of-prediction-part-i-the-insidious-evils-of-anova/)
