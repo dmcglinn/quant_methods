@@ -21,6 +21,41 @@ doi:10.1186/1751-0473-8-7 URL: <http://www.scfbm.org/content/8/1/7>
 * A data science blog greared towards beginneers with a mixture of R and python
 content <http://www.dataschool.io/>
 
+## Statistics
+* Jack Weiss's courses on statistics for ecologists and environmental scientists
+    - <http://www.unc.edu/courses/2010fall/ecol/563/001/>
+    - <http://www.unc.edu/courses/2010spring/ecol/562/001/>
+* Jason Fridley's R based plant ecology course
+    - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
+* Patrick Breheny courses on statistics for biologists
+    - <http://myweb.uiowa.edu/pbreheny/teaching.html>
+* Linear Models with R (free ebook)
+    - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
+* Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
+    - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
+* Anova
+    - Type I/II/III:
+        - <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
+    - Contrasts: 
+        - <http://www.clayford.net/statistics/tag/sum-contrasts/> 
+        - <http://www.unc.edu/courses/2006spring/ecol/145/001/docs/lectures/lecture30.htm> 
+* Ordination webpage
+    - Amazing resource for multivariate approaches for analyzing community
+    ecology data. 
+    - <http://ordination.okstate.edu/>
+* Anscombe's quartet
+    - <https://en.wikipedia.org/wiki/Anscombe%27s_quartet>
+* Dynamic Ecology blog posts by Brian McGill related to statistics and data.
+    - [Why AIC appears to ecologists lowests instincts](https://dynamicecology.wordpress.com/2015/05/21/why-aic-appeals-to-ecologists-lowest-instincts/)
+    - [In praise of exporatory statistics](https://dynamicecology.wordpress.com/2013/10/16/in-praise-of-exploratory-statistics/)
+    - Ecologists need to do a better job of prediction (4 part series)
+        - [Part I – the insidious evils of ANOVA](https://dynamicecology.wordpress.com/2012/11/27/ecologists-need-to-do-a-better-job-of-prediction-part-i-the-insidious-evils-of-anova/)
+        - [Part II - partly cloudy and a 20% chance of extinction (or the 6 P’s of good prediction](https://dynamicecology.wordpress.com/2013/01/09/ecologists-need-to-do-a-better-job-of-prediction-part-ii-mechanism-vs-pattern/)
+        - [Part III - mechanistic or phenomenological?](https://dynamicecology.wordpress.com/2013/02/21/ecologists-need-to-do-a-better-job-of-prediction-part-iii-the-need-for-data/)
+        - [Part IV - quantifying prediction quality](https://dynamicecology.wordpress.com/2013/03/19/ecologists-need-to-do-a-better-job-of-prediction-part-iv-quantifying-prediction-quality/)
+    - [Ten commandments for good data management](https://dynamicecology.wordpress.com/2016/08/22/ten-commandments-for-good-data-management)
+    - [Why ecology is hard (and fun) – multicausality](https://dynamicecology.wordpress.com/2016/03/02/why-ecology-is-hard-and-fun-multicausality)
+
 ## R Programming
 
 ### Basics
@@ -59,27 +94,3 @@ content <http://www.dataschool.io/>
 * Git quick reference for beginners
     - <http://www.dataschool.io/git-quick-reference-for-beginners/>
 
-## Statistics
-* Jack Weiss's courses on statistics for ecologists and environmental scientists
-    - <http://www.unc.edu/courses/2010fall/ecol/563/001/>
-    - <http://www.unc.edu/courses/2010spring/ecol/562/001/>
-* Jason Fridley's R based plant ecology course
-    - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
-* Patrick Breheny courses on statistics for biologists
-    - <http://myweb.uiowa.edu/pbreheny/teaching.html>
-* Linear Models with R (free ebook)
-    - <http://www.maths.bath.ac.uk/~jjf23/LMR/>
-* Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
-    - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
-* Anova
-    - Type I/II/III:
-        - <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
-    - Contrasts: 
-        - <http://www.clayford.net/statistics/tag/sum-contrasts/> 
-        - <http://www.unc.edu/courses/2006spring/ecol/145/001/docs/lectures/lecture30.htm> 
-* Ordination webpage
-    - Amazing resource for multivariate approaches for analyzing community
-    ecology data. 
-    - <http://ordination.okstate.edu/>
-* Anscombe's quartet
-    - <https://en.wikipedia.org/wiki/Anscombe%27s_quartet>
