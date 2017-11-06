@@ -79,6 +79,10 @@ content <http://www.dataschool.io/>
 * Advanced R by Hadley Wickham: 
     - One of the best references for taking your R to the next level
     - <http://adv-r.had.co.nz/>
+    
+### Graphics
+* Colors
+    - [Color Palettes](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/colorPaletteCheatsheet.pdf)
 
 ## Git
 * Git and GitHub by Hadley Wickham
