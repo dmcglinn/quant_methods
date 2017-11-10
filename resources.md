@@ -97,4 +97,6 @@ content <http://www.dataschool.io/>
     - <http://www.cheat-sheets.org/saved-copy/Git_Quick_Reference.2011-09-04.pdf>
 * Git quick reference for beginners
     - <http://www.dataschool.io/git-quick-reference-for-beginners/>
+* Git flight rules - for when things go wrong
+    - <https://github.com/k88hudson/git-flight-rules>
 
