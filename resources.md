@@ -62,7 +62,9 @@ content <http://www.dataschool.io/>
 * Free manuals and tutorials provided by R users
     - <http://cran.r-project.org/other-docs.html>
 * R programming style guide
-    - <http://adv-r.had.co.nz/Style.html>
+    - <http://style.tidyverse.org/> by Whickham
+    - [lintr](https://github.com/jimhester/lintr) for cleaning up R code
+    - [formatR](https://yihui.name/formatr/) 
 * Tryr by codeschool
     - Interactive online lesson for learning R basics
     - <http://tryr.codeschool.com/>
