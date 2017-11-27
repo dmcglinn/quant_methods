@@ -36,7 +36,7 @@ A list of data sources and software for data acquisition
 * [GBIF](http://www.gbif.org/)
     - [R package](https://github.com/ropensci/rgbif)
     - Note: Dan has cleaner scripts for this resource
-    
+
 #### Birds
 * [Breeding Bird Survey](http://www.mbr-pwrc.usgs.gov/bbs/)
 * [eBird](http://ebird.org/)
@@ -53,6 +53,7 @@ A list of data sources and software for data acquisition
 * [Influenza Research Database](http://www.fludb.org/)
 * [Vaccine-Preventable Outbreaks](http://www.cfr.org/interactives/GH_Vaccine_Map/#map)
 * [Center for Disease Control](http://www.cdc.gov/DataStatistics/)
+* [Human microbiome](https://github.com/biocore/American-Gut) - Easy to access but large size.
 
 #### Human behavior
 * [Religion in the US](http://www.thearda.com/Archive/Files/Descriptions/RCMSCY10.asp)
