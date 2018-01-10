@@ -8,12 +8,12 @@ layout: page
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 9:30-10:20 pm MWF; HWWE 307
+* Meeting time: 8:30-9:45 am TR; HWWE 305
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: HWWE 203
 * Phone: 843-953-0190
-* Office hours: 12:40 - 1:40 p.m R or email by an appointment
+* Office hours: 11:20 - 12:20 p.m R or email by an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
@@ -86,23 +86,22 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 11 - Week 01 - Introduction to R 
-* Jan 18 - Week 02 - Introduction to R (con't)
-* Jan 25 - Week 03 - Introduction to Version Control and the Terminal
-* Feb 01 - Week 04 - Regression and Model Selection
-* Feb 08 - Week 05 - Multivariate Models
-* Feb 15 - Week 06 - Spatial Models
-* Feb 22 - Week 07 - GIS manipulations
-* Feb 29 - Week 08 - Project Pitch (oral presentation)
-* Mar 07 - Week 09 - Spring Break (no class)
-* Mar 14 - Week 10 - Simulations and Null models
-* Mar 14 - Week 11 - Work on class project
-* Mar 21 - Week 12 - Work on class project
-* Mar 28 - Week 13 - Work on class project
-* Apr 04 - Week 14 - Peer Code Review and Peer Feedback
-* Apr 11 - Week 15 - Work on class project
-* Apr 18 - Week 16 - Finalize class projects - Code and Written project
-  components due Wednesday Apr 20
+* Jan 09 - Week 01 - Introduction to R 
+* Jan 16 - Week 02 - Introduction to R (con't)
+* Jan 23 - Week 03 - Introduction to Version Control and the Terminal
+* Jan 30 - Week 04 - Regression and Model Selection
+* Feb 06 - Week 05 - Multivariate Models
+* Feb 13 - Week 06 - Spatial Models
+* Feb 20 - Week 07 - GIS manipulations
+* Feb 27 - Week 08 - Project Pitch (oral presentation)
+* Mar 06 - Week 09 - Spring Break (no class)
+* Mar 13 - Week 10 - Simulations and Null models
+* Mar 20 - Week 11 - Work on class project
+* Mar 27 - Week 12 - Work on class project
+* Apr 03 - Week 13 - Work on class project
+* Apr 10 - Week 14 - Peer Code Review and Peer Feedback
+* Apr 17 - Week 15 - Work on class project
+* Apr 24 - Week 16 - Turn in code and written project components today
 
 Course Policies:
 ---------------
