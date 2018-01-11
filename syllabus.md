@@ -4,7 +4,7 @@ output: html_document
 layout: page
 ---
 
-### College of Charleston, Department of Biology, Spring 2016
+### College of Charleston, Department of Biology, Spring 2018
 
 Course and Instructor info:
 ---------------------------
