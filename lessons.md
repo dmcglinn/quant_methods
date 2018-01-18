@@ -12,6 +12,9 @@ Quantitative topics covered in this course include:
     - <a href='./R_introduction.html'>basic</a> 
         - <a href='http://adv-r.had.co.nz/Data-structures.html'>data structures</a>
     - <a href='./R_intermediate.html'>intermediate</a>
+    - Optional Advanced Material
+        - <a href='http://adv-r.had.co.nz/S3.html'>Object oriented programming, S3 objects</a>
+        - <a href='http://adv-r.had.co.nz/Exceptions-Debugging.html'>Debugging your code</a>
 * [Introduction to Version Control and the Terminal](./git_introduction)
 * Univariate Models
     - <a href='./univariate_models.html'>OLS modeling and model selection</a>
