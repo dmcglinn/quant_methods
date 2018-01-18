@@ -226,6 +226,14 @@ However, this only looks through the installed packages for help pages with a ma
 ??kruskal
 ```
 
+There is an extensive list of R cheatsheets and reference cards. 
+Here is just a short list of useful ones: 
+
+* [base-r.pdf](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
+* [short card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+* [Rstudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf)
+
+
 If you can't find what you are looking for, you can use the
 [rdocumention.org](http://www.rdocumentation.org) website that search through
 the help files across all packages available.
