@@ -59,6 +59,16 @@ If is is not installed then I recommend you try Text wrangler:
 https://swcarpentry.github.io/git-novice/02-setup/
 
 
+#### Configure Git within Rstudio 
+For most Rstudio will automatically figure out where git is located, but for others you will need to do this manually. Follow these steps
+
+1. Click Tools > Global Options
+2. Click Git/SVN 
+3. Find the box labled "Git executabile" and browse to the directory on your
+machine where this file is located. On my windows machine this is 
+`C:\Program Files (x86)\Git\bin`
+
+
 ### Version control with Git
 We will work through one of the SWC lesson's on Git
 [Version Control with Git](http://swcarpentry.github.io/git-novice/)
@@ -76,17 +86,9 @@ To link the remote repo to your local machine follow these steps:
 
 1. Click File > New Project
 2. Chose from "Version Control"
-3. Navigate to the `planets` directory and click on it.
+3. Chose Git
+4. Input the repo's url, something like: https://github.com/yourusername/planets.git
 
-#### Configure Git within Rstudio
-You must tell Rstudio where to find Git on your system so that it can be
-integrated into your workflow. Follow these steps
-
-1. Click Tools > Global Options
-2. Click Git/SVN 
-3. Find the box labled "Git executabile" and browse to the directory on your
-machine where this file is located. On my windows machine this is 
-`C:\Program Files (x86)\Git\bin`
 
 ### Important Note:
 If setup an Rstudio project in a directory that was not a git directory then 
