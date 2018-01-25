@@ -8,7 +8,7 @@ and within R studio.
 
 To complete the GitHub portion of this lesson you will need to create a 
 GitHub user account. If you are a student or teacher make sure to check out their
-eductation account options which offer free private repos: 
+education account options which offer free private repos: 
 <https://education.github.com/>
 
 Git is a version control system that allows you to track changes to your data
@@ -17,7 +17,8 @@ and source code as you develop quantiative projects.
 We will follow the Git and Github section from Hadley Wickham's book *R packages* 
 which contains a very useful overview and step-by-step description of git and
 how it can be used with Rstudio. This material can be freely accessed here:
-<http://r-pkgs.had.co.nz/git.html>
+<http://r-pkgs.had.co.nz/git.html> I have also put together some slides on 
+motivation to learn and how to use git here: [git_slides.pdf](./lessons/git_slides.pdf) 
 
 ### Install Git
 
