@@ -18,7 +18,7 @@ We will follow the Git and Github section from Hadley Wickham's book *R packages
 which contains a very useful overview and step-by-step description of git and
 how it can be used with Rstudio. This material can be freely accessed here:
 <http://r-pkgs.had.co.nz/git.html> I have also put together some slides on 
-motivation to learn and how to use git here: [git_slides.pdf](./lessons/git_slides.pdf) 
+motivation to learn and how to use git here: [git_slides.pdf](./git_slides.pdf) 
 
 ### Install Git
 
