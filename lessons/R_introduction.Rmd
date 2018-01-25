@@ -11,8 +11,8 @@ environment for the first time. The lesson builds off the
 <http://software-carpentry.org/v5/novice/r/01-starting-with-data.html>
 
 ## Readings
-* Chapters 1-7 of *The R Book*
-* Chapters 1-4 of *MASS* 
+* Chapters 1-7 of *The R Book* (1st ed) by Crawley
+* Chapters 1-4 of *MASS* (4th ed)by Venables and Ripley
 
 ## Lesson Outline
 * <a href="#arith">Arithmetic</a>

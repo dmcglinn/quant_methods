@@ -26,11 +26,8 @@ Jack Weiss and Jason Fridley. The original lessons can be found at the following
 * <http://plantecology.syr.edu/fridley/bio793/lm.html>
 
 ## Readings
-*The R book* (1st ed) - Michael Crawley
-
-* Chapter 5 - Graphics 
-* Chapter 9 - Statistical Modeling
-
+* Chapters 5, 9-10 in *The R book* (1st ed) by Crawley 
+* Chapters 6 in *MASS* (4th ed) by Venables and Ripley
 
 ## Lesson Outline
 * <a href="#phil">Modeling philosophy</a>
