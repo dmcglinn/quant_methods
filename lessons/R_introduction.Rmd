@@ -10,6 +10,10 @@ environment for the first time. The lesson builds off the
 [Software Carpentry](http://software-carpentry.org/) Lesson developed here: 
 <http://software-carpentry.org/v5/novice/r/01-starting-with-data.html>
 
+## Readings
+* Chapters 1-7 of *The R Book*
+* Chapters 1-4 of *MASS* 
+
 ## Lesson Outline
 * <a href="#arith">Arithmetic</a>
 * <a href="#logic">Logical operations</a>
