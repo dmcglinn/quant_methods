@@ -1,5 +1,8 @@
-students = dir('./student')
+year = 2018
+student_path = paste0('./student_', year)
+students = dir(student_path)
 for(i in seq_along(students)) {
-    system(paste('cd ./student/', students[i], ' ; git pull origin master', sep=''))
+    system(paste0('cd ', student_path, '/', students[i],
+                  ' ; git pull origin master'))
 }
     
