@@ -114,8 +114,7 @@ the class, and 4) developing student projects.
 be a homework assignment associated with the content learned in lecture. Your
 code and a written explanation of your solution are required. Although I
 encourage collaboration on code development, your explanation of your solution
-should be written in your own words. The assignment should be submitted via the 
-appropriate OAKs dropbox. One problem from each assignment (selected at my
+should be written in your own words. The assignment should be submitted via a your personal github page. One problem from each assignment (selected at my
 discretion after the assignments have been submitted) will receive a thorough
 code review and a detailed grade. Other problems will be graded as follows:
 
@@ -126,7 +125,6 @@ code review and a detailed grade. Other problems will be graded as follows:
   50%
 * Answer demonstrates a lack of understanding of the core concept: 0%
 
-Typically assignments will be due on Friday morning. 
 Late assignments will be docked 5% per day and will not be accepted after Monday
 night at 11:59 pm Eastern Time except in cases of genuine emergencies that can be
 documented by the student or in cases where this has been discussed and approved
