@@ -94,9 +94,9 @@ Course Schedule:
 * Feb 13 - Week 06 - Spatial Models
 * Feb 20 - Week 07 - GIS manipulations
 * Feb 27 - Week 08 - Project Pitch (oral presentation)
-* Mar 06 - Week 09 - Spring Break (no class)
-* Mar 13 - Week 10 - Simulations and Null models
-* Mar 20 - Week 11 - Work on class project
+* Mar 06 - Week 09 - Rshiny
+* Mar 13 - Week 10 - Work on class project
+* Mar 20 - Week 11 - Spring Break (no class)
 * Mar 27 - Week 12 - Work on class project
 * Apr 03 - Week 13 - Work on class project
 * Apr 10 - Week 14 - Peer Code Review and Peer Feedback
