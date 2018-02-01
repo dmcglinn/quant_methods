@@ -10,8 +10,8 @@ Read in tree data, metadata can be found in: `./data/tree_metadata.txt`
 trees = read.csv('./data/treedata_subset.csv')
 ```
 
-1. Carry out an exploratory analysis using the tree dataset. Metadata for the tree study can be found [here](../data/tree_metadata.txt)
-Develop and compare models for species cover for a habitat generalist
+1. Carry out an exploratory analysis using the tree dataset. Metadata for the tree study can be found [here](../data/tree_metadata.txt).
+Specifically, I would like you to develop and compare models for species cover for a habitat generalist
 [_*Acer rubrum*_ (Red maple)](http://www.durhamtownship.com/blog-archives/pix/November1407.jpg) 
 and a habitat specialist [_*Abies fraseri*_ (Frasier fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell.jpg). 
 Because this dataset includes both continuous and discrete explanatory
