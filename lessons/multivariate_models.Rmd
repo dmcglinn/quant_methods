@@ -7,6 +7,7 @@ The goal of this lesson is to introduce multivariate ordination analyses.
 
 ## Readings
 * Chapters 5 and 6 of *Numerical Ecology with R*
+* Chapters 9 and 11 of *Numerical Ecology* 2nd edition
 
 ## Online Docs
 * [The Ordination Webpage](http://ordination.okstate.edu/)
@@ -70,27 +71,30 @@ opts_knit$set(root.dir='../')
 ```
 
 ## Create a community matrix
-```{r}
+
+The first very common challenge when working with multivariate analyses is to  construct the multivariate matrix we wish to analyze.
+Essentially a community matrix is a cross-tab structure in which you have each descriptor element (e.g., species identities) as column ids and each sample element (e.g., site identities) as row ids. 
+A cross-tab structure is a very inefficient way to store your raw data and in many cases we must aggregate the raw data which can be accomplished using a for loop or other simple functions. 
+Using the Great Smokey Mountains tree dataset that was using in HW 3, I will demonstrate how to do this with a computationally inefficient but easy to understand for loop. 
+As a reminder the metadata for the tree data is located ([here](../data/tree_metadata.txt).
+
+
+```{r load data}
 # load relevant packages and code for today's lesson
 library(vegan)
 library(dummies)
 source('./scripts/utility_functions.R')
 
 # load data
-tree = read.csv('./data/treedata.csv')
-tree = subset(tree, plotsize == 1000)
-
-# construct a unique plot id
-tree$plotID = paste(tree$plotID, tree$date,
-                    tree$utme, tree$utmn, sep='_')
+tree = read.csv('./data/treedata_subset.csv')
 
 # create a community site x species matrix by summing species cover values
 # we can do this with a for loop but it take a while to run
 uni_sp = unique(tree$spcode)
 uni_site = unique(tree$plotID)
 ```
-```{r, eval=FALSE}
-comm = matrix(NA, ncol=length(uni_sp), nrow=length(uni_site))
+```{r for loop, eval=FALSE}
+comm = matrix(0, ncol=length(uni_sp), nrow=length(uni_site))
 colnames(comm) = uni_sp
 rownames(comm) = uni_site
 for(i in seq_along(uni_sp)) {
@@ -101,14 +105,24 @@ for(i in seq_along(uni_sp)) {
 }
 comm[1:5, 1:5]
 ```
-```{r}
+
+Alternatively we could use the function `tapply` which is much more efficient.
+
+```{r tapply}
 # alternatively we can use a tapply function 
-comm = tapply(tree$cover, INDEX = list(tree$plotID, tree$spcode), mean)
+comm = tapply(tree$cover,
+              INDEX = list(tree$plotID, tree$spcode),
+              mean)
 # examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
 comm = ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
+```
+
+Now that we've created our matrix it is usually a good idea to make sure everything looks ok - the row and column sums (i.e., marginal sums) provide one reasonable metric to see overall how the data is structured in a very coarse way. 
+
+```{r maginal sums}
 # visually explore the cover variable between species and sites
 uni_sp = unique(tree$spcode)
 sp_sum = apply(comm, 2, sum)
@@ -125,13 +139,34 @@ plot(site_sum[order(site_sum, decreasing=T)], type='o', col='red', lwd=2,
 par(mfrow=c(1,1))
 ```
 
+Above we can see that most species have small total covers (i.e., most species are rare) which is a fairly universal ecological law so this seems correct. 
+Also we can see that most sites have a total cover of approximately 40 and that this distribution isn't as highly skewed as the species marginal totals. 
+
+These plots are not terribly helpful at understanding the variability in the community matrix so let's get our enviornmental variables ready to use and start to conduct some actual analyses. 
+
 ## Create an explanatory matrix
-```{r}
-cols_to_keep = c('utme', 'utmn', 'elev', 'tci', 'streamdist', 'disturb', 'beers')
+
+In the tree dataset each site has one set of enviornmental measurements. These 
+are replicated across the rows of the `tree` data object
+
+```{r, echo=FALSE}
+with(tree, head(tree[plotID == "ATBN-01-0403", ]))
+```
+
+So we just need to pull out the enviornmental data for a single one of those rows. 
+In the end we need the explanatory matrix to have the same number of rows in the 
+same order as the community matrix. We could write a for loop to do this but 
+we'll take the easier approach of using the function `aggregate`.
+
+```{r create env matrix}
+cols_to_keep = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
 env = aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
-# drop first column and make it a row name
+# aggregate does have a side effect of adding a column to the output which 
+# is the unique plotID in this case. We just need to move that so it is a 
+# row name instead. 
 row.names(env) = env[ , 1]
 env = env[ , -1]
+head(env)
 
 # before we can use this explanatory matrix we need to check 
 # that its rows are in the same order as our response matrix
@@ -144,7 +179,6 @@ all.equal(rownames(comm), rownames(env))
 rownames(comm) = 1:nrow(comm)
 rownames(env) = 1:nrow(env)
 
-# this should return a TRUE so we're ready for some analyses
 ```
 
 ## Indirect or Unconstrained Ordination
@@ -155,23 +189,52 @@ Principle Components Analysis (PCA) is a useful tool for either
 1. examining correlations between the columns of a matrix
 2. potentially reducing the set of explanatory variables included in model
 
-```{r}
+We'll start by using PCA to simply examine the correlations in the 
+explanatory environmental matrix. Then we will move on to apply the technique
+to the community matrix. 
+
+```{r pca envio}
 # PCA on enviornmental data
 # must drop categorical variable for PCA on standardized variables
 summary(env)
+# we will scale our variables because they are all in different units to 
+# make it easier to interpret the PCA output
 env_pca = rda(env[ , names(env) != 'disturb'], scale=TRUE)
 env_pca
 names(env_pca)
-sum(1.6166, 0.9485, 0.8495, 0.5854)
+```
 
+Like the object returned by the function `lm`, the output of `rda` is just a named list. 
+We can get a sense of the structure of this named list using the function `str`
+
+```{r using str}
+str(env_pca)
+```
+
+This is useful because for example if we wanted to pull out the eigenvalues of the 
+analysis we would see that they are stored under `$CA$eig`. 
+We can access each of the objects stored in a named list as we would reference columns in a `data.frame` using the `$`. 
+
+```{r eigenvalues}
+env_pca$
+env_pca$tot.chi
+env_pca$CA$eig
+# the eigenvalues sum up to equal the total interia (i.e., total variance in this case)
+sum(env_pca$CA$eig)
+# the ratio of the eigenvalue to the total variance is the amount of 
+# variance explained by each PCA axis
+round(env_pca$CA$eig / env_pca$tot.chi, 2)
+```
+
+We can see from above that the PCA axis 1 captures approximately 83% of the total
+variance in the enviornmental matrix (excluding the disturbance variable). 
+Let's graph the data to better get a sense of the correlation structure.
+
+```{r plot pca}
 plot(env_pca, display=c('sp'))
 cleanplot.pca(env_pca)
 
 tree_pca = rda(comm, scale=TRUE)
-tree_rda = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
-               env$streamdist + env$disturb + env$beers, scale=T)
-tree_pca
-tree_rda
 
 plot(tree_pca)
 biplot(tree_pca)
@@ -228,12 +291,12 @@ rda_tree = rda(comm, env)
 
 # vegan requires that we write out each term if we are not going to 
 # convert the factor to a dummy matrix 
-rda_tree = rda(comm ~ env$utme + env$utmn + env$elev + env$tci +
+rda_tree = rda(comm ~ env$elev + env$tci +
                env$streamdist + env$disturb + env$beers)
 # alternatively we could use a shorthand approach
 rda_tree = rda(comm ~ . , data=env)
 rda_tree
-r2_adj_cca(rda_tree)
+RsquareAdj(rda_tree)
 ```
 
 The output above provides us with some useful information. Inertia is another name
@@ -241,7 +304,7 @@ for variation or variance in this case. "Total" refers to total variance, "Const
 refers to the amount of variance explained by the explanatory variables, "Unconstrained"
 refers to the residual variance. Constrained + Unconstrained = Total. 
 An $R^2$ statistic can be derived simply as Constrained / Total. The function 
-`r2_adj_cca` computes $R^2$ and $R^2$-adjusted. 
+`RsquareAdj` computes $R^2$ and $R^2$-adjusted. 
 The variable "Rank" indicates the number of variables included. 
 The eigenvalues are displayed for both the constrained and unconstrained axes. 
 In this context these eigenvalues indicate how much variance each of the axes
@@ -253,7 +316,7 @@ with with species along which axes.
 ```{r}
 plot(rda_tree, type='n', scaling=1)
 orditorp(rda_tree, display='sp', cex=0.5, scaling=1, col='blue')
-text(rda_tree, display='bp', col='red')
+text(rda_tree, display='cn', col='red')
 ```
 
 We interpret the plot above as we have interpreted the previously ordination
@@ -281,13 +344,13 @@ variables. In other words this approach is really only useful if you are
 interested in comparing the relative importance of several variables to another
 set of variables. 
 
-Let's carry out a Cononical Correspondance Analysis (CCA) as well. CCA is appropriate
+Let's carry out a Canonical Correspondence Analysis (CCA) as well. CCA is appropriate
 for modeling unimodal or hump-shaped responses to explanatory variables (rather
 than linear as with RDA). 
 
 ```{r}
 cca_tree = cca(comm ~ ., data=env)
-r2_adj_cca(cca_tree, 10)
+RsquareAdj(cca_tree, 10)
 anova(cca_tree, permutations = 10)
 anova(cca_tree, by='margin', permutations = 10)
 
@@ -297,24 +360,23 @@ text(cca_tree, display='bp', col='red')
 ```
 
 The CCA models don't explain as much variation and their plots look slightly
-diffrent but the general take home message has not changed much. 
+different but the general take home message has not changed much. 
 
 ```{r}
 ## variance partitioning
 
 moisture = env[ , c('elev', 'tci', 'beers', 'streamdist')]
-geog = env[ , c('utme', 'utmn')]
 # because the variable disturb is a factor we need to convert it into 
 # a dummy matrix using the function dummies::dummy
 disturb = dummy(env$disturb)
 
 # examine the explanatory variable of each class of variables.
-varpart(comm, moisture, geog, disturb)
-showvarparts(3)
+varpart(comm, moisture, disturb)
+showvarparts(2)
 ```
 
-The output indicates that the moisture group of variables has the largest 
-individual fraction of explained variance (10%), whereas, the geographical
-and disturbance groups of variables explain only approximately 1-2%.We can
-also see that there are not any really large fractions of shared variance 
+The output indicates that the moisture group of variables has the largest
+individual fraction of explained variance (10%), whereas, the disturbance groups
+of variables explain only approximately 2%.
+We can also see that there are not any really large fractions of shared variance 
 which indicates the variables effects are somewhat independent of one another. 
