@@ -76,7 +76,7 @@ The first very common challenge when working with multivariate analyses is to  c
 Essentially a community matrix is a cross-tab structure in which you have each descriptor element (e.g., species identities) as column ids and each sample element (e.g., site identities) as row ids. 
 A cross-tab structure is a very inefficient way to store your raw data and in many cases we must aggregate the raw data which can be accomplished using a for loop or other simple functions. 
 Using the Great Smokey Mountains tree dataset that was using in HW 3, I will demonstrate how to do this with a computationally inefficient but easy to understand for loop. 
-As a reminder the metadata for the tree data is located ([here](../data/tree_metadata.txt).
+As a reminder the metadata for the tree data is located [here](../data/tree_metadata.txt).
 
 
 ```{r load data}
