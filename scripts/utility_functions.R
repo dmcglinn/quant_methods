@@ -84,56 +84,6 @@ pseudo_r2 = function(glm_mod) {
     1 -  glm_mod$deviance / glm_mod$null.deviance
 }
 
-r2_adj_ord = function(ord_obj, nperm, print_progress=TRUE) {
-    # From Eq. 4 and 5 of Peres-Neto et al. 2006 - Ecology
-    # Returns
-    # a vector of R2, R2adj
-    # Arguments
-    # ord_obj: the output of rda or cca that was specified using a model formula
-    # nperm: the number of permutations to perform, 
-    #  if nperm not specified the analytical r2 and/or r2adj is returned 
-    # Note: for CCA only the permutation based r2 adj is unbiased 
-    if (!(ord_obj$method %in% c('rda', 'cca')))
-        stop('Ordination object must be the result of a cca or rda')
-    r2 = ord_obj$CCA$tot.chi / ord_obj$tot.chi 
-    n = nrow(ord_obj$CCA$Xbar)
-    if (missing(nperm)) {
-        # eq 4 Peres-Neto
-        p = ord_obj$CCA$rank
-        out = c(r2, 1 - (((n - 1) / (n - p - 1)) * (1 - r2)))
-        if (ord_obj$method == 'cca')
-            warning('The analytical formulation is only unbiased for rda')
-    }
-    else {
-        if (nperm <= 0)
-            stop('nperm argument must either be a positive integer or not specified')
-        if (!any(grepl('~', ord_obj$call)))
-            stop('The model object must be specified using a model formula rather than providing individual vectors / matrices')
-        rand_r2 = rep(NA, nperm)
-        Y_string = as.character(ord_obj$terms[[2]])
-        Y = eval(parse(text=Y_string))
-        Y_name = strsplit(as.character(ord_obj$call[2]), ' ~ ')[[1]][1]
-        ord_obj$call[2] = sub(Y_name, 'Y_rand', ord_obj$call[2])
-        for (i in 1:nperm) {
-            Y_rand = Y[sample(n), ]
-            cca_rand = eval(parse(text=paste(ord_obj$call[1], '(',ord_obj$call[2], 
-                                             ', data=', ord_obj$call[3], ')', 
-                                             sep='')))
-            rand_r2[i] = cca_rand$CCA$tot.chi / ord_obj$tot.chi
-            if (print_progress) {
-                if (i %% 100 == 0)  
-                    print(paste('perm:', i, 'r2adj:', 
-                                round(1 - ((1 - r2) / (1 - mean(rand_r2, na.rm=T))),3)))
-            }
-        }
-        # Eq 5 Peres-Neto
-        out = c(r2, 
-                1 - ((1 - r2) / (1 - mean(rand_r2))))
-    }
-    names(out) = c('r2raw', 'r2adj')
-    return(out)
-}
-
 get_spat_mods = function(gls_mod) {
     err_mods = c('corExp', 'corGaus', 'corLin', 'corRatio', 'corSpher')
     out = vector('list', length(err_mods))
