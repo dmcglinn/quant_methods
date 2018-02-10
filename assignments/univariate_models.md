@@ -46,8 +46,8 @@ perspective of a General Linear Model (GLM) with a Poisson error term
 The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
 Your new model calls will look as follows:
 
-    ```{r}
-    acer_glm = glm(cover ~ tci + elev + ... , data= my_data, 
+    ```{r, eval=FALSE}
+    acer_poi = glm(cover ~ tci + elev + ... , data= my_data, 
                    family='poisson')
     ```
 
@@ -60,13 +60,7 @@ Your new model calls will look as follows:
     }
     ```
 
-    Compare the residual sums of squares between the traditional OLS 
-    and glm models using `anova` (Note: not `Anova`) as such
-
-    ```{r}
-    anova(acer_ols, acer_glm)
-    ```
-
+    Compare your qualative assessment of which variables were most important in each model. 
     Does it appear that changing the error distribution changed the
     results much? In what ways? 
 
