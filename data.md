@@ -43,6 +43,8 @@ A list of data sources and software for data acquisition
     - [R package](https://github.com/ropensci/rebird/)
 * [Global phylogeny of birds](http://birdtree.org/)
 * [Birds of North America](http://bna.birds.cornell.edu/bna)
+* [FAA bird strikes](https://wildlife.faa.gov/database.aspx)
+    - [FAA 1990-2015 all state data dump](https://gist.github.com/dannguyen/4caf05f4a27775e0a550cd0a4f3fa21f) 
 
 #### Plants
 * [North American Plants](http://plants.usda.gov/)
