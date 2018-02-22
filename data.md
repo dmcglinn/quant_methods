@@ -29,6 +29,8 @@ A list of data sources and software for data acquisition
 * [Paleoclimatology](https://www.ncdc.noaa.gov/data-access/paleoclimatology-data/datasets)
 * [Paleoenviornment](http://www.neotomadb.org/)
     -[R package](https://github.com/ropensci/neotoma)
+* [NOAA Tide and Currents Data](https://tidesandcurrents.noaa.gov/)
+    - good source for sea level rise data in the US. 
 
 ### Single data source
 
