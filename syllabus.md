@@ -100,7 +100,8 @@ Course Schedule:
 * Mar 27 - Week 12 - Work on class project
 * Apr 03 - Week 13 - Work on class project
 * Apr 10 - Week 14 - Peer Code Review and Peer Feedback
-* Apr 17 - Week 15 - Turn in code and written project components this week
+* Apr 17 - Week 15 - Oral presentations
+* Apr 27 - Week 16 - Turn in code and written project components this week
 
 Course Policies:
 ---------------
