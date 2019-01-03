@@ -8,12 +8,12 @@ layout: page
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 8:30-9:45 am TR; HWWE 305
+* Meeting time: 9:25 – 10:40 am TR; RITA 271
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
-* Office: HWWE 203
+* Office: RITA 239
 * Phone: 843-953-0190
-* Office hours: 11:20 - 12:20 p.m R or email by an appointment
+* Office hours: email for an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
@@ -140,17 +140,42 @@ crucial to learning.
 
 Final grades will be assigned based on the following scale:
 
-- **A 93-100**
-- **A- 90-92**
-- **B+ 87-89**
-- **B 83-86**
-- **B- 80-82**
-- **C+ 77-79**
-- **C 73-76**
-- **C- 70-72**
-- **D+ 67-69**
-- **D 60-66**
-- **F \<60**
+**Undergraduate Students**
+
+| Letter | Grade                                      | Quality Points |
+|--------|--------------------------------------------|----------------|
+| A      | Superior                                   | 4.000          |
+| A-     |                                            | 3.700          |
+| B+     | Very Good                                  | 3.300          |
+| B      | Good                                       | 3.000          |
+| B-     |                                            | 2.700          |
+| C+     | Fair                                       | 2.300          |
+| C      | Acceptable                                 | 2.000          |
+| C-     |                                            | 1.700          |
+| D+     |                                            | 1.300          |
+| D      | Barely Acceptable, Passing                 | 1.000          |
+| D-     |                                            | 0.700          |
+| F      | Failure                                    | 0.000          |
+| WA     | Failure Due to Excessive Absences*         | 0.000          |
+| XXF    | Failure Due to Academic Dishonesty         | 0.000          |
+| RA-RF  | Repeat; include GPA/exclude hours**        |                |
+| XA-XF  | Repeat; exclude GPA and hours**            |                |
+| GA-GC  | 3 Year Option; include hours/exclude GPA** |                |
+| A^-F^  | Used for EDLS ONLY                         | 0.000          |
+
+**Graduate Students**
+
+| Letter | Grade                              | Quality Points |
+|--------|------------------------------------|----------------|
+| A      | Superior                           | 4.000          |
+| B+     | Very Good                          | 3.500          |
+| B      | Good                               | 3.000          |
+| C+     | Fair                               | 2.500          |
+| C      | Acceptable                         | 2.000          |
+| F      | Failure                            | 0.000          |
+| XXF    | Failure Due to Academic Dishonesty | 0.000          |
+| RA-RF  | Repeat; include GPA/exclude hours* |                |
+
 
 **_Students with Disabilities and Special Needs_** - The College will make
 reasonable accommodations for persons with documented disabilities. If you have
