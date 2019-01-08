@@ -7,6 +7,7 @@ This site contains teaching materials for applied quantitative methods. The cour
 language, and providing students an opportunity to apply these tools on real datasets and towards their own projects.
 
 * [syllabus](./syllabus)
+* [software](./software)
 * [lessons](./lessons)
 * [assignments](./assignments)
 * [online resources](./resources)
