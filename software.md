@@ -22,5 +22,5 @@ it can be downloaded here:
 
 If you have trouble installing these software then send Dan an email or make 
 an appointment. Alternatively use the [Rstudio server](uniola.biology.cofc.edu:8787)
-that is configuredfor class usage: 
+that is configured for class usage: 
 
