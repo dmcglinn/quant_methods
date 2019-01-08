@@ -10,13 +10,13 @@ This course is taught using the R statistical programming language.
 
 [https://cran.r-project.org/](https://cran.r-project.org/)
 
-In this course I will use the free **Rstudio** GUI to interact with R, it can be 
+**Rstudio** is a free GUI that makes it easier to interact with R, it can be 
 downloaded here: 
 
 [https://www.rstudio.com/](https://www.rstudio.com/)
 
-We will also use **git** as our version control system for this course. Git can 
-be downloaded here: 
+**git** is a version control system for tracking changes in files and collaborating,
+it can be downloaded here: 
 
 [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
