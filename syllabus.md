@@ -86,22 +86,22 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 09 - Week 01 - Introduction to R 
-* Jan 16 - Week 02 - Introduction to R (con't)
-* Jan 23 - Week 03 - Introduction to Version Control and the Terminal
-* Jan 30 - Week 04 - Regression and Model Selection
-* Feb 06 - Week 05 - Multivariate Models
-* Feb 13 - Week 06 - Spatial Models
-* Feb 20 - Week 07 - GIS manipulations
-* Feb 27 - Week 08 - Project Pitch (oral presentation)
-* Mar 06 - Week 09 - Rshiny
-* Mar 13 - Week 10 - Work on class project
-* Mar 20 - Week 11 - Spring Break (no class)
-* Mar 27 - Week 12 - Work on class project
-* Apr 03 - Week 13 - Work on class project
-* Apr 10 - Week 14 - Peer Code Review and Peer Feedback
-* Apr 17 - Week 15 - Oral presentations
-* Apr 27 - Week 16 - Turn in code and written project components this week
+* Jan 08 - Week 01 - Introduction to R 
+* Jan 15 - Week 02 - Introduction to R (con't)
+* Jan 22 - Week 03 - Introduction to Version Control and the Terminal
+* Jan 29 - Week 04 - Regression and Model Selection
+* Feb 05 - Week 05 - Multivariate Models
+* Feb 12 - Week 06 - Spatial Models
+* Feb 19 - Week 07 - GIS manipulations
+* Feb 26 - Week 08 - Project Pitch (oral presentation)
+* Mar 05 - Week 09 - Rshiny
+* Mar 12 - Week 10 - Work on class project
+* Mar 19 - Week 11 - Spring Break (no class)
+* Mar 26 - Week 12 - Work on class project
+* Apr 02 - Week 13 - Work on class project
+* Apr 09 - Week 14 - Peer Code Review and Peer Feedback
+* Apr 16 - Week 15 - Oral presentations
+* Apr 23 - Week 16 - No class (Turn in code and written project components this week)
 
 Course Policies:
 ---------------
