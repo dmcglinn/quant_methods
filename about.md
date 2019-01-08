@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-This course was developed by [Dan McGlinn](mcglinnlab.org). 
+This course was developed by [Dan McGlinn](https://mcglinnlab.org). 
 
 I would like to thank Ethan White, Greg Wilson, and David LeBauer for advice
 on how to create this website using jekyll.
