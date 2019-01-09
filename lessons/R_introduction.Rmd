@@ -8,7 +8,7 @@ output: html_document
 The purpose of this lesson is to introduce students to the R programming 
 environment for the first time. The lesson builds off the 
 [Software Carpentry](http://software-carpentry.org/) Lesson developed here: 
-<http://software-carpentry.org/v5/novice/r/01-starting-with-data.html>
+<http://swcarpentry.github.io/r-novice-inflammation/01-starting-with-data/index.html>
 
 ## Readings
 * Chapters 1-7 of *The R Book* (1st ed) by Crawley
