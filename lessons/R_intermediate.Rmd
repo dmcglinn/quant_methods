@@ -21,14 +21,17 @@ how to control program flow and use functions
 * <a href="#debug">Debug</a>
 
 ```{r setup, echo=FALSE}
-# setup the R enviornment for kniting markdown doc properly
-library(knitr)
-opts_knit$set(root.dir='../')
+# specify that the root directory should be the parent directory of where this
+# script is stored this is because this .Rmd file is in ./quant_methods/lessons
+# and the data file that will be read into is located in ./quant_methods/data .
+# If your data file located in the same directory as or in a subdirectory of
+# your .Rmd file then you don't need to specify this.
+knitr::opts_knit$set(root.dir = '../')
 ```
 
 ```{r import}
 # read in some data to work with
-dat = read.csv('./data/tgpp.csv')
+dat <- read.csv('./data/tgpp.csv')
 ```
 
 ## <a href="#rep" name="rep">#</a> Programming for repetive tasks
@@ -69,7 +72,7 @@ wish typically i, j, or k and so forth but could just as easily be "index" or
 
 ```{r first loop}
 #In the example below we will asign the iterator the value of "i"
-for(i in 1:11) {
+for (i in 1:11) {
     print(class(dat[ , i]))
 }
 ```
@@ -84,12 +87,35 @@ Generates a vector of numbers from 1 to 11.
 The portion of code for(i in 1:11) sets the value of i to each value of 
 this vector as the for loop completes its tasks. 
 
-Note the usage of i in 1:11 this is somewhat unique to R because many other 
-languages use i = 1:11 and thus this is a frequent error for many 
-students
+Note the usage of `i in 1:11` this is somewhat unique to R because many other
+languages use `i = 1:11` and thus this is a frequent error for many students.
+Again I just want to emphasize we could have used a different name for our index
+something like `j` or `my_index` it did not have to be `i` this is simply the
+most common choice of an index in programming like in alebgra.
+
+Also here it is important to note the syntax and code style of the for loop: 
+```{r, eval = FALSE}
+for (i in 1:11) { 
+    ... # note this line is 4 spaces from the left margin, 2 spaces is also common, 0 spaces is bad form
+}
+```
+
+Above the `...` just represents anything you want the loop to do each iteration 
+of the loop. This loop will iterate 11 times as `i` counts from 1 to 11. Note the 
+spacing of the code and the placement of the curly brackets to start and stop the 
+for loop. Note: it is possible to use different spacing (but not recommended):
+
+```{r, eval = FALSE}
+# cramped example
+for(i in 1:11){print(class(dat[,i]))}
+```
+
+**Question**: Why do you think the code style in the above chunk is not generally recommended?
 
 ### <a href="#cap" name="cap">#</a>Capturing output
-First we have to define an empty object we'll call this dat_classes
+Right now our for loop just prints output to the console but often times we want
+to capture that output and do something with it. To do this first we will have
+to define an empty object we'll call this `dat_classes`
 
 ```{r}
 dat_classes = NULL
@@ -100,7 +126,7 @@ convert this object to a vector of arbitrary size on the fly. This is not a wise
 move if memory or time is a necessity but it makes for easy programming. 
 
 ```{r}
-for(i in 1:11) {
+for (i in 1:11) {
     dat_classes[i] = class(dat[ , i])
 }
 
@@ -109,7 +135,7 @@ dat_classes
 ## alternatively you can concatenate
 # but the first approach is a bit cleaner
 dat_classes = NULL
-for(i in 1:11) {
+for (i in 1:11) {
     dat_classes = c(dat_classes, class(dat[ , i]))
 }
 
@@ -118,7 +144,7 @@ for(i in 1:11) {
 # vector of strings 11 elements long so we can use:
 
 dat_classes = vector("character", 11)
-for(i in 1:11) {
+for (i in 1:11) {
     dat_classes[i] = class(dat[ , i])
 }
 ```
@@ -134,7 +160,7 @@ columns in dat
 
 ```{r}
 dat_classes = NULL
-for(i in 1:ncol(dat)) {
+for (i in 1:ncol(dat)) {
     dat_classes[i] = class(dat[ , i])
 }
 ```
@@ -146,7 +172,7 @@ TRUE / FALSE test.
 
 ```{r if}
 dat_classes = NULL
-for(i in 1:ncol(dat)) {
+for (i in 1:ncol(dat)) {
     dat_classes[i] = class(dat[ , i])
     if(dat_classes[i] == "integer") {
         print('sweet!')
@@ -164,7 +190,7 @@ You can use an else clause to specify an alternative task to be carried out
 
 ```{r}
 dat_classes = NULL
-for(i in 1:ncol(dat)) {
+for (i in 1:ncol(dat)) {
     dat_classes[i] = class(dat[ , i])
     if(dat_classes[i] == "integer") {
         print('sweet!')
@@ -180,13 +206,13 @@ You can nest if statements (and for loops) within one another
 
 ```{r, eval=FALSE}
 dat_classes = NULL
-for(i in 1:ncol(dat)) {
+for (i in 1:ncol(dat)) {
     dat_classes[i] = class(dat[ , i])
-    if(dat_classes[i] == "integer") {
+    if (dat_classes[i] == "integer") {
         print('sweet!')
     }
     else {
-        if(dat_classes[i] == 'factor') {
+        if (dat_classes[i] == 'factor') {
             print('ok')
         }
         else {
@@ -202,9 +228,9 @@ sometimes a bit easier to read
 
 ```{r, eval=FALSE}
 dat_classes = NULL
-for(i in 1:ncol(dat)) {
+for (i in 1:ncol(dat)) {
     dat_classes[i] = class(dat[ , i])
-    if(dat_classes[i] == "integer") {
+    if (dat_classes[i] == "integer") {
         print('sweet!')
     }
     else if (dat_classes[i] == 'factor') {
@@ -226,8 +252,8 @@ ifelse(x > 5 , 'sweet!', 'sour!')
 Which produces the same result as:
 
 ```{r, eval=FALSE}
-for(i in x) {
-    if(i > 5)
+for (i in x) {
+    if (i > 5)
         print('sweet')
     else
         print('sour')
@@ -246,9 +272,9 @@ function names when known.
 ```{r func}
 eval_class = function(x) {
     dat_classes = NULL
-    for(i in 1:ncol(x)) {
+    for (i in 1:ncol(x)) {
         dat_classes[i] = class(x[ , i])
-        if(dat_classes[i] == "integer") {
+        if (dat_classes[i] == "integer") {
             print('sweet!')
         }
         else if (dat_classes[i] == 'factor') {
@@ -286,9 +312,9 @@ error with a reasonable explanation
 eval_class = function(x) {
     if (class(x) %in% c('data.frame', 'matrix')){
         x_classes = NULL
-        for(i in 1:ncol(x)) {
+        for (i in 1:ncol(x)) {
             x_classes[i] = class(x[ , i])
-            if(x_classes[i] == "integer") {
+            if (x_classes[i] == "integer") {
                 print('sweet!')
             }
             else if (x_classes[i] == 'factor') {
