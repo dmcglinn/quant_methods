@@ -118,7 +118,7 @@ to capture that output and do something with it. To do this first we will have
 to define an empty object we'll call this `dat_classes`
 
 ```{r}
-dat_classes = NULL
+dat_classes <- NULL
 ```
 
 Once the empty object is initialized we can simply index is R is smart enough to
@@ -127,25 +127,25 @@ move if memory or time is a necessity but it makes for easy programming.
 
 ```{r}
 for (i in 1:11) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
 }
 
 dat_classes
 
 ## alternatively you can concatenate
 # but the first approach is a bit cleaner
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:11) {
-    dat_classes = c(dat_classes, class(dat[ , i]))
+    dat_classes <- c(dat_classes, class(dat[ , i]))
 }
 
 ## the gold star approach to this is to set aside exactly how much 
 # memory you will need in your holder variable. In our case this is a 
 # vector of strings 11 elements long so we can use:
 
-dat_classes = vector("character", 11)
+dat_classes <- vector("character", 11)
 for (i in 1:11) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
 }
 ```
 
@@ -159,9 +159,9 @@ to write the loop such that it will always count to the appropriate number of
 columns in dat
 
 ```{r}
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
 }
 ```
 
@@ -171,9 +171,9 @@ the user to specify that a particular task be executed based on a logical
 TRUE / FALSE test. 
 
 ```{r if}
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
     if(dat_classes[i] == "integer") {
         print('sweet!')
     }
@@ -189,9 +189,9 @@ You can use an else clause to specify an alternative task to be carried out
  if the logical test is FALSE.
 
 ```{r}
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
     if(dat_classes[i] == "integer") {
         print('sweet!')
     }
@@ -205,9 +205,9 @@ for (i in 1:ncol(dat)) {
 You can nest if statements (and for loops) within one another
 
 ```{r, eval=FALSE}
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
     if (dat_classes[i] == "integer") {
         print('sweet!')
     }
@@ -227,9 +227,9 @@ An alternative to the above syntax is to use an else if statement which are
 sometimes a bit easier to read 
 
 ```{r, eval=FALSE}
-dat_classes = NULL
+dat_classes <- NULL
 for (i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
+    dat_classes[i] <- class(dat[ , i])
     if (dat_classes[i] == "integer") {
         print('sweet!')
     }
@@ -245,7 +245,7 @@ for (i in 1:ncol(dat)) {
 In one liner situations you can also use the function `ifelse()`
 
 ```{r}
-x = 1:10
+x <- 1:10
 ifelse(x > 5 , 'sweet!', 'sour!')
 ```
 
@@ -270,10 +270,10 @@ Function names should be verbs when possible and also avoid other known R
 function names when known.
 
 ```{r func}
-eval_class = function(x) {
-    dat_classes = NULL
+eval_class <- function(x) {
+    dat_classes <- NULL
     for (i in 1:ncol(x)) {
-        dat_classes[i] = class(x[ , i])
+        dat_classes[i] <- class(x[ , i])
         if (dat_classes[i] == "integer") {
             print('sweet!')
         }
@@ -298,7 +298,7 @@ is output by the function
 What if dat had twice as many columns?
 
 ```{r}
-dbl_dat = cbind(dat, dat)
+dbl_dat <- cbind(dat, dat)
 
 eval_class(dbl_dat)
 ```
@@ -309,11 +309,11 @@ has to be a data.frame or a matrix object other types should return an
 error with a reasonable explanation
 
 ```{r, error=TRUE}
-eval_class = function(x) {
+eval_class <- function(x) {
     if (class(x) %in% c('data.frame', 'matrix')){
-        x_classes = NULL
+        x_classes <- NULL
         for (i in 1:ncol(x)) {
-            x_classes[i] = class(x[ , i])
+            x_classes[i] <- class(x[ , i])
             if (x_classes[i] == "integer") {
                 print('sweet!')
             }
@@ -331,7 +331,7 @@ eval_class = function(x) {
     return(x_classes)
 }
 
-my_obj = 1:10
+my_obj <- 1:10
 eval_class(my_obj)
 ```
 
