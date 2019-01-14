@@ -76,7 +76,7 @@ document that looks like this:
 
 Let's go back through the .Rmd file we created and examine what line accomplishes:
 
-First we have the header lines denoted by ---
+First we have the header lines denoted by `---`
 
 <pre>
 ---
