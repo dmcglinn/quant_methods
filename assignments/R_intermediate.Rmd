@@ -52,7 +52,7 @@ loops create?
 
 2. Describe using pseudo-code how `output` was calculated, for example,
 ```{r, eval=FALSE}
-Loop from 1 to length of species identies
+Loop from 1 to length of species identities
    Take a subset of iris data 
    Loop from 1 to number of columns of the iris data
       If ... occurs then do ...  
