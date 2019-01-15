@@ -52,9 +52,10 @@ loops create?
 
 2. Describe using pseudo-code how `output` was calculated, for example,
 ```{r, eval=FALSE}
-loop through ...
-   loop through ...
-      And so on ...
+Loop from 1 to length of species identies
+   Take a subset of iris data 
+   Loop from 1 to number of columns of the iris data
+      If ... occurs then do ...  
 ```
 
 3. The variables in the loop were named so as to be vague. How can the objects
