@@ -25,6 +25,12 @@ motivation to learn and how to use git here: [git_slides.pdf](./git_slides.pdf)
 * Download Git for your OS here: 
 <https://git-scm.com/download>
 
+* Note: Mac users you may already have git installed on your OS.
+Open your terminal and type `git` and see if you get an error. 
+
+* Note: some Mac users have found these step-by-step install instructions 
+helpful <https://codeburst.io/installing-git-for-the-first-time-on-mac-osx-bf9c513af2b8> 
+
 ## Text editor checks
 ### Windows Users
 It is a good idea that you ensure that you have a text editor that can be run
@@ -57,7 +63,7 @@ If is is not installed then I recommend you try Text wrangler:
 <http://www.barebones.com/products/textwrangler/>
 
 ### Setting up Git Instructions
-https://swcarpentry.github.io/git-novice/02-setup/
+<https://swcarpentry.github.io/git-novice/02-setup/>
 
 
 #### Configure Git within Rstudio 
@@ -74,7 +80,12 @@ machine where this file is located. On my windows machine this is
 We will work through one of the SWC lesson's on Git
 [Version Control with Git](http://swcarpentry.github.io/git-novice/)
 
-This lesson will introduce us to the basics of using Git locally. However we want to back up our local git repo to the cloud and we will use GitHub to host our git repo. Therefore, first sign in to Github and create a repo called `planets` with a `README.md` file. We are creating this directory remotely first because it is very easy to link a local instance of Rstudio and a repo on GitHub if the repo exists on GitHub first. 
+This lesson will introduce us to the basics of using Git locally. However we
+want to back up our local git repo to the cloud and we will use GitHub to host
+our git repo. Therefore, first sign in to Github and create a repo called
+`planets` with a `README.md` file. We are creating this directory remotely first
+because it is very easy to link a local instance of Rstudio and a repo on GitHub
+if the repo exists on GitHub first.
 
 ### Rstudio and Git
 Rstudio provides a simple (but not very powerful) client for using Git to manage
@@ -100,4 +111,4 @@ Rstudio project. This is not difficult just follow the instructions for
 ### Additional Links
 * <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>
 
-![dynamite](../figures/serious_git.png)
+![dynamite](./figures/serious_git.png)
