@@ -12,13 +12,12 @@ education account options which offer free private repos:
 <https://education.github.com/>
 
 Git is a version control system that allows you to track changes to your data
-and source code as you develop quantiative projects. 
+and source code as you develop quantiative projects. It is common when 
+working on a project to accrew many different versions of data and code files. 
+git provides a system of organizing these file versions into a powerful 
+reference system.
 
-We will follow the Git and Github section from Hadley Wickham's book *R packages* 
-which contains a very useful overview and step-by-step description of git and
-how it can be used with Rstudio. This material can be freely accessed here:
-<http://r-pkgs.had.co.nz/git.html> I have also put together some slides on 
-motivation to learn and how to use git here: [git_slides.pdf](./git_slides.pdf) 
+<center><img src="./figures/final_doc.gif" width="500"></center>
 
 ### Install Git
 
@@ -67,7 +66,8 @@ If is is not installed then I recommend you try Text wrangler:
 
 
 #### Configure Git within Rstudio 
-For most Rstudio will automatically figure out where git is located, but for others you will need to do this manually. Follow these steps
+For most Rstudio will automatically figure out where git is located, but for
+others you will need to do this manually. Follow these steps
 
 1. Click Tools > Global Options
 2. Click Git/SVN 
@@ -75,32 +75,19 @@ For most Rstudio will automatically figure out where git is located, but for oth
 machine where this file is located. On my windows machine this is 
 `C:\Program Files (x86)\Git\bin`
 
-
 ### Version control with Git
-We will work through one of the SWC lesson's on Git
+We will work through the SWC lesson's on Git
 [Version Control with Git](http://swcarpentry.github.io/git-novice/)
 
-This lesson will introduce us to the basics of using Git locally. However we
-want to back up our local git repo to the cloud and we will use GitHub to host
-our git repo. Therefore, first sign in to Github and create a repo called
-`planets` with a `README.md` file. We are creating this directory remotely first
-because it is very easy to link a local instance of Rstudio and a repo on GitHub
-if the repo exists on GitHub first.
+In particular we will focus on:
 
-### Rstudio and Git
-Rstudio provides a simple (but not very powerful) client for using Git to manage
-your projects. Note that Rstudio is not required to use Git, but it is very 
-convient for 90% of the tasks you will be confronted with. To set this up you
-will have to be using an Rstudio Project. 
-
-#### Create an Rstudio Project
-To link the remote repo to your local machine follow these steps:
-
-1. Click File > New Project
-2. Chose from "Version Control"
-3. Chose Git
-4. Input the repo's url, something like: https://github.com/yourusername/planets.git
-
+* [Setting Up Git](http://swcarpentry.github.io/git-novice/02-setup/index.html)
+* [Creating a Repository](http://swcarpentry.github.io/git-novice/03-create/index.html)
+* [Tracking Changes](http://swcarpentry.github.io/git-novice/04-changes/index.html)
+* [Exploring History](http://swcarpentry.github.io/git-novice/05-history/index.html)
+* [Ignoring Things](http://swcarpentry.github.io/git-novice/06-ignore/index.html)
+* [Remotes in GitHub](http://swcarpentry.github.io/git-novice/07-github/index.html)
+* [Using Git from RStudio](http://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html)
 
 ### Important Note:
 If setup an Rstudio project in a directory that was not a git directory then 
@@ -110,5 +97,6 @@ Rstudio project. This is not difficult just follow the instructions for
 
 ### Additional Links
 * <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>
+* <http://r-pkgs.had.co.nz/git.html> 
 
 ![dynamite](./figures/serious_git.png)
