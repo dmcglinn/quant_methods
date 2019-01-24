@@ -90,13 +90,13 @@ In particular we will focus on:
 * [Using Git from RStudio](http://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html)
 
 ### Important Note:
-If setup an Rstudio project in a directory that was not a git directory then 
-Rstudio will not recognize that it is a git directory until you recreate the 
+If you setup an Rstudio project in a directory that was not a git directory then 
+Rstudio will not recognize that it is a git directory until you create the 
 Rstudio project. This is not difficult just follow the instructions for 
-"Create and Rstudio Project" which is above.
+"Using Git from Rstudio" which is above.
 
 ### Additional Links
-* <https://stat545-ubc.github.io/git01_git-install.html#but-first-why>
-* <http://r-pkgs.had.co.nz/git.html> 
+* [Motivation to learn Git](https://stat545-ubc.github.io/git01_git-install.html#but-first-why)
+* [Git in Rstudio walkthrough by H. Whickham](http://r-pkgs.had.co.nz/git.html)
 
 ![dynamite](./figures/serious_git.png)
