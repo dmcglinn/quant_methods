@@ -20,10 +20,10 @@ fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell
 Because this dataset includes both continuous and discrete explanatory variables
 use the function `Anova` in the packages `car` as such
 
-```r
-library(car)
-Anova(my_mod, type=3)
-```
+    ```r
+    library(car)
+    Anova(my_mod, type=3)
+    ```
 
 This will estimate partial effect sizes, variance explained, and p-values for 
 each explanatory variable included in the model. 
@@ -48,19 +48,19 @@ perspective of a General Linear Model (GLM) with a Poisson error term
 The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
 Your new model calls will look as follows:
 
-```r
-acer_poi = glm(cover ~ tci + elev + ... , data = my_data, 
+    ```r
+    acer_poi = glm(cover ~ tci + elev + ... , data = my_data, 
                family='poisson')
-```
+    ```
 
 For assessing the degree of variation explained you can use a 
 pseudo-R-squared statistic (note this is just one of many possible)
 
-```r
-pseudo_r2 = function(glm_mod) {
-            1 -  glm_mod$deviance / glm_mod$null.deviance
-            }
-```
+    ```r
+    pseudo_r2 = function(glm_mod) {
+                1 -  glm_mod$deviance / glm_mod$null.deviance
+                }
+    ```
 
 Compare your qualatitive assessment of which variables were most important in each model. 
 Does it appear that changing the error distribution changed the results much? In what ways? 
