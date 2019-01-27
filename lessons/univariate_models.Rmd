@@ -36,9 +36,9 @@ links:
 
 
 ## Lesson Outline
-* <a href="#phil">Modeling philosophy</a>
-* <a href="#simp">Simple analysis</a>
-* <a href="#sim">Simulate data</a>
+* <a href="#phil">Modeling Philosophy</a>
+* <a href="#mod">Model Building and Graphing</a>
+* <a href="#sim">Understanding Regression via Simulation</a>
 
 ## <a href="#phil" name="phil">#</a> Modeling Philosophy
 One of the simplest and most important ideas when constructing models can be 
@@ -218,8 +218,8 @@ ggplot(data = weeds) +
   labs(x = 'Treatment', y = 'Fruit mass (mg)') 
 ```
 
-Technically this is the same graphic as produced by base but you can the R code
-is a bit more cryptic. 
+Technically this is the same graphic as produced by base but you can see that
+the R code is a bit more cryptic.
 
 Let's break it down line by line: `ggplot(data = weeds) +` spawns a `ggplot` graphic and specifies that the data will be provided by the object `weeds`. Now we can simply refer to column names
 of `weeds` in the remainder of the plotting call. 
@@ -346,7 +346,7 @@ ggplot(data = weeds, mapping = aes(x = plant_ht_cm, y = fruit_mass_mg)) +
   theme_classic()
 ```
 
-## Model Building and Graphing
+## <a href="#mod" name="mod">#</a> Model Building and Graphing
 
 Now that we've visually explored the relationships in the milkweed data set, and
 we have developed some intuition about how we might want to approach this data set
@@ -883,7 +883,7 @@ The top right panel suggests that the residuals are **normally distributed**.
 The bottom right panel suggests that there are not large outliers that are 
 having a disproportionate effect on the regression. 
 
-## <a href="#sim" name="sim">#</a> Simulate Hypothetical Data
+## <a href="#sim" name="sim">#</a> Understanding Regression via Simulation
 
 R is an excellent environment for learning about how models work in part because
 of the ease to generate data with known properties. This provides us the ability
