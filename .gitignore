@@ -1,7 +1,5 @@
 .Rproj.user
-.Rhistory
-.RData
-*.Rproj
-_site/
-solutions
-projects/
+/solutions*
+/student*
+/projects
+syllabus_*

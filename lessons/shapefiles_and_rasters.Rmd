@@ -133,7 +133,7 @@ class(fire)
 names(fire)
 dim(fire)
 summary(fire)
-
+plot(fire)
 
 # select the fires in NC. First we'll identify which state each fire occurred
 # in, then subset the ones from NC. 

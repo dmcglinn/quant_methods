@@ -350,9 +350,9 @@ than linear as with RDA).
 
 ```{r}
 cca_tree = cca(comm ~ ., data=env)
-RsquareAdj(cca_tree, 10)
-anova(cca_tree, permutations = 10)
-anova(cca_tree, by='margin', permutations = 10)
+RsquareAdj(cca_tree, 100)
+anova(cca_tree, permutations = 999)
+anova(cca_tree, by='margin', permutations = 999)
 
 plot(cca_tree, type='n', scaling=1)
 orditorp(cca_tree, display='sp', cex=0.5, scaling=1, col='blue')

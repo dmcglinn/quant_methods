@@ -10,7 +10,7 @@ Read in tree data, metadata can be found in: `./data/tree_metadata.txt`
 trees = read.csv('./data/treedata_subset.csv')
 ```
 
-1. Carry out an exploratory analysis using the tree dataset. Metadata for the
+1\. Carry out an exploratory analysis using the tree dataset. Metadata for the
 tree study can be found [here](../data/tree_metadata.txt). Specifically, I would
 like you to develop and compare models for species cover for a habitat
 generalist [*Acer rubrum* (Red
@@ -39,7 +39,7 @@ For each species address the following additional questions:
 * are you able to explain variance in one species better than another, 
   why might this be the case?
 
-2.\ You may have noticed that the variable cover is defined as 
+2\. You may have noticed that the variable cover is defined as 
 positive integers between 1 and 10. and is therefore better treated
 as a discrete rather than continuous variable. 
 Re-examine your solutions to the question above but from the
@@ -65,15 +65,15 @@ pseudo_r2 = function(glm_mod) {
 Compare your qualatitive assessment of which variables were most important in each model. 
 Does it appear that changing the error distribution changed the results much? In what ways? 
 
-3.\ Provide a plain English summary (i.e., no statistics) of what you have
+3\. Provide a plain English summary (i.e., no statistics) of what you have
 found and what conclusions we can take away from your analysis?
 
-4.\ (optional) Examine the behavior of the function `stepAIC()` using the 
+4\. (optional) Examine the behavior of the function `stepAIC()` using the 
 exploratory models developed above. This is a very simple and not very
 robust machine learning stepwise algorithm that uses AIC to select a 
 best model. By default it does a backward selection routine. 
 
-5.\ (optional) Develop a model for the number of species in each site 
+5\. (optional) Develop a model for the number of species in each site 
 (i.e., unique plotID). This variable will also be discrete so the Poisson
 may be a good starting approximation. Side note: the Poisson
 distribution converges asymptotically on the Gaussian distribution as the 
