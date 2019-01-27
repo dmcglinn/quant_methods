@@ -20,10 +20,10 @@ fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell
 Because this dataset includes both continuous and discrete explanatory variables
 use the function `Anova` in the packages `car` as such
 
-    ```r
-    library(car)
-    Anova(my_mod, type=3)
-    ```
+```r
+library(car)
+Anova(my_mod, type=3)
+```
 
 This will estimate partial effect sizes, variance explained, and p-values for 
 each explanatory variable included in the model. 
