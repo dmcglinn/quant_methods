@@ -9,7 +9,7 @@ permalink:        pretty
 title:            Applied Quantitative Methods
 tagline:          'An open course'
 description:      'Structure data, build models, and plot results in the R programming language'
-url:              "http://dmcglinn.github.io/"
+url:              "http://dmcglinn.github.io"
 baseurl:          "/quant_methods"
 
 author:
