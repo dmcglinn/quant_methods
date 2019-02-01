@@ -31,7 +31,7 @@ The dataset includes tree abundances from a subset of a vegetation database of G
 * disturb: plot disturbance history (from a Park report); CORPLOG=corporate logging; SETTLE=concentrated settlement, VIRGIN="high in virgin attributes", LT-SEL=light or selective logging
 * beers: transformed slope aspect ('heat load index'); 0 is SW (hottest), 2 is NE (coolest)
 
-![](smokies_transects.png) 
+![](../smokies_transects.png) 
 
 Above shows a map of the regional and local location of the elevational transects included in the dataset (from [Fridley 2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
 
