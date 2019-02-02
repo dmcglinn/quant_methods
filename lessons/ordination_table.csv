@@ -1,0 +1,8 @@
+Acronym,Name,Type of analysis,Algorithm,R function(s)
+PCA,Principal Components Analysis,indirect,"Eigenanalysis, SVD","stats::princomp, vegan::rda"
+CA,Correspondence Analysis,indirect,"RA, eigenanalysis, SVD",vegan::cca
+DCA,Detrended Correspondence Analysis,indirect,RA with detrending and rescaling,vegan::decorana
+NMDS,Non-metric Mulidimensional Scaling,indirect,"Distance based ordination, non-eigenbased",vegan::metaMDS
+RDA,Redundancy Analysis,direct,"Eigenanalysis, SVD",vegan::rda
+CCA,Canonical Correspondence Analysis,direct,"RA with regressions, eigenanalysis",vegan::cca
+DCCA,Detrended Canonical Correspondence Analysis,direct,RA with regressions and detrending,NA

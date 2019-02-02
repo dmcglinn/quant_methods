@@ -10,12 +10,13 @@ The goal of this lesson is to introduce multivariate ordination analyses.
 * Chapters 9 and 11 of *Numerical Ecology* 2nd edition
 
 ## Online Docs
-* [The Ordination Webpage](http://ordination.okstate.edu/)
+* [Ordination analysis by David Zeleny](https://www.davidzeleny.net/anadat-r/doku.php/en:ordination)
+* [The Ordination Webpage by Mike Palmer](http://ordination.okstate.edu/)
     - great for term definitions, layman's explanation of how the methods
     differ, and how ecologists should interpret
-* [Vegan: an introduction to ordination](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
+* [Vegan: an introduction to ordination by Jari Oksanen](http://cran.r-project.org/web/packages/vegan/vignettes/intro-vegan.pdf)
     - A brief demonstration of an ordination analysis in the R package vegan
-* [Multivariate Analysis of Ecological Communities in R: vegan tutorial](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
+* [Multivariate Analysis of Ecological Communities in R: vegan tutorial by Jari Oksanen](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf)
     - A more thorough  of ordination in the R package vegan
 
 ##Outline
@@ -54,21 +55,23 @@ multiple regression. One key difference is that the response variable is
 multivariate rather than univariate; however, with many approaches the underlying
 algebra is very similar between regression and ordination.
 
-The [Ordination methods table](./ordination_methods_table.html)
-provides a simple overview for some of the more popular ordination approaches. 
+Overview of Ordination methods (adpated from <http://ordination.okstate.edu/terminol.htm>)
+
+```{r, echo = FALSE}
+library(knitr)
+# setup the R enviornment for kniting markdown doc properly
+opts_knit$set(root.dir='../')
+ord = read.csv('./ordination_table.csv')
+names(ord) = c("Acronym",	"Name", "Type of analysis", "Algorithm",	"R function")
+kable(ord)
+```
 
 This [presentation](./community_structure_slides_with_notes.pdf) by 
-[Abel Valdivia](http://www.unc.edu/~abelvald/) provides a review of the types of
+[Abel Valdivia](https://twitter.com/AbelValdivia) provides a review of the types of
 ordination and provides examples of their graphical output. 
 
 Additionally this [key](http://ordination.okstate.edu/key.htm) created by Mike
 Palmer provides a decision tree that can help to guide your choice of methods.
-
-```{r setup, echo=FALSE}
-# setup the R enviornment for kniting markdown doc properly
-library(knitr)
-opts_knit$set(root.dir='../')
-```
 
 ## Create a community matrix
 
