@@ -192,26 +192,19 @@ Principle Components Analysis (PCA) is a useful tool for either
 1. examining correlations between the columns of a matrix
 2. potentially reducing the set of explanatory variables included in model
 
-We'll start by using PCA to simply examine the correlations in the 
-explanatory environmental matrix. Then we will move on to apply the technique
-to the community matrix. 
+We'll start by using PCA to simply examine the correlations in tree species 
+covers that are contained in the community matrix
 
-```{r pca envio}
-# PCA on enviornmental data
-# must drop categorical variable for PCA on standardized variables
-summary(env)
-# we will scale our variables because they are all in different units to 
-# make it easier to interpret the PCA output
-env_pca = rda(env[ , names(env) != 'disturb'], scale=TRUE)
-env_pca
-names(env_pca)
+```{r comm pca}
+tree_pca = rda(comm, scale=TRUE)
+tree_pca
 ```
 
 Like the object returned by the function `lm`, the output of `rda` is just a named list. 
 We can get a sense of the structure of this named list using the function `str`
 
 ```{r using str}
-str(env_pca)
+str(tree_pca)
 ```
 
 This is useful because for example if we wanted to pull out the eigenvalues of the 
@@ -219,26 +212,21 @@ analysis we would see that they are stored under `$CA$eig`.
 We can access each of the objects stored in a named list as we would reference columns in a `data.frame` using the `$`. 
 
 ```{r eigenvalues}
-env_pca$
-env_pca$tot.chi
-env_pca$CA$eig
+tree_pca$
+tree_pca$tot.chi
+tree_pca$CA$eig
 # the eigenvalues sum up to equal the total interia (i.e., total variance in this case)
-sum(env_pca$CA$eig)
+sum(tree_pca$CA$eig)
 # the ratio of the eigenvalue to the total variance is the amount of 
 # variance explained by each PCA axis
-round(env_pca$CA$eig / env_pca$tot.chi, 2)
+round(tree_pca$CA$eig / tree_pca$tot.chi, 2)
 ```
 
-We can see from above that the PCA axis 1 captures approximately 83% of the total
-variance in the enviornmental matrix (excluding the disturbance variable). 
+We can see from above that the PCA axis 1 captures approximately 10% of the total
+variance in the community matrix. 
 Let's graph the data to better get a sense of the correlation structure.
 
 ```{r plot pca}
-plot(env_pca, display=c('sp'))
-cleanplot.pca(env_pca)
-
-tree_pca = rda(comm, scale=TRUE)
-
 plot(tree_pca)
 biplot(tree_pca)
 cleanplot.pca(tree_pca)
@@ -251,6 +239,8 @@ cleanplot.pca(tree_pca)
 # its eigenvalue. (1) Distances among objects in the biplot are not approximations
 # of their Euclidean distances in multidimensional space. (2) The angles
 # between descriptors in the biplot reflect their correlations.
+ordiplot(tree_pca, display = 'sp')
+orditorp(tree_pca, display = 'sp')
 ```
 
 ### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
