@@ -39,6 +39,8 @@ links:
 * <a href="#phil">Modeling Philosophy</a>
 * <a href="#mod">Model Building and Graphing</a>
 * <a href="#sim">Understanding Regression via Simulation</a>
+* <a href="#stan">Standardized \(\beta\) coefficients</a>
+
 
 ## <a href="#phil" name="phil">#</a> Modeling Philosophy
 One of the simplest and most important ideas when constructing models can be 
