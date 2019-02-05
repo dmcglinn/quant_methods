@@ -55,7 +55,7 @@ multiple regression. One key difference is that the response variable is
 multivariate rather than univariate; however, with many approaches the underlying
 algebra is very similar between regression and ordination.
 
-Overview of Ordination methods (adpated from <http://ordination.okstate.edu/terminol.htm>)
+Overview of Ordination methods (adapted from <http://ordination.okstate.edu/terminol.htm>)
 
 ```{r, echo = FALSE}
 library(knitr)
@@ -192,8 +192,25 @@ Principle Components Analysis (PCA) is a useful tool for either
 1. examining correlations between the columns of a matrix
 2. potentially reducing the set of explanatory variables included in model
 
+Sometimes PCA is also known as Reciprocal Averaging (RA). 
+
+Simplified description of PCA algorithm (from [Zelený 2018](https://www.davidzeleny.net/anadat-r/doku.php/en:pca))
+(a) Use the matrix of samples x species (or, generally, samples x descriptors), and display each sample into the multidimensional space where each dimension is defined by an abundance of one species (or descriptor). In this way, the samples will produce a cloud located in the multidimensional space.
+(b) Calculate the centroid of the cloud.
+(c) Move the centres of axes to this centroid.
+(d) Rotate the axes in such a way that the first axis goes through the cloud in the direction of the highest variance, the second is perpendicular to the first and goes in the direction of the second highest variance, and so on. The position of samples on resulting rotated axes are sample scores on ordination axes.
+
+<img src="https://www.davidzeleny.net/anadat-r/lib/exe/fetch.php/obrazky:pca_algorithm_2d_legendre-legendre.jpg?cache="/>
+
+Figure 1: PCA ordination of five samples and two species. (Fig. 9.2 from Legendre & Legendre 1998.)
+<img src="https://www.davidzeleny.net/anadat-r/lib/exe/fetch.php/obrazky:pca_algorithm_3d.jpg?cache="/>
+
+Figure 2: 3D schema of PCA ordination algorithm
+
+Check out the nice interactive visualization at [Explained Visually](http://setosa.io/ev/principal-component-analysis/)
+
 We'll start by using PCA to simply examine the correlations in tree species 
-covers that are contained in the community matrix
+covers that are contained in the community matrix. 
 
 ```{r comm pca}
 tree_pca = rda(comm, scale=TRUE)
@@ -267,12 +284,8 @@ NMDS Maximizes rank-order correlation between distance measures and distance in
 ordination space. Points are moved to minimize "stress". Stress is a measure of
 the mismatch between the two kinds of distance.
 
-* Direct or Constrained Ordination
-    - Redundancy Analysis (RDA)
-    - Canonical Correspondence Analysis (CCA)
-    - Hypothesis Testing
-    - Model Comparison
-    - Variance partitioning
+## Direct or Constrained Ordination
+### Redundancy Analysis (RDA)
 
 First let's carry out an RDA which expects a linear response of each species to
 the environmental variables. RDA is the most direct analog of OLS regression to 
@@ -321,21 +334,7 @@ species relative to the environmental variables indicates how strongly a species
 is associated with a particular environmental variable. So for example 
 ABIEFRA or *Abies fraseri* increases as elevation increases. 
 
-Now let's carry out hypothesis testing. 
-```{r}
-anova(rda_tree, permutations=10)
-anova(rda_tree, by='margin', permutations=10)
-```
-
-In a real analysis you would specify a much larger number of permutations (at least 1000). The first test examines overall model fit relative to a randomized or 
-permuted matrix of data. The second test examines the partial effects of the 
-individual variables included in the model. 
-
-Lastly let's carry out variance partitioning. We can use this approach to 
-examine how much of the explained variance is due to different groups of 
-variables. In other words this approach is really only useful if you are
-interested in comparing the relative importance of several variables to another
-set of variables. 
+### Canonical Correspondence Analysis (CCA)
 
 Let's carry out a Canonical Correspondence Analysis (CCA) as well. CCA is appropriate
 for modeling unimodal or hump-shaped responses to explanatory variables (rather
@@ -354,6 +353,43 @@ text(cca_tree, display='bp', col='red')
 
 The CCA models don't explain as much variation and their plots look slightly
 different but the general take home message has not changed much. 
+
+### Hypothesis testing
+Now let's carry out hypothesis testing. 
+```{r}
+anova(rda_tree, permutations=10)
+anova(rda_tree, by='margin', permutations=10)
+```
+
+In a real analysis you would specify a much larger number of permutations (at
+least 1000). The first test examines overall model fit relative to a randomized
+or permuted matrix of data. The second test examines the partial effects of the
+individual variables included in the model.
+
+### Model Comparison
+Model comparison can be carried out using direct ordination methods either using
+nested models of different degrees of complexity as we did with univariate `lm` 
+type models
+
+```{r}
+rda_tree_simple <- update(rda_tree, . ~ . - beers)
+anova(rda_tree_simple, rda_tree)
+```
+
+The above tests suggests that the more complex model including the variable
+`beers` is strongly supported. Note this specific example is identical to the 
+output for the `beers` parameter when using `anova(tree_rda, by = 'margin')`. 
+
+Model comparison can also be undertaken using adjusted $R^2$. This is often 
+easier to discuss and communicate then a myriad of significance tests. 
+
+### Variation Paritioning
+
+Lastly let's carry out variance partitioning. We can use this approach to 
+examine how much of the explained variance is due to different groups of 
+variables. In other words this approach is really only useful if you are
+interested in comparing the relative importance of several variables to another
+set of variables. 
 
 ```{r}
 ## variance partitioning

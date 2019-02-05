@@ -258,7 +258,7 @@ However, many times though the investigator does not have a clear <em><em>a prio
 
 </div>
 <p>These steps are reasonable if one is carrying out an exploratory data analysis; however, I do not recommend this approach when formal hypothesis testing is the goal of the analysis due to Freedman’s paradox as explained above. Additionally, it may be worth pointing out that model building can proceed from simple to more complex models as well evaluating with each additional term if it has significantly increased explanatory power.</p>
-<p>We will begin exploring how to build and interpret models in R by using a data set that a researcher collected 40 plants of common milkweed, <em>Asclepias syriaca</em>, from old fields in northeastern Maine and grew them in a greenhouse; 20 received fertilizer and the other 20 were kept as controls. After two months, she measured the height of each plant and then collected and weighed all of the fruit produced by the plant.</p>
+<p>We will begin exploring how to build and interpret linear models in R by using a data set that a researcher collected 40 plants of common milkweed, <em>Asclepias syriaca</em>, from old fields in northeastern Maine and grew them in a greenhouse; 20 received fertilizer and the other 20 were kept as controls. After two months, she measured the height of each plant and then collected and weighed all of the fruit produced by the plant.</p>
 <p>For today’s purposes we will examine how fruit mass responses to fertilization, and plant height, and if fertilization modulates the effect of plant height on fruit mass.</p>
 <p>First let’s read load the relevant R packages and the data in and look at the structure of the data</p>
 <pre class="r"><code>#install.packages(&quot;ggplot2&quot;)       # for ggplot
@@ -441,6 +441,7 @@ Modify the <code>ggplot</code> call so that the <code>x</code> and <code>y</code
 <li>Independence of errors such that the direction and magnitude of error is not correlated between samples.</li>
 </ol>
 <p>As you read those assumptions you may be correctly thinking to yourself that those assumptions are almost never met in most situations. We’ll examine in a moment using simulated data how critical violations of some of those assumptions are.</p>
+<p>Check out this nice interactive visualization of OLS regression at <a href="http://setosa.io/ev/ordinary-least-squares-regression/">Explained Visually</a></p>
 </div>
 <div id="model-heirarchy" class="section level3">
 <h3>Model Heirarchy</h3>

@@ -137,7 +137,7 @@ library(knitr)
 opts_knit$set(root.dir='../')
 ```
 
-We will begin exploring how to build and interpret models in R by using a
+We will begin exploring how to build and interpret linear models in R by using a
 data set that a researcher collected 40 plants of common milkweed, *Asclepias
 syriaca*, from old fields in northeastern Maine and grew them in a greenhouse;
 20 received fertilizer and the other 20 were kept as controls. After two months,
@@ -396,6 +396,8 @@ As you read those assumptions you may be correctly thinking to yourself that
 those assumptions are almost never met in most situations. We'll examine in a 
 moment using simulated data how critical violations of some of those assumptions
 are. 
+
+Check out this nice interactive visualization of OLS regression at [Explained Visually](http://setosa.io/ev/ordinary-least-squares-regression/)
 
 ### Model Heirarchy
 
