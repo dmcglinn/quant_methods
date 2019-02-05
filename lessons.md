@@ -18,6 +18,7 @@ Quantitative topics covered in this course include:
         - <a href='http://adv-r.had.co.nz/S3.html'>Object oriented programming, S3 objects</a>
         - <a href='http://adv-r.had.co.nz/Exceptions-Debugging.html'>Debugging your code</a>
 * [Introduction to Version Control and the Terminal](./git_introduction)
+    - [Guide to GitHub's issue system](https://guides.github.com/features/issues/)
 * Univariate Models
     - <a href='./univariate_models.html'>OLS modeling and model selection</a>
 * Multivariate Models
