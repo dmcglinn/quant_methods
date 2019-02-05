@@ -91,6 +91,16 @@ Scientific literature should be cited in the methods and interpretation sections
 of the document. 
 
 ### Links to student projects
+* Spring 2018
+    - Public repos:
+        - [Mapping relgion affiation](https://github.com/katiebalcewicz/quant-methods/tree/master/Project)
+        - [NFL statistics](https://github.com/g-rock/nfl.git)
+        - [Rshiny app for the measurement of biodiversity](https://github.com/caroliver/mobr.git)
+        - [Black Coral habitat suitability model](https://github.com/prouxzs/BlackCoralMesoscaleHabitatSuitabilityModel.git)
+        - [Fitting thermal performance curves](https://github.com/Wellingem/Metabolic_thermal_performance_curves.git)
+        - [Analysis of Avian Conservation Center bird strikes](https://github.com/conradcd/ACC_Bird_Strikes)
+        - [Multiple Paternity Analysis Program](https://github.com/sporrema/Multiple-Paternity-Analysis-Program)
+        - [How much will people pay for eco-friendly flowers](https://github.com/rachelwiser/WiserThesisRCode)
 * Spring 2016
     - Public repos:
         - [Modeling disease outbreaks](https://github.com/TomNash/vaccine-project)
