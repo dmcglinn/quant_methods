@@ -19,7 +19,6 @@ library(rgdal)    # the spatial abstraction library for moving
 library(lattice)  # a plotting package for making lattice graphics
 library(classInt) # used to do binning
 
-
 # First, make some maps. The "maps" package has databases="world","usa","state",
 # or "county". (There are also a few for foreign countries like France and
 # Italy.) In each database, you can plot any region or group of regions.
@@ -232,6 +231,31 @@ head(firenc@data)
 plot(TEMP ~ ap, data=firenc@data) 
 ```
 
+Here is a quick demo of a new R package called `leaflet`
+
+https://rstudio.github.io/leaflet
+
+```{r}
+library(leaflet)
+mapStates = map("state", fill = TRUE, plot = FALSE)
+leaflet(data = mapStates) %>% addTiles() %>%
+  addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
+```
 
 
+```{r}
+m = leaflet() %>% addTiles()
+df = data.frame(
+  lat = rnorm(100),
+  lng = rnorm(100),
+  size = runif(100, 5, 20),
+  color = sample(colors(), 100)
+)
+m = leaflet(df) %>% addTiles()
+m %>% addCircleMarkers(radius = ~size, color = ~color, fill = FALSE)
+m %>% addCircleMarkers(radius = runif(100, 4, 10), color = c('red'))
+```
 
+```{r}
+m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
+```
