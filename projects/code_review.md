@@ -8,7 +8,7 @@ title: Code Review
 ### Purpose
 * Is the purpose of the project is clear?
 
-* Is it clear what each file in the project is intened for?
+* Is it clear what each file in the project is intended for?
 
 * It is clear how the various files interact?
 
