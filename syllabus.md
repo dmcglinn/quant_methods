@@ -4,16 +4,16 @@ output: html_document
 layout: page
 ---
 
-### College of Charleston, Department of Biology, Spring 2019
+### College of Charleston, Department of Biology, Spring 2020
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 9:25 – 10:40 am TR; RITA 271
+* Meeting time: 9:25-10:40 am TR; RITA 271
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: RITA 239
 * Phone: 843-953-0190
-* Office hours: email for an appointment
+* Office hours: 2-2:30 TR or email by an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
@@ -86,22 +86,23 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 08 - Week 01 - Introduction to R 
-* Jan 15 - Week 02 - Introduction to R (con't)
-* Jan 22 - Week 03 - Introduction to Version Control and the Terminal
-* Jan 29 - Week 04 - Regression and Model Selection
-* Feb 05 - Week 05 - Multivariate Models
-* Feb 12 - Week 06 - Spatial Models
-* Feb 19 - Week 07 - GIS manipulations
-* Feb 26 - Week 08 - Project Pitch (oral presentation)
-* Mar 05 - Week 09 - Rshiny
-* Mar 12 - Week 10 - Work on class project
-* Mar 19 - Week 11 - Spring Break (no class)
-* Mar 26 - Week 12 - Work on class project
-* Apr 02 - Week 13 - Work on class project
-* Apr 09 - Week 14 - Peer Code Review and Peer Feedback
-* Apr 16 - Week 15 - Oral presentations
-* Apr 23 - Week 16 - No class (Turn in code and written project components this week)
+* Jan 09 - Week 01 - Introduction to R 
+* Jan 14 - Week 02 - Introduction to Version Control and the Terminal
+* Jan 21 - Week 03 - Regression and Model Selection
+* Jan 28 - Week 04 - Multivariate Models
+* Feb 04 - Week 05 - Spatial Models
+* Feb 11 - Week 06 - GIS manipulations
+* Feb 18 - Week 07 - Simulations and Null models
+* Feb 25 - Week 08 - Project Pitch (oral presentation)
+* Mar 03 - Week 09 - Work on class project
+* Mar 10 - Week 10 - Work on class project
+* Mar 17 - Week 11 - Spring Break (no class)
+* Mar 24 - Week 12 - Work on class project
+* Mar 31 - Week 13 - Work on class project
+* Apr 07 - Week 14 - Peer Code Review and Peer Feedback
+* Apr 14 - Week 15 - Work on class project, 1st half of oral presentations on R
+* Apr 21 - Week 16 - 2nd half of oral presentations on T
+**Code and Written project components due Wednesday Apr 22** 
 
 Course Policies:
 ---------------
