@@ -87,8 +87,8 @@ an interest in learning how to program is required.
 Course Schedule:
 ----------------
 * Jan 09 - Week 01 - Introduction to R 
-* Jan 14 - Week 02 - Introduction to Version Control and the Terminal
-* Jan 21 - Week 03 - Regression and Model Selection
+* Jan 14 - Week 02 - Regression and Model Selection
+* Jan 21 - Week 03 - Introduction to Version Control and the Terminal
 * Jan 28 - Week 04 - Multivariate Models
 * Feb 04 - Week 05 - Spatial Models
 * Feb 11 - Week 06 - GIS manipulations
