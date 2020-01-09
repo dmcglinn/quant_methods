@@ -8,8 +8,38 @@ our first meeting. Now it is time to apply those skills to address some common
 tasks faced when processing data in R. **Indicate what R commands and their
 output are for each question.**
 
-Download and read in the datafile "./quant_methods/data/tgpp.csv" from the class
-website. This dataset represents the vascular plant species richness that was
+Download and read in the datafile `tgpp.csv` from the class
+website using the R function `read.csv`. Use these steps:
+
+* Navigate to the class website: https://github.com/dmcglinn/quant_methods
+* Click the `data` folder
+* Click the `tgpp.csv` file
+* Now click the button in the top right corner of the spreadsheet called `raw`
+
+This will take you to a plain text view of the file. At this point you have to options for getting this file into R:
+
+1) Manual download and import
+
+* Save the file to your local machine to the directory you would like to use for
+this course. 
+* Now you just have to point the function `read.csv` to the file so it knows where
+the file is located. For example if I save the file in the following directory:
+`C:/users/dan/Rclass/data/` then I would use the following R command
+
+```
+tgpp <- read.csv('C:/users/dan/Rclass/data/tgpp.csv')
+```
+
+2) Alternatively I could just supply the function `read.csv` the url of the raw 
+file that I navigated to on github: 
+
+```
+tgpp <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tgpp.csv')
+```
+
+The second option is faster but if the file is ever taken offline then that code will break.
+
+This dataset represents the vascular plant species richness that was
 collected from the Tallgrass Prairie Preserve from 10 x 10 m quadrats. Species
 richness is simply the number of species that occur within a quadrat. 
 
