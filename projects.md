@@ -91,6 +91,13 @@ Scientific literature should be cited in the methods and interpretation sections
 of the document. 
 
 ### Links to student projects
+* Spring 2019
+    - Public repos: 
+        - [Food consumption patterns in the Philippines](https://github.com/jbalipal/PhFoodExpenditures)
+    - Private repos:
+        - [Analysis of Shark Distribution in Bulls Bay, South Carolina](https://github.com/strangebb/shark-dist-bullsbay)
+        
+
 * Spring 2018
     - Public repos:
         - [Mapping relgion affiation](https://github.com/katiebalcewicz/quant-methods/tree/master/Project)
