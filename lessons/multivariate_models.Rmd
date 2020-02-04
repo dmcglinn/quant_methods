@@ -194,11 +194,12 @@ Principle Components Analysis (PCA) is a useful tool for either
 
 Sometimes PCA is also known as Reciprocal Averaging (RA). 
 
-Simplified description of PCA algorithm (from [Zelený 2018](https://www.davidzeleny.net/anadat-r/doku.php/en:pca))
-(a) Use the matrix of samples x species (or, generally, samples x descriptors), and display each sample into the multidimensional space where each dimension is defined by an abundance of one species (or descriptor). In this way, the samples will produce a cloud located in the multidimensional space.
-(b) Calculate the centroid of the cloud.
-(c) Move the centres of axes to this centroid.
-(d) Rotate the axes in such a way that the first axis goes through the cloud in the direction of the highest variance, the second is perpendicular to the first and goes in the direction of the second highest variance, and so on. The position of samples on resulting rotated axes are sample scores on ordination axes.
+Simplified description of PCA algorithm (from [Zelený 2018](https://www.davidzeleny.net/anadat-r/doku.php/en:pca)):
+
+a. Use the matrix of samples x species (or, generally, samples x descriptors), and display each sample into the multidimensional space where each dimension is defined by an abundance of one species (or descriptor). In this way, the samples will produce a cloud located in the multidimensional space.
+b. Calculate the centroid of the cloud.
+c. Move the centres of axes to this centroid.
+d. Rotate the axes in such a way that the first axis goes through the cloud in the direction of the highest variance, the second is perpendicular to the first and goes in the direction of the second highest variance, and so on. The position of samples on resulting rotated axes are sample scores on ordination axes.
 
 <img src="https://www.davidzeleny.net/anadat-r/lib/exe/fetch.php/obrazky:pca_algorithm_2d_legendre-legendre.jpg?cache="/>
 
