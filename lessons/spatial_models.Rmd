@@ -12,6 +12,7 @@ modeling frameworks.
 * The R Book p778-785 on Generalized Least Squares models with spatially
 correlated errors
 * Numerical Ecology in R, p228-238 on detecting spatial dependence.
+* https://beckmw.wordpress.com/2013/01/07/breaking-the-rules-with-spatial-correlation/
 
 ## Outline
 
@@ -29,7 +30,7 @@ exist in a response variable.
 internal dynamics. In ecology this is sometimes referred to as a false gradient
 
 2) induced spatial dependence: the variable is not inherently spatially structured 
-but the driving factors that it responses to are. In ecology this is sometimes
+but the driving factors that it responds to are. In ecology this is sometimes
 referred to as a true gradient
 
 There is no statistical way to distinguish false from true gradients.
@@ -55,7 +56,7 @@ plot(mite.xy)
 sr = apply(mite, 1, function(x) sum(x > 0))
 hist(sr)
 
-plot(mite.xy, cex=sr/max(sr))
+plot(mite.xy, cex = sr/max(sr))
 
 col_brks = hist(sr, plot=F)$breaks
 col_indices = as.numeric(cut(sr, col_brks))
