@@ -3,8 +3,8 @@ title: "Simulations in R"
 output: html_document
 ---
 
-R provides an excellent enviornment for carrying out numerical experiments or
-simulations. These can be very helpful for increasing mathematical competancy, 
+R provides an excellent environment for carrying out numerical experiments or
+simulations. These can be very helpful for increasing mathematical competence, 
 testing hypotheses, assessing statistical power, and generating theoretical 
 expectations. 
 
@@ -19,11 +19,11 @@ chance](http://dmcglinn.github.io/quant_methods/lessons/multivariate_models.html
 test if the spatial correlation was larger than we would expect due to chance](http://dmcglinn.github.io/quant_methods/lessons/spatial_models.html)
 
 In the first example listed above the simulation was designed to inform our 
-understanding of regression and to examine how sensative it was to violations of
-its assumptions. In examples 2 and 3 listed above the role of the simluation was
+understanding of regression and to examine how sensitive it was to violations of
+its assumptions. In examples 2 and 3 listed above the role of the simulation was
 to generate a null model that an observed pattern could be tested against. 
 
-Here I present an example of a simulation of a theorecial model to try to gain
+Here I present an example of a simulation of a theoretical model to try to gain
 an understanding of this model and of a broader concept known as Chaos theory.
 
 I was inspired to code this in R after watching this video by 
@@ -31,16 +31,16 @@ I was inspired to code this in R after watching this video by
 
 # Chaotic logistic population equlibria 
 
-First we are going to define a simple theorecial model of population growth that
-has a negative feedback. In other words as the population grows its rate of 
-increase decreases as it approches a carrying capacity for example. This kind of
-growth model is known as a logistic growth model and it constrats from the 
+First we are going to define a simple theoretical model of population growth that
+has a negative feedback. In other words, as the population grows its rate of 
+increase decreases as it approaches a carrying capacity for example. This kind of
+growth model is known as a logistic growth model and it contrasts from the 
 exponential model of growth in which the population continues to grow to infinity.
 The logistic model can be presented mathematically as:
 
 $$\dfrac{dN}{dt} = rN(1-N)$$
-where *N* is population size, *t* is time, and *r* is the intrinic rate of
-population growth rate on a per captia basis. In this formulation, the 
+where *N* is population size, *t* is time, and *r* is the intrinsic rate of
+population growth rate on a per capita basis. In this formulation, the 
 carrying capacity of the population is implicitly defined as equal to 1. 
 
 Let's code this simple model up in R and then examine its behavior with a simulation
@@ -84,7 +84,7 @@ carrying capacity your population will decrease to it. We also learn that the
 rate of increase or decrease depends on how far from the equilibrium you are at
 the beginning of the time series. 
 
-Ok so all is well in the world of logistic population growth - given enough time
+OK so all is well in the world of logistic population growth - given enough time
 all of the populations eventually hit carrying capacity 
 and do not change from that point. Therefore, if we wanted to predict 
 long-term (i.e., equilibrium) abundance then this model would seem to suggest
@@ -95,14 +95,14 @@ To examine if this is actually true let's examine the other parameter of the mod
 that we can adjust *r* of the rate of population growth. 
 
 Question: do all of the populations go to the same expected population 
-equilibrium (i.e., the carrying capacity or 1 in this spectific case)? 
+equilibrium (i.e., the carrying capacity or 1 in this specific case)? 
 
 To test this we will examine a range of *r*-values from 0.01 to 3, we'll set the
 starting population size to 0.5 but where you actually start N out ends up not
 making a difference for addressing this specific question. The approach laid out
 below we will assume that equilibrium is hit at the end of the first of the time
 series. This is would seem to be a pretty reasonable assumption given what we
-learned above and we'll run the simluation 10 times longer (1000 time steps) to 
+learned above and we'll run the simulation 10 times longer (1000 time steps) to 
 make extra sure that the model should have achieved equilibrium. 
 
 ```{r}
@@ -146,11 +146,11 @@ The important thing to remember about the result above is that:
 was generated only by the negative feedback loop in the model
 2. this is a very simple model so this is not due to an exceptional complex
 internal dynamics of the model
-3. although equilibrium abundance is unpredicatable at higher r values the overall
+3. although equilibrium abundance is unpredictable at higher r values the overall
 pattern of the bifurcation is predicable. It is what folks call a "strange attractor".
 
-As might be imagined this unpredictable behavior of one of the simplist and model
-canonical model of population growth shook ecology to its core. The reverberations
+As might be imagined this unpredictable behavior from one of the simplest and most
+canonical models of population growth shook ecology to its core. The reverberations
 of which are still being felt over 40 years later. 
 
 You can play around with an interactive version of the logistic population 
