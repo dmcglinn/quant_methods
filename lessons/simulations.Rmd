@@ -60,7 +60,7 @@ Nt <- function(r, N, t) {
 }
 ```
 
-Now let's examine what happens in this model if run it through time for 
+Now let's examine what happens in this model if we run it through time for 
 different starting abundance values.
 
 ```{r}

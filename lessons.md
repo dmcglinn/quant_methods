@@ -28,3 +28,4 @@ Quantitative topics covered in this course include:
 * GIS manipulations
     - <a href='./shapefiles_and_rasters.html'>Shapefiles and rasters</a>
 * Simulations and Null models
+    - <a href='./simulations.html'>Simulations in R</a>
