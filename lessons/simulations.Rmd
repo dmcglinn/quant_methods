@@ -152,3 +152,13 @@ pattern of the bifurcation is predicable. It is what folks call a "strange attra
 As might be imagined this unpredictable behavior of one of the simplist and model
 canonical model of population growth shook ecology to its core. The reverberations
 of which are still being felt over 40 years later. 
+
+You can play around with an interactive version of the logistic population 
+growth model that we examined above on this [Shiny app](https://danmcglinn.shinyapps.io/chaotic-pop/) 
+([Source code](https://github.com/dmcglinn/quant_methods/blob/gh-pages/lessons/chaotic-pop/app.R)): 
+
+
+
+This simple example demonstrates some of R's power to explore parameter space of 
+models and to find novel insights that would require a lot more pure 
+mathematical expertise if just using pen and paper.
