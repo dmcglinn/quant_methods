@@ -25,6 +25,9 @@ content <http://www.dataschool.io/>
 * Jack Weiss's courses on statistics for ecologists and environmental scientists
     - <http://www.unc.edu/courses/2010fall/ecol/563/001/>
     - <http://www.unc.edu/courses/2010spring/ecol/562/001/>
+* Topics in R Statistical Language (Penn State Open Edu)
+    - [Statistics in R - Part 1](https://online.stat.psu.edu/stat484/)
+    - [Statistics in R - Part 2](https://online.stat.psu.edu/stat485/)
 * Jason Fridley's R based plant ecology course
     - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
 * Patrick Breheny courses on statistics for biologists
@@ -34,6 +37,7 @@ content <http://www.dataschool.io/>
 * Mixed Effects Models and Extensions in Ecology with R by Zurr et al. (free for cofc students)
     - <http://link.springer.com.nuncio.cofc.edu/book/10.1007%2F978-0-387-87458-6#?>
 * Anova
+    - <https://online.stat.psu.edu/stat485/lesson/welcome-stat-485>
     - Type I/II/III:
         - <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
     - Contrasts: 
