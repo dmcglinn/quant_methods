@@ -10,6 +10,7 @@ A list of data sources and software for data acquisition
     - [R package](https://github.com/ropensci/ecoretriever)
 * [rOpenSci](https://ropensci.org/)
     - [GitHub](https://github.com/ropensci/)
+        -[FedData](https://github.com/ropensci/FedData)
 
 ### Data aggregations
 * [Ecological Data Wiki](http://ecologicaldata.org/)
