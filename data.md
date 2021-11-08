@@ -54,6 +54,10 @@ A list of data sources and software for data acquisition
 * [North American Tree range maps](http://esp.cr.usgs.gov/data/little/)
 * [Global Forest Watch](http://www.globalforestwatch.org/map/)
 
+#### Fish
+* [Global Fishing Pressue](https://globalfishingwatch.org/datasets-and-code/)
+* [Southeast Area Monitoring and Assessment Program](http://www.seamap.org/)
+
 #### Human health
 * [Influenza Research Database](http://www.fludb.org/)
 * [Vaccine-Preventable Outbreaks](http://www.cfr.org/interactives/GH_Vaccine_Map/#map)
