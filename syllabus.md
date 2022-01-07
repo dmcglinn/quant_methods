@@ -1,6 +1,8 @@
 ---
-title: "Applied Quantitative Methods"
-output: html_document
+title: "Statistical Programming in R"
+output:
+  html_document: default
+  pdf_document: default
 layout: page
 ---
 
@@ -8,12 +10,12 @@ layout: page
 
 Course and Instructor info:
 ---------------------------
-* Meeting time: 9:25-10:40 am TR; RITA 271
+* Meeting time: 8-9:15 am TR; in RITA 271
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: RITA 239
 * Phone: 843-953-0190
-* Office hours: 2-2:30 TR or email by an appointment
+* Office hours: 11-12 pm T or email by an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
 Course Description:
@@ -72,7 +74,6 @@ Student Evaluation:
     - 25% oral presentation
     - 25% project code
 
-
 **_Project_** - The project in this course may span a wide range of potential
 topics and for all students will include an evaluation of contributed code and 
 oral presentation. Graduate students will also contribute a scientific paper
@@ -86,23 +87,24 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-* Jan 09 - Week 01 - Introduction to R 
-* Jan 14 - Week 02 - Regression and Model Selection
-* Jan 21 - Week 03 - Introduction to Version Control and the Terminal
-* Jan 28 - Week 04 - Multivariate Models
-* Feb 04 - Week 05 - Spatial Models
-* Feb 11 - Week 06 - GIS manipulations
-* Feb 18 - Week 07 - Simulations and Null models
-* Feb 25 - Week 08 - Project Pitch (oral presentation)
-* Mar 03 - Week 09 - Work on class project
-* Mar 10 - Week 10 - Work on class project
-* Mar 17 - Week 11 - Spring Break (no class)
-* Mar 24 - Week 12 - Work on class project
-* Mar 31 - Week 13 - Work on class project
-* Apr 07 - Week 14 - Peer Code Review and Peer Feedback
-* Apr 14 - Week 15 - Work on class project, 1st half of oral presentations on R
-* Apr 21 - Week 16 - 2nd half of oral presentations on T
-**Code and Written project components due Wednesday Apr 22** 
+| Week | Date   | Lecture Topic                                  |
+|------|--------|------------------------------------------------|
+| 1    | Jan 11 | Introduction to R                              |
+| 2    | Jan 18 | Introduction to Version Control & the Terminal |
+| 3    | Jan 25 | Regression and Simple Models                   |
+| 4    | Feb 01 | Project Feedback in class                      |
+| 5    | Feb 08 | Multivariate Models                            |
+| 6    | Feb 15 | Project Feedback in class                      |
+| 7    | Feb 22 | Spatial Models                                 |
+| 8    | Mar 01 | Project Pitches                                |
+| 9    | Mar 08 | Spring Break                                   |
+| 10   | Mar 15 | GIS manipulations                              |
+| 11   | Mar 22 | Project Feedback in class                      |
+| 12   | Mar 29 | Project Feedback in class                      |
+| 13   | Apr 05 | Peer Code Review and Peer Feedback             |
+| 14   | Apr 12 | Project Feedback in class                      |
+| 15   | Apr 19 | Project Presentations; Course Evaluations      |
+**Code and Written project components due Friday of Week 14** 
 
 Course Policies:
 ---------------
@@ -143,26 +145,21 @@ Final grades will be assigned based on the following scale:
 
 **Undergraduate Students**
 
-| Letter | Grade                                      | Quality Points |
-|--------|--------------------------------------------|----------------|
-| A      | Superior                                   | 4.000          |
-| A-     |                                            | 3.700          |
-| B+     | Very Good                                  | 3.300          |
-| B      | Good                                       | 3.000          |
-| B-     |                                            | 2.700          |
-| C+     | Fair                                       | 2.300          |
-| C      | Acceptable                                 | 2.000          |
-| C-     |                                            | 1.700          |
-| D+     |                                            | 1.300          |
-| D      | Barely Acceptable, Passing                 | 1.000          |
-| D-     |                                            | 0.700          |
-| F      | Failure                                    | 0.000          |
-| WA     | Failure Due to Excessive Absences*         | 0.000          |
-| XXF    | Failure Due to Academic Dishonesty         | 0.000          |
-| RA-RF  | Repeat; include GPA/exclude hours**        |                |
-| XA-XF  | Repeat; exclude GPA and hours**            |                |
-| GA-GC  | 3 Year Option; include hours/exclude GPA** |                |
-| A^-F^  | Used for EDLS ONLY                         | 0.000          |
+| Letter | Grade                              | % Points   | Quality Points |
+|--------|------------------------------------|------------|----------------|
+| A      | Superior                           | 93 - 100   | 4              |
+| A\-    |                                    | 90 -  93   | 3.7            |
+| B\+    | Very Good                          | 87 -  90   | 3.3            |
+| B      | Good                               | 83 -  87   | 3              |
+| B\-    |                                    | 80 -  83   | 2.7            |
+| C\+    | Fair                               | 77 -  80   | 2.3            |
+| C      | Acceptable                         | 73 -  77   | 2              |
+| C\-    |                                    | 70 -  73   | 1.7            |
+| D\+    |                                    | 67 -  70   | 1.3            |
+| D      | "Barely Acceptable, Passing"       | 63 -  67   | 1              |
+| D\-    |                                    | 60 -  63   | 0.7            |
+| F      | Failure                            |  0 -  60   | 0              |
+| XXF    | Failure Due to Academic Dishonesty |            | 0              |
 
 **Graduate Students**
 
