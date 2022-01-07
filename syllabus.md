@@ -87,23 +87,88 @@ an interest in learning how to program is required.
 
 Course Schedule:
 ----------------
-| Week | Date   | Lecture Topic                                  |
-|------|--------|------------------------------------------------|
-| 1    | Jan 11 | Introduction to R                              |
-| 2    | Jan 18 | Introduction to Version Control & the Terminal |
-| 3    | Jan 25 | Regression and Simple Models                   |
-| 4    | Feb 01 | Project Feedback in class                      |
-| 5    | Feb 08 | Multivariate Models                            |
-| 6    | Feb 15 | Project Feedback in class                      |
-| 7    | Feb 22 | Spatial Models                                 |
-| 8    | Mar 01 | Project Pitches                                |
-| 9    | Mar 08 | Spring Break                                   |
-| 10   | Mar 15 | GIS manipulations                              |
-| 11   | Mar 22 | Project Feedback in class                      |
-| 12   | Mar 29 | Project Feedback in class                      |
-| 13   | Apr 05 | Peer Code Review and Peer Feedback             |
-| 14   | Apr 12 | Project Feedback in class                      |
-| 15   | Apr 19 | Project Presentations; Course Evaluations      |
+<table>
+    <tr>
+        <td>Week</td>
+        <td>Date</td>
+        <td>Lecture Topic</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Jan 11</td>
+        <td>Introduction to R</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Jan 18</td>
+        <td>Introduction to Version Control & the Terminal</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Jan 25</td>
+        <td>Regression and Simple Models</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Feb 01</td>
+        <td>Project Feedback in class</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Feb 08</td>
+        <td>Multivariate Models</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Feb 15</td>
+        <td>Project Feedback in class</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Feb 22</td>
+        <td>Spatial Models</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Mar 01</td>
+        <td>Project Pitches</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Mar 08</td>
+        <td>Spring Break</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td>Mar 15</td>
+        <td>GIS manipulations</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td>Mar 22</td>
+        <td>Project Feedback in class</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td>Mar 29</td>
+        <td>Project Feedback in class</td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td>Apr 05</td>
+        <td>Peer Code Review and Peer Feedback</td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td>Apr 12</td>
+        <td>Project Feedback in class</td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td>Apr 19</td>
+        <td>Project Presentations; Course Evaluations</td>
+    </tr>
+</table>
 **Code and Written project components due Friday of Week 14** 
 
 Course Policies:
