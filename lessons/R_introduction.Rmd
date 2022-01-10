@@ -147,16 +147,17 @@ First check what your working directory is:
 ```{r}
 getwd()
 ```
-On my system this returns "/home/danmcglinn/Dropbox/teaching/quant_methods"
-because I have setup an Rstudio Project in the quant_methods folder I can make
-my path's relative to this location.
 
-Let's read in the datafile "inflammation-01.csv" which is located online here:
-<http://dmcglinn.github.io/quant_methods/data/inflammation-01.csv>
-You can chose to download this file to your working directory. So for example,
-on my machine I download the file to the directory: "/home/danmcglinn/Dropbox/teaching/quant_methods/data".  Because my working
-directory is already set to: "/home/danmcglinn/Dropbox/teaching/quant_methods/" 
-I can shorten the path to "./data/inflammation-01.csv"
+because I have setup a Project in the quant_methods folder I can make my
+path relative to this location.
+
+let's read in the datafile `inflammation-01.csv` which is located in the
+directory: `./quant_methods/data)` where the `.` indicates the directory
+location in which the directory `quant_methods` is stored in. The usage of 
+the `.` is a shorthand way to create relative paths. 
+Because my working directory is already set to: ``r normalizePath('.')``
+I can shorten the path to `./data/inflammation-01.csv` where again `.` 
+indicates my current working directory path. 
 
 ```{r read in data}
 dat <- read.csv(file = "./data/inflammation-01.csv", header = FALSE)
@@ -229,14 +230,14 @@ max(patient_1)
 max(dat[2, ])
 
 # minimum inflammation on day 7
-min(dat[, 7])
+min(dat[ , 7])
 
 # mean inflammation on day 7
-mean(dat[, 7])
+mean(dat[ , 7])
 # median inflammation on day 7
-median(dat[, 7])
+median(dat[ , 7])
 # standard deviation of inflammation on day 7
-sd(dat[, 7])
+sd(dat[ , 7])
 
 summary(dat[ , 7])
 ```
