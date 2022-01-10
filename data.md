@@ -40,6 +40,10 @@ A list of data sources and software for data acquisition
     - [R package](https://github.com/ropensci/rgbif)
     - Note: Dan has cleaner scripts for this resource
 
+#### Arthropods
+* [Caterpillars Count](https://caterpillarscount.unc.edu/dataDownload/)
+    - [Data Exploration](https://caterpillarscount.unc.edu/pdfs/Data%20Exploration.pdf)
+
 #### Birds
 * [Breeding Bird Survey](http://www.mbr-pwrc.usgs.gov/bbs/)
 * [eBird](http://ebird.org/)
