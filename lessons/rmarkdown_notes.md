@@ -5,10 +5,19 @@ date: "1/14/2016"
 output: html_document
 ---
 
-R markdown is a convenient and professional way to communicate about R code and
-your statistical results in a single document. An R markdown file is just a
-plain text file but it has the file extension .Rmd. R markdown files represent
-the combination of a markdown file (.md file) and an Rscript (.R file).
+The primary way to document R code is using and R script which is just a plain 
+text file with the file extension .R rather than .txt. Any line in an R script 
+that begins with the comment operator # is ignored and all other lines are 
+interpreted as code. 
+
+In the last decade, R markdown was developed in which the R code may be compiled
+with the results into a document often referred to as a dynamic report because
+the report will change each time the input data or code is updated.
+
+Just like an R script, an R markdown file is just a plain text file but it has
+the file extension .Rmd (rather than .R). R markdown files represent the
+combination of a markdown file (.md file) and an Rscript (.R file).
+
 [Markdown](http://daringfireball.net/projects/markdown/basics) is a simple set
 of tags that allow for formatting of text it was designed to be very simple and
 intuitive. There are lots of resources online about how to use markdown tags to
@@ -48,13 +57,13 @@ Specifically: _*PDF output requires TeX (MiKTeX on Windows, MacText 2013+ on OS 
 If you attempt to compile a pdf without installing these additional dependencies
 you will receive fairly informative errors that provide download links and 
 specific instructions for how to get the correct dependency. You can avoid
-installing these additional dependancies for the time being by simply requesting
-to build an html document rather than a pdf. See the section bewlow on Troubleshooting
+installing these additional dependencies for the time being by simply requesting
+to build an html document rather than a pdf. See the section below on Troubleshooting
 if you have trouble building to a pdf. 
 
 ## How to knit an R markdown document
 
-When you create an R markdown file in R studio it is prepopulated with a file that
+When you create an R markdown file in R studio it is pre-populated with a file that
 looks like this. 
 
 ![](./figures/Rmd_prepopulated.png)
@@ -129,15 +138,17 @@ console.
 
 ## Setting R markdown's root directory
 
-An additional useful global option that I sometimes like to set is the root directory of the script.
+An additional useful global option that I sometimes like to set is the root
+directory of the script.
 
     ```{r setup, echo=FALSE}
     # setup the R enviornment for kniting markdown doc properly
     knitr::opts_knit$set(root.dir='../')
     ```
 
-By default if this option is not set when you knit the file it will expect all file pathes to be relative
-to where the R markdown file is saved. I often use a file structure which looks like the following:
+By default if this option is not set when you knit the file it will expect all
+file paths to be relative to where the R markdown file is saved. I often use a
+file structure which looks like the following:
 
 ```
 my_project_dir
@@ -149,9 +160,27 @@ my_project_dir
     results
 ``` 
 
-If I'm working with `my_code.Rmd` and I want it to import `my_data.csv` and I use `my_data <- read.csv('./data/my_data.csv')`
-I will get an error message when I knit `my_code.Rmd` because it will assume that `./data/my_data.csv` is located in 
-`my_project_dir/scripts/` because that is where `my_code.Rmd` is saved at. To fix this I can simply run 
+If I'm working with `my_code.Rmd` and I want it to import `my_data.csv` and I
+use `my_data <- read.csv('./data/my_data.csv')` I will get an error message when
+I knit `my_code.Rmd` because it will assume that `./data/my_data.csv` is located
+in `my_project_dir/scripts/` because that is where `my_code.Rmd` is saved at. To
+fix this I can simply run
+
+## Update - Rscript -> Report
+**R markdown is great but it can be cumbersome and it sometimes has difficulties 
+with directories and file paths that can be frustrating.** 
+
+A recent feature that very few people are aware of  is that you can actually
+**just compile any R script (.R) into an html or pdf document without any
+additional notation or changes to the code**:
+
+https://rmarkdown.rstudio.com/articles_report_from_r_script.html
+
+However as the above link shows adding just a few easy to remember tags allows
+you to generate a beautiful dynamic report and keep the streamlined benefits of
+a traditional R script. Specifically, the file header and plain text are
+demarcated with a preceding #'. R markdown code chunk options are preceded by #+
+. It's that simple! **This is the method I recommend students use in this course**
 
 ## Troubleshooting: Rendering a pdf using Rmarkdown
 
