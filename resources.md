@@ -62,6 +62,9 @@ content <http://www.dataschool.io/>
 
 ## R Programming
 
+* Big Book of R: a collection of bookmarked R lessons and demos
+    -<https://www.bigbookofr.com/index.html> 
+
 ### Basics
 * Free manuals and tutorials provided by R users
     - <http://cran.r-project.org/other-docs.html>
