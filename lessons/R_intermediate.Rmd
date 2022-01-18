@@ -17,8 +17,9 @@ how to control program flow and use functions
     - <a href="#else">Else statements</a>
     - <a href="#nest">Nested operations</a>
     - <a href="#elseif">Else if statements</a>
-* <a href="#fun">Functions</a>
-* <a href="#debug">Debug</a>
+* <a href="#fun">Define Functions</a>
+* <a href="#debug">Debug Functions</a>
+* <a href="#doc">Document Functions</a>
 
 ```{r setup, echo=FALSE}
 # specify that the root directory should be the parent directory of where this
@@ -260,7 +261,7 @@ for (i in x) {
 }
 ```
 
-## <a href="#fun" name="fun">#</a>Functions
+## <a href="#fun" name="fun">#</a>Define functions
 Functions are one of the most important objects for unlocking R's power. The 
 provide a way to modularize repetitive tasks that we need for our analyses. 
 For example we can take the for loop that we wrote above which works on 
@@ -345,4 +346,43 @@ debug(eval_class)
 eval_class(dat)
 undebug(eval_class)
 ```
+
+
+## <a href="#doc" name="doc">#</a>Document functions
+Documentation is critical particularly when it comes to using functions which 
+usually have a least one argument and somekind of output. 
+
+One best practice to follow when documenting functions is to use Roxygen which is
+a package that helps to build R help files (i.e., .Rd files) which are accessed
+when the function `help` or `?` is used preceeding a function name. Here is a 
+page that goes into detail about how to do this: https://jozef.io/r102-addin-roxytags/, but
+for simplity here is an example with our function: 
+
+```{r document}
+#' Evaluate the class of each column in a matrix or data.frame
+#'
+#' @param x a matrix or data.frame
+#'
+#' @return a vector of strings that idicates the class of each column of `x` 
+#' @export
+#'
+#' @examples
+#' eval_class(cars)
+eval_class <- function(x) {
+    if (class(x) %in% c('data.frame', 'matrix')){
+        x_classes <- NULL
+        for (i in 1:ncol(x)) {
+            x_classes[i] <- class(x[ , i])
+        }
+    }    
+    else {
+        stop('x must be either a data.frame or matrix')
+    }
+    return(x_classes)
+}
+```
+
+This provides a nice format that is easily understandable by a human, and if 
+you ever decide to package your function this can can now be used to generate
+a help file for your function. Learn more at https://roxygen2.r-lib.org/articles/roxygen2.html 
 
