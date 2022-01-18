@@ -22,23 +22,23 @@ Examine the following for loop, and then complete the exercises
 data(iris)
 head(iris)
 
-sp_ids = unique(iris$Species)
+sp_ids <- unique(iris$Species)
 
-output = matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
-rownames(output) = sp_ids
-colnames(output) = names(iris[ , -ncol(iris)])
+output <- matrix(0, nrow=length(sp_ids), ncol=ncol(iris)-1)
+rownames(output) <- sp_ids
+colnames(output) <- names(iris[ , -ncol(iris)])
 
 for(i in seq_along(sp_ids)) {
-    iris_sp = subset(iris, subset=Species == sp_ids[i], select=-Species)
+    iris_sp <- subset(iris, subset=Species == sp_ids[i], select=-Species)
     for(j in 1:(ncol(iris_sp))) {
-        x = 0
-        y = 0
+        x <- 0
+        y <- 0
         if (nrow(iris_sp) > 0) {
             for(k in 1:nrow(iris_sp)) {
-                x = x + iris_sp[k, j]
-                y = y + 1
+                x <- x + iris_sp[k, j]
+                y <- y + 1
             }
-            output[i, j] = x / y 
+            output[i, j] <- x / y 
         }
     }
 }
