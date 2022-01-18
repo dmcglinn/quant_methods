@@ -59,22 +59,42 @@ Loop from 1 to length of species identities
 ```
 
 3. The variables in the loop were named so as to be vague. How can the objects
-`output`, `x`, and `y` could be renamed such that it is clearer what is occurring
-in the loop.
+`output`, `x`, and `y` be renamed such that it is clearer what is occurring in
+the loop.
 
-4. It is possible to accomplish the same task using fewer lines of code? Please suggest one other way to calculate `output` that decreases the number of loops
-by 1. 
+4. It is possible to accomplish the same task using fewer lines of code? Please
+suggest one other way to calculate `output` that decreases the number of loops
+by 1.
 
 ###Sum of a sequence
 
-5. You have a vector `x` with the numbers 1:10. Write a
-for loop that will produce a vector `y` that contains the sum of `x` up to that
-index of `x`. So for example the elements of `x` are 1, 2, 3, and so on and the 
-elements of `y` would be 1, 3, 6, and so on. 
+5. You have a vector `x` with the numbers 1:10. Write a for loop that will
+produce a vector `y` that contains the sum of `x` up to that index of `x`. So
+for example the elements of `x` are 1, 2, 3, and so on and the elements of `y`
+would be 1, 3, 6, and so on.
 
 6. Modify your for loop so that if the sum is greater than 10 the value of `y`
 is set to NA
 
 7. Place your for loop into a function that accepts as its argument any vector
 of arbitrary length and it will return `y`. 
+
+###(Optional)Fibonacci numbers and Golden ratio
+
+8. Fibonacci numbers are a sequence in which a given number is the sum of the 
+precedding two numbers. So starting at 0 and 1 the sequence would be
+
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, ...
+
+Write and apply a simple R function that can accomplish this task with a for loop. 
+Then write a function that computes the ratio of each sequential pair of 
+Fibonacci numbers. Do they asympoticly approch the golden ratio (1 + sqrt(5)) / 2) ? 
+
+
+
+
+
+
+
+
 
