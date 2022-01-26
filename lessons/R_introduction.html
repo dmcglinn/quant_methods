@@ -387,9 +387,24 @@ class(dat)</code></pre>
 <pre class="r"><code># what are the dimensions of dat
 dim(dat)</code></pre>
 <pre><code>## [1] 60 40</code></pre>
+<p>You may notice that the data did not have column names and R auto assigned the columns the names V1, V2, V3, and so on. In this dataset, each column represent different times. We can assign column names using the function <code>names</code></p>
+<pre class="r"><code>names(dat)</code></pre>
+<pre><code>##  [1] &quot;V1&quot;  &quot;V2&quot;  &quot;V3&quot;  &quot;V4&quot;  &quot;V5&quot;  &quot;V6&quot;  &quot;V7&quot;  &quot;V8&quot;  &quot;V9&quot;  &quot;V10&quot; &quot;V11&quot; &quot;V12&quot;
+## [13] &quot;V13&quot; &quot;V14&quot; &quot;V15&quot; &quot;V16&quot; &quot;V17&quot; &quot;V18&quot; &quot;V19&quot; &quot;V20&quot; &quot;V21&quot; &quot;V22&quot; &quot;V23&quot; &quot;V24&quot;
+## [25] &quot;V25&quot; &quot;V26&quot; &quot;V27&quot; &quot;V28&quot; &quot;V29&quot; &quot;V30&quot; &quot;V31&quot; &quot;V32&quot; &quot;V33&quot; &quot;V34&quot; &quot;V35&quot; &quot;V36&quot;
+## [37] &quot;V37&quot; &quot;V38&quot; &quot;V39&quot; &quot;V40&quot;</code></pre>
+<pre class="r"><code>names(dat) &lt;- paste(&quot;day&quot;, 1:ncol(dat), sep='')
+names(dat)</code></pre>
+<pre><code>##  [1] &quot;day1&quot;  &quot;day2&quot;  &quot;day3&quot;  &quot;day4&quot;  &quot;day5&quot;  &quot;day6&quot;  &quot;day7&quot;  &quot;day8&quot;  &quot;day9&quot; 
+## [10] &quot;day10&quot; &quot;day11&quot; &quot;day12&quot; &quot;day13&quot; &quot;day14&quot; &quot;day15&quot; &quot;day16&quot; &quot;day17&quot; &quot;day18&quot;
+## [19] &quot;day19&quot; &quot;day20&quot; &quot;day21&quot; &quot;day22&quot; &quot;day23&quot; &quot;day24&quot; &quot;day25&quot; &quot;day26&quot; &quot;day27&quot;
+## [28] &quot;day28&quot; &quot;day29&quot; &quot;day30&quot; &quot;day31&quot; &quot;day32&quot; &quot;day33&quot; &quot;day34&quot; &quot;day35&quot; &quot;day36&quot;
+## [37] &quot;day37&quot; &quot;day38&quot; &quot;day39&quot; &quot;day40&quot;</code></pre>
+<p>Above the function <code>paste</code> was used to construct text strings that combined the word &quot;patient&quot; with a given index in this case from 1 to the total number of columns in the object <code>dat</code>. By default the function <code>paste</code> inserts a space between strings that you wish to paste together, I've set the <code>sep</code> argument to <code>''</code> to ensure that no space is inserted (see also <code>?paste0</code>)</p>
 </div>
 <div id="subsetting-the-data" class="section level2">
 <h2><a href="#subset" name="subset">#</a>Subsetting the data</h2>
+<p>There are a variety of ways to subset data in data.frames. This section demonstrates how to subset data using indices.</p>
 <pre class="r"><code># first value in dat
 dat[1, 1]</code></pre>
 <pre><code>## [1] 0</code></pre>
@@ -398,24 +413,26 @@ dat[30, 20]</code></pre>
 <pre><code>## [1] 16</code></pre>
 <pre class="r"><code># chunk of data in dat
 dat[1:4, 1:10]</code></pre>
-<pre><code>##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10
-## 1  0  0  1  3  1  2  4  7  8   3
-## 2  0  1  2  1  2  1  3  2  2   6
-## 3  0  1  1  3  3  2  6  2  5   9
-## 4  0  0  2  0  4  2  2  1  6   7</code></pre>
+<pre><code>##   day1 day2 day3 day4 day5 day6 day7 day8 day9 day10
+## 1    0    0    1    3    1    2    4    7    8     3
+## 2    0    1    2    1    2    1    3    2    2     6
+## 3    0    1    1    3    3    2    6    2    5     9
+## 4    0    0    2    0    4    2    2    1    6     7</code></pre>
 <pre class="r"><code># select specific rows and columns
 dat[c(3, 8, 37, 56), c(10, 14, 29)]</code></pre>
-<pre><code>##    V10 V14 V29
-## 3    9   5   4
-## 8    3   5   6
-## 37   6   9  10
-## 56   7  11   9</code></pre>
+<pre><code>##    day10 day14 day29
+## 3      9     5     4
+## 8      3     5     6
+## 37     6     9    10
+## 56     7    11     9</code></pre>
 <pre class="r"><code># all columns from row 5
 dat[5, ]</code></pre>
-<pre><code>##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21
-## 5  0  1  1  3  3  1  3  5  2   4   4   7   6   5   3  10   8  10   6  17   9
-##   V22 V23 V24 V25 V26 V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38 V39 V40
-## 5  14   9   7  13   9  12   6   7   7   9   6   3   2   2   4   2   0   1   1</code></pre>
+<pre><code>##   day1 day2 day3 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14
+## 5    0    1    1    3    3    1    3    5    2     4     4     7     6     5
+##   day15 day16 day17 day18 day19 day20 day21 day22 day23 day24 day25 day26 day27
+## 5     3    10     8    10     6    17     9    14     9     7    13     9    12
+##   day28 day29 day30 day31 day32 day33 day34 day35 day36 day37 day38 day39 day40
+## 5     6     7     7     9     6     3     2     2     4     2     0     1     1</code></pre>
 <pre class="r"><code># all rows from column 16
 dat[ , 16]</code></pre>
 <pre><code>##  [1]  4  4 15  8 10 15 13  9 11  6  3  8 12  3  5 10 11  4 11 13 15  5 14 13  4
@@ -425,6 +442,89 @@ dat[ , 16]</code></pre>
 <pre><code>##  [1]  4  4 15  8 10 15 13  9 11  6  3  8 12  3  5 10 11  4 11 13 15  5 14 13  4
 ## [26]  9 13  6  7  6 14  3 15  4 15 11  7 10 15  6  5  6 15 11 15  6 11 15 14  4
 ## [51] 10 15 11  6 13  8  4 13 12  9</code></pre>
+<pre class="r"><code>#first 5 rows and all columns except 16
+dat[1:5, -16]</code></pre>
+<pre><code>##   day1 day2 day3 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14
+## 1    0    0    1    3    1    2    4    7    8     3     3     3    10     5
+## 2    0    1    2    1    2    1    3    2    2     6    10    11     5     9
+## 3    0    1    1    3    3    2    6    2    5     9     5     7     4     5
+## 4    0    0    2    0    4    2    2    1    6     7    10     7     9    13
+## 5    0    1    1    3    3    1    3    5    2     4     4     7     6     5
+##   day15 day17 day18 day19 day20 day21 day22 day23 day24 day25 day26 day27 day28
+## 1     7     7     7    12    18     6    13    11    11     7     7     4     6
+## 2     4     7    16     8     6    18     4    12     5    12     7    11     5
+## 3     4     5    11     9    10    19    14    12    17     7    12    11     7
+## 4     8    15    10    10     7    17     4     4     7     6    15     6     4
+## 5     3     8    10     6    17     9    14     9     7    13     9    12     6
+##   day29 day30 day31 day32 day33 day34 day35 day36 day37 day38 day39 day40
+## 1     8     8     4     4     5     7     3     4     2     3     0     0
+## 2    11     3     3     5     4     4     5     5     1     1     0     1
+## 3     4     2    10     5     4     2     2     3     2     2     1     1
+## 4     9    11     3     5     6     3     3     4     2     3     2     1
+## 5     7     7     9     6     3     2     2     4     2     0     1     1</code></pre>
+<p>An alternative way to carry out subsetting is to reference specific column names or to use the <code>subset</code> function</p>
+<pre class="r"><code># here to avoid printing too much information to the screen I'll just focus on
+# on the first 5 rows of each subset
+dat$patient10[1:5]</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="r"><code>dat[1:5 , 'day10']</code></pre>
+<pre><code>## [1] 3 6 9 7 4</code></pre>
+<pre class="r"><code>dat[1:5 , c('day10', 'day15')]</code></pre>
+<pre><code>##   day10 day15
+## 1     3     7
+## 2     6     4
+## 3     9     4
+## 4     7     8
+## 5     4     3</code></pre>
+<pre class="r"><code># notice that the following would give and error
+#dat[ , -c('patient3')]
+# but that the following would accompish the intended goal of dropping patient 3
+dat[1:5 , -3]</code></pre>
+<pre><code>##   day1 day2 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14 day15
+## 1    0    0    3    1    2    4    7    8     3     3     3    10     5     7
+## 2    0    1    1    2    1    3    2    2     6    10    11     5     9     4
+## 3    0    1    3    3    2    6    2    5     9     5     7     4     5     4
+## 4    0    0    0    4    2    2    1    6     7    10     7     9    13     8
+## 5    0    1    3    3    1    3    5    2     4     4     7     6     5     3
+##   day16 day17 day18 day19 day20 day21 day22 day23 day24 day25 day26 day27 day28
+## 1     4     7     7    12    18     6    13    11    11     7     7     4     6
+## 2     4     7    16     8     6    18     4    12     5    12     7    11     5
+## 3    15     5    11     9    10    19    14    12    17     7    12    11     7
+## 4     8    15    10    10     7    17     4     4     7     6    15     6     4
+## 5    10     8    10     6    17     9    14     9     7    13     9    12     6
+##   day29 day30 day31 day32 day33 day34 day35 day36 day37 day38 day39 day40
+## 1     8     8     4     4     5     7     3     4     2     3     0     0
+## 2    11     3     3     5     4     4     5     5     1     1     0     1
+## 3     4     2    10     5     4     2     2     3     2     2     1     1
+## 4     9    11     3     5     6     3     3     4     2     3     2     1
+## 5     7     7     9     6     3     2     2     4     2     0     1     1</code></pre>
+<pre class="r"><code>#let's try using the subset function
+# only data for day 3
+subset(dat, select = day3)[1:5, ]</code></pre>
+<pre><code>## [1] 1 2 1 2 1</code></pre>
+<pre class="r"><code># data on all days but 3
+subset(dat, select = -day3)[1:5, ]</code></pre>
+<pre><code>##   day1 day2 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14 day15
+## 1    0    0    3    1    2    4    7    8     3     3     3    10     5     7
+## 2    0    1    1    2    1    3    2    2     6    10    11     5     9     4
+## 3    0    1    3    3    2    6    2    5     9     5     7     4     5     4
+## 4    0    0    0    4    2    2    1    6     7    10     7     9    13     8
+## 5    0    1    3    3    1    3    5    2     4     4     7     6     5     3
+##   day16 day17 day18 day19 day20 day21 day22 day23 day24 day25 day26 day27 day28
+## 1     4     7     7    12    18     6    13    11    11     7     7     4     6
+## 2     4     7    16     8     6    18     4    12     5    12     7    11     5
+## 3    15     5    11     9    10    19    14    12    17     7    12    11     7
+## 4     8    15    10    10     7    17     4     4     7     6    15     6     4
+## 5    10     8    10     6    17     9    14     9     7    13     9    12     6
+##   day29 day30 day31 day32 day33 day34 day35 day36 day37 day38 day39 day40
+## 1     8     8     4     4     5     7     3     4     2     3     0     0
+## 2    11     3     3     5     4     4     5     5     1     1     0     1
+## 3     4     2    10     5     4     2     2     3     2     2     1     1
+## 4     9    11     3     5     6     3     3     4     2     3     2     1
+## 5     7     7     9     6     3     2     2     4     2     0     1     1</code></pre>
+<pre class="r"><code># data only on day 3 when inflammation in day 1 is equal to 0
+subset(dat, subset = day1 == 0, select = day3)[1:5, ]</code></pre>
+<pre><code>## [1] 1 2 1 2 1</code></pre>
 </div>
 <div id="summary-statistics" class="section level2">
 <h2><a href="#summary" name="summary">#</a>Summary statistics</h2>

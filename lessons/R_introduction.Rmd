@@ -198,8 +198,26 @@ class(dat)
 dim(dat)
 ```
 
+You may notice that the data did not have column names and R auto assigned the
+columns the names V1, V2, V3, and so on. In this dataset, each column represent
+different times. We can assign column names using the function `names`
+```{r setting column names}
+names(dat)
+names(dat) <- paste("day", 1:ncol(dat), sep='')
+names(dat)
+```
+
+Above the function `paste` was used to construct text strings that combined the
+word "patient" with a given index in this case from 1 to the total number of 
+columns in the object `dat`. By default the function `paste` inserts a space 
+between strings that you wish to paste together, I've set the `sep` argument 
+to `''` to ensure that no space is inserted (see also `?paste0`)
+
 ## <a href="#subset" name="subset">#</a>Subsetting the data
-```{r}
+
+There are a variety of ways to subset data in data.frames. This section
+demonstrates how to subset data using indices. 
+```{r subset index}
 # first value in dat
 dat[1, 1]
 
@@ -217,6 +235,32 @@ dat[5, ]
 # all rows from column 16
 dat[ , 16]
 dat[1:nrow(dat), 16]
+
+#first 5 rows and all columns except 16
+dat[1:5, -16]
+```
+
+An alternative way to carry out subsetting is to reference specific column 
+names or to use the `subset` function
+
+```{r subset names}
+# here to avoid printing too much information to the screen I'll just focus on
+# on the first 5 rows of each subset
+dat$patient10[1:5]
+dat[1:5 , 'day10']
+dat[1:5 , c('day10', 'day15')]
+# notice that the following would give and error
+#dat[ , -c('patient3')]
+# but that the following would accompish the intended goal of dropping patient 3
+dat[1:5 , -3]
+
+#let's try using the subset function
+# only data for day 3
+subset(dat, select = day3)[1:5, ]
+# data on all days but 3
+subset(dat, select = -day3)[1:5, ]
+# data only on day 3 when inflammation in day 1 is equal to 0
+subset(dat, subset = day1 == 0, select = day3)[1:5, ]
 ```
 
 ## <a href="#summary" name="summary">#</a>Summary statistics
