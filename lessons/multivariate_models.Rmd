@@ -34,7 +34,36 @@ The goal of this lesson is to introduce multivariate ordination analyses.
     - Model Comparison
     - Variance partitioning
 
-## Overview of ordination methods
+## Overview of multivariate ordination methods
+
+Multivariate statistical analyses are generalizations of the univariate 
+approaches we examined in the last lesson. In the case of a univariate approach
+we considered a model in which
+
+$$\hat{y_i} = b_0 1 + b_1 x_{i1} + \cdots + b_p x_{ip} + \varepsilon_i, \qquad i = 1, \ldots, n, \qquad \text{(equ. 1)}$$
+
+We are interested in using multivariate methods when we no longer are just
+interested in explaining variance in the vector *y* instead we would like to
+understand the dominant patterns and sources of variation in a matrix of response
+variables **Y** that are all of the same type (i.e., same units).
+
+Often times, we may be simply be interested in if we can represent our response matrix **Y**
+using a relatively small number of dimensions (without any reference to an
+explanatory matrix). For example, if **Y** has *n* samples (i.e., rows) and *p*
+descriptors (i.e., columns) then we can fully represent all the variation in
+**Y** using *p* hypothetical axes; however, what would a p-dimensional graph
+look like - any dimensionality > 3 is difficult for the human mind to comprehend. Furthermore, is that degree of complexity even needed to see the major trends
+in **Y**? Picture trying to interpret a pairs plot that has $p*(p-1)/2$
+graphs (one graph for each unique combination of columns in **Y**).
+
+The good news is that in general, the information in matrices can be reduced
+down to a few major axes of variation. Ordination is a term that describes this
+process of reducing the information needed to represent a matrix. The term
+derives from the idea to ordinate or put things into order. With ordination
+approaches we are attempting to take a high-dimensional data matrix and explain
+its patterns with a small number of axes. Although this is a very general 
+concept across scientific disciplines, the term ordination is generally only
+used in ecology. 
 
 There are generally considered to be two types of ordination. 
 
@@ -42,18 +71,22 @@ There are generally considered to be two types of ordination.
 2. Direct or constrained ordination in which one matrix is used to explain the 
 variance of another matrix. 
 
-Today we will demonstrate both types. In general, ordination is frequently used
-when exploring patterns in datasets graphically; however, it can also be used 
-to carry out hypothesis testing. 
+The figure below (Lengendre and Legendre 1998, Fig 11.1) visually illustrates this
+conceptual shift from modeling a vector *y* (panel b) to a matrix **Y**.
+Indirect ordination does not use an explanatory matrix **X** (panel a) while
+direct ordination methods do (panel c)
 
-The term ordination derives from the idea to ordinate or put things into order.
-With ordination approaches were are attempting to take a high-dimensional 
-data matrix and explain its patterns with a small number of axes. 
+![](./figures/Fig11-1_legendre.png)
 
-Despite their sometimes terrifying names ordination has a close kinship with 
-multiple regression. One key difference is that the response variable is 
-multivariate rather than univariate; however, with many approaches the underlying
-algebra is very similar between regression and ordination.
+Today we will examine both indirect and direction methods of ordination. In
+general, ordination is frequently used when exploring patterns in datasets
+graphically; however, it can also be used to carry out hypothesis testing.
+
+Despite their sometimes terrifying names ordination has a close kinship with
+multiple regression (as illustrated in the figure above). One key difference is
+that the response variable is multivariate rather than univariate; however, with
+many approaches the underlying algebra is very similar between regression and
+ordination.
 
 Overview of Ordination methods (adapted from <http://ordination.okstate.edu/terminol.htm>)
 
@@ -145,18 +178,18 @@ par(mfrow=c(1,1))
 Above we can see that most species have small total covers (i.e., most species are rare) which is a fairly universal ecological law so this seems correct. 
 Also we can see that most sites have a total cover of approximately 40 and that this distribution isn't as highly skewed as the species marginal totals. 
 
-These plots are not terribly helpful at understanding the variability in the community matrix so let's get our enviornmental variables ready to use and start to conduct some actual analyses. 
+These plots are not terribly helpful at understanding the variability in the community matrix so let's get our environmental variables ready to use and start to conduct some actual analyses. 
 
 ## Create an explanatory matrix
 
-In the tree dataset each site has one set of enviornmental measurements. These 
+In the tree dataset, each site has one set of environmental measurements. These 
 are replicated across the rows of the `tree` data object
 
 ```{r, echo=FALSE}
 with(tree, head(tree[plotID == "ATBN-01-0403", ]))
 ```
 
-So we just need to pull out the enviornmental data for a single one of those rows. 
+So we just need to pull out the environmental data for a single one of those rows. 
 In the end we need the explanatory matrix to have the same number of rows in the 
 same order as the community matrix. We could write a for loop to do this but 
 we'll take the easier approach of using the function `aggregate`.
@@ -198,7 +231,7 @@ Simplified description of PCA algorithm (from [Zelený 2018](https://www.davidze
 
 a. Use the matrix of samples x species (or, generally, samples x descriptors), and display each sample into the multidimensional space where each dimension is defined by an abundance of one species (or descriptor). In this way, the samples will produce a cloud located in the multidimensional space.
 b. Calculate the centroid of the cloud.
-c. Move the centres of axes to this centroid.
+c. Move the centers of axes to this centroid.
 d. Rotate the axes in such a way that the first axis goes through the cloud in the direction of the highest variance, the second is perpendicular to the first and goes in the direction of the second highest variance, and so on. The position of samples on resulting rotated axes are sample scores on ordination axes.
 
 <img src="https://www.davidzeleny.net/anadat-r/lib/exe/fetch.php/obrazky:pca_algorithm_2d_legendre-legendre.jpg?cache="/>
