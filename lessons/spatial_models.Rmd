@@ -3,6 +3,18 @@ title: "Spatial Models"
 output: html_document
 ---
 
+<!--clickable code reveal: 
+    http://stackoverflow.com/questions/14127321/how-to-hide-code-in-rmarkdown-with-option-to-see-it
+-->
+<style>
+div.hidecode + pre {display: none}
+</style>
+<script>
+doclick = function(e){
+    e.nextSibling.nextSibling.style.display="block";
+}
+</script>
+
 The goals of this lesson are to introduce how spatial dependence detected and
 modeled for uni- and multi-variate response variables. Although in this lesson
 we focus on spatial dependence the core concepts of how to detect and model a
