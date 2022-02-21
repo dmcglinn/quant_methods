@@ -251,7 +251,6 @@ samples.
 ```{r}
 mite_mds <- metaMDS(mite)
 mds_axs1 <- mite_mds$points[ , 1]
-plot(mite.xy, cex = mds_axs1 / max(mds_axs1))
 
 col_brks <- hist(mds_axs1, plot=F)$breaks
 col_indices <- as.numeric(cut(mds_axs1, col_brks))
