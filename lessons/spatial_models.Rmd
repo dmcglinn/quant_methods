@@ -3,9 +3,12 @@ title: "Spatial Models"
 output: html_document
 ---
 
-The goals of this lesson are to introduce how spatial dependence is tested 
-for and how it can be corrected for or explained in uni- and multi-variate 
-modeling frameworks. 
+The goals of this lesson are to introduce how spatial dependence detected and
+modeled for uni- and multi-variate response variables. Although in this lesson
+we focus on spatial dependence the core concepts of how to detect and model a
+lack of independence in samples may be applied to dependence due to: time,
+relatedness, position on a genome, and many other study specific driver
+variables.
 
 ## Readings
 
@@ -26,19 +29,27 @@ correlated errors
 There are two general reasons why spatial dependence may 
 exist in a response variable.
 
-1) autocorrelation - the variable is simply inherently aggregated due its own
-internal dynamics. In ecology this is sometimes referred to as a false gradient
+1) autocorrelation - the variable is spatially non-random due its own
+internal dynamics. In ecology this is sometimes referred to as a false gradient. 
+An example of this is when offspring have limited dispersal from their natal
+site and therefore finding one organism increases the likelihood of finding another.
 
 2) induced spatial dependence: the variable is not inherently spatially structured 
 but the driving factors that it responds to are. In ecology this is sometimes
-referred to as a true gradient
+referred to as a true gradient. An example of this phenomena would be if an 
+organism's physiology is driven by temperature if temperature is non-randomly
+spatially structured then the organism should also display non-random patterns 
+of occurrence. 
 
 There is no statistical way to distinguish false from true gradients.
 
 ## Detecting a spatial signal
 
-We are going to examine spatial patterns of species richness (i.e., number of
-species in a site) in a dataset on Oribatid mites.
+We are going to use data on the occurrence of Oribatid mites collected from 70
+soil cores across a field to examine how to detect non-random spatial signals
+for both univariate and multi-variate response variables. Specifically, we will
+examine a vector of species richness (i.e., number of species in a site), and a
+matrix of species composition (i.e., a community abundance matrix):
 
 ```{r}
 library(vegan)
@@ -53,14 +64,14 @@ data(mite.xy)
 ```{r}
 plot(mite.xy)
 
-sr = apply(mite, 1, function(x) sum(x > 0))
+sr <- rowSums(mite > 0)
 hist(sr)
 
 plot(mite.xy, cex = sr/max(sr))
 
-col_brks = hist(sr, plot=F)$breaks
-col_indices = as.numeric(cut(sr, col_brks))
-cols = rev(terrain.colors(length(col_brks)))
+col_brks <- hist(sr, plot=F)$breaks
+col_indices <- as.numeric(cut(sr, col_brks))
+cols <- rev(terrain.colors(length(col_brks)))
 plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
 ```
 
@@ -74,19 +85,19 @@ response variable (i.e., richness) and the difference in spatial proximity.
 
 ```{r}
 # calculate Euclidean distance between richness and spatial coordinates
-sr_dist = dist(sr)
-xy_dist = dist(mite.xy)
+sr_dist <- dist(sr)
+xy_dist <- dist(mite.xy)
 ```
 
 For interpretation purposes a rule of thumb is not to interpret distances
 great than 1/2 the maximum distance in the dataset. This is to avoid
 examining spatial patterns that are underlaid by only a few samples. At
-small to intermidate distances there are typically many more pairs of samples
+small to intermediate distances there are typically many more pairs of samples
 where as at the extreme ends of a sampling grid there are only two sets of
 samples (i.e., those that lie along the two diagonals corners from one another)
 
 ```{r}
-max_dist = max(xy_dist) / 2
+max_dist <- max(xy_dist) / 2
 
 # plot result
 plot(xy_dist, sr_dist)
@@ -95,44 +106,158 @@ lines(lowess(xy_dist, sr_dist), lwd=3, col='pink')
 abline(v = max_dist, col='red', lwd=3, lty=2)
 
 # compute correlation
-obs_cor = cor(xy_dist, sr_dist)
+obs_cor <- cor(xy_dist, sr_dist)
 obs_cor
-
-# carry out a permutation test for significance:
-nperm = 1000
-null_cor = obs_cor
-for (i in 2:nperm) {
-    # shuffle the rows of the spatial coordinates
-    tmp_xy = mite.xy[sample(nrow(mite.xy)), ]
-    # correlation between the shuffled spatial coordinates and sr_dist
-    null_cor[i] = cor(dist(tmp_xy), sr_dist)
-}
-# compute the p-value
-sum(null_cor >= obs_cor) / nperm 
-
-# carry out the same analysis using the function mantel()
-sr_mantel = mantel(xy_dist, sr_dist)
-sr_mantel
-
-# compare the two approaches graphically using stacked boxplots
-boxplot(list(null_cor, sr_mantel$perm), horizontal = T, boxwex = 0.5,
-        names = c('mine', 'theirs'), xlab='Correlation')
-abline(v=obs_cor, col='red')
 ```
 
-As expected they look almost identical and the observed value is 
-much larger than then null realizations indicating that there is a 
-signficant difference between the observed spatial pattern and one due to
-random chance.
+##### **Question**
+Based on the graphic above does it appear that values of species richness are
+more similar or more different the further apart they are in space?
+
+<div class="hidecode" onclick="doclick(this);">[Show answer]</div>
+```
+The above graphic demonstrates that the greater the distance between two samples
+the more different those samples are in their species richness. In other words,
+values of species richness are displaying positive autocorrelation or a spatially
+aggregated pattern. 
+```
+
+##### **Question**
+What would a random spatial signal look like on this graph? 
+
+<div class="hidecode" onclick="doclick(this);">[Show answer]</div>
+```
+A flat line (i.e., a correlation close to zero). 
+```
+
+We can better examine if our intuition is correct by randomizing the location
+of each sample and re-making our graphic and re-estimating the correlation 
+coefficient. 
+
+```{r}
+# randomize the rows of the spatial coordinates matrix
+?sample
+null_xy <- mite.xy[sample(nrow(mite.xy)), ]
+null_dist <- dist(null_xy)
+
+plot(null_dist, sr_dist)
+abline(lm(sr_dist ~ null_dist), lwd=3, col='red')
+lines(lowess(null_dist, sr_dist), lwd=3, col='pink')
+abline(v = max_dist, col='red', lwd=3, lty=2)
+
+# compute null correlation
+null_cor = cor(null_dist, sr_dist)
+null_cor
+```
+
+That does look pretty flat for this randomized spatial location. We can 
+develop a permutation test if we carry out this same procedure many times to
+develop a null distribution of correlation values. Then we can ask if our 
+observed value of `r paste('r = ', round(obs_cor, 2), sep='')` is larger than
+we would expect simply due to random chance. 
+
+Here we will demonstrate how to make make this on your own and how to carry it
+out using the `vegan` function `mantel` 
+
+```{r}
+# carry out a permutation test for significance:
+nperm <- 999
+null_cor <- NULL
+# now we'll want to generate 999 random null estimates of r
+for (i in 1:nperm) {
+    # shuffle the rows of the spatial coordinates
+    null_xy <- mite.xy[sample(nrow(mite.xy)), ]
+    # correlation between the shuffled spatial coordinates and sr_dist
+    null_cor[i] <- cor(dist(null_xy), sr_dist)
+}
+
+# to get our 1000th possible outcome we'll consider that the observed
+# correlation value is a 'possibility' we should consider in the null distribution:
+null_cor <- c(null_cor, obs_cor)
+
+# compute the p-value which is simply the proportion of times we observed a
+# value equal to or greater than the observed correlation. We will learn that a
+# value equal to or as large as the observed value only occurs once out of the
+# 1000 possiblities considered so p = 0.001
+sum(null_cor >= obs_cor) / (nperm  + 1)
+
+# carry out the same analysis using the function mantel()
+?mantel
+sr_mantel <- mantel(xy_dist, sr_dist)
+sr_mantel
+
+```
+
+We can see that the estimated p-value is 0.001 (from both our hand made
+algorithm and the `vegan::mantel` function). This indicates that there is a
+statistically significant pattern of positive spatial autocorrelation which fits
+our intuitive interpretation we developed graphically.
+
+
+Now let's examine the distribution of null correlation values to better
+understand how the p-value was computed.
+
+
+```{r}
+# compare the two approaches graphically using stacked boxplots
+boxplot(list(null_cor, sr_mantel$perm), horizontal = F, boxwex = 0.5,
+        names = c('hand-made algo', 'vegan::mantel'), ylab='Correlation', 
+        ylim = range(null_cor))
+abline(h=obs_cor, col='red')
+abline(h=0, lty = 2, col = 'grey')
+```
+
+As expected the null distribution is much closer to zero (grey dashed line) than
+the observed value at `r round(obs_cor, 2)` (red solid line). Additionally, it
+is re-assuring to see that our hand-made algorithm and the `vegan::mantel`
+approaches are generating identical null distributions.
+
+##### **Question**
+What would a significant negative correlation indicate? 
+
+<div class="hidecode" onclick="doclick(this);">[Show answer]</div>
+```
+That the spatial pattern is uniform (rather than random or aggregated). This 
+might occur for example when individuals repel one another due to competition. 
+```
 
 This preliminary analysis suggests that there is a significant relationship 
 between the spatial distance that two points are separated and the difference
-in species richness of the points. We can undertake a similar approach to 
-examining a multivariate response variable such as species composition
+in species richness of the points. 
+
+
+Let's take a similar approach but using a multivariate response variable in this
+case a site-by-species community matrix. It is difficult to visualize from a 
+birds-eye view changes in a multivariate response variable because you would 
+need to layer a different map for each column in the matrix. That still might
+not really provide you with a reduction of information that is useful for making
+an inference. Here we will first reduce the information in the response matrix
+using a non-metric multi-dimensional scaling ordination procedure. For simplicity
+of visualization we'll just map the 1st axis on to the spatial location of the 
+samples. 
+
+```{r}
+mite_mds <- metaMDS(mite)
+mds_axs1 <- mite_mds$points[ , 1]
+plot(mite.xy, cex = mds_axs1 / max(mds_axs1))
+
+col_brks <- hist(mds_axs1, plot=F)$breaks
+col_indices <- as.numeric(cut(mds_axs1, col_brks))
+cols <- rev(terrain.colors(length(col_brks)))
+plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
+```
+
+As with richness there is a pretty clear spatial pattern from south to north. 
+In this case though it appears that the signal is even stronger than in the 
+species richness example as clear bands appear. 
+
+Let's now undertake a more quantitative approach and estimate the degree of 
+autocorrelation. 
 
 ```{r}
 ## compute bray curtis distance for the community matrix
-comm_dist = vegdist(mite)
+## note when working with species-richness we just used Euclidean distance
+comm_dist <- vegdist(mite)
 plot(xy_dist, comm_dist)
 abline(lm(comm_dist ~ xy_dist), lwd=3, col='red')
 lines(lowess(xy_dist, comm_dist), lwd=3, col='pink')
@@ -140,14 +265,29 @@ lines(lowess(xy_dist, comm_dist, f=0.1), lwd=3, col='blue')
 
 abline(v = max_dist, col='red', lwd=3, lty=2)
 
-comm_mantel = mantel(xy_dist, comm_dist)
+comm_mantel <- mantel(xy_dist, comm_dist)
 comm_mantel
 ```
+
+Species composition also appears to display positive spatial auto-correlation 
+and it is a little stronger than species richness. 
 
 The previous plots included both the linear regression model which is what the 
 mantel analysis is based upon and the lowess smoother line. The smoother can
 help to identify if the relationship is non-linear and how the strength of the 
 relationship varies with spatial distance. 
+
+Note that the estimated correlation coefficients that we have been using as 
+our test statistic use all of the distance classes including distances that 
+are greater than 1/2 the max distance which we noted above is generally 
+frowned upon. Notice in the above plot for `comm_dist` that the slope of the 
+lowess lines is steeper than the linear regression line - this indicates a 
+signal of spatial dependence or a non-linear change in the degree of spatial
+autocorrelation as a function of distance
+
+To develop a more nuanced understanding of the pattern of spatial autocorrelation
+we can bin distances into bins and then compute **r** at each distance class to 
+build a correlogram. 
 
 ```{r}
 sr_corlog = mantel.correlog(sr_dist, xy_dist)
@@ -164,6 +304,17 @@ mtext(side=3, 'Community Composition')
 abline(v = max_dist, col='red', lwd=3, lty=2)
 ```
 
+Above we can see that samples close to one another are more similar while 
+samples that are further apart are more different than expected due to chance. 
+Note that for some of the intermediate distance classes species-richness
+does not differ from random expectation. 
+
+Last point to make is that in this analysis rather than computing 1 p-value 
+we have computed a p-value for each distance class. Therefore, this kind of 
+analysis suffers from the problem of multiple comparisons in which the p-values
+are not adhering to expected type-I error. Therefore, a correction is applied
+to each successive test using by default the Holm correction. See the 
+documentation for the `vegan::manel_correlog` function for more information.
 
 ## Univariate Modeling 
 Spatial (and temporal) dependence is a potential problem for inferential
@@ -238,7 +389,7 @@ summary(sr_rat_nug)
 Note that in the above model summaries both the regression coefficients and the 
 associated t-statistics were shifted towards greater importance. In general, it
 is thought that beta coefficients should be fairly robust to spatial dependence 
-but that tests of significance will be highly sensative.
+but that tests of significance will be highly sensitive.
 
 Let's now examine our spatial map of richness and this time focus on the
 residuals of our model. Do they still look spatially structured?
@@ -253,9 +404,9 @@ plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
 It does appear that they do still look spatially structured at least at large
 distances, it is difficult to tell at short distances.
 
-Excercise: Include the variable `WatrCont` along with `SubsDens` in the linear
+Exercise: Include the variable `WatrCont` along with `SubsDens` in the linear
 model of richness. Go back through the spatial modeling routines. Does the map
-of the residuals still seem to show the strong pattern of non-stationarity?
+of the residuals still seem to show the strong pattern of non-stationary?
 
 Now let's examine spatial dependence in multivariate response such as species
 composition in a modeling framework
