@@ -1,7 +1,5 @@
 ---
-title: "Data Exploration"
-author: "Dan McGlinn"
-date: "3/14/2022"
+title: "Data exploration: the importance of plotting"
 output: html_document
 ---
 
@@ -11,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Simple example
 
-Consider that you have two variables `y` and `x`. 
+Consider that you have two variables `x` and `y`. 
 
 ```{r create data}
 x <- 1:100
