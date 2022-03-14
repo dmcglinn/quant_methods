@@ -1,0 +1,70 @@
+---
+title: "Data Exploration"
+author: "Dan McGlinn"
+date: "3/14/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Simple example
+
+Consider that you have two variables `y` and `x`. 
+
+```{r create data}
+x <- 1:100
+y <-  20 * x - 0.2 * x^2 + rnorm(100, 0, 30)
+```
+
+
+You are interested to understand if `x` explains variation in `y`.
+How will you approach this? 
+
+## Should you build a linear model first or plot the variables first and visually explore?
+
+Let's examine the outcome and inference if **we do not visually examine our data**
+and only rely on regression modeling. 
+
+```{r model}
+mod_lin <- lm(y ~ x)
+summary(mod_lin)
+```
+
+The above model summary table would lead us to believe that there is no relationship
+between `x` and `y` which we know is false because we created the variables above.
+
+## Why is it our regression table leading us to an incorrect inference? 
+
+Because our model is systematically mis-representing the functional form of the
+relationship between `x` and `y` which we defined to be a quadratic relationship. 
+This would have been obvious if we first graphed `y` and `x`
+
+```{r}
+plot(y ~ x)
+```
+
+This simple step would indicate to us that `y` is not just a linear function of 
+`x` but it is a quadratic function, such that a more appropriate model is: 
+
+```{r}
+mod_quad <- lm(y ~ x + I(x^2))
+summary(mod_quad)
+```
+
+To further articulate why the regression only approach failed we should 
+overlay the models and the data. Unfortunately, this critical step is often
+overlooked.
+
+```{r}
+plot(y ~ x)
+lines(x, predict(mod_lin), col='red')
+lines(x, predict(mod_quad), col='blue')
+legend('bottom', c('linear', 'quadratic'), col=c('red', 'blue'), lty=1, bty='n')
+```
+
+Here we just looked at two variables so it may be obvious that graphing them is wise, 
+but even in multivariate scenarios where a graphical exploration may be more 
+tedious it can still be very helpful and illuminating prior to model fitting. 
+
