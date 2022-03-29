@@ -242,6 +242,12 @@ leaflet(data = mapStates) %>% addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
 ```
 
+```{r}
+m <- leaflet(data = firenc) %>% addTiles() %>%
+  addCircleMarkers(radius = 2, label = ~as.character(firenc$TEMP))
+m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
+```
+
 
 ```{r}
 m = leaflet() %>% addTiles()
