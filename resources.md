@@ -8,6 +8,11 @@ title: Resources
 
 * Data Carpentry. <http://www.datacarpentry.org/>
 
+* Why are your files and directories a mess? <https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z>
+
+* Getting your project files in order, Hao Ye's Notes on Data Organization in
+Spreadsheets and R. <https://uf-repro.github.io/data-organization/notes.html>
+
 * Wilson, G. et al. 2014. Best Practices for Scientific Computing. PLoS Biol
 12(1): e1001745. doi:10.1371/journal.pbio.1001745. URL: <http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745>
 
