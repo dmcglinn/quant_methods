@@ -41,10 +41,11 @@ included with the code are sufficient.
 If the data are not available to reproduce the results then at minimum a representative example portion of the data must be included to provide a means
 of generating example results.  
 
-The project directory should also contain a `README.md` file that describes:
+The project directory should also contain a `README.md` file that describes (at a minimum):
 
 * the objective of the project
-* the structure of the code-base
+* the structure of the code-base including dependencies
+* the structure of the data that is required as input including the metadata
 * instructions on how to recreate your results
 * any relevant acknowledgements
 
