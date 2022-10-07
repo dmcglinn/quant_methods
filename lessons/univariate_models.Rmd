@@ -114,7 +114,7 @@ considered a better model.
 
 Crawley (2007) suggests the following steps for backward model simplification:
 
-![](../figures/crawley_2007_table9_2_model_simplification.png)
+![](./figures/crawley_2007_table9_2_model_simplification.png)
 
 These steps are reasonable if one is carrying out an exploratory data analysis; 
 however, I do not recommend this approach when formal hypothesis testing is the 

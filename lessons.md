@@ -21,6 +21,9 @@ Quantitative topics covered in this course include:
     - [Guide to GitHub's issue system](https://guides.github.com/features/issues/)
 * Univariate Models
     - <a href='./univariate_models.html'>OLS modeling and model selection</a>
+    - Mini-sub lessons
+        - <a href='./data_exploration.html'>Data exploration: the importance of plotting</a>
+        - <a href='./standardized_beta_coefficients.html'>Standardized beta coefficients</a>
 * Multivariate Models
     - <a href='./multivariate_models.html'>Multivariate ordination models</a>
 * Spatial Models

@@ -57,6 +57,8 @@ A list of data sources and software for data acquisition
 * [North American Plants](http://plants.usda.gov/)
 * [North American Tree range maps](http://esp.cr.usgs.gov/data/little/)
 * [Global Forest Watch](http://www.globalforestwatch.org/map/)
+* [Centre du Quebec Forest Plots](https://figshare.com/articles/dataset/Centre_du_Quebec_Forest_Plots/10325681)
+* [OpenNahele: the open Hawaiian forest plot database](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6172291/)
 
 #### Fish
 * [Global Fishing Pressue](https://globalfishingwatch.org/datasets-and-code/)

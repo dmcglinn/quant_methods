@@ -8,6 +8,13 @@ title: Resources
 
 * Data Carpentry. <http://www.datacarpentry.org/>
 
+* Why are your files and directories a mess? <https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z>
+
+* Getting your project files in order, Hao Ye's Notes on Data Organization in
+Spreadsheets and R. <https://uf-repro.github.io/data-organization/notes.html>
+
+* Naming Things - by Jenny Bryan <http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf>
+
 * Wilson, G. et al. 2014. Best Practices for Scientific Computing. PLoS Biol
 12(1): e1001745. doi:10.1371/journal.pbio.1001745. URL: <http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745>
 
@@ -63,6 +70,9 @@ content <http://www.dataschool.io/>
     - [Why ecology is hard (and fun) – multicausality](https://dynamicecology.wordpress.com/2016/03/02/why-ecology-is-hard-and-fun-multicausality)
 
 ## R Programming
+
+* Big Book of R: a collection of bookmarked R lessons and demos
+    -<https://www.bigbookofr.com/index.html> 
 
 ### Basics
 * Free manuals and tutorials provided by R users
