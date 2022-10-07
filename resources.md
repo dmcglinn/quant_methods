@@ -23,8 +23,10 @@ content <http://www.dataschool.io/>
 
 ## Statistics
 * Jack Weiss's courses on statistics for ecologists and environmental scientists
-    - <http://www.unc.edu/courses/2010fall/ecol/563/001/>
-    - <http://www.unc.edu/courses/2010spring/ecol/562/001/>
+    - [Statistical Methods in Ecology](https://sakai.unc.edu/access/content/group/3d1eb92e-7848-4f55-90c3-7c72a54e7e43/public/index.html)
+    - [Statistics for Environmental Science](https://sakai.unc.edu/access/content/group/2842013b-58f5-4453-aa8d-3e01bacbfc3d/public/Ecol562_Spring2012/index.html)
+* Code to accompany *A primer of ecological statistics* (Gotelli and Ellison 2012)
+    - <https://harvardforest.fas.harvard.edu/ellison/pubs/primer/datafiles2e>
 * Topics in R Statistical Language (Penn State Open Edu)
     - [Statistics in R - Part 1](https://online.stat.psu.edu/stat484/)
     - [Statistics in R - Part 2](https://online.stat.psu.edu/stat485/)
