@@ -6,7 +6,7 @@ output:
 layout: page
 ---
 
-### College of Charleston, Department of Biology, Spring 2020
+### College of Charleston, Department of Biology, Spring 2023
 
 Course and Instructor info:
 ---------------------------
