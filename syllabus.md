@@ -14,7 +14,6 @@ Course and Instructor info:
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
 * Office: RITA 239
-* Phone: 843-953-0190
 * Office hours: 11-12 pm T or email by an appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
@@ -36,7 +35,7 @@ Student Learning Objectives:
 modern quantitative methods such as (but not limited to):
     - R programming
     - Version control
-    - Database SQL
+    - Data Querying and Filtering
     - GIS tools
     - Spatial statistics
     - Multivariate Statistics
@@ -90,23 +89,24 @@ Course Schedule:
 
 | Week | Date   | Lecture Topic                                  |
 |------|--------|------------------------------------------------|
-| 1    | Jan 11 | Introduction to R                              |
-| 2    | Jan 18 | Introduction to Version Control & the Terminal |
-| 3    | Jan 25 | Regression and Simple Models                   |
-| 4    | Feb 01 | Project Feedback in class                      |
-| 5    | Feb 08 | Multivariate Models                            |
-| 6    | Feb 15 | Project Feedback in class                      |
-| 7    | Feb 22 | Spatial Models                                 |
-| 8    | Mar 01 | Project Pitches                                |
-| 9    | Mar 08 | Spring Break                                   |
-| 10   | Mar 15 | GIS manipulations                              |
-| 11   | Mar 22 | Project Feedback in class                      |
-| 12   | Mar 29 | Project Feedback in class                      |
-| 13   | Apr 05 | Peer Code Review and Peer Feedback             |
-| 14   | Apr 12 | Project Feedback in class                      |
-| 15   | Apr 19 | Project Presentations; Course Evaluations      |
-
-**Code and Written project components due Friday of Week 14** 
+| 1    | Jan 12 | Introduction to R                              |
+| 2    | Jan 17 | More R Version Control & the Terminal          |
+| 3    | Jan 24 | Working with data                              |         
+| 4    | Jan 31 | Regression and Simple Models                   |
+| 4    | Feb 07 | Project Feedback in class                      |
+| 5    | Feb 14 | Multivariate Models                            |
+| 6    | Feb 21 | Project Feedback in class                      |
+| 7    | Feb 28 | Spatial Models                                 |
+| 9    | Feb 28 | Project Pitches                                |
+| 8    | Mar 07 | Spring Break                                   |
+| 10   | Mar 14 | GIS manipulations                              |
+| 11   | Mar 21 | Project Feedback in class                      |
+| 12   | Mar 28 | Project Feedback in class                      |
+| 13   | Apr 04 | Peer Code Review and Peer Feedback             |
+| 14   | Apr 11 | Project Feedback in class                      |
+| 15   | Apr 18 | Project Presentations                          |
+| 17   | Apr 25 | Project Presentations (cont.) & course eval.   |
+**Code and Written project components due Friday of Week 15** 
 
 Course Policies:
 ---------------
