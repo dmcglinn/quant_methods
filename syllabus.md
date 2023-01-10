@@ -106,6 +106,7 @@ Course Schedule:
 | 14   | Apr 11 | Project Feedback in class                      |
 | 15   | Apr 18 | Project Presentations                          |
 | 17   | Apr 25 | Project Presentations (cont.) & course eval.   |
+
 **Code and Written project components due Friday of Week 15** 
 
 Course Policies:
