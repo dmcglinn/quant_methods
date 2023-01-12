@@ -87,25 +87,24 @@ an interest in learning how to program is required.
 Course Schedule:
 ----------------
 
-| Week | Date   | Lecture Topic                                  |
-|------|--------|------------------------------------------------|
-| 1    | Jan 12 | Introduction to R                              |
-| 2    | Jan 17 | More R Version Control & the Terminal          |
-| 3    | Jan 24 | Working with data                              |         
-| 4    | Jan 31 | Regression and Simple Models                   |
-| 4    | Feb 07 | Project Feedback in class                      |
-| 5    | Feb 14 | Multivariate Models                            |
-| 6    | Feb 21 | Project Feedback in class                      |
-| 7    | Feb 28 | Spatial Models                                 |
-| 9    | Feb 28 | Project Pitches                                |
-| 8    | Mar 07 | Spring Break                                   |
-| 10   | Mar 14 | GIS manipulations                              |
-| 11   | Mar 21 | Project Feedback in class                      |
-| 12   | Mar 28 | Project Feedback in class                      |
-| 13   | Apr 04 | Peer Code Review and Peer Feedback             |
-| 14   | Apr 11 | Project Feedback in class                      |
-| 15   | Apr 18 | Project Presentations                          |
-| 17   | Apr 25 | Project Presentations (cont.) & course eval.   |
+| Week | Date   | Lecture Topic                                  | Zoom recording |
+|------|--------|------------------------------------------------|----------------|
+| 1    | Jan 12 | Introduction to R                              | [link](https://cofc.zoom.us/rec/play/HpAW6feh6IumQXzXCh4vQ8AHvOrG-JHl0HupIO_PYbaa31frJ_MY8Ys5IZyT_yjfpswLwFzaKTiJxRaK.qOkd12I18k24TonG?autoplay=true&startTime=1673528663000) |
+| 2    | Jan 17 | More R Version Control & the Terminal          |                |
+| 3    | Jan 24 | Working with data                              |                |
+| 4    | Jan 31 | Regression and Simple Models                   |                |
+| 4    | Feb 07 | Project Feedback in class                      |                |
+| 5    | Feb 14 | Multivariate Models                            |                |
+| 7    | Feb 28 | Spatial Models                                 |                |
+| 9    | Feb 28 | Project Pitches                                |                |
+| 8    | Mar 07 | Spring Break                                   |                |
+| 10   | Mar 14 | GIS manipulations                              |                |
+| 11   | Mar 21 | Project Feedback in class                      |                |
+| 12   | Mar 28 | Project Feedback in class                      |                |
+| 13   | Apr 04 | Peer Code Review and Peer Feedback             |                |
+| 14   | Apr 11 | Project Feedback in class                      |                |
+| 15   | Apr 18 | Project Presentations                          |                |
+| 17   | Apr 25 | Project Presentations (cont.) & course eval.   |                |
 
 **Code and Written project components due Friday of Week 15** 
 
