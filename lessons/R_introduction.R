@@ -3,20 +3,34 @@
 #' author: Dan McGlinn
 #' date: '`r paste("First created on 2015-01-16. Updated on", Sys.Date())`'
 #' ---
+#' ## Source Code Link
+#' https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R
+#'
+#' ## Readings
+#' * Chapters 1-7 of *The R Book* (1st ed) by Crawley
+#' * Chapters 1-4 of *MASS* (4th ed)by Venables and Ripley
+#'
+#' ## Lesson Outline
+#' * <a href="#arith">Arithmetic</a>
+#' * <a href="#logic">Logical operations</a>
+#' * <a href="#vars">Variable assignment</a>
+#' * <a href="#read">Reading in data</a>
+#' * <a href="#help">Using the help</a>
+#' * <a href="#data">Examine data</a>
+#' * <a href="#subset">Subsetting the data</a>
+#' * <a href="#summary">Summary statistics</a>
+#' * <a href="#aggr">Aggregate across rows or columns</a>
+#' * <a href="#plot">Plot data</a>
+#' 
 
 #+ echo=FALSE
 library(knitr)
 opts_knit$set(root.dir='../')
 
-
 #' The purpose of this lesson is to introduce students to the R programming 
 #' environment for the first time. The lesson builds off the Software Carpentry
 #' Lesson developed here: 
-#' http://software-carpentry.org/v5/novice/r/01-starting-with-data.html
-#'
-#' The source code (i.e., a plain text file containing the R code aka an Rscript
-#' or .R file) for this lesson can be downloaded
-#' here: https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R
+#' http://swcarpentry.github.io/r-novice-inflammation/
 #'
 #' ## Arithmetic 
 
