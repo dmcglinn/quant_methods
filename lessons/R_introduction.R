@@ -1,17 +1,22 @@
 #' ---
 #' title: Introduction to R
 #' author: Dan McGlinn
-#' date: 01/16/2015
+#' date: '`r paste("First created on 2015-01-16. Updated on", Sys.Date())`'
 #' ---
 
 #+ echo=FALSE
 library(knitr)
 opts_knit$set(root.dir='../')
 
+
 #' The purpose of this lesson is to introduce students to the R programming 
 #' enviornment for the first time. The lesson builds off the Software Carpentry
 #' Lesson developed here: 
 #' http://software-carpentry.org/v5/novice/r/01-starting-with-data.html
+#'
+#' The source code (i.e., a plain text file containing the R code aka an Rscript
+#' or .R file) for this lesson can be downloaded
+#' here: https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R
 #'
 #' ## Arithmetic 
 
@@ -88,8 +93,15 @@ weight_lb
 #' first check what your working directory is:
 getwd()
 
-#' because I have setup a Project in the quant_methods folder I can make my
-#' path relative to this location.
+#' I am using an Rstudio Project that I called "quant_methods". Projects
+#' help you to organize your R code for a specific project into a single directory. 
+#' To create your own project simply go to File -> New Project then click either 
+#' "New Directory" or "Existing Directory". Be default the directory and the project name
+#' will be identical - it is not recommended to diverge from that behavior as it can
+#' make it very confusing.
+#' The working directory within a project is the main project directory so 
+#' for me it returns /home/mcglinndj/quant_methods
+#' All file paths can be made relative to this directory. 
 
 #' let's read in the datafile `inflammation-01.csv` which is located in the
 #' directory: `./quant_methods/data)` where the `.` indicates the directory
@@ -101,6 +113,18 @@ getwd()
 
 dat <- read.csv(file = "./data/inflammation-01.csv", header = FALSE)
 
+#' I could have used an absolute path like: `"/home/mcglinndj/quant_methods/data/inflammation-01.csv"`
+#' but that path would only work on my specific machine. For that reason we 
+#' generally prefer relative paths over absolute paths for making your code more
+#' reproducible and future proof. 
+#' 
+#' Another option is to simply put in the url where the data is stored: 
+
+dat <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/inflammation-01.csv', 
+                header = FALSE)
+
+#' this is not always a great option though because remote data and urls can break
+#' 
 #' ## Using the help 
 
 #' above we used the function "read.csv" to find out more about this function see
