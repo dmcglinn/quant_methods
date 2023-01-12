@@ -92,7 +92,24 @@ Scientific literature should be cited in the methods and interpretation sections
 of the document. 
 
 ### Links to student projects
-* Spring 2019
+* Spring 2022
+    - Public repos: 
+        - [Emphemeral Wetland Bird Biodiversity](https://github.com/jacksonbarrattheitmann/RclassProject)
+        - [Microplastic and Algae Distribution in Coastal SC Stormwater Drainage Ponds](https://github.com/a-apint4/MP_Algae_Project)
+        - [Indian River Lagoon - Community Ecosystem Function Project](https://github.com/Lexie-DelViscio/IRLCommunityEcosystemFunction)
+        - [Using Hemolymph Chemistry to Predict and Assess Molting in Green Crabs, Carcinus maenas](https://github.com/emilydombrowski/green_crab_phys_2022)
+        - [The effect of elevated salinity on survival of southern toad embryos](https://github.com/Regan-Honeycutt/Embryo-Survival)
+        - [The ingestion of microplastics by young-of-the-year sharks in South Carolina estuaries](https://github.com/lattomusme/shark_plastics)
+        - [Phenotypic and developmental effects of T-DNA inserts within auxin related genes on the development of A. thaliana](https://github.com/sydowpw/APA-Development-Project)
+        - [The effects of Eastern mud snails on benthic microalgae community structures](https://github.com/Timara-Vereen/RClass-Project)
+        - [Model abundance of 3 target species of deep-sea corals in the Pinnacles Trend Mesophotic Area](https://github.com/MorganWill13/Pinnacles_Trend)
+        - [Dolphin Vocalization and Sighting Analyses](https://github.com/ctribss/Projectfiles)
+    - Private repos:
+        - [Resource partitioning among Caribbean sponges](https://github.com/huntjones88/summer_2021_pulse-chase_data)
+
+* Spring 2020 (need to add)
+
+* Spring 2019 (incomplete list)
     - Public repos: 
         - [Food consumption patterns in the Philippines](https://github.com/jbalipal/PhFoodExpenditures)
     - Private repos:
