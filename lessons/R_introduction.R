@@ -10,7 +10,7 @@ opts_knit$set(root.dir='../')
 
 
 #' The purpose of this lesson is to introduce students to the R programming 
-#' enviornment for the first time. The lesson builds off the Software Carpentry
+#' environment for the first time. The lesson builds off the Software Carpentry
 #' Lesson developed here: 
 #' http://software-carpentry.org/v5/novice/r/01-starting-with-data.html
 #'
@@ -99,24 +99,36 @@ getwd()
 #' "New Directory" or "Existing Directory". Be default the directory and the project name
 #' will be identical - it is not recommended to diverge from that behavior as it can
 #' make it very confusing.
+#' 
 #' The working directory within a project is the main project directory so 
-#' for me it returns /home/mcglinndj/quant_methods
+#' for me it returns:  `/home/mcglinndj/quant_methods` 
+#' 
 #' All file paths can be made relative to this directory. 
 
 #' let's read in the datafile `inflammation-01.csv` which is located in the
 #' directory: `./quant_methods/data)` where the `.` indicates the directory
 #' location in which the directory `quant_methods` is stored in. The usage of 
-#' the `.` is a shorthand way to create relative paths. 
+#' the `./` is a shorthand way to create relative paths. 
 #' Because my working directory is already set to: ``r normalizePath('.')``
 #' I can shorten the path to `./data/inflammation-01.csv` where again `.` 
 #' indicates my current working directory path. 
 
 dat <- read.csv(file = "./data/inflammation-01.csv", header = FALSE)
 
-#' I could have used an absolute path like: `"/home/mcglinndj/quant_methods/data/inflammation-01.csv"`
-#' but that path would only work on my specific machine. For that reason we 
-#' generally prefer relative paths over absolute paths for making your code more
-#' reproducible and future proof. 
+#' two other quick notes about path shorthand: 
+#' 
+#' 1.  `../` is shorthand for the
+#' parent directory of the working directory, these can be nested like `../../`
+#' but not recommended. 
+#' 
+#' 2. `~` is shorthand for the home directory on your
+#' machine. On my machine `~` refers to `/home/mcglinndj`
+#' 
+#' Rather than a relative path, I could have used an absolute path like:
+#' `"/home/mcglinndj/quant_methods/data/inflammation-01.csv"` but that path
+#' would only work on my specific machine. For that reason we generally prefer
+#' relative paths over absolute paths for making your code more reproducible and
+#' future proof.
 #' 
 #' Another option is to simply put in the url where the data is stored: 
 

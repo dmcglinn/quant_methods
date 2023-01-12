@@ -370,7 +370,7 @@ pre code {
 
 
 <p>The purpose of this lesson is to introduce students to the R
-programming enviornment for the first time. The lesson builds off the
+programming environment for the first time. The lesson builds off the
 Software Carpentry Lesson developed here: <a href="http://software-carpentry.org/v5/novice/r/01-starting-with-data.html" class="uri">http://software-carpentry.org/v5/novice/r/01-starting-with-data.html</a></p>
 <p>The source code (i.e., a plain text file containing the R code aka an
 Rscript or .R file) for this lesson can be downloaded here: <a href="https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R" class="uri">https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R</a></p>
@@ -463,19 +463,30 @@ directory. To create your own project simply go to File -&gt; New
 Project then click either “New Directory” or “Existing Directory”. Be
 default the directory and the project name will be identical - it is not
 recommended to diverge from that behavior as it can make it very
-confusing. The working directory within a project is the main project
-directory so for me it returns /home/mcglinndj/quant_methods All file
-paths can be made relative to this directory. let’s read in the datafile
-<code>inflammation-01.csv</code> which is located in the directory:
-<code>./quant_methods/data)</code> where the <code>.</code> indicates
-the directory location in which the directory <code>quant_methods</code>
-is stored in. The usage of the <code>.</code> is a shorthand way to
-create relative paths. Because my working directory is already set to:
+confusing.</p>
+<p>The working directory within a project is the main project directory
+so for me it returns: <code>/home/mcglinndj/quant_methods</code></p>
+<p>All file paths can be made relative to this directory. let’s read in
+the datafile <code>inflammation-01.csv</code> which is located in the
+directory: <code>./quant_methods/data)</code> where the <code>.</code>
+indicates the directory location in which the directory
+<code>quant_methods</code> is stored in. The usage of the
+<code>./</code> is a shorthand way to create relative paths. Because my
+working directory is already set to:
 <code>/home/mcglinndj/quant_methods</code> I can shorten the path to
 <code>./data/inflammation-01.csv</code> where again <code>.</code>
 indicates my current working directory path.</p>
 <pre class="r"><code>dat &lt;- read.csv(file = &quot;./data/inflammation-01.csv&quot;, header = FALSE)</code></pre>
-<p>I could have used an absolute path like:
+<p>two other quick notes about path shorthand:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>../</code> is shorthand for the parent directory of the
+working directory, these can be nested like <code>../../</code> but not
+recommended.</p></li>
+<li><p><code>~</code> is shorthand for the home directory on your
+machine. On my machine <code>~</code> refers to
+<code>/home/mcglinndj</code></p></li>
+</ol>
+<p>Rather than a relative path, I could have used an absolute path like:
 <code>&quot;/home/mcglinndj/quant_methods/data/inflammation-01.csv&quot;</code>
 but that path would only work on my specific machine. For that reason we
 generally prefer relative paths over absolute paths for making your code
