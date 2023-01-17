@@ -193,6 +193,25 @@ dat[5, ]
 dat[ , 16]
 dat[1:nrow(dat), 16]
 
+#' you can also exclude certain indices using the `-` sign
+dat[1:5 , -16]      # gives every column but 16
+dat[1:5 , -(1:10)]  # gives every column except the first 10
+
+#' ## Setting and calling column names
+#' This dataset is a bit unusual because it doesn't have column names.
+names(dat)
+#' You can see that R just assigned each column a default name "V1", "V2", ect. 
+#' let's change these to be more informative
+names(dat) <- paste0('day', 1:ncol(dat))
+head(dat)
+
+#' this is helpful for us because now we can call specific days easily
+dat$day2
+dat$day25
+#' select more than one column
+dat[ , c('day2', 'day25')]
+subset(dat, select = c(day2, day25))
+
 #' ## Compute summary statistics on data
 #' first row, all of the columns
 patient_1 <- dat[1, ]
@@ -263,7 +282,7 @@ plot(1:length(avg_patient_inflammation), avg_patient_inflammation,
 #' reproducible:
 
 #+ eval = FALSE
-pdf('./inflammation_fig1.pdf')
+png('./inflammation_fig1.png')
 par(mfrow = c(2,1))
 plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab='Day',
      ylab='Inflammation', frame.plot=F, col='magenta', pch=2, cex=2)

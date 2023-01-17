@@ -364,7 +364,7 @@ pre code {
 
 <h1 class="title toc-ignore">Introduction to R</h1>
 <h4 class="author">Dan McGlinn</h4>
-<h4 class="date">First created on 2015-01-16. Updated on 2023-01-12</h4>
+<h4 class="date">First created on 2015-01-16. Updated on 2023-01-17</h4>
 
 </div>
 
@@ -611,6 +611,203 @@ help.search(&#39;csv&#39;)</code></pre>
 <pre><code>##  [1]  4  4 15  8 10 15 13  9 11  6  3  8 12  3  5 10 11  4 11 13 15  5 14 13  4
 ## [26]  9 13  6  7  6 14  3 15  4 15 11  7 10 15  6  5  6 15 11 15  6 11 15 14  4
 ## [51] 10 15 11  6 13  8  4 13 12  9</code></pre>
+<p>you can also exclude certain indices using the <code>-</code>
+sign</p>
+<pre class="r"><code>dat[1:5 , -16]      # gives every column but 16</code></pre>
+<pre><code>##   V1 V2 V3 V4 V5 V6 V7 V8 V9 V10 V11 V12 V13 V14 V15 V17 V18 V19 V20 V21 V22
+## 1  0  0  1  3  1  2  4  7  8   3   3   3  10   5   7   7   7  12  18   6  13
+## 2  0  1  2  1  2  1  3  2  2   6  10  11   5   9   4   7  16   8   6  18   4
+## 3  0  1  1  3  3  2  6  2  5   9   5   7   4   5   4   5  11   9  10  19  14
+## 4  0  0  2  0  4  2  2  1  6   7  10   7   9  13   8  15  10  10   7  17   4
+## 5  0  1  1  3  3  1  3  5  2   4   4   7   6   5   3   8  10   6  17   9  14
+##   V23 V24 V25 V26 V27 V28 V29 V30 V31 V32 V33 V34 V35 V36 V37 V38 V39 V40
+## 1  11  11   7   7   4   6   8   8   4   4   5   7   3   4   2   3   0   0
+## 2  12   5  12   7  11   5  11   3   3   5   4   4   5   5   1   1   0   1
+## 3  12  17   7  12  11   7   4   2  10   5   4   2   2   3   2   2   1   1
+## 4   4   7   6  15   6   4   9  11   3   5   6   3   3   4   2   3   2   1
+## 5   9   7  13   9  12   6   7   7   9   6   3   2   2   4   2   0   1   1</code></pre>
+<pre class="r"><code>dat[1:5 , -(1:10)]  # gives every column except the first 10</code></pre>
+<pre><code>##   V11 V12 V13 V14 V15 V16 V17 V18 V19 V20 V21 V22 V23 V24 V25 V26 V27 V28 V29
+## 1   3   3  10   5   7   4   7   7  12  18   6  13  11  11   7   7   4   6   8
+## 2  10  11   5   9   4   4   7  16   8   6  18   4  12   5  12   7  11   5  11
+## 3   5   7   4   5   4  15   5  11   9  10  19  14  12  17   7  12  11   7   4
+## 4  10   7   9  13   8   8  15  10  10   7  17   4   4   7   6  15   6   4   9
+## 5   4   7   6   5   3  10   8  10   6  17   9  14   9   7  13   9  12   6   7
+##   V30 V31 V32 V33 V34 V35 V36 V37 V38 V39 V40
+## 1   8   4   4   5   7   3   4   2   3   0   0
+## 2   3   3   5   4   4   5   5   1   1   0   1
+## 3   2  10   5   4   2   2   3   2   2   1   1
+## 4  11   3   5   6   3   3   4   2   3   2   1
+## 5   7   9   6   3   2   2   4   2   0   1   1</code></pre>
+</div>
+<div id="setting-and-calling-column-names" class="section level2">
+<h2>Setting and calling column names</h2>
+<p>This dataset is a bit unusual because it doesn’t have column
+names.</p>
+<pre class="r"><code>names(dat)</code></pre>
+<pre><code>##  [1] &quot;V1&quot;  &quot;V2&quot;  &quot;V3&quot;  &quot;V4&quot;  &quot;V5&quot;  &quot;V6&quot;  &quot;V7&quot;  &quot;V8&quot;  &quot;V9&quot;  &quot;V10&quot; &quot;V11&quot; &quot;V12&quot;
+## [13] &quot;V13&quot; &quot;V14&quot; &quot;V15&quot; &quot;V16&quot; &quot;V17&quot; &quot;V18&quot; &quot;V19&quot; &quot;V20&quot; &quot;V21&quot; &quot;V22&quot; &quot;V23&quot; &quot;V24&quot;
+## [25] &quot;V25&quot; &quot;V26&quot; &quot;V27&quot; &quot;V28&quot; &quot;V29&quot; &quot;V30&quot; &quot;V31&quot; &quot;V32&quot; &quot;V33&quot; &quot;V34&quot; &quot;V35&quot; &quot;V36&quot;
+## [37] &quot;V37&quot; &quot;V38&quot; &quot;V39&quot; &quot;V40&quot;</code></pre>
+<p>You can see that R just assigned each column a default name “V1”,
+“V2”, ect. let’s change these to be more informative</p>
+<pre class="r"><code>names(dat) &lt;- paste0(&#39;day&#39;, 1:ncol(dat))
+head(dat)</code></pre>
+<pre><code>##   day1 day2 day3 day4 day5 day6 day7 day8 day9 day10 day11 day12 day13 day14
+## 1    0    0    1    3    1    2    4    7    8     3     3     3    10     5
+## 2    0    1    2    1    2    1    3    2    2     6    10    11     5     9
+## 3    0    1    1    3    3    2    6    2    5     9     5     7     4     5
+## 4    0    0    2    0    4    2    2    1    6     7    10     7     9    13
+## 5    0    1    1    3    3    1    3    5    2     4     4     7     6     5
+## 6    0    0    1    2    2    4    2    1    6     4     7     6     6     9
+##   day15 day16 day17 day18 day19 day20 day21 day22 day23 day24 day25 day26 day27
+## 1     7     4     7     7    12    18     6    13    11    11     7     7     4
+## 2     4     4     7    16     8     6    18     4    12     5    12     7    11
+## 3     4    15     5    11     9    10    19    14    12    17     7    12    11
+## 4     8     8    15    10    10     7    17     4     4     7     6    15     6
+## 5     3    10     8    10     6    17     9    14     9     7    13     9    12
+## 6     9    15     4    16    18    12    12     5    18     9     5     3    10
+##   day28 day29 day30 day31 day32 day33 day34 day35 day36 day37 day38 day39 day40
+## 1     6     8     8     4     4     5     7     3     4     2     3     0     0
+## 2     5    11     3     3     5     4     4     5     5     1     1     0     1
+## 3     7     4     2    10     5     4     2     2     3     2     2     1     1
+## 4     4     9    11     3     5     6     3     3     4     2     3     2     1
+## 5     6     7     7     9     6     3     2     2     4     2     0     1     1
+## 6     3    12     7     8     4     7     3     5     4     4     3     2     1</code></pre>
+<p>this is helpful for us because now we can call specific days
+easily</p>
+<pre class="r"><code>dat$day2</code></pre>
+<pre><code>##  [1] 0 1 1 0 1 0 0 0 0 1 1 1 0 0 1 1 0 0 0 1 1 0 0 1 1 0 0 0 0 0 1 0 1 0 0 0 1 1
+## [39] 1 1 0 0 1 0 1 1 0 1 0 0 1 1 0 0 1 0 1 1 0 0</code></pre>
+<pre class="r"><code>dat$day25</code></pre>
+<pre><code>##  [1]  7 12  7  6 13  5  9 15  8 12 11 12  4  6 12 11  5 12  7  8 11 14 12  7 10
+## [26] 13 16  4  4 14 15  8 10  4 14 16 12  4 13 13 14  6 14  7 15 10 15 12 16 10
+## [51]  9  9 11  5  5  6  4  9 14 13</code></pre>
+<p>select more than one column</p>
+<pre class="r"><code>dat[ , c(&#39;day2&#39;, &#39;day25&#39;)]</code></pre>
+<pre><code>##    day2 day25
+## 1     0     7
+## 2     1    12
+## 3     1     7
+## 4     0     6
+## 5     1    13
+## 6     0     5
+## 7     0     9
+## 8     0    15
+## 9     0     8
+## 10    1    12
+## 11    1    11
+## 12    1    12
+## 13    0     4
+## 14    0     6
+## 15    1    12
+## 16    1    11
+## 17    0     5
+## 18    0    12
+## 19    0     7
+## 20    1     8
+## 21    1    11
+## 22    0    14
+## 23    0    12
+## 24    1     7
+## 25    1    10
+## 26    0    13
+## 27    0    16
+## 28    0     4
+## 29    0     4
+## 30    0    14
+## 31    1    15
+## 32    0     8
+## 33    1    10
+## 34    0     4
+## 35    0    14
+## 36    0    16
+## 37    1    12
+## 38    1     4
+## 39    1    13
+## 40    1    13
+## 41    0    14
+## 42    0     6
+## 43    1    14
+## 44    0     7
+## 45    1    15
+## 46    1    10
+## 47    0    15
+## 48    1    12
+## 49    0    16
+## 50    0    10
+## 51    1     9
+## 52    1     9
+## 53    0    11
+## 54    0     5
+## 55    1     5
+## 56    0     6
+## 57    1     4
+## 58    1     9
+## 59    0    14
+## 60    0    13</code></pre>
+<pre class="r"><code>subset(dat, select = c(day2, day25))</code></pre>
+<pre><code>##    day2 day25
+## 1     0     7
+## 2     1    12
+## 3     1     7
+## 4     0     6
+## 5     1    13
+## 6     0     5
+## 7     0     9
+## 8     0    15
+## 9     0     8
+## 10    1    12
+## 11    1    11
+## 12    1    12
+## 13    0     4
+## 14    0     6
+## 15    1    12
+## 16    1    11
+## 17    0     5
+## 18    0    12
+## 19    0     7
+## 20    1     8
+## 21    1    11
+## 22    0    14
+## 23    0    12
+## 24    1     7
+## 25    1    10
+## 26    0    13
+## 27    0    16
+## 28    0     4
+## 29    0     4
+## 30    0    14
+## 31    1    15
+## 32    0     8
+## 33    1    10
+## 34    0     4
+## 35    0    14
+## 36    0    16
+## 37    1    12
+## 38    1     4
+## 39    1    13
+## 40    1    13
+## 41    0    14
+## 42    0     6
+## 43    1    14
+## 44    0     7
+## 45    1    15
+## 46    1    10
+## 47    0    15
+## 48    1    12
+## 49    0    16
+## 50    0    10
+## 51    1     9
+## 52    1     9
+## 53    0    11
+## 54    0     5
+## 55    1     5
+## 56    0     6
+## 57    1     4
+## 58    1     9
+## 59    0    14
+## 60    0    13</code></pre>
 </div>
 <div id="compute-summary-statistics-on-data" class="section level2">
 <h2>Compute summary statistics on data</h2>
@@ -691,7 +888,7 @@ labels more sensical. to output multi-panel plots use for example</p>
 <p>to output the figure to file you can use Rstudio’s GUI features or
 you can use the command line which is what I recommend so that the code
 is fully reproducible:</p>
-<pre class="r"><code>pdf(&#39;./inflammation_fig1.pdf&#39;)
+<pre class="r"><code>png(&#39;./inflammation_fig1.png&#39;)
 par(mfrow = c(2,1))
 plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab=&#39;Day&#39;,
      ylab=&#39;Inflammation&#39;, frame.plot=F, col=&#39;magenta&#39;, pch=2, cex=2)
