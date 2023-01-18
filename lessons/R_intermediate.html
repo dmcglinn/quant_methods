@@ -364,7 +364,7 @@ pre code {
 
 <h1 class="title toc-ignore">R intermediate</h1>
 <h4 class="author">Dan McGlinn</h4>
-<h4 class="date">First created on 2015-01-29. Updated on 2023-01-17</h4>
+<h4 class="date">First created on 2015-01-29. Updated on 2023-01-18</h4>
 
 </div>
 
@@ -376,38 +376,29 @@ pre code {
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
-<li><a href="#rep">Programming for repetitive tasks</a></li>
-<li><a href="#for">For loops</a>
+<li><a href="#rep">Programming for repetitive tasks</a>
 <ul>
+<li><a href="#for">For loops</a></li>
 <li><a href="#cap">Capturing output</a></li>
 <li><a href="#gen">Make loops general</a></li>
-</ul></li>
-<li><a href="#if">If statements</a>
-<ul>
+<li><a href="#if">If statements</a></li>
 <li><a href="#else">Else statements</a></li>
 <li><a href="#nest">Nested operations</a></li>
 <li><a href="#elseif">Else if statements</a></li>
-</ul></li>
 <li><a href="#fun">Define Functions</a></li>
 <li><a href="#debug">Debug Functions</a></li>
 <li><a href="#doc">Document Functions</a></li>
+</ul></li>
 </ul>
-<p>specify that the root directory should be the parent directory of
-where this script is stored this is because this .Rmd file is in
-./quant_methods/lessons and the data file that will be read into is
-located in ./quant_methods/data . If your data file located in the same
-directory as or in a subdirectory of your .Rmd file then you don’t need
-to specify this.</p>
-<pre class="r"><code>knitr::opts_knit$set(root.dir = &#39;../&#39;)</code></pre>
 <p>The goals of this lesson are to increase student’s familiarity with
 the R programming language by discussing how to control program flow and
 use functions read in some data to work with</p>
-<pre class="r"><code>dat &lt;- read.csv(&#39;./data/tgpp.csv&#39;)
-# or equally
-dat &lt;- read.csv(&#39;https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tgpp.csv&#39;)</code></pre>
+<pre class="r"><code>dat &lt;- read.csv(&#39;./data/tgpp.csv&#39;)</code></pre>
+<p>or equally</p>
+<pre class="r"><code>dat &lt;- read.csv(&#39;https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tgpp.csv&#39;)</code></pre>
 </div>
-<div id="programming-for-repetitive-tasks" class="section level2">
-<h2>Programming for repetitive tasks</h2>
+<div id="programming-for-repetive-tasks" class="section level2">
+<h2><a href="#rep" name="rep">#</a> Programming for repetive tasks</h2>
 <p>Frequently in programming you have to carry out repetitive tasks for
 example you might want to know what the class of column of a data.frame
 you could simply write this as</p>
@@ -429,17 +420,18 @@ function</p>
 ## &quot;integer&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
 <p>However, it is very common that we need a more general approach to
 carrying out a repetitive task then simply applying a single function
-(in the example above applying the function <code>class()</code> to each
-column of dat ## For Loop For loops are common feature of almost all
-programming languages. They are typically not the most efficient way to
-carry out a repetive or iterative task however, they are frequently easy
-to understand and relatively easy to motify to include additional tasks.
-To use a for loop we need to create an iterator that will provide an
-index for the operation we would like to repeat. An iterative this is
-any variable you wish typically i, j, or k and so forth but could just
-as easily be “index” or “my_interator” although that is not recommended.
-In the example below we will assign the iterator the value of “i”</p>
-<pre class="r"><code>for(i in 1:11) {
+(in the example above applying the function class() to each column of
+dat ## <a href="#for" name="for">#</a> For Loop For loops are common
+feature of almost all programming languages. They are typically not the
+most efficient way to carry out a repetitive or iterative task however,
+they are frequently easy to understand and relatively easy to modify to
+include additional tasks. To use a for loop we need to create an
+iterator that will provide an index for the operation we would like to
+repeat. An iterative this is any variable you wish typically i, j, or k
+and so forth but could just as easily be “index” or “my_iterator”
+although that is not recommended. In the example below we will assign
+the iterator the value of “i”</p>
+<pre class="r"><code>for (i in 1:11) {
     print(class(dat[ , i]))
 }</code></pre>
 <pre><code>## [1] &quot;integer&quot;
@@ -453,74 +445,90 @@ In the example below we will assign the iterator the value of “i”</p>
 ## [1] &quot;integer&quot;
 ## [1] &quot;numeric&quot;
 ## [1] &quot;numeric&quot;</code></pre>
-<p>to break this example down we can see that</p>
+<p>To break this example down we can see that</p>
 <pre class="r"><code>1:11</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11</code></pre>
-<p>generates a vector of numbers from 1 to 11. The portion of code for(i
+<p>Generates a vector of numbers from 1 to 11. The portion of code for(i
 in 1:11) sets the value of i to each value of this vector as the for
 loop completes its tasks.</p>
-<p>Note the usage of i in 1:11 this is somewhat unique to R because many
-other languages use i = 1:11 and thus this is a frequent error for many
-students</p>
-<div id="a-quick-note-on-print" class="section level3">
-<h3>A quick note on <code>print</code></h3>
-<p>Throughout this lesson I will use the function <code>print()</code>.
-This function is useful for printing messages to the R console but it is
-important to note that print does not assign values to an object so
-these print statements are not saved in memory. I’m only using them so
-you can see what the code is doing in real-time.</p>
-</div>
-</div>
-<div id="beyond-printing---capturing-the-output-of-a-for-loop" class="section level2">
-<h2>Beyond printing - capturing the output of a for loop</h2>
-<p>first we have to define an empty object we’ll call this
-dat_classes</p>
+<p>Note the usage of <code>i in 1:11</code> this is somewhat unique to R
+because many other languages use <code>i = 1:11</code> and thus this is
+a frequent error for many students. Again I just want to emphasize we
+could have used a different name for our index something like
+<code>j</code> or <code>my_index</code> it did not have to be
+<code>i</code> this is simply the most common choice of an index in
+programming like in alebgra.</p>
+<p>Also here it is important to note the syntax and code style of the
+for loop:</p>
+<pre class="r"><code>for (i in 1:11) { 
+    ... # note this line is 4 spaces from the left margin, 2 spaces is also common, 0 spaces is bad form
+}</code></pre>
+<p>Above the <code>...</code> just represents anything you want the loop
+to do each iteration of the loop. This loop will iterate 11 times as
+<code>i</code> counts from 1 to 11. Note the spacing of the code and the
+placement of the curly brackets to start and stop the for loop. Note: it
+is possible to use different spacing (but not recommended):</p>
+<p>cramped example for(i in 1:11){print(class(dat[,i]))}</p>
+<p><strong>Question</strong>: Why do you think the code style in the
+above chunk is not generally recommended?</p>
+<div id="capturing-output" class="section level3">
+<h3><a href="#cap" name="cap">#</a>Capturing output</h3>
+<p>Right now our for loop just prints output to the console but often
+times we want to capture that output and do something with it. To do
+this first we will have to define an empty object we’ll call this
+<code>dat_classes</code></p>
 <pre class="r"><code>dat_classes &lt;- NULL</code></pre>
-<p>once the empty object is initialized we can simply index is R is
+<p>Once the empty object is initialized we can simply index is R is
 smart enough to convert this object to a vector of arbitrary size on the
 fly. This is not a wise move if memory or time is a necessity but it
 makes for easy programming.</p>
-<pre class="r"><code>for(i in 1:11) {
-    dat_classes[i] &lt;- class(dat[ , i])
+<pre class="r"><code>for (i in 1:11) {
+  dat_classes[i] &lt;- class(dat[ , i])
 }
 
 dat_classes</code></pre>
 <pre><code>##  [1] &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;numeric&quot; &quot;integer&quot; &quot;integer&quot;
 ##  [8] &quot;integer&quot; &quot;integer&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
-<p>Alternatively you can concatenate but the first approach is a bit
+<p>alternatively you can concatenate but the first approach is a bit
 cleaner</p>
-<pre class="r"><code>dat_classes = NULL
-for(i in 1:11) {
-    dat_classes &lt;- c(dat_classes, class(dat[ , i]))
+<pre class="r"><code>dat_classes &lt;- NULL
+for (i in 1:11) {
+  dat_classes &lt;- c(dat_classes, class(dat[ , i]))
 }</code></pre>
-<p>The gold star approach to this is to set aside exactly how much
+<p>the gold star approach to this is to set aside exactly how much
 memory you will need in your holder variable. In our case this is a
 vector of strings 11 elements long so we can use:</p>
 <pre class="r"><code>dat_classes &lt;- vector(&quot;character&quot;, 11)
-for(i in 1:11) {
-    dat_classes[i] &lt;- class(dat[ , i])
+for (i in 1:11) {
+  dat_classes[i] &lt;- class(dat[ , i])
 }</code></pre>
 <p>The three approaches above all give the same results but the third
 approach is typically considered best practice and the first approach is
 probably the easiest to read. We’ll use the first approach for the
-reminder of this lesson ## make your loops general in other words you
-don’t want it to break if the number of columns of dat changes</p>
+reminder of this lesson.</p>
+</div>
+<div id="make-your-loops-general" class="section level3">
+<h3><a href="#gen" name="gen">#</a>Make your loops general</h3>
+<p>You don’t want it to break if the number of columns of dat changes so
+you need to write the loop such that it will always count to the
+appropriate number of columns in dat</p>
 <pre class="r"><code>dat_classes &lt;- NULL
-for(i in 1:ncol(dat)) {
-    dat_classes[i] &lt;- class(dat[ , i])
+for (i in 1:ncol(dat)) {
+  dat_classes[i] &lt;- class(dat[ , i])
 }</code></pre>
 </div>
+</div>
 <div id="if-statements" class="section level2">
-<h2>if statements</h2>
+<h2><a href="#if" name="if">#</a> If statements</h2>
 <p>If statements, like for loops, are a staple of programming. They
 allow the user to specify that a particular task be executed based on a
 logical TRUE / FALSE test.</p>
 <pre class="r"><code>dat_classes &lt;- NULL
-for(i in 1:ncol(dat)) {
-    dat_classes[i] &lt;- class(dat[ , i])
-    if(dat_classes[i] == &quot;integer&quot;) {
-        print(&#39;sweet!&#39;)
-    }
+for (i in 1:ncol(dat)) {
+  dat_classes[i] &lt;- class(dat[ , i])
+  if(dat_classes[i] == &quot;integer&quot;) {
+    print(&#39;sweet!&#39;)
+  }
 }</code></pre>
 <pre><code>## [1] &quot;sweet!&quot;
 ## [1] &quot;sweet!&quot;
@@ -532,18 +540,48 @@ for(i in 1:ncol(dat)) {
 ## [1] &quot;sweet!&quot;</code></pre>
 <p>Note above because this if statement is only a single line it is not
 required that we include the brackets {} however it does make it more
-explicit to a reader what your code is doing ## else statement You can
-use an else clause to specify an alternative task to be carried out if
-the logical test is FALSE.</p>
-<pre class="r"><code>dat_classes = NULL
-for(i in 1:ncol(dat)) {
-    dat_classes[i] &lt;- class(dat[ , i])
-    if (dat_classes[i] == &quot;integer&quot;) {
-        print(&#39;sweet!&#39;)
+explicit to a reader what your code is doing</p>
+<div id="else-statement" class="section level3">
+<h3><a href="#else" name="else">#</a> Else statement</h3>
+<p>You can use an else clause to specify an alternative task to be
+carried out if the logical test is FALSE.</p>
+<pre class="r"><code>dat_classes &lt;- NULL
+for (i in 1:ncol(dat)) {
+  dat_classes[i] &lt;- class(dat[ , i])
+  if(dat_classes[i] == &quot;integer&quot;) {
+    print(&#39;sweet!&#39;)
+  }
+  else {
+    print(&#39;sour&#39;)
+  }
+}</code></pre>
+<pre><code>## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sour&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sweet!&quot;
+## [1] &quot;sour&quot;
+## [1] &quot;sour&quot;</code></pre>
+<p>###<a href="#nest" name="nest">#</a>Nested statements You can nest if
+statements (and for loops) within one another</p>
+<pre class="r"><code>dat_classes &lt;- NULL
+for (i in 1:ncol(dat)) {
+  dat_classes[i] &lt;- class(dat[ , i])
+  if (dat_classes[i] == &quot;integer&quot;) {
+    print(&#39;sweet!&#39;)
+  }
+  else {
+    if (dat_classes[i] == &#39;factor&#39;) {
+      print(&#39;ok&#39;)
     }
     else {
-        print(&#39;sour&#39;)
+      print(&#39;sour&#39;)
     }
+  }
 }</code></pre>
 <pre><code>## [1] &quot;sweet!&quot;
 ## [1] &quot;sweet!&quot;
@@ -557,23 +595,22 @@ for(i in 1:ncol(dat)) {
 ## [1] &quot;sour&quot;
 ## [1] &quot;sour&quot;</code></pre>
 </div>
-<div id="nested-ifs" class="section level2">
-<h2>nested ifs</h2>
-<p>You can nest if statements (and for loops) within one another</p>
-<pre class="r"><code>dat_classes = NULL
-for(i in 1:ncol(dat)) {
-    dat_classes[i] &lt;- class(dat[ , i])
-    if (dat_classes[i] == &quot;integer&quot;) {
-        print(&#39;sweet!&#39;)
-    }
-    else {
-        if(dat_classes[i] == &#39;factor&#39;) {
-            print(&#39;ok&#39;)
-        }
-        else {
-            print(&#39;sour&#39;)
-        }
-    }
+<div id="else-if-statement" class="section level3">
+<h3><a href="#elseif" name="elseif">#</a>Else if statement</h3>
+<p>An alternative to the above syntax is to use an else if statement
+which are sometimes a bit easier to read</p>
+<pre class="r"><code>dat_classes &lt;- NULL
+for (i in 1:ncol(dat)) {
+  dat_classes[i] &lt;- class(dat[ , i])
+  if (dat_classes[i] == &quot;integer&quot;) {
+    print(&#39;sweet!&#39;)
+  }
+  else if (dat_classes[i] == &#39;factor&#39;) {
+    print(&#39;ok&#39;)
+  }
+  else {
+    print(&#39;sour&#39;)
+  }
 }</code></pre>
 <pre><code>## [1] &quot;sweet!&quot;
 ## [1] &quot;sweet!&quot;
@@ -586,42 +623,18 @@ for(i in 1:ncol(dat)) {
 ## [1] &quot;sweet!&quot;
 ## [1] &quot;sour&quot;
 ## [1] &quot;sour&quot;</code></pre>
-<p>alternatively we can use an else if statement which are sometimes a
-bit easier to read</p>
-<pre class="r"><code>dat_classes = NULL
-for(i in 1:ncol(dat)) {
-    dat_classes[i] = class(dat[ , i])
-    if(dat_classes[i] == &quot;integer&quot;) {
-        print(&#39;sweet!&#39;)
-    }
-    else if (dat_classes[i] == &#39;factor&#39;) {
-            print(&#39;ok&#39;)
-    }
-    else {
-            print(&#39;sour&#39;)
-    }
-}</code></pre>
-<pre><code>## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sour&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sweet!&quot;
-## [1] &quot;sour&quot;
-## [1] &quot;sour&quot;</code></pre>
-<p>In one liner situations you can also use the function ifelse()</p>
+<p>In one liner situations you can also use the function
+<code>ifelse()</code></p>
 <pre class="r"><code>x &lt;- 1:10
 ifelse(x &gt; 5 , &#39;sweet!&#39;, &#39;sour!&#39;)</code></pre>
 <pre><code>##  [1] &quot;sour!&quot;  &quot;sour!&quot;  &quot;sour!&quot;  &quot;sour!&quot;  &quot;sour!&quot;  &quot;sweet!&quot; &quot;sweet!&quot; &quot;sweet!&quot;
 ##  [9] &quot;sweet!&quot; &quot;sweet!&quot;</code></pre>
-<pre class="r"><code>for(i in x) {
-    if(i &gt; 5)
-        print(&#39;sweet&#39;)
-    else
-        print(&#39;sour&#39;)
+<p>Which produces the same result as:</p>
+<pre class="r"><code>for (i in x) {
+  if (i &gt; 5)
+    print(&#39;sweet&#39;)
+  else
+    print(&#39;sour&#39;)
 }</code></pre>
 <pre><code>## [1] &quot;sour&quot;
 ## [1] &quot;sour&quot;
@@ -634,20 +647,21 @@ ifelse(x &gt; 5 , &#39;sweet!&#39;, &#39;sour!&#39;)</code></pre>
 ## [1] &quot;sweet&quot;
 ## [1] &quot;sweet&quot;</code></pre>
 </div>
-<div id="functions" class="section level2">
-<h2>Functions</h2>
+</div>
+<div id="define-functions" class="section level2">
+<h2><a href="#fun" name="fun">#</a>Define functions</h2>
 <p>Functions are one of the most important objects for unlocking R’s
-power. The provide a way to modularize repetive tasks that we need for
+power. The provide a way to modularize repetitive tasks that we need for
 our analyses. For example we can take the for loop that we wrote above
 which works on the data.frame called “dat” and place it in a function so
 that the same code can work on any data.frame we provide it. Function
 names should be verbs when possible and also avoid other known R
 function names when known.</p>
-<pre class="r"><code>eval_class = function(x) {
-    dat_classes = NULL
-    for(i in 1:ncol(x)) {
-        dat_classes[i] = class(x[ , i])
-        if(dat_classes[i] == &quot;integer&quot;) {
+<pre class="r"><code>eval_class &lt;- function(x) {
+    dat_classes &lt;- NULL
+    for (i in 1:ncol(x)) {
+        dat_classes[i] &lt;- class(x[ , i])
+        if (dat_classes[i] == &quot;integer&quot;) {
             print(&#39;sweet!&#39;)
         }
         else if (dat_classes[i] == &#39;factor&#39;) {
@@ -658,12 +672,9 @@ function names when known.</p>
         }
     }
     return(dat_classes)
-}</code></pre>
-<p>above the only change we have made to our for loop is to substitute
-the object name <code>dat</code> for <code>x</code>. For our function
-<code>eval_class()</code>, <code>x</code> is a variable or argument. we
-can test our function by providing by using dat</p>
-<pre class="r"><code>eval_class(dat)</code></pre>
+}
+
+eval_class(dat)</code></pre>
 <pre><code>## [1] &quot;sweet!&quot;
 ## [1] &quot;sweet!&quot;
 ## [1] &quot;sweet!&quot;
@@ -677,7 +688,12 @@ can test our function by providing by using dat</p>
 ## [1] &quot;sour&quot;</code></pre>
 <pre><code>##  [1] &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;numeric&quot; &quot;integer&quot; &quot;integer&quot;
 ##  [8] &quot;integer&quot; &quot;integer&quot; &quot;numeric&quot; &quot;numeric&quot;</code></pre>
-<p>what if <code>dat</code> had twice as many columns</p>
+<p>Above the only change we have made to our for loop is to substitute
+the object name <code>dat</code> for <code>x</code>. For our function
+<code>eval_class()</code>, <code>x</code> is a variable or argument.
+Additionally we added the line <code>return(dat_classes</code> which
+ensures that the object is output by the function</p>
+<p>What if dat had twice as many columns?</p>
 <pre class="r"><code>dbl_dat &lt;- cbind(dat, dat)
 
 eval_class(dbl_dat)</code></pre>
@@ -713,10 +729,10 @@ has to be a data.frame or a matrix object other types should return an
 error with a reasonable explanation</p>
 <pre class="r"><code>eval_class &lt;- function(x) {
     if (class(x) %in% c(&#39;data.frame&#39;, &#39;matrix&#39;)){
-        x_classes = NULL
-        for(i in 1:ncol(x)) {
-            x_classes[i] = class(x[ , i])
-            if(x_classes[i] == &quot;integer&quot;) {
+        x_classes &lt;- NULL
+        for (i in 1:ncol(x)) {
+            x_classes[i] &lt;- class(x[ , i])
+            if (x_classes[i] == &quot;integer&quot;) {
                 print(&#39;sweet!&#39;)
             }
             else if (x_classes[i] == &#39;factor&#39;) {
@@ -732,15 +748,57 @@ error with a reasonable explanation</p>
     }
     return(x_classes)
 }</code></pre>
-<p>now let’s provide the function a vector and have it fail gracefully
-with an informative error message</p>
-<pre class="r"><code>my_vec &lt;- 1:10
-eval_class(my_vec)</code></pre>
-<pre><code>## Error in eval_class(my_vec): x must be either a data.frame or matrix</code></pre>
-<p>debug functions using</p>
-<pre class="r"><code>debug(eval_class)</code></pre>
-<p>you have to turn off the debugger when your done</p>
-<pre class="r"><code>undebug(eval_class)</code></pre>
+<pre class="r"><code>my_obj &lt;- 1:10
+eval_class(my_obj)</code></pre>
+<pre><code>## Error in eval_class(my_obj): x must be either a data.frame or matrix</code></pre>
+</div>
+<div id="debug-functions" class="section level2">
+<h2><a href="#debug" name="debug">#</a>Debug functions</h2>
+<p>To debug your function in R use the functions <code>debug()</code>
+and <code>undebug()</code>. Rstudio has made the debugging experience
+for R users much better than previously. Try out the following lines of
+code</p>
+<pre class="r"><code>debug(eval_class)
+eval_class(dat)
+undebug(eval_class)</code></pre>
+</div>
+<div id="document-functions" class="section level2">
+<h2><a href="#doc" name="doc">#</a>Document functions</h2>
+<p>Documentation is critical particularly when it comes to using
+functions which usually have a least one argument and some type of
+output.</p>
+<p>One best practice to follow when documenting functions is to use
+Roxygen which is a package that helps to build R help files (i.e., .Rd
+files) which are accessed when the function <code>help</code> or
+<code>?</code> is used preceding a function name. Here is a page that
+goes into detail about how to do this: <a href="https://jozef.io/r102-addin-roxytags/" class="uri">https://jozef.io/r102-addin-roxytags/</a>, but for simplity
+here is an example with our function:</p>
+<pre class="r"><code># #&#39; Evaluate the class of each column in a matrix or data.frame
+# #&#39; 
+# #&#39; @param x a matrix or data.frame
+# #&#39; @return a vector of strings that indicates the class of each column of `x` 
+# #&#39; 
+# #&#39; @export
+# #&#39; @examples
+# #&#39; eval_class(cars)
+eval_class &lt;- function(x) {
+  if (class(x) %in% c(&#39;data.frame&#39;, &#39;matrix&#39;)){
+    x_classes &lt;- NULL
+    for (i in 1:ncol(x)) {
+      x_classes[i] &lt;- class(x[ , i])
+    }
+  }    
+  else {
+    stop(&#39;x must be either a data.frame or matrix&#39;)
+  }
+  return(x_classes)
+}</code></pre>
+<p>Note above you would remove the preceeding <code>#</code> from each
+line of documentation I had to include that here because R spin uses
+<code>#+</code> to identify formatted text.</p>
+<p>This provides a nice format that is easily understandable by a human,
+and if you ever decide to package your function this can can now be used
+to generate a help file for your function. Learn more at <a href="https://roxygen2.r-lib.org/articles/roxygen2.html" class="uri">https://roxygen2.r-lib.org/articles/roxygen2.html</a></p>
 </div>
 
 
