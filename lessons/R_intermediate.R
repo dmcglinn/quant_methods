@@ -102,7 +102,7 @@ for (i in 1:11) {
 #' for loop. Note: it is possible to use different spacing (but not recommended):
 #' 
 #' cramped example
-#' for(i in 1:11){print(class(dat[,i]))}
+for(i in 1:11){print(class(dat[,i]))}
 #' 
 #' **Question**: Why do you think the code style in the above chunk is not generally recommended?
 #' 

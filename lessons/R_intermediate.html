@@ -472,7 +472,19 @@ to do each iteration of the loop. This loop will iterate 11 times as
 <code>i</code> counts from 1 to 11. Note the spacing of the code and the
 placement of the curly brackets to start and stop the for loop. Note: it
 is possible to use different spacing (but not recommended):</p>
-<p>cramped example for(i in 1:11){print(class(dat[,i]))}</p>
+<p>cramped example</p>
+<pre class="r"><code>for(i in 1:11){print(class(dat[,i]))}</code></pre>
+<pre><code>## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;integer&quot;
+## [1] &quot;numeric&quot;
+## [1] &quot;numeric&quot;</code></pre>
 <p><strong>Question</strong>: Why do you think the code style in the
 above chunk is not generally recommended?</p>
 <div id="capturing-output" class="section level3">
