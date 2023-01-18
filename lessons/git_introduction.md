@@ -115,12 +115,86 @@ to make sure you can log in and remotely push code to github.
 
 ### Typical Rstudio, Git, and GitHub work flow
 
-The benefits of git become fully realized when it is connected to a 3rd party 
-web host that will backup your code and data. This is helpful for your future-self
-and for collaborating. We will step through a simple workflow with an example 
-R project that we will create so that you can get a feel for the process. 
+Congratulations! If you've made it this far you have successfully configured
+Rstudio, git, and github - no small accomplishment! Now we're ready to start
+doing work with these tools in concert. Each tool has a different role:
 
+1. git - the program that creates the versions of the data and code
+2. Rstudio - provides a GUI (point and click) interface for using git (as an
+   alternative to at the command line)
+3. GitHub - provides a web archive of the code if your machine dies or is lost
 
+The standard workflow that we will work though now is: 
+
+a. create a repo on GitHub with a blank README.md file for a new project that you want to undertake
+b. clone (i.e., download) the repo to your local machine using Rstudio Project interface
+c. make changes to repo by adding code and data
+d. commit your changes locally
+e. push (i.e., upload) your changes to GitHub via Rstudio GUI
+f. repeat steps d and e as needed. 
+
+**Note**:  if you make any changes to the GitHub repo either on another machine or in
+the web browser then you'll want to "pull" those changes down to your local 
+machine you're working on before making new local changes. Failure to do this 
+will result in files that are not-synced up. If you use dropbox this is called 
+a conflicted copy - two versions of a file but the software isn't sure which is 
+the version that is most appropriate. 
+
+### a. Create your new repo on GitHub
+
+Good news you just got funded to study longleaf pine forests - time to setup a new 
+github repo to kick off the project. 
+
+1. go to github.com and click "New" on the list of repositories on the left
+![new_repo](./figures/new_repo.PNG)
+
+2. name your repo something informative like "longleaf"
+![naming_repo](./figures/naming_repo.PNG)
+
+Be sure to click "Add a README file" - this makes things easier downstream
+
+Click green button "Create repository"
+
+### b. Clone your repo to your local machine
+
+1. Now that you have created your new repo you'll need to clone it to your 
+local machine so you can start adding data and code to it. 
+
+Click the Green button called "<> Code"
+
+What you chose next will depend on if you chose to work with personal access
+tokens or the ssh key for authentication into github. 
+i. personal access token -> "HTTPS" option
+ii. ssh -> "SSH" option
+
+Click the little window button next to the url this will "copy" that url to your
+clipboard. 
+
+2. On your local machine open Rstudio and click: 
+
+File -> New Project
+
+When the next window pops up chose "Version Control"
+![newproj](./figures/newproj.PNG)
+
+Then chose "Git"
+
+![newproj2](./figures/newproj2.PNG)
+
+Now paste in the url for the github repo (that you have on your clipboard)
+into the box for "Repository URL:"
+
+![proj_url](./figures/proj_url.PNG)
+
+Click "Create Project"
+
+You've just cloned your first repo! 
+
+You'll now notice in Rstudio you have a little tab called "Git"
+
+![git_panel](./figures/git_panel.PNG)
+
+### c. Make changes to repo by adding code and data
 
 
 ### Version control with Git
