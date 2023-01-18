@@ -7,17 +7,15 @@ The purpose of this lesson to start using Git and GitHub from the command line
 and within R studio.
 
 To complete the GitHub portion of this lesson you will need to create a 
-GitHub user account. If you are a student or teacher make sure to check out their
-education account options which offer free private repos: 
-<https://education.github.com/>
+GitHub user account. 
 
 Git is a version control system that allows you to track changes to your data
-and source code as you develop quantiative projects. It is common when 
-working on a project to accrew many different versions of data and code files. 
+and source code as you develop quantitative projects. It is common when 
+working on a project to accrue many different versions of data and code files. 
 git provides a system of organizing these file versions into a powerful 
 reference system.
 
-<center><img src="./figures/final_doc.gif" width="500"></center>
+![phdcomics](./figures/final_doc.gif)
 
 ### Install Git
 
