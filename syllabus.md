@@ -90,7 +90,7 @@ Course Schedule:
 | Week | Date   | Lecture Topic                                  | Zoom recording |
 |------|--------|------------------------------------------------|----------------|
 | 1    | Jan 12 | Introduction to R                              | [link](https://cofc.zoom.us/rec/play/HpAW6feh6IumQXzXCh4vQ8AHvOrG-JHl0HupIO_PYbaa31frJ_MY8Ys5IZyT_yjfpswLwFzaKTiJxRaK.qOkd12I18k24TonG?autoplay=true&startTime=1673528663000) |
-| 2    | Jan 17 | More R Version Control & the Terminal          |                |
+| 2    | Jan 17 | More R Version Control & the Terminal          | [link](https://cofc.zoom.us/rec/share/p3GOlFjrZI69FrZNfVta9DuWpIm5c0b8hy5BAmMCdP1TT1iB6Uy6sH3sA1J8dyZT.6NV9-BaArGwvcSBZ) |
 | 3    | Jan 24 | Working with data                              |                |
 | 4    | Jan 31 | Regression and Simple Models                   |                |
 | 4    | Feb 07 | Project Feedback in class                      |                |
