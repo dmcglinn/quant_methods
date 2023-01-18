@@ -32,8 +32,7 @@ opts_knit$set(root.dir='../')
 #' Lesson developed here: 
 #' http://swcarpentry.github.io/r-novice-inflammation/
 #'
-#' ## Arithmetic 
-
+#' ## <a href="#arith" name="arith">#</a>Arithmetic
 3 + 4       # summation
 
 3 * 4       # multiplication
@@ -50,7 +49,7 @@ log10(3)    # log base 10
 
 exp(log(3)) # e
 
-#' ## Logical operations 
+#' ## <a href="#logic" name="logic">#</a>Logical operations
 
 3 > 4        # greater than
 
@@ -74,7 +73,12 @@ FALSE == 0   # False is set to zero in R
 
 T + T + F    # what would this equal?
 
-#' ## Variable assignment 
+# useful functions
+# any() and all()
+any(c(T, F))
+all(c(T, F))
+
+#' ## <a href="#vars" name="vars">#</a>Variable assignment 
 #' you can use `<-` or `=` to assign a value to a variable but `<-` is recommended
 weight_kg <- 55
 
@@ -102,7 +106,21 @@ weight_kg
 #' ...and in weight pounds still
 weight_lb
 
-#' ## Reading in Data
+#' Coming up with good object and file names can be difficult, but there 
+#' are two general rules that can help guide you: 
+#'  
+#' 1) be descriptive
+#' 2) don't make names you must type a lot too long
+#' 
+#' So for something like a file name which you'll only type probably once at read and
+#' write you should use a long descriptive name, but for objects in your R code you
+#' need to consider typeability and readability when designing the name. A long name
+#' like root_rhiz_prod_total_mm is very clear but is a pain to read and worse to 
+#' type. R has a built-in name completion system but this doesn't completely 
+#' remove the burden on you for using long object names. 
+#'
+
+#' ## <a href="#read" name="read">#</a>Reading in data
 
 #' first check what your working directory is:
 getwd()
@@ -151,17 +169,20 @@ dat <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pag
 
 #' this is not always a great option though because remote data and urls can break
 #' 
-#' ## Using the help 
+#' ## <a href="#help" name="help">#</a>Using the help
 
 #' above we used the function "read.csv" to find out more about this function see
+#+ eval = FALSE
 ?read.csv 
 #' or equivalently 
+#+ eval = FALSE
 help(read.csv) 
 #' to do a fuzzy help search use
+#+ eval = FALSE
 help.search('read') 
 help.search('csv')
 
-#' ## Visual examination of data 
+#' ## <a href="#data" name="data">#</a>Examine data
 
 #' visual summary of first 6 rows
 head(dat)
@@ -174,7 +195,23 @@ class(dat)
 #' what are the dimensions of dat
 dim(dat)
 
-#' ## Subseting portions of the data
+#' You may notice that the data did not have column names and R auto assigned the
+#' columns the names V1, V2, V3, and so on. In this dataset, each column represent
+#' different times. We can assign column names using the function `names`
+names(dat)
+names(dat) <- paste("day", 1:ncol(dat), sep='')
+names(dat)
+
+#' Above the function `paste` was used to construct text strings that combined the
+#' word "patient" with a given index in this case from 1 to the total number of 
+#' columns in the object `dat`. By default the function `paste` inserts a space 
+#' between strings that you wish to paste together, I've set the `sep` argument 
+#' to `''` to ensure that no space is inserted (see also `?paste0`)
+#' 
+
+#' ## <a href="#subset" name="subset">#</a>Subsetting the data
+#' There are a variety of ways to subset data in `data.frames`. This section
+#" demonstrates how to subset data using indices. 
 #' first value in dat
 dat[1, 1]
 
@@ -197,22 +234,29 @@ dat[1:nrow(dat), 16]
 dat[1:5 , -16]      # gives every column but 16
 dat[1:5 , -(1:10)]  # gives every column except the first 10
 
-#' ## Setting and calling column names
-#' This dataset is a bit unusual because it doesn't have column names.
-names(dat)
-#' You can see that R just assigned each column a default name "V1", "V2", ect. 
-#' let's change these to be more informative
-names(dat) <- paste0('day', 1:ncol(dat))
-head(dat)
+#' An alternative way to carry out subsetting is to reference specific column 
+#' names or to use the `subset` function.
 
-#' this is helpful for us because now we can call specific days easily
-dat$day2
-dat$day25
-#' select more than one column
-dat[ , c('day2', 'day25')]
-subset(dat, select = c(day2, day25))
+#' Here to avoid printing too much information to the screen I'll just focus on
+#' on the first 5 rows of each subset
+dat$patient10[1:5]
+dat[1:5 , 'day10']
+dat[1:5 , c('day10', 'day15')]
+#' notice that the following would give and error
+#+ error=TRUE
+dat[ , -c('patient3')]
+#' but that the following would accomplish the intended goal of dropping patient 3
+dat[1:5 , -3]
 
-#' ## Compute summary statistics on data
+#' let's try using the subset function
+#' only data for day 3
+subset(dat, select = day3)[1:5, ]
+#' data on all days but 3
+subset(dat, select = -day3)[1:5, ]
+#' data only on day 3 when inflammation in day 1 is equal to 0
+subset(dat, subset = day1 == 0, select = day3)[1:5, ]
+
+#' ## <a href="#summary" name="summary">#</a>Summary statistics
 #' first row, all of the columns
 patient_1 <- dat[1, ]
 #' max inflammation for patient 1
@@ -233,7 +277,7 @@ sd(dat[ , 7])
 
 summary(dat[ , 7])
 
-#' ## Aggregate information across rows or columns
+#' ## <a href="#aggr" name="aggr">#</a>Aggregate across rows or columns
 #' Thus, to obtain the average inflammation of each patient we will need to
 #' calculate the mean of all of the rows (`MARGIN = 1`) of the data frame.
 
@@ -251,7 +295,7 @@ sd_day_inflammation <- apply(dat, 2, sd)
 #' standard deviation of patients
 sd_patient_inflammation <- apply(dat, 1, sd)
 
-#' ## Plot data
+#' ## <a href="#plot" name="plot">#</a>Plot data
 #' use the function plot() to plot data
 ?plot
 #' provides a long list of potential arguments and examples
@@ -281,13 +325,13 @@ plot(1:length(avg_patient_inflammation), avg_patient_inflammation,
 #' the command line which is what I recommend so that the code is fully 
 #' reproducible:
 
-#+ eval = FALSE
-png('./inflammation_fig1.png')
+#+ fig.height = 8
+# png('./inflammation_fig1.png') # to create a png file
 par(mfrow = c(2,1))
 plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab='Day',
      ylab='Inflammation', frame.plot=F, col='magenta', pch=2, cex=2)
 plot(1:length(avg_patient_inflammation), avg_patient_inflammation,
      xlab='patient identity', ylab='inflammation', col='dodgerblue')
-dev.off()
+# dev.off()                      # to stop writing to the png file. 
 
 
