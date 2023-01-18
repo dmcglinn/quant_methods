@@ -96,16 +96,16 @@ to make sure you can log in and remotely push code to github.
     - [ssh token full instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
         i. open terminal
         ii. paste the following command into the terminal substituting the email
-        address you used for your github account: 
-        `ssh-keygen -t ed25519 -C "your_email@example.com"`
+        address you used for your github account:  
+        `ssh-keygen -t ed25519 -C "your_email@example.com"`  
         This creates a new SSH key, using the provided email as a label.
         iii. When you're prompted to "Enter a file in which to save the key", you can
         press Enter to accept the default file location. 
         iv. paste one of the following commands in the terminal depending on
-        what OS you are using:
-        Mac:                `$ pbcopy < ~/.ssh/id_rsa.pub`
-        Linux (Ubuntu):     `$  cat ~/.ssh/id_rsa.pub`
-        Windows (Git Bash): `$ clip < ~/.ssh/id_rsa.pub`
+        what OS you are using:  
+        Mac:                `$ pbcopy < ~/.ssh/id_rsa.pub`  
+        Linux (Ubuntu):     `$  cat ~/.ssh/id_rsa.pub`  
+        Windows (Git Bash): `$ clip < ~/.ssh/id_rsa.pub`  
         that will copy the ssh key to your clipboard now navigate your web-browser to:
         https://github.com/settings/ssh/new
         v. Paste the key into the box called "Key" in the box title - provide a name
@@ -145,10 +145,12 @@ the version that is most appropriate.
 Good news you just got funded to study longleaf pine forests - time to setup a new 
 github repo to kick off the project. 
 
-1. go to github.com and click "New" on the list of repositories on the left
+1. go to github.com and click "New" on the list of repositories on the left  
+
 ![new_repo](./figures/new_repo.PNG)
 
-2. name your repo something informative like "longleaf"
+2. name your repo something informative like "longleaf"  
+
 ![naming_repo](./figures/naming_repo.PNG)
 
 Be sure to click "Add a README file" - this makes things easier downstream
@@ -174,15 +176,16 @@ clipboard.
 
 File -> New Project
 
-When the next window pops up chose "Version Control"
-![newproj](./figures/newproj.PNG)
+When the next window pops up chose "Version Control"  
 
-Then chose "Git"
+![new_proj](./figures/new_proj.PNG)
 
-![newproj2](./figures/newproj2.PNG)
+Then chose "Git"  
+
+![new_proj2](./figures/new_proj2.PNG)
 
 Now paste in the url for the github repo (that you have on your clipboard)
-into the box for "Repository URL:"
+into the box for "Repository URL:"  
 
 ![proj_url](./figures/proj_url.PNG)
 
@@ -190,7 +193,7 @@ Click "Create Project"
 
 You've just cloned your first repo! 
 
-You'll now notice in Rstudio you have a little tab called "Git"
+You'll now notice in Rstudio you have a little tab called "Git"  
 
 ![git_panel](./figures/git_panel.PNG)
 
@@ -198,7 +201,7 @@ You'll now notice in Rstudio you have a little tab called "Git"
 
 
 ### Version control with Git
-We will work through the SWC lesson's on Git
+We will work through the SWC lesson's on Git 
 [Version Control with Git](http://swcarpentry.github.io/git-novice/)
 
 In particular we will focus on:
