@@ -3,6 +3,10 @@
 #' author: Dan McGlinn
 #' date: '`r paste("First created on 2015-01-16. Updated on", Sys.Date())`'
 #' ---
+#' 
+#' Home Page - http://dmcglinn.github.io/quant_methods/ 
+#' GitHub Repo - https://github.com/dmcglinn/quant_methods 
+#' 
 #' ## Source Code Link
 #' https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_introduction.R
 #'
@@ -334,4 +338,7 @@ plot(1:length(avg_patient_inflammation), avg_patient_inflammation,
      xlab='patient identity', ylab='inflammation', col='dodgerblue')
 # dev.off()                      # to stop writing to the png file. 
 
-
+#'
+#' Home Page - http://dmcglinn.github.io/quant_methods/ 
+#' GitHub Repo - https://github.com/dmcglinn/quant_methods 
+#' 

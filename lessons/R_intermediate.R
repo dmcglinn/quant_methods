@@ -4,22 +4,25 @@
 #' date: '`r paste("First created on 2015-01-29. Updated on", Sys.Date())`'
 #' output: html_document
 #'---
-#'  
+#'
+#' Home Page - http://dmcglinn.github.io/quant_methods/ 
+#' GitHub Repo - https://github.com/dmcglinn/quant_methods 
+#' 
 #' ## Source Code Link
 #' https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/R_intermediate.R
 #' 
 #' ## Lesson Outline
 #' * <a href="#rep">Programming for repetitive tasks</a>
-#'   * <a href="#for">For loops</a>
+#' * <a href="#for">For loops</a>
 #'   - <a href="#cap">Capturing output</a>
 #'   - <a href="#gen">Make loops general</a>
-#'   * <a href="#if">If statements</a>
+#' * <a href="#if">If statements</a>
 #'   - <a href="#else">Else statements</a>
 #'   - <a href="#nest">Nested operations</a>
 #'   - <a href="#elseif">Else if statements</a>
-#'   * <a href="#fun">Define Functions</a>
-#'   * <a href="#debug">Debug Functions</a>
-#'   * <a href="#doc">Document Functions</a>
+#' * <a href="#fun">Define Functions</a>
+#' * <a href="#debug">Debug Functions</a>
+#' * <a href="#doc">Document Functions</a>
 #'   
 #+ echo=FALSE
 # specify that the root directory should be the parent directory of where this
@@ -346,3 +349,7 @@ eval_class <- function(x) {
 #' you ever decide to package your function this can can now be used to generate
 #' a help file for your function. Learn more at https://roxygen2.r-lib.org/articles/roxygen2.html 
 
+#'
+#' Home Page - http://dmcglinn.github.io/quant_methods/ 
+#' GitHub Repo - https://github.com/dmcglinn/quant_methods 
+#' 
