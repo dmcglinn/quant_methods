@@ -85,33 +85,32 @@ to make sure you can log in and remotely push code to github.
     is specific for a specific machine but once you set it up you never have to
     think about it again 😮. I would use the ssh tokens if I could.  I'll
     provide the instructions here for both approaches here:
-    -  [personal access token (classic) instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)
+    -  [personal access token (classic) instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token#creating-a-personal-access-token-classic)  
         i. be sure to set the expiration date to never and click all the boxes
         in the scopes options you want to be able to do any of those tasks with
-        your token - they are crazy about security on github
+        your token - they are crazy about security on github.  
         ii. once it is created save this long text string somewhere you can
         access when you need to make remote change to github (i.e., through
         Rstudio) - it will serve as your "password" - its confusing because you
-        have a separate github account password 🙁
-    - [ssh token full instructions](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) 
-        i. open terminal
-        ii. paste the following command into the terminal substituting the email
-        address you used for your github account:  
-        `ssh-keygen -t ed25519 -C "your_email@example.com"`  
-        This creates a new SSH key, using the provided email as a label.
+        have a separate github account password 🙁  
+    - [ssh token full instructions](https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key) 
+        i. open terminal  
+        ii. paste the following commands into the terminal  
+        `cd ~/.ssh`  
+        `ssh-keygen -o`  
+        hit enter when prompted for file name and passphrase  
+        This creates a new open SSH key for your machine.
         iii. When you're prompted to "Enter a file in which to save the key", you can
-        press Enter to accept the default file location. 
-        iv. paste one of the following commands in the terminal depending on
-        what OS you are using:  
-        Mac:                `$ pbcopy < ~/.ssh/id_rsa.pub`  
-        Linux (Ubuntu):     `$  cat ~/.ssh/id_rsa.pub`  
-        Windows (Git Bash): `$ clip < ~/.ssh/id_rsa.pub`  
-        that will copy the ssh key to your clipboard now navigate your web-browser to:
-        https://github.com/settings/ssh/new
-        v. Paste the key into the box called "Key" in the box title - provide a name
-        that will help you recognize the specific machine you are on - as I noted each
-        machine you use will need a separate ssh key.
-        vi. Click the green box "Add SSH key"
+        press Enter to accept the default file location.  
+        iv. Now we need to print our ssh key to the terminal so we can copy and paste it  
+        `cat ~/.ssh/id_rsa.pub`  
+        that will print the ssh key. Go ahead and highlight it with your mouse and
+        copy it to your clipboard.  
+        Now navigate your web-browser to: https://github.com/settings/ssh/new   
+        v. Paste the key into the box called "Key" in the box title  
+            - provide a name that will help you recognize the specific machine you are on.  
+            - each machine you use will need a separate ssh key.  
+        vi. Click the green box "Add SSH key"  
 
 ### Typical Rstudio, Git, and GitHub work flow
 
@@ -166,15 +165,15 @@ Click the Green button called "<> Code"
 
 What you chose next will depend on if you chose to work with personal access
 tokens or the ssh key for authentication into github. 
-i. personal access token -> "HTTPS" option
-ii. ssh -> "SSH" option
+i. personal access token -> "HTTPS" option  
+ii. ssh -> "SSH" option  
 
 Click the little window button next to the url this will "copy" that url to your
-clipboard. 
+clipboard.  
 
-2. On your local machine open Rstudio and click: 
+2. On your local machine open Rstudio and click:  
 
-File -> New Project
+File -> New Project  
 
 When the next window pops up chose "Version Control"  
 
@@ -199,6 +198,35 @@ You'll now notice in Rstudio you have a little tab called "Git"
 
 ### c. Make changes to repo by adding code and data
 
+Now is where we get to work. The first thing we probably want to do
+is provide our project with a better description in our `README.md` file. 
+
+Open that file in Rstudio and type a description of the project and save the file.
+
+You will notice that in Rstudio's Git tab has changed slightly as the file
+`README.md` will have a blue M next to it in the status column.  
+
+![git_tab_explained](./figures/git_tab_explained.png)  
+
+This is different than the "?" that accompany the .gitignore and .Rproj files.
+Those files are not 'tracked' by git meaning that it does not monitor those files
+for changes. These files were auto generated when you created the version control
+Rstudio project. In general, best practices suggest not to track either of these
+files. 
+
+Now is a good time to also point out some of the git tab's other buttons: 
+
+* "Staged" - if you click the box next to one of the files it tells git you want 
+to track that file and you are preparing to "commit" that file to the repository.
+* "Commit" - click that button to take make a snapshot of all staged files at
+that time. Clicking this button will will pull up the diff window
+* "Diff" -  
+
+![git_diff](./figures/git_diff.png)  
+
+
+
+You need to add a commit message 
 
 ### Version control with Git
 We will work through the SWC lesson's on Git 
