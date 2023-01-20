@@ -65,7 +65,7 @@ user.email=mona@gmail.com
 ### Configure GitHub
 
 GitHub continues to change its user policies and authenication methods on a 
-yearly basis. Currently (2003) there are several setps that you need to complete
+yearly basis. Currently (2023) there are several setps that you need to complete
 to make sure you can log in and remotely push code to github. 
 
 1. create a free user account at http://github.com 
@@ -125,12 +125,12 @@ doing work with these tools in concert. Each tool has a different role:
 
 The standard workflow that we will work though now is: 
 
-a. create a repo on GitHub with a blank README.md file for a new project that you want to undertake
-b. clone (i.e., download) the repo to your local machine using Rstudio Project interface
-c. make changes to repo by adding code and data
-d. commit your changes locally
-e. push (i.e., upload) your changes to GitHub via Rstudio GUI
-f. repeat steps d and e as needed. 
+a. create a repo on GitHub with a blank `README.md` file for a new project that you want to undertake  
+b. clone (i.e., download) the repo to your local machine using Rstudio Project interface  
+c. make changes to repo by adding code and data  
+d. commit your changes locally  
+e. push (i.e., upload) your changes to GitHub via Rstudio GUI  
+f. repeat steps d and e as needed.
 
 **Note**:  if you make any changes to the GitHub repo either on another machine or in
 the web browser then you'll want to "pull" those changes down to your local 
@@ -228,6 +228,7 @@ A few pointers on good commit messages:
 * informative - like the subject of an email 
 * if detailed description of the changes is needed simply place that a few
 lines after the first line of the commit message. 
+* group files into different commits if they accomplish different goals. 
 
 ### e. Push your changes to GitHub
 
@@ -238,6 +239,22 @@ Simply click the "Push" button. If you configured "HTTPS" then you will be promp
 for your GitHub user name and your password. Note password refers to your personal
 access token in this case. If you setup "SSH" then the commit should go through 
 without having to do anything. 
+
+### f. Rinse and repeat
+
+You've mastered the basic workflow at this point so you can make new changes
+to your repo. You can add data or code or more detailed description of the 
+project on the `README.md` file. 
+
+As you make changes to your files and commit those changes you will be ever 
+increasing the length of the git log or history. This can be examined either
+on github under commit history or in Rstudio by clicking the clock icon on the 
+git tab. 
+
+Note that it is not necessary to Push your code after every commit. Typically I 
+just push changes when I'm done with a work session or just finished a task. 
+
+### Review the Rstudio Git tab
 
 Now is a good time to review the functionality of the buttons on the git tab in
 Rstudio: 
