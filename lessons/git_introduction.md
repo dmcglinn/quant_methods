@@ -93,7 +93,7 @@ to make sure you can log in and remotely push code to github.
         access when you need to make remote change to github (i.e., through
         Rstudio) - it will serve as your "password" - its confusing because you
         have a separate github account password 🙁  
-    - [ssh token full instructions](https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key) 
+    - [ssh token full instructions](https://git-scm.com/book/en/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key)   
         i. open terminal  
         ii. paste the following commands into the terminal  
         `cd ~/.ssh`  
@@ -104,15 +104,15 @@ to make sure you can log in and remotely push code to github.
         press Enter to accept the default file location.  
         iv. Now we need to print our ssh key to the terminal so we can copy and paste it  
         `cat ~/.ssh/id_rsa.pub`  
-        that will print the ssh key. Go ahead and highlight it with your mouse and
-        copy it to your clipboard.  
+        that will print the ssh key to the terminal. Go ahead and highlight it
+        with your mouse and copy it to your clipboard.  
         Now navigate your web-browser to: https://github.com/settings/ssh/new   
         v. Paste the key into the box called "Key" in the box title  
             - provide a name that will help you recognize the specific machine you are on.  
             - each machine you use will need a separate ssh key.  
         vi. Click the green box "Add SSH key"  
 
-### Typical Rstudio, Git, and GitHub work flow
+### Typical Rstudio, Git, and GitHub work flow  
 
 Congratulations! If you've made it this far you have successfully configured
 Rstudio, git, and github - no small accomplishment! Now we're ready to start
@@ -159,42 +159,42 @@ Click green button "Create repository"
 ### b. Clone your repo to your local machine
 
 1. Now that you have created your new repo you'll need to clone it to your 
-local machine so you can start adding data and code to it. 
+   local machine so you can start adding data and code to it.   
 
-Click the Green button called "<> Code"
+   Click the Green button called "<> Code"  
 
-What you chose next will depend on if you chose to work with personal access
-tokens or the ssh key for authentication into github. 
-i. personal access token -> "HTTPS" option  
-ii. ssh -> "SSH" option  
+   What you chose next will depend on if you chose to work with personal access
+   tokens or the ssh key for authentication into github.  
+       i. personal access token -> "HTTPS" option  
+       ii. ssh -> "SSH" option  
 
-Click the little window button next to the url this will "copy" that url to your
-clipboard.  
+   Click the little window button next to the url this will "copy" that url to your
+   clipboard.  
 
 2. On your local machine open Rstudio and click:  
 
-File -> New Project  
+   File -> New Project  
 
-When the next window pops up chose "Version Control"  
+   When the next window pops up chose "Version Control"  
 
-![new_proj](./figures/new_proj.PNG)
+   ![new_proj](./figures/new_proj.PNG)
+ 
+   Then chose "Git"  
 
-Then chose "Git"  
+   ![new_proj2](./figures/new_proj2.PNG)
 
-![new_proj2](./figures/new_proj2.PNG)
+   Now paste in the url for the github repo (that you have on your clipboard)
+   into the box for "Repository URL:"  
 
-Now paste in the url for the github repo (that you have on your clipboard)
-into the box for "Repository URL:"  
+   ![proj_url](./figures/proj_url.PNG)
 
-![proj_url](./figures/proj_url.PNG)
+   Click "Create Project"
 
-Click "Create Project"
+   You've just cloned your first repo! 
 
-You've just cloned your first repo! 
+   You'll now notice in Rstudio you have a little tab called "Git"  
 
-You'll now notice in Rstudio you have a little tab called "Git"  
-
-![git_panel](./figures/git_panel.PNG)
+  ![git_panel](./figures/git_panel.PNG)
 
 ### c. Make changes to repo by adding code and data
 
@@ -214,25 +214,62 @@ for changes. These files were auto generated when you created the version contro
 Rstudio project. In general, best practices suggest not to track either of these
 files. 
 
-Now is a good time to also point out some of the git tab's other buttons: 
-
-* "Staged" - if you click the box next to one of the files it tells git you want 
-to track that file and you are preparing to "commit" that file to the repository.
-* "Commit" - click that button to take make a snapshot of all staged files at
-that time. Clicking this button will will pull up the diff window
-* "Diff" -  
+Now we can examine our changes by clicking the "Diff" button which will bring up
+the following window:
 
 ![git_diff](./figures/git_diff.png)  
 
+### d. Commit your changes to the repo 
 
+If those changes look good then simply add a commit message in the top right.  
 
-You need to add a commit message 
+A few pointers on good commit messages:
+* present tense
+* informative - like the subject of an email 
+* if detailed description of the changes is needed simply place that a few
+lines after the first line of the commit message. 
 
-### Version control with Git
-We will work through the SWC lesson's on Git 
+### e. Push your changes to GitHub
+
+Now that we have commited a change to our repo we can "Push" these changes to 
+GitHub so they show up on the internet. 
+
+Simply click the "Push" button. If you configured "HTTPS" then you will be prompted
+for your GitHub user name and your password. Note password refers to your personal
+access token in this case. If you setup "SSH" then the commit should go through 
+without having to do anything. 
+
+Now is a good time to review the functionality of the buttons on the git tab in
+Rstudio: 
+
+![git_tab_explained](./figures/git_tab_explained.png)  
+
+* "Staged" - if you click the box next to one of the files it tells git you want 
+to track that file and you are preparing to "commit" that file to the repository.
+* "Commit" - this take make a snapshot of all staged files at that time and log
+those in git's commit history. When you click this button it will pull up the
+"Diff" window where you can see the changes and log a commit message.
+* "Diff" - opens a panel that displays the line-by-line differences between the 
+file from the last commit and its current saved state. If you make changes to a
+file but do not save the file then they will not show up in the diff panel
+* "Pull" - downloads commits on GitHub to your local machine
+* "Push" - uploads commits from you local machine to GitHub
+* clock icon - displays the git log or history of commits along with their associated
+commit messages
+* gear icon - provides a few additional tools including:
+    - "revert" which rolls a saved file back to its state in the last commit
+    - "ignore" which allows you to tell git to never track or display certain
+    files in the git tab - for example you may chose to ignore your .git and .Rproj
+    files. 
+
+### Using Git from the command line (optional material)
+The above instructions walked you through how to use git using the Rstudio GUI,
+and for 90% of your workflow that will be sufficient. Sometimes it will be 
+necessary to use the command line (i.e., the terminal) to issue git commands.
+If you want to learn how to do that please work through the SWC lesson on Git 
 [Version Control with Git](http://swcarpentry.github.io/git-novice/)
 
-In particular we will focus on:
+In particular focus on:
 
 * [Setting Up Git](http://swcarpentry.github.io/git-novice/02-setup/index.html)
 * [Creating a Repository](http://swcarpentry.github.io/git-novice/03-create/index.html)
@@ -283,7 +320,7 @@ If is is not installed then I recommend you try Text wrangler:
 <https://swcarpentry.github.io/git-novice/02-setup/>
 
 ### Additional Links
-* [Motivation to learn Git](https://stat545-ubc.github.io/git01_git-install.html#but-first-why)
-* [Git in Rstudio walkthrough by H. Whickham](http://r-pkgs.had.co.nz/git.html)
+* [Happy Git and GitHub for the useR](https://happygitwithr.com/index.html)
+* [Git in Rstudio by H. Whickham](https://r-pkgs.org/software-development-practices.html#sec-sw-dev-practices-git-github)
 
 ![dynamite](./figures/serious_git.png)
