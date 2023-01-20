@@ -3,8 +3,9 @@ layout: page
 title: Introduction to Git
 ---
 
-The purpose of this lesson to start using Git and GitHub from the command line
-and within R studio.
+The purpose of this lesson to provide a minimum use case of how to link
+Rstudio, git, and GitHub. I also provide links down below to lessons that 
+demonstrate how to use git from the command line. 
 
 To complete the GitHub portion of this lesson you will need to create a 
 GitHub user account: https://github.com/ 
