@@ -59,7 +59,7 @@ names) unlike the example we examined in class.
 Scale is the area in square meters of the quadrat in which richness was
 recorded. Be sure to label your axes clearly, and choose a color you find
 pleasing for the points. To get a list of available stock colors use the
-function colors(). Also see this link: [http://research.stowers-institute.org/efg/R/Color/Chart/index.htm](http://research.stowers-institute.org/efg/R/Color/Chart/index.htm).
+function colors(). Also see this link: https://r-charts.com/colors/.
 
 6. What happens to your plot when you set the plot argument log equal to 'xy'.
 `plot(..., log='xy')`
