@@ -10,7 +10,7 @@ output:
 Home Page - http://dmcglinn.github.io/quant_methods/ 
 GitHub Repo - https://github.com/dmcglinn/quant_methods 
 
-## Source Code Link
+### Source Code Link
 https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/univariate_models.Rmd
 
 <!--clickable code reveal: 
@@ -139,7 +139,7 @@ increased explanatory power.
 ```
 
 ```{r setup, echo=FALSE}
-# setup the R enviornment for kniting markdown doc properly
+# setup the R environment for knitting markdown doc properly
 library(knitr)
 opts_knit$set(root.dir='../')
 ```
@@ -657,7 +657,7 @@ legend('topleft', c('Fertilized', 'Unfertilized'), col = c('red', 'blue'),
        pch = c(1, 2), lty = c(1, 2), bty = 'n')
 ```
 
-##### **Excercise**
+##### **Exercise**
 
 Try to come up with the `ggplot` code to graphically depict the interaction 
 effect model (clue: we made essentially this graphic above but with a smoother so
@@ -690,7 +690,7 @@ statistical significance of the explanatory variables.
 
 ```{r}
 summary(trt_mod)
-# becasue trt is a factor lets also examien the anova output
+# because trt is a factor lets also examine the anova output
 anova(trt_mod)
 ```
 
@@ -868,7 +868,7 @@ patterns in the data set followed by careful and rational model comparison is
 not always possible when the models being compared are quite large. 
 
 ```{r}
-# run a stepwise regerssion analysis on the full model.
+# run a stepwise regression analysis on the full model.
 stepAIC(int_mod)
 ```
 
@@ -890,7 +890,7 @@ par(mfrow = c(2,2))
 plot(int_mod)
 ```
 
-The top left and bottom left panels both  suggests that the assumption of **homoscadisticity** holds. 
+The top left and bottom left panels both  suggests that the assumption of **homoscedasticity** holds. 
 The top right panel suggests that the residuals are **normally distributed**. 
 The bottom right panel suggests that there are not large outliers that are 
 having a disproportionate effect on the regression. 
@@ -932,7 +932,7 @@ R and plot the result.
 mod = lm(sim_data$y ~ 1)
 mod 
 summary(mod)
-#Note that the estimate for the intercept is equilalent to the mean of y
+#Note that the estimate for the intercept is equivalent to the mean of y
 mean(sim_data$y)
 #simple linear regression with x1 as predictor
 mod1 = lm(y ~ x1, data=sim_data)
@@ -989,7 +989,7 @@ summary(mod3_sub)
 So it appears that \(R^2\) is highly sensitive to outliers but the \(\beta\) 
 coefficients are more robust. 
 
-##### **Excercise** 
+##### **Exercise** 
 Create a single plot that displays the model of y given x3 before and after the
 outliers were removed. How much to they visually differ from one another.
 Modify the arguments to `abline()` including `lty` and `lwd`.
@@ -1114,7 +1114,7 @@ anova(mod_main, mod_full)
 AIC(mod_full)
 AIC(mod_main)
 
-# run a stepwise regerssion analysis on the full model.
+# run a stepwise regression analysis on the full model.
 stepAIC(mod_full)
 ```
 
