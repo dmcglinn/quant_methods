@@ -1,10 +1,17 @@
 ---
 title: "univariate models"
+date: '`r paste("First created on 2015-02-01. Updated on", Sys.Date())`'
 output: 
   html_document:
   toc: true
   toc_float: true
 ---
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
+
+## Source Code Link
+https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/univariate_models.Rmd
 
 <!--clickable code reveal: 
     http://stackoverflow.com/questions/14127321/how-to-hide-code-in-rmarkdown-with-option-to-see-it
@@ -116,7 +123,7 @@ Crawley (2007) suggests the following steps for backward model simplification:
 
 ![](./figures/crawley_2007_table9_2_model_simplification.png)
 
-These steps are reasonable if one is carrying out an exploratory data analysis; 
+These steps are reasonable if one is carrying out an **exploratory** data analysis; 
 however, I do not recommend this approach when formal hypothesis testing is the 
 goal of the analysis due to Freedman's paradox as explained above. Additionally,
 it may be worth pointing out that model building can proceed from simple to more
@@ -163,7 +170,8 @@ library(MASS)
 ```
 
 ```{r read data}
-weeds <- read.csv('http://dmcglinn.github.io/quant_methods/data/milkweeds.csv')
+weeds <- read.csv('http://dmcglinn.github.io/quant_methods/data/milkweeds.csv', 
+                  colClasses = c('integer', 'factor', 'numeric', 'numeric'))
 weeds
 ```
 
@@ -1109,3 +1117,6 @@ AIC(mod_main)
 # run a stepwise regerssion analysis on the full model.
 stepAIC(mod_full)
 ```
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
