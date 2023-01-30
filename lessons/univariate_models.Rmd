@@ -455,7 +455,7 @@ may seem silly but this is essentially what you compare all more complex models
 against. 
 
 ```{r null model}
-null_mod = lm(fruit_mass_mg ~ 1, data = weeds)
+null_mod <- lm(fruit_mass_mg ~ 1, data = weeds)
 null_mod
 mean(weeds$fruit_mass_mg)
 ```
@@ -488,10 +488,10 @@ We can develop single *main effect* models that include either treatment or
 plant height as such in R:
 
 ```{r main effect models}
-trt_mod = lm(fruit_mass_mg ~ trt, data = weeds)
+trt_mod <- lm(fruit_mass_mg ~ trt, data = weeds)
 # alternatively we can just update null_mod
-trt_mod = update(null_mod, . ~ . + trt)
-ht_mod = update(null_mod, . ~ . + plant_ht_cm)
+trt_mod <- update(null_mod, . ~ . + trt)
+ht_mod <- update(null_mod, . ~ . + plant_ht_cm)
 trt_mod
 ht_mod
 ```
@@ -594,7 +594,7 @@ $$y = \beta_0 + \beta_1x + \beta_2z + \varepsilon$$
 In R we would use: 
 
 ```{r combo main effects}
-main_mod = lm(fruit_mass_mg ~ trt + plant_ht_cm, data = weeds)
+main_mod <- lm(fruit_mass_mg ~ trt + plant_ht_cm, data = weeds)
 main_mod
 ```
 
@@ -659,10 +659,10 @@ $$y = \beta_0 + \beta_1x + \beta_2z + \beta_3xz + \varepsilon$$
 
 
 ```{r interaction model}
-int_mod = lm(fruit_mass_mg ~ trt + plant_ht_cm + trt:plant_ht_cm,
+int_mod <- lm(fruit_mass_mg ~ trt + plant_ht_cm + trt:plant_ht_cm,
               data = weeds)
 # alternatively we can use * as short hand
-int_mod = lm(fruit_mass_mg ~ trt * plant_ht_cm, data = weeds)
+int_mod <- lm(fruit_mass_mg ~ trt * plant_ht_cm, data = weeds)
 int_mod
 ```
 
@@ -895,11 +895,42 @@ extractAIC(main_mod)[2] - extractAIC(int_mod)[2]
 
 ```
 
+### Model diagonstics
+
+Now that we think we have a sufficient model (i.e., the main effect model) we
+should carefully examine it to make sure it meets the assumptions of OLS
+regression. This is particularly important if we are going to use the *p*-values
+for rigorous hypothesis testing.
+
+It is easy to examine the diagnostics of the model visually using `plot`
+
+```{r}
+par(mfrow = c(2,2))
+plot(main_mod)
+```
+
+The top left and bottom left panels both  suggests that the assumption of
+**homoscedasticity** holds. The top right panel suggests that the residuals are
+**normally distributed**. The bottom right panel suggests that there are not
+large outliers that are having a disproportionate effect on the regression.
+
+### Biological conclusion: Fruit size increases due to fertizlier and plant height
+
+Having checked the assumptions and carried out model comparison we can now feel
+pretty confident about making some biological conclusions. Our main effect model
+received the most empirical support and it suggests that fruit mass increased
+due to fertilizer and plant height. The effect of fertilizer was a little stronger
+than the effect of height and together these two variables helped to explain 
+approximately 50% of the variance in fruit mass. We did not find strong support
+that the effects of plant height were changed by if the plant was fertilized or not
+(i.e., there was no interaction effect present). 
+
 ### Automated model selection
 
 The approach we have taken above of a careful examination of the graphical 
 patterns in the data set followed by careful and rational model comparison is 
-not always possible when the models being compared are quite large. 
+not always possible when the models being compared are quite large. However, this
+method does suffer from Freedman's paradox discussed at the top of the lesson.
 
 ```{r}
 # run a stepwise regression analysis on the full model.
@@ -910,24 +941,7 @@ As you can see above this approach results in the same model that we found
 to be the best the main effects model. Do note that `stepAIC` internally uses
 the function `extracAIC` to compute the AIC values. 
 
-## Model diagonstics
 
-Now that we think we have a sufficient model we should carefully examine it to 
-make sure it meets the assumptions of OLS regression. This is particularly 
-important if we are going to use the *p*-values for rigorous hypothesis 
-testing. 
-
-It is easy to examine the diagnostics of the model visually using `plot`
-
-```{r}
-par(mfrow = c(2,2))
-plot(int_mod)
-```
-
-The top left and bottom left panels both  suggests that the assumption of **homoscedasticity** holds. 
-The top right panel suggests that the residuals are **normally distributed**. 
-The bottom right panel suggests that there are not large outliers that are 
-having a disproportionate effect on the regression. 
 
 ## <a href="#sim" name="sim">#</a> Understanding Regression via Simulation
 
@@ -940,16 +954,16 @@ strength measures.
 ```{r}
 #generate data for example
 set.seed(10) # this is done so that the same results are generated each time
-x1 = runif(900)
-x2 = rbinom(900, 10, .5)
-x3 = rgamma(900, .1, .1)
+x1 <- runif(900)
+x2 <- rbinom(900, 10, .5)
+x3 <- rgamma(900, .1, .1)
 
 #organize predictors in data frame
-sim_data = data.frame(x1, x2, x3)
+sim_data <- data.frame(x1, x2, x3)
 #create noise b/c there is always error in real life
-epsilon = rnorm(900, 0, 3)
+epsilon <- rnorm(900, 0, 3)
 #generate response: additive model plus noise, intercept=0
-sim_data$y = 2*x1 + x2 + 3*x3 + epsilon
+sim_data$y <- 2*x1 + x2 + 3*x3 + epsilon
 ```
 
 Above we have defined response variable `y` as a linear function of the three
@@ -963,19 +977,19 @@ R and plot the result.
 ```{r}
 #First we will demonstrate the simplest possible model 
 #the intercept only model
-mod = lm(sim_data$y ~ 1)
+mod <- lm(sim_data$y ~ 1)
 mod 
 summary(mod)
 #Note that the estimate for the intercept is equivalent to the mean of y
 mean(sim_data$y)
 #simple linear regression with x1 as predictor
-mod1 = lm(y ~ x1, data=sim_data)
+mod1 <- lm(y ~ x1, data=sim_data)
 #plot regression line and mean line
 plot(y ~ x1, data=sim_data)
 abline(h=mean(sim_data$y), col='pink', lwd=3)
 abline(mod1, lty=2)
 #simple linear regression with x3 as a predictor
-mod3 = lm(y ~ x3, data=sim_data)
+mod3 <- lm(y ~ x3, data=sim_data)
 #graph regression line and mean line
 plot(y ~ x3, data=sim_data)
 abline(mod3)
@@ -1010,12 +1024,12 @@ these values are not mistakes. Let's drop these points and examine the changes
 in the model statistics. 
 
 ```{r}
-sim_data_sub = sim_data[-c(26, 85, 88), ]
+sim_data_sub <- sim_data[-c(26, 85, 88), ]
 #verify that one observation was removed
 dim(sim_data)
 dim(sim_data_sub)
 #refit model to reduced data
-mod3_sub = lm(y ~ x3, data=sim_data_sub)
+mod3_sub <- lm(y ~ x3, data=sim_data_sub)
 summary(mod3)
 summary(mod3_sub)
 ```
@@ -1046,7 +1060,7 @@ know that y is influenced by three variables. Let's include all the relevant
 explanatory variables in one model now. 
 
 ```{r}
-mod_main = lm(y ~ x1 + x2 + x3, data=sim_data)
+mod_main <- lm(y ~ x1 + x2 + x3, data=sim_data)
 summary(mod_main)
 coefficients(mod_main)
 ```
@@ -1098,10 +1112,10 @@ correlation coefficient though because the \(\beta\) is in the units of the
 `scale()` to standardize the independent and dependent variables. 
 
 ```{r}
-sim_data_std = data.frame(scale(sim_data))
+sim_data_std <- data.frame(scale(sim_data))
 
-mod = lm(y  ~ x1 + x2 + x3, data=sim_data)
-mod_std = lm(y  ~ x1 + x2 + x3, data=sim_data_std)
+mod <- lm(y  ~ x1 + x2 + x3, data=sim_data)
+mod_std <- lm(y  ~ x1 + x2 + x3, data=sim_data_std)
 round(summary(mod)$coef, 3)
 round(summary(mod_std)$coef, 3)
 cor(sim_data$y, sim_data$x1)
@@ -1128,29 +1142,6 @@ Pearson correlation coefficients to get a visual perspective on the problem
 pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
 ```
 
-### <a href="#inter" name="inter">#</a> Interaction effects
-
-```{r}
-# you can build the model by writing out every interaction
-lm(y ~ x1 + x2 + x3 + x1*x2 + x1*x3 + x2*x3 + x1*x2*x3, data=sim_data)
-# or you can simply update the main effects model
-mod_full = update(mod_main, ~ . + x1*x2*x3)
-summary(mod_full)
-```
-
-### Model comparison
-
-```{r}
-# we can carry out a nested model comparison
-anova(mod_main, mod_full)
-
-# examine the AIC scores of the two models, smaller number is better
-AIC(mod_full)
-AIC(mod_main)
-
-# run a stepwise regression analysis on the full model.
-stepAIC(mod_full)
-```
 
 Home Page - http://dmcglinn.github.io/quant_methods/ 
 GitHub Repo - https://github.com/dmcglinn/quant_methods 
