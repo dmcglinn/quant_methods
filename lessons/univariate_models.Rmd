@@ -44,6 +44,7 @@ links:
 
 ## Lesson Outline
 * <a href="#phil">Modeling Philosophy</a>
+* <a href="#milk">The Milkweeds and Fertilizer Example</a>
 * <a href="#mod">Model Building and Graphing</a>
 * <a href="#sim">Understanding Regression via Simulation</a>
 * <a href="#stan">Standardized \(\beta\) coefficients</a>
@@ -173,7 +174,7 @@ has significantly increased explanatory power.
 library(knitr)
 opts_knit$set(root.dir='../')
 ```
-### The Milkweeds and Fertilizer Example
+## <a href="#milk" name="milk">#</a> The Milkweeds and Fertilizer Example
 
 We will begin exploring how to build and interpret linear models in R by using a
 data set that a researcher collected 40 plants of common milkweed, *Asclepias
@@ -195,7 +196,7 @@ First let's read load the relevant R packages and the data in and look at the st
 #install.packages("MASS")          # for stepAIC to automate model selection 
 
 library(ggplot2)                   # to make fancy graphs
-library(gridExtra)                 # arrange ggplot grpahs
+library(gridExtra)                 # arrange ggplot graphs
 library(scatterplot3d)             # make 3d plot
 library(MASS)                      # use function Anova rather than base anova
 ```
