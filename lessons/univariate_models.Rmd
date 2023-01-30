@@ -36,11 +36,11 @@ links:
 * [Weiss 2012](https://sakai.unc.edu/access/content/group/3d1eb92e-7848-4f55-90c3-7c72a54e7e43/public/docs/lectures/lecture1.htm) 
 * [Fridley 2010](http://plantecology.syr.edu/fridley/bio793/lm.html)
 
-## Readings
+## Readings and Literature Cited
 * Chapters 5, 9-10 in *The R book* (1st ed) by Crawley 
 * Chapters 6 in *MASS* (4th ed) by Venables and Ripley
-
-
+* Chapter 1 in *Model Selection and Multimodel Inference* (2nd ed) by Burnham and Anderson  
+* p150 in *A primer of Ecological Statistics* (2nd ed) by Gotelli and Ellison
 
 ## Lesson Outline
 * <a href="#phil">Modeling Philosophy</a>
@@ -98,16 +98,35 @@ statistics that are significant.
 You might be wondering why this is a big deal. The reason is that you will inevitably
 get good fitting models (high R^2) and statistically significant results (p < 0.05)
 if you keep adding variables to a model even if those variables by definition are
-independent of the response variable.  [(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ).
+independent of the response variable [(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ).
+
+The solution to Freedman's paradox is to approach model comparison as carefully
+and intentionally as possible with a small number of deliberately chosen models.
+Burnham and Anderson (2002, p19) advocate for: 
+
+<blockquote>
+... a conservative approach to the overall issue of *strategy* in the
+analysis of data in the biological sciences with an emphasis on *a priori*
+considerations and models to be considered. <i>Careful, a priori consideration of
+alternative models will often require a major change in emphasis among many
+people.</i> 
+</blockquote>
 
 ### The Principle of Parsimony (Occam’s Razor)
 
-The principle of parsimony can be stated succinctly as: 
+Once you have decided on a small number of models to compare how do you decide 
+which model is the best? One approach is to use the the principle of parsimony 
+which can be stated succinctly as: 
 
-> the correct explanation is the simplest explanation.
+> the correct explanation is the simplest explanation that is sufficient.
 
-In the context of model building, all else being equal the better model is the 
-model with the following properties (Crawley, 2007):
+For our purposes we can think of this as:
+
+> the model with the smallest possible number of parameters for
+> adequate representation of the data (Box and Jenkins 1970)  
+
+Crawley (2007) suggested that all else being equal the better model is the 
+model with the following properties: 
 
 * a model with n−1 parameters to a model with n parameters;
 * a model with k−1 explanatory variables to a model with k explanatory variables;
@@ -125,11 +144,22 @@ Crawley (2007) suggests the following steps for backward model simplification:
 
 These steps are reasonable if one is carrying out an **exploratory** data analysis; 
 however, I do not recommend this approach when formal hypothesis testing is the 
-goal of the analysis due to Freedman's paradox as explained above. Additionally,
-it may be worth pointing out that model building can proceed from simple to more
-complex models as well evaluating with each additional term if it has significantly
-increased explanatory power. 
+goal of the analysis due to Freedman's paradox as explained above. Other methods of 
+model selection (other than p < 0.05 as advocated above) will suffer the same problem. 
 
+According to Burnham and Anderson (2002, p18) to resolve Freedman's paradox one should:  
+1) use biologically meaningful models  
+2) keep the number of candidate models small  
+3) have a large sample size relative to the number of parameters to be estimated  
+4) base inference on more than one model (multi-model inference) if models perform equally well  
+
+In regards to #3 above, Gotelli and Ellison (2018, p150) suggest *The Rule of 10*:
+<i>you should have at least 10 replicate observations per treatment level or variable
+included in the model.</i>
+
+Last point regarding model building is that it is also possible to proceed from
+simple to more complex models as well evaluating with each additional term if it
+has significantly increased explanatory power.
 
 ```{r notes, include = FALSE}
 # Notes for the future
@@ -143,6 +173,7 @@ increased explanatory power.
 library(knitr)
 opts_knit$set(root.dir='../')
 ```
+### The Milkweeds and Fertilizer Example
 
 We will begin exploring how to build and interpret linear models in R by using a
 data set that a researcher collected 40 plants of common milkweed, *Asclepias
@@ -163,11 +194,13 @@ First let's read load the relevant R packages and the data in and look at the st
 #install.packages("scatterplot3d") # for scatterplot3d to make 3d graphic
 #install.packages("MASS")          # for stepAIC to automate model selection 
 
-library(ggplot2)
-library(gridExtra)
-library(scatterplot3d)
-library(MASS)
+library(ggplot2)                   # to make fancy graphs
+library(gridExtra)                 # arrange ggplot grpahs
+library(scatterplot3d)             # make 3d plot
+library(MASS)                      # use function Anova rather than base anova
 ```
+
+Now that we have our libraries loaded let's read in the data
 
 ```{r read data}
 weeds <- read.csv('http://dmcglinn.github.io/quant_methods/data/milkweeds.csv', 
@@ -386,7 +419,7 @@ error, Binomial error, Poisson error) is the key way different regression
 methods differ from one another. Another important point about the error term is
 that in OLS each of the *n* samples are assumed to be **independent and
 identically distributed** (iid) from one another. Other methods of regression we
-look examine (e.g., spatial regression) will not make this same assumption and
+examine (e.g., spatial regression) will not make this same assumption and
 will specify how samples co-vary with one another. 
 
 Taken together it can be seen that OLS regression has a number of key assumptions

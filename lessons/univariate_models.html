@@ -362,7 +362,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">univariate models</h1>
-<h4 class="date">First created on 2015-02-01. Updated on 2023-01-27</h4>
+<h4 class="date">First created on 2015-02-01. Updated on 2023-01-30</h4>
 
 </div>
 
@@ -396,11 +396,16 @@ found at the following links:</p>
 2010</a></li>
 </ul>
 </div>
-<div id="readings" class="section level2">
-<h2>Readings</h2>
+<div id="readings-and-literature-cited" class="section level2">
+<h2>Readings and Literature Cited</h2>
 <ul>
 <li>Chapters 5, 9-10 in <em>The R book</em> (1st ed) by Crawley</li>
 <li>Chapters 6 in <em>MASS</em> (4th ed) by Venables and Ripley</li>
+<li>Chapter 1 in <em>Model Selection and Multimodel Inference</em> (2nd
+ed) by Burnham and Anderson<br />
+</li>
+<li>p150 in <em>A primer of Ecological Statistics</em> (2nd ed) by
+Gotelli and Ellison</li>
 </ul>
 </div>
 <div id="lesson-outline" class="section level2">
@@ -463,16 +468,35 @@ that are significant.</p>
 will inevitably get good fitting models (high R^2) and statistically
 significant results (p &lt; 0.05) if you keep adding variables to a
 model even if those variables by definition are independent of the
-response variable. <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ">(Freedman
+response variable <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ">(Freedman
 1983)</a>.</p>
+<p>The solution to Freedman’s paradox is to approach model comparison as
+carefully and intentionally as possible with a small number of
+deliberately chosen models. Burnham and Anderson (2002, p19) advocate
+for:</p>
+<blockquote>
+… a conservative approach to the overall issue of <em>strategy</em> in
+the analysis of data in the biological sciences with an emphasis on
+<em>a priori</em> considerations and models to be considered.
+<i>Careful, a priori consideration of alternative models will often
+require a major change in emphasis among many people.</i>
+</blockquote>
 <div id="the-principle-of-parsimony-occams-razor" class="section level3">
 <h3>The Principle of Parsimony (Occam’s Razor)</h3>
-<p>The principle of parsimony can be stated succinctly as:</p>
+<p>Once you have decided on a small number of models to compare how do
+you decide which model is the best? One approach is to use the the
+principle of parsimony which can be stated succinctly as:</p>
 <blockquote>
-<p>the correct explanation is the simplest explanation.</p>
+<p>the correct explanation is the simplest explanation that is
+sufficient.</p>
 </blockquote>
-<p>In the context of model building, all else being equal the better
-model is the model with the following properties (Crawley, 2007):</p>
+<p>For our purposes we can think of this as:</p>
+<blockquote>
+<p>the model with the smallest possible number of parameters for
+adequate representation of the data (Box and Jenkins 1970)</p>
+</blockquote>
+<p>Crawley (2007) suggested that all else being equal the better model
+is the model with the following properties:</p>
 <ul>
 <li>a model with n−1 parameters to a model with n parameters;</li>
 <li>a model with k−1 explanatory variables to a model with k explanatory
@@ -491,10 +515,27 @@ simplification:</p>
 <p>These steps are reasonable if one is carrying out an
 <strong>exploratory</strong> data analysis; however, I do not recommend
 this approach when formal hypothesis testing is the goal of the analysis
-due to Freedman’s paradox as explained above. Additionally, it may be
-worth pointing out that model building can proceed from simple to more
-complex models as well evaluating with each additional term if it has
-significantly increased explanatory power.</p>
+due to Freedman’s paradox as explained above. Other methods of model
+selection (other than p &lt; 0.05 as advocated above) will suffer the
+same problem.</p>
+<p>According to Burnham and Anderson (2002, p18) to resolve Freedman’s
+paradox one should:<br />
+1) use biologically meaningful models<br />
+2) keep the number of candidate models small<br />
+3) have a large sample size relative to the number of parameters to be
+estimated<br />
+4) base inference on more than one model (multi-model inference) if
+models perform equally well</p>
+<p>In regards to #3 above, Gotelli and Ellison (2018, p150) suggest
+<em>The Rule of 10</em>: <i>you should have at least 10 replicate
+observations per treatment level or variable included in the
+model.</i></p>
+<p>Last point regarding model building is that it is also possible to
+proceed from simple to more complex models as well evaluating with each
+additional term if it has significantly increased explanatory power.</p>
+</div>
+<div id="the-milkweeds-and-fertilizer-example" class="section level3">
+<h3>The Milkweeds and Fertilizer Example</h3>
 <p>We will begin exploring how to build and interpret linear models in R
 by using a data set that a researcher collected 40 plants of common
 milkweed, <em>Asclepias syriaca</em>, from old fields in northeastern
@@ -512,10 +553,11 @@ look at the structure of the data</p>
 #install.packages(&quot;scatterplot3d&quot;) # for scatterplot3d to make 3d graphic
 #install.packages(&quot;MASS&quot;)          # for stepAIC to automate model selection 
 
-library(ggplot2)
-library(gridExtra)
-library(scatterplot3d)
-library(MASS)</code></pre>
+library(ggplot2)                   # to make fancy graphs
+library(gridExtra)                 # arrange ggplot grpahs
+library(scatterplot3d)             # make 3d plot
+library(MASS)                      # use function Anova rather than base anova</code></pre>
+<p>Now that we have our libraries loaded let’s read in the data</p>
 <pre class="r"><code>weeds &lt;- read.csv(&#39;http://dmcglinn.github.io/quant_methods/data/milkweeds.csv&#39;, 
                   colClasses = c(&#39;integer&#39;, &#39;factor&#39;, &#39;numeric&#39;, &#39;numeric&#39;))
 weeds</code></pre>
@@ -775,8 +817,8 @@ way different regression methods differ from one another. Another
 important point about the error term is that in OLS each of the
 <em>n</em> samples are assumed to be <strong>independent and identically
 distributed</strong> (iid) from one another. Other methods of regression
-we look examine (e.g., spatial regression) will not make this same
-assumption and will specify how samples co-vary with one another.</p>
+we examine (e.g., spatial regression) will not make this same assumption
+and will specify how samples co-vary with one another.</p>
 <p>Taken together it can be seen that OLS regression has a number of key
 assumptions</p>
 <ol style="list-style-type: decimal">
