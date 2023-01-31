@@ -1,4 +1,5 @@
 ---
+title: Univariate models
 layout: page
 ---
 
@@ -92,15 +93,12 @@ names(abies)[1] = 'cover'
 names(acer)[1] = 'cover'
 ```
 
-```
-
-2\. You may have noticed that the variable cover is defined as 
-positive integers between 1 and 10. and is therefore better treated
-as a discrete rather than continuous variable. 
-Re-examine your solutions to the question above but from the
-perspective of a General Linear Model (GLM) with a Poisson error term
-(rather than a Gaussian one as in OLS). 
-The Poisson distribution generates integers 0 to positive infinity so this may provide a good first approximation. 
+2\. You may have noticed that the variable cover is defined as positive integers
+between 1 and 10. and is therefore better treated as a discrete rather than
+continuous variable. Re-examine your solutions to the question above but from
+the perspective of a General Linear Model (GLM) with a Poisson error term
+(rather than a Gaussian one as in OLS). The Poisson distribution generates
+integers 0 to positive infinity so this may provide a good first approximation.
 Your new model calls will look as follows:
 
 ```r
@@ -117,7 +115,7 @@ pseudo_r2 = function(glm_mod) {
             }
 ```
 
-Compare your qualatitive assessment of which variables were most important in each model. 
+Compare your qualitative assessment of which variables were most important in each model. 
 Does it appear that changing the error distribution changed the results much? In what ways? 
 
 3\. Provide a plain English summary (i.e., no statistics) of what you have
