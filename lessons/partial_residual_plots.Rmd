@@ -1,0 +1,128 @@
+---
+title: "Partial Residuals Plots"
+author: "Dan McGlinn"
+date: '`r paste("First created on 2015-01-29. Updated on", Sys.Date())`'
+output: 
+    html_document:
+       fig_width: 10
+       fig_height: 5
+---
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
+
+### Source Code Link
+https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/partial_residual_plots.Rmd
+
+When working with multiple regression models we often spend a lot of time
+examining tabular summary tables and not enough time examining graphical 
+fits of the models to the data. Partial residual plots help us to visualize 
+the fit of each independent variable in the multiple regression model after
+controlling for the other variables. Mathematically partial residuals are defined
+as: 
+ 
+$\text{Residuals} + \hat{\beta}_iX_i \text{ versus } X_i,$  
+
+where  
+
+$\text{Residuals = residuals from the full model}$  
+$\hat{\beta}_i \text{= regression coefficient from the i-th independent variable in the full model}$  
+$X_i \text{= the i-th independent variable}$  
+
+We will use the function `termplot` to examine partial regression plots in R for
+`lm` models but these also work for `glm` models. 
+
+Before we go further we should mention two caveats: 
+
+This approach is not well suited for models that contain interaction
+effects because in that case examining the partial effect of a single term that 
+is included in an interaction effect does not make sense. 
+
+This approach can also be misleading if there is strong multicollinearity in which
+the independent variables are highly correlated with each other. In this case,
+the variance indicated by the partial residual plot can be much less than the
+actual variance. 
+
+We will use a simple simulated examine with 3 independent variables. 
+
+```{r}
+x1 <- rnorm(100)                          # continous variable 1
+x2 <- rnorm(100)                          # continous variable 2
+x3 <- as.factor(rep(c('cnt', 'trt'), 50)) # categorical variable
+
+y <- .5 * x1^2 + .75 * x2 + ifelse(x3 == 'cnt', -0.5, 0.5) + rnorm(100, 0, 0.1)
+```
+
+We can visually examine our simulated data relationships to `y` prior to modeling  
+
+```{r}
+par(mfrow=c(1,3))
+plot(y ~ x1)
+plot(y ~ x2)
+plot(y ~ x3)
+```
+  
+Even though in this simulated case we know the 'true' model because we designed it 
+by visually examining the relationship between `y` and each variable individually
+it does look like `x1` has no relationship, `x1` has a positive relationship, and 
+for x3 it appears that the `trt` samples have a higher `y`
+
+Let's carryout multiple regression modeling to see if we can uncover more information:  
+
+```{r}
+mod <- lm(y ~ x1 + x2 + x3)
+summary(mod)
+```
+Ok we fit the model and the tabular output seems to agree with our initial
+graphical exploration prior to model fitting. Let's now examine the partial
+residual plot for this example:   
+
+```{r}
+par(mfrow = c(1, 3))
+termplot(mod, partial.resid = TRUE, se=T, smooth=panel.smooth, pch=19, cex=0.75,
+             col.res = 'black', col.term = 'dodgerblue', lwd.term=2,
+             col.se = 'dodgerblue', lwd.se = 2, lty.se=3,
+             col.smth = 'red', lty.smth = 2)
+```
+  
+First let's get oriented on these graphics. The y-axis is the partial residual of
+the response variable `y` against each specific independent variable. There are
+several sets of lines on the graphs. The light blue lines are the linear model 
+fits with their associated standard errors (there is more uncertainty at the ends
+of the best fit line). The graphs also include a localized smoother or loess 
+curve (in red) which fits the data as well as possible. 
+
+In the first panel we are examining the relationship `y ~ x1 | x2 + x3` where the `|` 
+stands for `given` so this formula asking what is the strength of the relationship
+of `x1` to `y` given or after controlling for `x2` and `x3` in other words: 
+
+```{r}
+lm(residuals(lm(y ~ x2 + x3)) ~ x1)
+```
+
+Note that the leftmost panel above indicates something really useful to us. It
+shows clearly that the regression model (light blue line) has the wrong functional
+form. It isn't that `x1` has no relationship to `y` it is just that it is not a 
+linear relationship. The loess smoother (red line) shows this clearly. 
+
+The other two panels for `x2` and `x3` also so their partial effects on `y`. 
+These panels look good and indicate that our linear model assumption for the 
+relationship between `y1` and `x2` seems pretty reasonable. 
+
+Let's respecify our model and re-examine the partial residual plot  
+
+```{r}
+mod2 <- lm(y ~ I(x1^2) + x2 + x3)
+summary(mod2)
+par(mfrow = c(1, 3))
+termplot(mod2, partial.resid = TRUE, se=T, smooth=panel.smooth, pch=19, cex=0.75,
+             col.res = 'black', col.term = 'dodgerblue', lwd.term=2,
+             col.se = 'dodgerblue', lwd.se = 2, lty.se=3,
+             col.smth = 'red', lty.smth = 2)
+```
+  
+Now the model is properly specified the model fits look better and they have lower
+uncertainty associated with them. 
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
