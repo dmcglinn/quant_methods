@@ -47,8 +47,6 @@ links:
 * <a href="#milk">The Milkweeds and Fertilizer Example</a>
 * <a href="#mod">Model Building and Graphing</a>
 * <a href="#sim">Understanding Regression via Simulation</a>
-* <a href="#stan">Standardized \(\beta\) coefficients</a>
-
 
 ## <a href="#phil" name="phil">#</a> Modeling Philosophy
 One of the simplest and most important ideas when constructing models can be 
@@ -921,9 +919,8 @@ pretty confident about making some biological conclusions. Our main effect model
 received the most empirical support and it suggests that fruit mass increased
 due to fertilizer and plant height. The effect of fertilizer was a little stronger
 than the effect of height and together these two variables helped to explain 
-approximately 50% of the variance in fruit mass. We did not find strong support
-that the effects of plant height were changed by if the plant was fertilized or not
-(i.e., there was no interaction effect present). 
+approximately 50% of the variance in fruit mass. We did not find that the
+effects of plant height on fruit mass depended on if the plant was fertilized. 
 
 ### Automated model selection
 
@@ -1053,7 +1050,7 @@ legend('topleft', c('fit with all data', 'fit w/o outliers'),
        lwd=c(1,2), bty='n')
 ```
 
-### <a href="#mult" name="mult">#</a> Multiple regression 
+### Multiple regression 
 
 So far we have only examined models with a single variable but by design we
 know that y is influenced by three variables. Let's include all the relevant
@@ -1067,81 +1064,6 @@ coefficients(mod_main)
 
 Notice that in the output above the coefficient estimates are close to 
 what we set them at when we created the variable `y`. 
-
-
-## <a href="#stan" name="stan">#</a> Standardized \(\beta\) coefficients
-A standardized \(\beta\) or regression coefficient is simply the 
-\(\beta\) estimate from a regression on standardized variables. The typical way
-of standardizing a variable is to subtract its mean and divide it by its standard
-deviation. This transformation results in a variable a mean of zero and a
-standard deviation of one. There are other ways to standardize a variable but
-this is by far the most common.
-
-One reason for standardizing variables is that you can interpret the \(\beta\) estimates as partial correlation coefficients. In other words now that the
-variables are standardized you can compare how correlated they are to the 
-response variable using their regression coefficients. Below is a demo of this.
-
-```{r}
-## We will use this function to plot the data and correlations 
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
-{
-    usr <- par("usr"); on.exit(par(usr))
-    par(usr = c(0, 1, 0, 1))
-    r <- abs(cor(x, y))
-    txt <- format(c(r, 0.123456789), digits = digits)[1]
-    txt <- paste0(prefix, txt)
-    if(missing(cex.cor)) 
-        cex.cor <- 0.8/strwidth(txt)
-    text(0.5, 0.5, txt, cex = cex.cor)
-}
-```
-
-Before standardizing variables it is worthwhile to highlight that the 
-relationship between correlation and regression statistics. Specifically, 
-the t-statistic from a simple correlation coefficient is exactly what is
-reported for the \(\beta_1\)  coefficient in a regression model.
-
-```{r}
-cor.test(sim_data$y, sim_data$x1)$statistic
-summary(lm(y ~ x1, data=sim_data))$coef
-```
-
-The \(\beta\) coefficient reported by the regression is not equal to the
-correlation coefficient though because the \(\beta\) is in the units of the 
-\(x_1\) variable (i.e., it has not been standardized). Now let's use the function 
-`scale()` to standardize the independent and dependent variables. 
-
-```{r}
-sim_data_std <- data.frame(scale(sim_data))
-
-mod <- lm(y  ~ x1 + x2 + x3, data=sim_data)
-mod_std <- lm(y  ~ x1 + x2 + x3, data=sim_data_std)
-round(summary(mod)$coef, 3)
-round(summary(mod_std)$coef, 3)
-cor(sim_data$y, sim_data$x1)
-cor(sim_data$y, sim_data$x2)
-cor(sim_data$y, sim_data$x3)
-
-```
-
-Notice that above the t-statistics and consequently the p-values between `mod`
-and `mod_std` don't change (with the exception of the intercept term which is
-always 0 in a regression of standardized variables). This is because the 
-t-statistic is a pivotal statistic meaning that its value doesn't depend on the
-scale of the difference. 
-
-Additionally notice that the individual correlation coefficients are very 
-similar to the \(\beta\) estimates in `mod_std`. Why are these not exactly the same?
-Here's a hint - what would happen if their was strong multicollinarity between
-the explanatory variables?
-
-Let's plot the variables against one another and also display their individual
-Pearson correlation coefficients to get a visual perspective on the problem
-
-```{r}
-pairs(sim_data, lower.panel = panel.smooth, upper.panel = panel.cor)
-```
-
 
 Home Page - http://dmcglinn.github.io/quant_methods/ 
 GitHub Repo - https://github.com/dmcglinn/quant_methods 
