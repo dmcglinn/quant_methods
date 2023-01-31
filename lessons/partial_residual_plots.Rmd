@@ -46,6 +46,7 @@ actual variance.
 We will use a simple simulated example with 3 independent variables. 
 
 ```{r}
+set.seed(1)
 x1 <- rnorm(100)                          # continuous variable 1
 x2 <- rnorm(100)                          # continuous variable 2
 x3 <- as.factor(rep(c('cnt', 'trt'), 50)) # categorical variable
