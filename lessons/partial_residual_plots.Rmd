@@ -43,11 +43,11 @@ the independent variables are highly correlated with each other. In this case,
 the variance indicated by the partial residual plot can be much less than the
 actual variance. 
 
-We will use a simple simulated examine with 3 independent variables. 
+We will use a simple simulated example with 3 independent variables. 
 
 ```{r}
-x1 <- rnorm(100)                          # continous variable 1
-x2 <- rnorm(100)                          # continous variable 2
+x1 <- rnorm(100)                          # continuous variable 1
+x2 <- rnorm(100)                          # continuous variable 2
 x3 <- as.factor(rep(c('cnt', 'trt'), 50)) # categorical variable
 
 y <- .5 * x1^2 + .75 * x2 + ifelse(x3 == 'cnt', -0.5, 0.5) + rnorm(100, 0, 0.1)
@@ -73,7 +73,7 @@ Let's carryout multiple regression modeling to see if we can uncover more inform
 mod <- lm(y ~ x1 + x2 + x3)
 summary(mod)
 ```
-Ok we fit the model and the tabular output seems to agree with our initial
+OK we fit the model and the tabular output seems to agree with our initial
 graphical exploration prior to model fitting. Let's now examine the partial
 residual plot for this example:   
 
@@ -109,7 +109,7 @@ The other two panels for `x2` and `x3` also so their partial effects on `y`.
 These panels look good and indicate that our linear model assumption for the 
 relationship between `y1` and `x2` seems pretty reasonable. 
 
-Let's respecify our model and re-examine the partial residual plot  
+Let's re-specify our model and re-examine the partial residual plot  
 
 ```{r}
 mod2 <- lm(y ~ I(x1^2) + x2 + x3)
