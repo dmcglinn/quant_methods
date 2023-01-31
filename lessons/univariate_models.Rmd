@@ -914,13 +914,39 @@ large outliers that are having a disproportionate effect on the regression.
 
 ### Biological conclusion: Fruit size increases due to fertizlier and plant height
 
-Having checked the assumptions and carried out model comparison we can now feel
-pretty confident about making some biological conclusions. Our main effect model
-received the most empirical support and it suggests that fruit mass increased
-due to fertilizer and plant height. The effect of fertilizer was a little stronger
-than the effect of height and together these two variables helped to explain 
-approximately 50% of the variance in fruit mass. We did not find that the
-effects of plant height on fruit mass depended on if the plant was fertilized. 
+We have carried out model comparison and checked the model assumptions, we can
+now feel pretty confident about making some biological conclusions.
+
+Our main effect model received the most empirical support and it suggests that
+fruit mass increased due to fertilizer and plant height (see figure below). The
+effect of fertilizer was a little stronger than the effect of height and
+together these two variables helped to explain approximately 50% of the variance
+in fruit mass. We did not find that the effects of plant height on fruit mass
+depended on if the plant was fertilized.
+
+```{r, echo = FALSE}
+xrange = range(weeds$plant_ht_cm)
+
+plot(fruit_mass_mg ~ plant_ht_cm, data = weeds, type = 'n', 
+     xlab = 'Plant height (cm)', ylab = 'Fruit mass (mg)')
+points(fruit_mass_mg ~ plant_ht_cm, data = weeds, subset = trt == "fertilized",
+       pch = 1, col = 'red')
+# add the fitted regression line using two points at either end of the range of x 
+lines(xrange, 
+      predict(main_mod, 
+              newdata = data.frame(plant_ht_cm = xrange, trt = "fertilized")),
+      col = 'red', lty = 1)
+points(fruit_mass_mg ~ plant_ht_cm, data = weeds, subset = trt == "unfertilized",
+       pch = 2, col = 'blue')
+lines(xrange, 
+      predict(main_mod, 
+              newdata = data.frame(plant_ht_cm = xrange, trt = "unfertilized")),
+      col = 'blue', lty = 2)
+legend('topleft', c('Fertilized', 'Unfertilized'), col = c('red', 'blue'), 
+       pch = c(1, 2), lty = c(1, 2), bty = 'n')
+```
+Above is the final best supported model (source code for this is provided
+when the main effect model is first introducted above)
 
 ### Automated model selection
 
@@ -935,10 +961,8 @@ stepAIC(int_mod)
 ```
 
 As you can see above this approach results in the same model that we found 
-to be the best the main effects model. Do note that `stepAIC` internally uses
-the function `extracAIC` to compute the AIC values. 
-
-
+to be the best - the main effects model. Do note that `stepAIC` internally uses
+the function `extracAIC` to compute the AIC values.  
 
 ## <a href="#sim" name="sim">#</a> Understanding Regression via Simulation
 
