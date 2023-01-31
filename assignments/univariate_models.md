@@ -16,7 +16,7 @@ trees <- read.csv('./data/treedata_subset.csv')
 
 Examine this dataset and see how the data is structured, see function `str` 
 
-The contents of the metadata file ([`./data/tree_metadata.txt`](https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tree_metadata.txt)) is provided here:
+The contents of the metadata file ([`./data/tree_metadata.txt`](https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tree_metadata.txt)) is provided below:
 
 
 The dataset includes tree abundances from a subset of a vegetation database of Great Smoky Mountains National Park (TN, NC).
