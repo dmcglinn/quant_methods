@@ -3,6 +3,13 @@ title: Standardized \(\beta\) coefficients
 output: html_document
 ---
 
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
+
+### Source Code Link
+https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/standardized_beta_coefficients.Rmd  
+
+
 This mini-lesson is to introduce the concept of standardized regression
 coefficients in R. A standardized regression coefficient is simply the 
 \(\beta\) estimate from a regression on standardized variables. A standardized
@@ -90,3 +97,6 @@ Pearson correlation coefficients to get a visual perspective on the problem
 ```{r}
 pairs(sim_data, lower.panel = panel.cor, upper.panel = panel.smooth)
 ```
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
