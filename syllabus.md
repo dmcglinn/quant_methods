@@ -92,7 +92,7 @@ Course Schedule:
 | 1    | Jan 12 | Introduction to R                              | [link](https://cofc.zoom.us/rec/play/HpAW6feh6IumQXzXCh4vQ8AHvOrG-JHl0HupIO_PYbaa31frJ_MY8Ys5IZyT_yjfpswLwFzaKTiJxRaK.qOkd12I18k24TonG?autoplay=true&startTime=1673528663000) |
 | 2    | Jan 17 | More R Version Control & the Terminal          | [link 1](https://cofc.zoom.us/rec/share/p3GOlFjrZI69FrZNfVta9DuWpIm5c0b8hy5BAmMCdP1TT1iB6Uy6sH3sA1J8dyZT.6NV9-BaArGwvcSBZ) [link 2](https://cofc.zoom.us/rec/share/9J8gDx_F5DIKxXYsQLEf44b2EUVjIeDQNfSIpJQXoPv4HpkyYX8l1S4eDKFKF2t7.8XzspU8MjRShL-qr) |
 | 3    | Jan 24 | Working with data                              |                |
-| 4    | Jan 31 | Regression and Simple Models                   |                |
+| 4    | Jan 31 | Regression and Simple Models                   | [link](https://cofc.zoom.us/rec/share/HOA8MvRwcG4aCMjhMWwi2ut_G3HauY0e8U3ANAMQLSiYV5tSMbcJpppSihVnROKs.r3ClheliL8Bw_K3S) |
 | 4    | Feb 07 | Project Feedback in class                      |                |
 | 5    | Feb 14 | Multivariate Models                            |                |
 | 7    | Feb 28 | Spatial Models                                 |                |
