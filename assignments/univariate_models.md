@@ -51,8 +51,9 @@ Because this dataset includes both continuous and discrete explanatory variables
 use the function `Anova` in the packages `car` as such
 
 ```r
-library(car)
-Anova(my_mod, type=3)
+install.packages('car') # if you have not installed before
+library(car)            # load the library
+Anova(my_mod, type=3)   # example of a type 3 anova
 ```
 
 This will estimate partial effect sizes, variance explained, and p-values for 
