@@ -71,7 +71,7 @@ There are generally considered to be two types of ordination.
 2. Direct or constrained ordination in which one matrix is used to explain the 
 variance of another matrix. 
 
-The figure below (Lengendre and Legendre 1998, Fig 11.1) visually illustrates this
+The figure below (Legendre and Legendre 1998, Fig 11.1) visually illustrates this
 conceptual shift from modeling a vector *y* (panel b) to a matrix **Y**.
 Indirect ordination does not use an explanatory matrix **X** (panel a) while
 direct ordination methods do (panel c)
@@ -92,10 +92,10 @@ Overview of Ordination methods (adapted from <http://ordination.okstate.edu/term
 
 ```{r, echo = FALSE}
 library(knitr)
-# setup the R enviornment for kniting markdown doc properly
+# setup the R environment for kniting markdown doc properly
 opts_knit$set(root.dir='../')
-ord = read.csv('./ordination_table.csv')
-names(ord) = c("Acronym",	"Name", "Type of analysis", "Algorithm",	"R function")
+ord <- read.csv('./ordination_table.csv')
+names(ord) <- c("Acronym",	"Name", "Type of analysis", "Algorithm",	"R function")
 kable(ord)
 ```
 
@@ -114,28 +114,33 @@ A cross-tab structure is a very inefficient way to store your raw data and in ma
 Using the Great Smokey Mountains tree dataset that was using in HW 3, I will demonstrate how to do this with a computationally inefficient but easy to understand for loop. 
 As a reminder the metadata for the tree data is located [here](../data/tree_metadata.txt).
 
+Quick note: In this lesson we will use the R package `dummies` to create dummy
+variables. This package is now defunct and no longer on the main package repository
+CRAN. To install you will have to use the package `remotes` and the function
+`install_github` specifically once `remotes` is installed use
+`remotes::install_github('cran/dummies')`
 
 ```{r load data}
 # load relevant packages and code for today's lesson
 library(vegan)
-library(dummies)
+library(dummies) # this package is no longer on cran see note above
 source('./scripts/utility_functions.R')
 
 # load data
-tree = read.csv('./data/treedata_subset.csv')
+tree <- read.csv('./data/treedata_subset.csv')
 
 # create a community site x species matrix by summing species cover values
 # we can do this with a for loop but it take a while to run
-uni_sp = unique(tree$spcode)
-uni_site = unique(tree$plotID)
+uni_sp <- unique(tree$spcode)
+uni_site <- unique(tree$plotID)
 ```
 ```{r for loop, eval=FALSE}
-comm = matrix(0, ncol=length(uni_sp), nrow=length(uni_site))
-colnames(comm) = uni_sp
-rownames(comm) = uni_site
+comm <- matrix(0, ncol=length(uni_sp), nrow=length(uni_site))
+colnames(comm) <- uni_sp
+rownames(comm) <- uni_site
 for(i in seq_along(uni_sp)) {
     for(j in seq_along(uni_site)) {
-        comm[j , i] = mean(tree$cover[tree$spcode == uni_sp[i] &
+        comm[j , i] <- mean(tree$cover[tree$spcode == uni_sp[i] &
                           tree$plotID == uni_site[j]])
     }
 }
@@ -146,13 +151,13 @@ Alternatively we could use the function `tapply` which is much more efficient.
 
 ```{r tapply}
 # alternatively we can use a tapply function 
-comm = tapply(tree$cover,
+comm <- tapply(tree$cover,
               INDEX = list(tree$plotID, tree$spcode),
               mean)
 # examine the community matrix
 comm[1:5, 1:5]
 # replace the NAs with zeros
-comm = ifelse(is.na(comm), 0, comm)
+comm <- ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
 ```
 
@@ -160,13 +165,13 @@ Now that we've created our matrix it is usually a good idea to make sure everyth
 
 ```{r maginal sums}
 # visually explore the cover variable between species and sites
-uni_sp = unique(tree$spcode)
-sp_sum = apply(comm, 2, sum)
-site_sum = apply(comm, 1, sum)
+uni_sp <- unique(tree$spcode)
+sp_sum <- apply(comm, 2, sum)
+site_sum <- apply(comm, 1, sum)
 par(mfrow=c(2,2))
 hist(sp_sum)
-col = colorRamp(c('red', 'orange', 'blue'))
-sp_cols = col(length(uni_sp))
+col <- colorRamp(c('red', 'orange', 'blue'))
+sp_cols <- col(length(uni_sp))
 plot(sp_sum[order(sp_sum, decreasing=T)], type='o', col='red', lwd=2,
      xlab='Sp Rank', ylab='Sum Cover')
 hist(site_sum)
@@ -178,7 +183,11 @@ par(mfrow=c(1,1))
 Above we can see that most species have small total covers (i.e., most species are rare) which is a fairly universal ecological law so this seems correct. 
 Also we can see that most sites have a total cover of approximately 40 and that this distribution isn't as highly skewed as the species marginal totals. 
 
-These plots are not terribly helpful at understanding the variability in the community matrix so let's get our environmental variables ready to use and start to conduct some actual analyses. 
+NOTE: These plots are not terribly helpful at understanding the variability in
+the community matrix. They are just useful for looking at gross aggregate
+properties of the matrix; therefore, they can be useful for spotting an error in
+the matrix. Let's get our environmental variables ready to use and start to
+conduct some actual analyses.
 
 ## Create an explanatory matrix
 
@@ -195,13 +204,13 @@ same order as the community matrix. We could write a for loop to do this but
 we'll take the easier approach of using the function `aggregate`.
 
 ```{r create env matrix}
-cols_to_keep = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
-env = aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
+cols_to_keep <- c('elev', 'tci', 'streamdist', 'disturb', 'beers')
+env <- aggregate(tree[ , cols_to_keep], by = list(tree$plotID), function(x) x[1])
 # aggregate does have a side effect of adding a column to the output which 
 # is the unique plotID in this case. We just need to move that so it is a 
 # row name instead. 
-row.names(env) = env[ , 1]
-env = env[ , -1]
+row.names(env) <- env[ , 1]
+env <- env[ , -1]
 head(env)
 
 # before we can use this explanatory matrix we need to check 
@@ -212,8 +221,8 @@ all.equal(rownames(comm), rownames(env))
 # now that we've completed that check we can rename the rows to something 
 # more manageable
 
-rownames(comm) = 1:nrow(comm)
-rownames(env) = 1:nrow(env)
+rownames(comm) <- 1:nrow(comm)
+rownames(env) <- 1:nrow(env)
 
 ```
 
@@ -247,7 +256,7 @@ We'll start by using PCA to simply examine the correlations in tree species
 covers that are contained in the community matrix. 
 
 ```{r comm pca}
-tree_pca = rda(comm, scale=TRUE)
+tree_pca <- rda(comm)
 tree_pca
 ```
 
@@ -263,17 +272,29 @@ analysis we would see that they are stored under `$CA$eig`.
 We can access each of the objects stored in a named list as we would reference columns in a `data.frame` using the `$`. 
 
 ```{r eigenvalues}
-tree_pca$
 tree_pca$tot.chi
 tree_pca$CA$eig
-# the eigenvalues sum up to equal the total interia (i.e., total variance in this case)
+# the eigenvalues sum up to equal the total inertia 
 sum(tree_pca$CA$eig)
+# inertia in a PCA is equal to the total variance of the matrix because PCA
+# uses the usual Euclidean distance as its metric of how different samples are:
+# 1 / (n-1) * sum(x - xbar)^2 where n is sample size and xbar is the mean x value
+# you can verify that this is equal to the sum of the variances (i.e., diagonal 
+# elements) in the species covariance matrix 
+sum(diag(cov(comm)))
+# of if you want to do it by hand with matrix algebra
+# first center the community matrix by subtracting the means
+cen_comm <- apply(comm, 2, function(x) x - mean(x))
+# then compute the covariance matrix
+cov_comm <- nrow(comm)^-1 * t(cen_comm) %*% cen_comm
+sum(diag(cov_comm))
+
 # the ratio of the eigenvalue to the total variance is the amount of 
 # variance explained by each PCA axis
 round(tree_pca$CA$eig / tree_pca$tot.chi, 2)
 ```
 
-We can see from above that the PCA axis 1 captures approximately 10% of the total
+We can see from above that the PCA axis 1 captures approximately 20% of the total
 variance in the community matrix. 
 Let's graph the data to better get a sense of the correlation structure.
 
@@ -290,28 +311,28 @@ cleanplot.pca(tree_pca)
 # its eigenvalue. (1) Distances among objects in the biplot are not approximations
 # of their Euclidean distances in multidimensional space. (2) The angles
 # between descriptors in the biplot reflect their correlations.
+# scaling 2 is the default for vegan ordination graphing functions
 ordiplot(tree_pca, display = 'sp')
-orditorp(tree_pca, display = 'sp')
 ```
 
 ### Correspondance Anlysis (CA), Detrended Coresspondance Analysis (DCA), and NMDS
 
 ```{r, eval=FALSE}
 # each of these different indirect ordination approaches
-# has different strenghts and weaknesses
-# Correspondance analysis  (CA) examines differences on weighted
+# has different strengths and weaknesses
+# Correspondence analysis  (CA) examines differences on weighted
 # averages of the columns (i.e., species in this case)
-tree_ca = cca(comm)
+tree_ca <- cca(comm)
 
-# Detrended correspondance analysis (DCA) is identical except it attempts
-# to account for a well known artefact of CA known as the arch-effect 
+# Detrended correspondence analysis (DCA) is identical except it attempts
+# to account for a well known artifact of CA known as the arch-effect 
 # by detrending subsequent axes from previous axes. 
-tree_dca = decorana(comm)
+tree_dca <- decorana(comm)
 
-# Non-metric multidimenstional scaling (MDS) is unique in that you may 
+# Non-metric multidimensional scaling (MDS) is unique in that you may 
 # specify one of a number of different distance metrics to use. By 
 # default the Bray-Curtis distance is used by metaMDS. 
-tree_mds = metaMDS(comm)
+tree_mds <- metaMDS(comm)
 ```
 
 NMDS Maximizes rank-order correlation between distance measures and distance in
@@ -326,15 +347,15 @@ the environmental variables. RDA is the most direct analog of OLS regression to
 the multivariate response variable. 
 
 ```{r, error=TRUE}
-rda_tree = rda(comm, env)
+rda_tree <- rda(comm, env)
 # the above breaks b/c we have a categorical factor in env 
 
 # vegan requires that we write out each term if we are not going to 
 # convert the factor to a dummy matrix 
-rda_tree = rda(comm ~ env$elev + env$tci +
+rda_tree <- rda(comm ~ env$elev + env$tci +
                env$streamdist + env$disturb + env$beers)
 # alternatively we could use a shorthand approach
-rda_tree = rda(comm ~ . , data=env)
+rda_tree <- rda(comm ~ . , data=env)
 rda_tree
 RsquareAdj(rda_tree)
 ```
@@ -375,7 +396,7 @@ for modeling unimodal or hump-shaped responses to explanatory variables (rather
 than linear as with RDA). 
 
 ```{r}
-cca_tree = cca(comm ~ ., data=env)
+cca_tree <- cca(comm ~ ., data=env)
 RsquareAdj(cca_tree, 100)
 anova(cca_tree, permutations = 999)
 anova(cca_tree, by='margin', permutations = 999)
@@ -428,10 +449,10 @@ set of variables.
 ```{r}
 ## variance partitioning
 
-moisture = env[ , c('elev', 'tci', 'beers', 'streamdist')]
+moisture <- env[ , c('elev', 'tci', 'beers', 'streamdist')]
 # because the variable disturb is a factor we need to convert it into 
 # a dummy matrix using the function dummies::dummy
-disturb = dummy(env$disturb)
+disturb <- dummy(env$disturb)
 
 # examine the explanatory variable of each class of variables.
 varpart(comm, moisture, disturb)
