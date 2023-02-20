@@ -1,8 +1,8 @@
 ---
 title: "Statistical Programming in R"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 layout: page
 ---
 
@@ -95,7 +95,7 @@ Course Schedule:
 | 4    | Jan 31 | Regression and Simple Models                   | [link](https://cofc.zoom.us/rec/share/HOA8MvRwcG4aCMjhMWwi2ut_G3HauY0e8U3ANAMQLSiYV5tSMbcJpppSihVnROKs.r3ClheliL8Bw_K3S) |
 | 4    | Feb 07 | Project Feedback in class                      |                |
 | 5    | Feb 14 | Multivariate Models                            |                |
-| 7    | Feb 28 | Spatial Models                                 |                |
+| 7    | Feb 21 | Spatial Models                                 |                |
 | 9    | Feb 28 | Project Pitches                                |                |
 | 8    | Mar 07 | Spring Break                                   |                |
 | 10   | Mar 14 | GIS manipulations                              |                |
