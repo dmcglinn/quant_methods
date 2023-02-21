@@ -49,7 +49,7 @@ site and therefore finding one organism increases the likelihood of finding anot
 2) induced spatial dependence: the variable is not inherently spatially structured 
 but the driving factors that it responds to are. In ecology this is sometimes
 referred to as a true gradient. An example of this phenomena would be if an 
-organism's physiology is driven by temperature if temperature is non-randomly
+organism's physiology is driven by temperature, and if temperature is non-randomly
 spatially structured then the organism should also display non-random patterns 
 of occurrence. 
 
@@ -158,7 +158,7 @@ lines(lowess(null_dist, sr_dist), lwd=3, col='pink')
 abline(v = max_dist, col='red', lwd=3, lty=2)
 
 # compute null correlation
-null_cor = cor(null_dist, sr_dist)
+null_cor <- cor(null_dist, sr_dist)
 null_cor
 ```
 
@@ -301,8 +301,8 @@ we can bin distances into bins and then compute **r** at each distance class to
 build a correlogram. 
 
 ```{r}
-sr_corlog = mantel.correlog(sr_dist, xy_dist)
-comm_corlog = mantel.correlog(comm_dist, xy_dist)
+sr_corlog <- mantel.correlog(sr_dist, xy_dist)
+comm_corlog <- mantel.correlog(comm_dist, xy_dist)
 sr_corlog
 comm_corlog
 
@@ -348,39 +348,144 @@ Graphically these models of spatial correlation can be visualized like this
 (Figure 5.9 of Pinheiro and Bates 2000):
 ![plots](figures/isotropic_variogram_models_plots.png)
 
+### Model fitting, interpretation, and comparison
+
+When we carried out ordinary regression we used the formula: 
+
+$$y = X\beta  + \varepsilon, \qquad \varepsilon \sim N(0, \sigma^2) \qquad \text{(equ. 1)}$$
+Where *y* was a vector we wished to explain variance in (our response variable),
+*X* was a matrix of explanatory variables we thought influenced *y*, the vector
+$\beta$ was the vector of intercept and slope coefficients, and $\varepsilon$ was
+the error or residuals of the model. 
+
+As noted above we can consider two sources of non-random spatial structure in
+*y*. For induced spatial dependence or true gradients we can consider which
+explanatory variables we include in *X* and if they themselves are spatially
+structured. In practice, considering induced spatial dependence requires no
+changes to our modeling structure or philosophy assuming that our samples are
+truly independent of each other (i.e., sample similarity is only due to having
+similar conditions in *X* and not because they were simply located near each
+other).
+
+If however samples are not truly independent and autocorrelation is present in
+the response variable then we are violating a core assumption of OLS regression
+that residual error is identically independently distributed (i.i.d). As equ. 1
+states the error should be Normally distributed with variance $\sigma^2$
+regardless of which samples we are considering. The key problem with ignoring
+correlations in the error between samples is it means that our sample size is
+inflated.
+
+##### **Question**
+If we are over estimating our sample size will that bias p-values to be 
+smaller or larger?
+
+<div class="hidecode" onclick="doclick(this);">[Show answer]</div>
+```
+They will be biased to be smaller because larger samples require a smaller
+signal to appear to not be conforming to the null hypothesis. Thus when we 
+inflate our samples size artifically we are inflating our Type I error and are
+more likely to reject the null hypothesis when there is actually no signal. 
+```
+
+Well what are we going to do about this inflated sample size? The most
+conservative but often least appealing approach would be to censor your data
+down to a set of samples that are truly independent. Alternatively you average
+across non-independent replicates (aka pseudo-replicates). This is often either
+not feasible or simply unappealing because of the loss of precision and/or power
+that accompanies a loss of samples. An alternative solution we will examine here
+is modeling the pattern of autocorrelation in the error of the model using
+Generalized Linear Models (GLS). 
+
+**Note:** GLS models are distinct from General Linear Models (GLM) because GLS
+models are primarily concerned with modeling the covariance between samples
+while still adhering to the standard Normal distribution assumption for
+measurement error. In contract, GLMs are typically harnessed when the Normal
+distribution is not appropriate and we wish to use a different distribution for
+the error term such as Poisson or Binomial distributions. It is possible to
+model the correlation structure of the error term in of a GLM but we will not
+consider that case here.
+
+Let's start with a simple OLS model for species richness of mites. We'll examine
+if substrate density (`SubsDens`) is linearly correlated with richness and if the
+error of that regression model shows spatial structure thus violating a core
+assumption of the model. 
+
+
 ```{r}
-sr_dat = data.frame(sr, mite.env, mite.xy)
+sr_dat <- data.frame(sr, mite.env, mite.xy)
 
-sr_lm = gls(sr ~ SubsDens, data=sr_dat)
+sr_lm <- gls(sr ~ SubsDens, data=sr_dat)
 
-plot(Variogram(sr_lm, form= ~ x + y))
-res = residuals(sr_lm)
-plot(dist(sr_dat[, c('x', 'y')]), dist(res))
-lines(lowess(dist(sr_dat[, c('x', 'y')]), dist(res)), col='red', lwd=2)
+summary(sr_lm)
+```
+
+We can see from the output of that model that substrate density does not 
+seem to correlated to species richness. Let's examine the residuals of that model
+using a special kind of plot called a *Variogram* which plots the semivariance 
+of the residuals against spatial lag (i.e., the spatial distance between samples).
+Although that might sound intimidating we can build our own kind of variogram
+plot using the `dist` function we used above in the lesson to compute Euclidean
+distances between entries in a vector or matrix. 
+
+```{r}
+vario_sr <- Variogram(sr_lm, form= ~ x + y, resType = 'response')
+# note the default of teh Variogram function is to compute normalized residuals
+plot(vario_sr)
+# compare that to a plot we make on our own
+res <- residuals(sr_lm)
+res_var <- dist(res)^2 * 0.5
+plot(dist(sr_dat[, c('x', 'y')]), res_var)
+lines(lowess(dist(sr_dat[, c('x', 'y')]), res_var), col='red', lwd=2)
 abline(v = max_dist, col='red', lwd=3, lty=2)
+# they seem to tell a similar story - the error of the model is showing
+# positive autocorrelation. 
+```
+The two plots may look a little different only because the Variogram plot has
+averaged across many pairs of points (the `n.pairs` column of that function's
+ouput) to get semivariance estimates for different distance classes. One
+important point to note is that if you take the weighted average of all the
+semi-variance estiamtes then that equals the variance of the residuals, here's a
+quick demonstration of that:
 
-sr_exp = update(sr_lm, corr=corExp(form=~x + y))
+```{r}
+sum(vario_sr$variog * vario_sr$n.pairs) / sum(vario_sr$n.pairs)
+var(res)
+```
+
+Ok so far we've learned that substrate density does not seem to be influencing
+richness spatially or otherwise and that there still remains autcorrelation in 
+richness. Let's examine the most common model of spatial (and temporal) 
+autocorrelation: the exponential model also know as Autoregressive 1  model or AR1. 
+
+```{r}
+sr_exp <- update(sr_lm, corr=corExp(form=~x + y))
+summary(sr_exp)
 # examine fit of error model to the raw model residuals
 # note this function defaults to displaying pearson standardized residuals
-# resType='p' or resType='pearson'
+# resType='p' or resType='pearson' which have been standardized
 plot(Variogram(sr_exp, maxDist = max_dist))
 # that doesn't look so good because clearly the model does not fit the error 
 # very well, it appears that there is a nugget (i.e., non-zero y-intercept)
 # Let's examine the normalized residuals in which the residuals are 
-# devided by the estimate of the variance-covariance matrix. If the model
+# divided by the estimate of the variance-covariance matrix. If the model
 # fits well these residuals should be normally distributed.
 plot(Variogram(sr_exp, resType='normalized', maxDist = max_dist))
 # we see a little bit of a trend in the residuals but not too bad
 # actually which is a bit surprising given the output of the raw residuals
 
 # let's look at the same model but with a nugget
-sr_exp_nug = update(sr_exp, corr=corExp(form=~x + y, nugget=T))
+sr_exp_nug <- update(sr_exp, corr=corExp(c(0.5, 0.1), form=~x + y, nugget=T))
+# Notice above I had to put in starting values for the rate and nugget of the
+# spatial model. I found that if I left those off the model did not converge.
+# This may be due to the fact that the estimated value of the nugget is very 
+# close to zero. 
+summary(sr_exp_nug)
 plot(Variogram(sr_exp_nug, maxDist = max_dist))
 plot(Variogram(sr_exp_nug, resType='n', maxDist = max_dist))
 # those look like they provide a better fit to the data
 
 # let's examine the rational quadratic error model
-sr_rat_nug = update(sr_lm, corr=corRatio(form=~x + y, nugget=T))
+sr_rat_nug<-update(sr_lm, corr=corRatio(form=~x + y, nugget=T))
 # examine fit of error model to model residuals
 plot(Variogram(sr_rat_nug, maxDist = max_dist))
 plot(Variogram(sr_rat_nug, resType='n', maxDist = max_dist))
@@ -406,9 +511,9 @@ Let's now examine our spatial map of richness and this time focus on the
 residuals of our model. Do they still look spatially structured?
 
 ```{r}
-col_brks = hist(residuals(sr_exp_nug), plot=F)$breaks
-col_indices = as.numeric(cut(residuals(sr_exp_nug), col_brks))
-cols = rev(terrain.colors(length(col_brks)))
+col_brks <- hist(residuals(sr_exp_nug), plot=F)$breaks
+col_indices <- as.numeric(cut(residuals(sr_exp_nug), col_brks))
+cols <- rev(terrain.colors(length(col_brks)))
 plot(mite.xy, cex=2, pch=19, col=cols[col_indices])
 ```
 
@@ -423,13 +528,13 @@ Now let's examine spatial dependence in multivariate response such as species
 composition in a modeling framework
 
 ```{r}
-mite_rda = rda(mite, mite.env[ , 1:2])
+mite_rda <- rda(mite, mite.env[ , 1:2])
 
 plot(mite_rda, display=c('sp', 'bp'))
 anova(mite_rda)
 
-mite_mso_raw = mso(rda(mite), mite.xy, permutations = 1000)
-mite_mso = mso(mite_rda, mite.xy, permutations = 1000)
+mite_mso_raw <- mso(rda(mite), mite.xy, permutations = 1000)
+mite_mso <- mso(mite_rda, mite.xy, permutations = 1000)
 mite_mso
 par(mfrow=c(1,1))
 msoplot(mite_mso_raw)
