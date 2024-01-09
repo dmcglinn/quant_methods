@@ -1,5 +1,5 @@
 ---
-title: "BIOL 570-01: Statistical Programming for Biologists"
+title: "BIOL 470-01: Statistical Programming for Biologists"
 output: pdf_document
 layout: page
 urlcolor: blue
@@ -11,7 +11,7 @@ Department of Biology, College of Charleston
 
 Course and Instructor info:
 ---------------------------
-* BIOL 570 Statistical Programming for Biologists
+* BIOL 470 Statistical Programming for Biologists
 * Meeting time: 8-9:15 am TR; in RITA 271
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
@@ -60,8 +60,6 @@ to manipulate and map that data.
 question over a multi-week research project.
 7. Communicate the results of their statistical analyses in written reports,
 oral presentations, and a scientific paper.
-8. Gain mentorship skills by engaging in peer-mentoring inclass and via
-peer-code review.
 
 Student Evaluation:
 -------------------
@@ -71,10 +69,8 @@ Student Evaluation:
 * 5% Quizzes
 * 40% Assignments
 * 50% Project
-    - 10% project code
-    - 20% oral presentation
-    - 20% written description of analysis (e.g., Methods and Results section of
-       a paper)
+    - 25% project code
+    - 25% oral presentation
 
 
 **_Project_** - The project in this course may span a wide range of potential
@@ -85,8 +81,8 @@ quantitatively. Students will develop their project in consultation with the
 instructor, and they will receive feedback early on in project development from
 their fellow classmates after a formal in class project pitch. At the end of the
 semester, the students' will submit their code for formal code review by their
-classmates and each student will deliver an oral presentation and scientific paper
-based upon on their project findings. 
+classmates and each student will deliver an oral presentation on their project
+findings.
 
 More information on the project assignments and examples of past projects can be
 found on the [Projects](http://dmcglinn.github.io/quant_methods/projects) page.
@@ -169,19 +165,23 @@ crucial to learning.
 
 Final grades will be assigned based on the following scale:
 
-**Graduate Students**
+**Undergraduate Students**
 
 | Letter | Grade                              | % Points | Quality Points | 
 |--------|------------------------------------|----------|----------------| 
-| A      | Superior                           | 90 - 100 | 4              | 
+| A      | Superior                           | 93 - 100 | 4              | 
+| A-     |                                    | 90 - 93  | 3.7            | 
 | B+     | Very Good                          | 87 - 90  | 3.5            | 
-| B      | Good                               | 80 - 87  | 3              | 
+| B      | Good                               | 83 - 87  | 3              | 
+| B-     |                                    | 80 - 83  | 2.7            | 
 | C+     | Fair                               | 77 - 80  | 2.5            | 
-| C      | Acceptable                         | 70 - 77  | 2              | 
-| F      | Failure                            | 60 - 70  | 0              | 
-| XF     | Failure Due to Academic Dishonesty |          | 0              | 
-| RA-RF  | Repeat; include GPA/exclude hours  |          |                | 
-
+| C      | Acceptable                         | 73 - 77  | 2              | 
+| C-     |                                    | 70 - 73  | 1.7            |
+| D+     |                                    | 67 - 70  | 1.5            | 
+| D      | Barely Acceptable, Passing         | 63 - 67  | 1              | 
+| D-     |                                    | 60 - 63  | 0.7            |
+| F      | Failure                            | \<60     | 0              | 
+| XXF    | Failure Due to Academic Dishonesty |          | 0              | 
 
 **_Students with Disabilities and Special Needs_** - Any student eligible for
 and needing accommodations because of a disability is requested to speak with
