@@ -173,6 +173,15 @@ dat <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pag
 
 #' this is not always a great option though because remote data and urls can break
 #' 
+#' Last note about the usage of the function `read.csv`. Notice the argument, 
+#' `header` is set to `FALSE`. This is because this inflammation dataset is a bit
+#' strange because it does not include column names. Most datasets will include 
+#' column names so `header = TRUE` is the more common setting of this argument, 
+#' in fact that is the default setting for `read.csv`. So in most cases (such as
+#' on the homework) you will simply use `read.csv('mycsvfile.csv')` without 
+#' specifying the `header` argument explicitly. 
+#' 
+#' 
 #' ## <a href="#help" name="help">#</a>Using the help
 
 #' above we used the function "read.csv" to find out more about this function see
@@ -226,7 +235,10 @@ dat[30, 20]
 dat[1:4, 1:10]
 
 #' select specific rows and columns
-dat[c(3, 8, 37, 56), c(10, 14, 29)]
+dat[c(3, 8, 37), c(10, 14, 29)]
+#' The code above provides the values of `dat` at 
+#' 3,10 ; 8,14 ; and 37,29 where the first number is the row index and the 
+#' second number is the column index
 
 #' all columns from row 5
 dat[5, ]
@@ -300,13 +312,13 @@ sd_day_inflammation <- apply(dat, 2, sd)
 sd_patient_inflammation <- apply(dat, 1, sd)
 
 #' ## <a href="#plot" name="plot">#</a>Plot data
-#' use the function plot() to plot data
+#' use the function plot() to plot the data summaries
 ?plot
 #' provides a long list of potential arguments and examples
 #' at a minimum you must provide a single quantitative variable, for example:
 plot(avg_day_inflammation)
 #' notice how R fills in lots of pieces of missing information automatically. 
-#' specifcially it assumes that the independent variable is simply an index from
+#' specifically it assumes that the independent variable is simply an index from
 #' 1 to the length of the object in this case avg_day_inflamation. A safer more 
 #' clear way to accomplish the same plot is to use the following:
 
@@ -315,9 +327,16 @@ plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab='day',
 
 #' this makes it clearer that the x-variable is simply an index from 1 to the
 #' length of avg_day_inflammation, and it makes the x and y axis labels more 
-#' sensical. 
-
-#' to output multi-panel plots use for example
+#' understandable. 
+#'
+#' Note that in most cases in R you have a specific columns in your `data.frame`
+#' you wish to plot against one another. If for example my `data.frame` was 
+#' called `dat` and there were two columns `growth` and `temperature`. I could
+#' plot growth as a function of temperature using 
+#' `plot(dat$temperature, dat$growth)`
+#' This will come up in the homework as well.
+#'
+#' To output multi-panel plots use for example
 par(mfrow=c(1,2))
 #' which will create a single plotting row with two columns
 plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab='day', 
