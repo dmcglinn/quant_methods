@@ -66,7 +66,7 @@ These different goals of model building require different approaches and modes
 of model evaluation. 
 Hypothesis testing is typically geared towards testing a small handful of carefully
 crafted ***A PRIORI*** hypotheses. 
-In this context they model is typically judged useful if it is statistically 
+In this context the model is typically judged useful if it is statistically 
 significant.  
 However, many times though the investigator does not have a clear *_a priori_*
 hypothesis [(see post at Small Pond Science)](http://smallpondscience.com/2013/06/04/pretending-you-planned-to-test-that-hypothesis-the-whole-time/) 
@@ -94,14 +94,13 @@ re-frame their analyses as if they are confirmatory rather than exploratory.
 And of course there is pressure during peer-review to only report on 
 statistics that are significant. 
 
-You might be wondering why this is a big deal. The reason is that you will inevitably
-get good fitting models (high R^2) and statistically significant results (p < 0.05)
-if you keep adding variables to a model even if those variables by definition are
-independent of the response variable [(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ).
-
-The solution to Freedman's paradox is to approach model comparison as carefully
-and intentionally as possible with a small number of deliberately chosen models.
-Burnham and Anderson (2002, p19) advocate for: 
+You might be wondering why this is a big deal. The reason is Freedman's paradox
+[(Freedman 1983)](http://amstat.tandfonline.com/doi/abs/10.1080/00031305.1983.10482729#.Ul17gVAkJPQ) which demonstrates that  you will inevitably get good fitting models
+(high R^2) and statistically significant results (p < 0.05) if you keep adding
+variables to a model even if those variables by definition are independent of
+the response variable. The solution to Freedman's paradox is to approach model
+comparison as carefully and intentionally as possible with a small number of
+deliberately chosen models. Burnham and Anderson (2002, p19) advocate for: 
 
 <blockquote>
 ... a conservative approach to the overall issue of *strategy* in the
@@ -219,7 +218,7 @@ intuition which will guide our modeling and interpretation of the statistics.
 
 >A quick note on graphics. I will primarily use base graphics in this course but
 increasingly the R community is moving towards using `ggplot` for graphics.
-`ggplot` is a really great set of tools for making bueatiful graphics but it can
+`ggplot` is a really great set of tools for making beautiful graphics but it can
 be more difficult to understand exactly how it works and how to custumize
 graphics. Therefore, I want to expose you to both methods of producing graphics
 the simple and clunky base graphics and the elegent and shiny `ggplot` graphics.
@@ -263,13 +262,18 @@ ggplot(data = weeds) +
 Technically this is the same graphic as produced by base but you can see that
 the R code is a bit more cryptic.
 
-Let's break it down line by line: `ggplot(data = weeds) +` spawns a `ggplot` graphic and specifies that the data will be provided by the object `weeds`. Now we can simply refer to column names
-of `weeds` in the remainder of the plotting call. 
+Let's break it down line by line: `ggplot(data = weeds) +` spawns a `ggplot`
+graphic and specifies that the data will be provided by the object `weeds`.
+Now we can simply refer to column names of `weeds` in the remainder of the
+plotting call. 
 
-The next line: `geom_boxplot(mapping = aes(x = trt, y = fruit_mass_mg)) +` specifies the geometry of the graphic in this case a boxplot, there are many other that can be specified in `ggplot`. The geometry function requires a 
-few arguments including how to map data on to the graphic using the argument
-`mapping`. The mapping is usually wrapped in the function `aes` which provides an aesthetically pleasing rendering of the data on the graphic, `aes` requires
-and `x` and `y` variables. 
+The next line: `geom_boxplot(mapping = aes(x = trt, y = fruit_mass_mg)) +`
+specifies the geometry of the graphic in this case a boxplot, there are many
+other that can be specified in `ggplot`. The geometry function requires a few
+arguments including how to map data on to the graphic using the argument
+`mapping`. The mapping is usually wrapped in the function `aes` which provides
+an aesthetically pleasing rendering of the data on the graphic, `aes` requires
+and `x` and `y` variables.
 
 The last line: `labs(x = 'Treatment', y = 'Fruit mass (mg)')` provides the axis
 labels. 
@@ -372,9 +376,8 @@ A few quick points about this `ggplot` call.
 
 * rather than specify the mapping of the `x` and `y` for each `geom_*` we simply
 specify them once when setting up the graphic in the first `ggplot()` call
-* Note the usage of `manual_color()` - this is generally note needed as 
-`ggplot`'s default colors are usually pretty attractive. I'm not sure why the 
-packages is showing 'blue' as 'purple'
+* Note the usage of `manual_color()` - this is generally not needed as 
+`ggplot`'s default colors are usually pretty attractive. 
 
 ##### Excercise
 Modify the `ggplot` call so that the `x` and `y` axes are properly labeled.
@@ -450,7 +453,7 @@ There is the minimal intercept only model
 $$\mathbf{y} = \beta_0 + \varepsilon$$
 This model essentially just uses the mean of *y* as a predictor of *y*. This 
 may seem silly but this is essentially what you compare all more complex models
-against. 
+against - it is our null model. 
 
 ```{r null model}
 null_mod <- lm(fruit_mass_mg ~ 1, data = weeds)
@@ -498,7 +501,8 @@ Let's take a closer look at the `trt_mod` which includes the main effect due to
 treatment. Note that only one of the levels of treatment is provided as a 
 coefficient. In this case it is `unfertilized`. To better understand this you 
 need to consider how factor variables are included in regression models. A 
-categorical variable is encoded in R into a set of orthogonal contrasts.
+categorical variable is encoded in R into a set of orthogonal contrasts (aka 
+[dummy variables](https://ordination.okstate.edu/envvar.htm)).
 
 ```{r}
 levels(weeds$trt)
@@ -513,9 +517,11 @@ factor as a set of orthogonal contrasts. This explains why the treatment variabl
 only requires a single regression coefficient. 
 
 Sometimes we have factors that are ranked such as low, medium, high. In this
-case the variable is called **ordinal** as opposed to our **nomial** treatment 
-variable. The contrasts of ordinal variables are not as simple to specify and 
-typically a Helmert polynomial contrasts are used. 
+case the variable is called **ordinal** as opposed to our **nominal** treatment 
+variable which did not contain ranks.
+The contrasts of ordinal variables are not as simple to specify and typically a
+Helmert polynomial contrasts are used (if you want to know more and possibly a 
+better solution see [Gullickson's 2020 blog post](https://aarongullickson.netlify.app/post/better-contrasts-for-ordinal-variables-in-r/))
 
 Let's examine these models graphically.
 
@@ -530,15 +536,15 @@ abline(ht_mod)
 
 ```
 
-The first panel of this graphic doesn't quite look correct because the regression
-line is not intersecting the center of the boxplots which is what we would 
-expect. This is because by default 
-R assigns the first level of the treatment factor an x-value of 1 and the second level of the factor a value of 2. Therefore when the regression line is added to the 
-plot it is plotting the y-intercept (which is the mean value of the fertilized
-group) off the graph to the left one unit. To correct this we have to 
-build the graph from scratch a bit more carefully making sure that the fertilized
-group is plotted an an x-axis value of 0 so that the regression line intersects that
-groups properly.
+The first panel of this graphic doesn't quite look correct because the
+regression line is not intersecting the center of the boxplots which is what we
+would expect. This is because by default R assigns the first level of the
+treatment factor an x-value of 1 and the second level of the factor a value of
+2. Therefore when the regression line is added to the plot it is plotting the
+y-intercept (which is the mean value of the fertilized group) off the graph to
+the left one unit. To correct this we have to build the graph from scratch a bit
+more carefully making sure that the fertilized group is plotted an an x-axis
+value of 0 so that the regression line intersects that groups properly.
 
 ```{r}
 par(mfrow=c(1,2))
