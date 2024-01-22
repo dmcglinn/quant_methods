@@ -12,7 +12,7 @@ Quantitative topics covered in this course include:
     - <a href='./R_introduction.html'>basic</a> 
         - <a href='http://adv-r.had.co.nz/Data-structures.html'>data structures</a>
     - <a href='./R_intermediate.html'>intermediate</a>
-    - <a href='http://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/index.html'>Best Practices for Writing R Code (Soft. Carp. lesson)</a>
+    - <a href='https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R.html'>Best Practices for Writing R Code (Soft. Carp. lesson)</a>
     - <a href='http://adv-r.had.co.nz/Style.html'>R style guide from Wickham's *Advanced R* book</a>
     - Optional Advanced Material
         - <a href='http://adv-r.had.co.nz/S3.html'>Object oriented programming, S3 objects</a>
