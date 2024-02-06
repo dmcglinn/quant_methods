@@ -30,11 +30,11 @@ The goal of this lesson is to introduce multivariate ordination analyses.
 * [Multivariate Analysis of Ecological Communities in R: vegan tutorial by Jari Oksanen](https://john-quensen.com/wp-content/uploads/2018/10/Oksanen-Jari-vegantutor.pdf)
     - A more thorough  of ordination in the R package vegan
 
-##Outline
+## Outline
 * Overview of ordination methods
 * Create a community matrix.
 * Indirect or Unconstrained Ordination
-    - Principle Components Analysis (PCA)
+    - Principal Components Analysis (PCA)
     - Correspondence Analysis (CA) 
     - Detrended Correspondence Analysis (DCA)
     - Non-metric Multidimensional Scaling (NMDS)

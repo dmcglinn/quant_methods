@@ -386,20 +386,35 @@ an introduction to ordination by Jari Oksanen</a>
 <li>A brief demonstration of an ordination analysis in the R package
 vegan</li>
 </ul></li>
-<li><a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf">Multivariate
+<li><a href="https://john-quensen.com/wp-content/uploads/2018/10/Oksanen-Jari-vegantutor.pdf">Multivariate
 Analysis of Ecological Communities in R: vegan tutorial by Jari
 Oksanen</a>
 <ul>
 <li>A more thorough of ordination in the R package vegan</li>
 </ul></li>
 </ul>
-<p>##Outline * Overview of ordination methods * Create a community
-matrix. * Indirect or Unconstrained Ordination - Principle Components
-Analysis (PCA) - Correspondence Analysis (CA) - Detrended Correspondence
-Analysis (DCA) - Non-metric Multidimensional Scaling (NMDS) * Direct or
-Constrained Ordination - Redundancy Analysis (RDA) - Canonical
-Correspondence Analysis (CCA) - Hypothesis Testing - Model Comparison -
-Variance partitioning</p>
+</div>
+<div id="outline" class="section level2">
+<h2>Outline</h2>
+<ul>
+<li>Overview of ordination methods</li>
+<li>Create a community matrix.</li>
+<li>Indirect or Unconstrained Ordination
+<ul>
+<li>Principal Components Analysis (PCA)</li>
+<li>Correspondence Analysis (CA)</li>
+<li>Detrended Correspondence Analysis (DCA)</li>
+<li>Non-metric Multidimensional Scaling (NMDS)</li>
+</ul></li>
+<li>Direct or Constrained Ordination
+<ul>
+<li>Redundancy Analysis (RDA)</li>
+<li>Canonical Correspondence Analysis (CCA)</li>
+<li>Hypothesis Testing</li>
+<li>Model Comparison</li>
+<li>Variance partitioning</li>
+</ul></li>
+</ul>
 </div>
 <div id="overview-of-multivariate-ordination-methods" class="section level2">
 <h2>Overview of multivariate ordination methods</h2>
@@ -943,7 +958,7 @@ RsquareAdj(cca_tree, 100)</code></pre>
 ## [1] 0.09932996
 ## 
 ## $adj.r.squared
-## [1] 0.09084244</code></pre>
+## [1] 0.09060108</code></pre>
 <pre class="r"><code>anova(cca_tree, permutations = 999)</code></pre>
 <pre><code>## Permutation test for cca under reduced model
 ## Permutation: free
@@ -964,7 +979,7 @@ RsquareAdj(cca_tree, 100)</code></pre>
 ## Model: cca(formula = comm ~ elev + tci + streamdist + disturb + beers, data = env)
 ##             Df ChiSquare       F Pr(&gt;F)    
 ## elev         1    0.2329 33.6268  0.001 ***
-## tci          1    0.0335  4.8363  0.002 ** 
+## tci          1    0.0335  4.8363  0.001 ***
 ## streamdist   1    0.0525  7.5778  0.001 ***
 ## disturb      3    0.0920  4.4260  0.001 ***
 ## beers        1    0.0341  4.9295  0.001 ***
