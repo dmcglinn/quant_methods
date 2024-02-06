@@ -1,7 +1,18 @@
 ---
 title: "Multivariate models"
-output: html_document
+date: '`r paste("First created on 2015-02-15. Updated on", Sys.Date())`'
+output: 
+  html_document:
+  toc: true
+  toc_float: true
 ---
+
+Home Page - http://dmcglinn.github.io/quant_methods/ 
+GitHub Repo - https://github.com/dmcglinn/quant_methods 
+
+### Source Code Link
+https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/multivariate_models.Rmd
+
 
 The goal of this lesson is to introduce multivariate ordination analyses.
 
