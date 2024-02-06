@@ -107,7 +107,20 @@ of the document.
     - Private repos:
         - [Resource partitioning among Caribbean sponges](https://github.com/huntjones88/summer_2021_pulse-chase_data)
 
-* Spring 2020 (need to add)
+
+* Spring 2020
+   - Public repos:
+       - [Chara_Ecosystem_Dynamics](https://github.com/CassandraEvanchuk/Chara_Ecosystem_Dynamics.git)
+       - [Exposureof Nanobubble Ozonation on Red Drum](https://github.com/radchenkoa5/Exposure-of-Nanobubble-Ozonation-on-Red-Drum)
+       - [Sciaenops ocellatus feeding trial metabolomics](https://github.com/daveklett/David-Klett-Sciaenops-Ocellatus-Feeding-Trial-Metabolomics)
+       - [Wood tracking Method](https://github.com/millertp1/Wood_Tracking_Method.git)
+       - [Fertilization results of pairwise crosses of Staghorn coral](https://github.com/eeparsons42/cervicornis_analysis)
+       - [The effect of headstarting on bite force in the diamondback terrapin](https://github.com/reisenfeldk/Thesis)
+       - [Sea trout physiological relationship between myxospore density in the muscle tissue and swimming performance](https://github.com/dalyjm/SST-project/)
+       - [Life history parameters and the interacting abiotic variables of the brief squid, Lolliguncula brevis](https://github.com/jtgood/Lbrevis.git)
+       - [Herptafauna response to prescribe fire](https://github.com/mcglinnlab/fire_herps)
+       - [Global shark and ray beta diversity](https://github.com/mosscr/Shark-Ray-Beta-Diversity)
+       - [Analysis of Enterococcus in Charleston waterways](https://github.com/Vwilcox98/R-Project---CWK)
 
 * Spring 2019 (incomplete list)
     - Public repos: 
