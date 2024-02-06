@@ -34,6 +34,11 @@ content <http://www.dataschool.io/>
     - [Statistics for Environmental Science](https://sakai.unc.edu/access/content/group/2842013b-58f5-4453-aa8d-3e01bacbfc3d/public/Ecol562_Spring2012/index.html)
 * Code to accompany *A primer of ecological statistics* (Gotelli and Ellison 2012)
     - <https://harvardforest.fas.harvard.edu/ellison/pubs/primer/datafiles2e>
+* Datasets to accompany *The R book* (Jones et al. 2022)
+    - <https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=12402&itemId=1119634326>
+* Introduction to Data Exploration and Analysis with R by Michael Mahoney
+    - free ebook <https://bookdown.org/mikemahoney218/IDEAR/>
+        - Basic statistics using R <https://bookdown.org/mikemahoney218/IDEAR/basic-statistics-using-r.html>
 * Topics in R Statistical Language (Penn State Open Edu)
     - [Statistics in R - Part 1](https://online.stat.psu.edu/stat484/)
     - [Statistics in R - Part 2](https://online.stat.psu.edu/stat485/)
