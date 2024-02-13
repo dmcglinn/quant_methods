@@ -7,9 +7,8 @@ layout: page
 urlcolor: blue
 ---
 
-\begin{center}
-Department of Biology, College of Charleston
-\end{center}
+
+## Department of Biology, College of Charleston
 
 Course and Instructor info:
 ---------------------------
