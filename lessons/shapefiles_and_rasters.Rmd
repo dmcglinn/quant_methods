@@ -14,8 +14,9 @@ opts_knit$set(root.dir='../')
 
 library(maps)     # convinient pkg for maps of the world
 library(sp)       # the main pkg for defining spatial classes in R
-library(maptools) # a package for converting the maps in the maps pkg to shapes
-library(rgdal)    # the spatial abstraction library for moving 
+library(sf)
+#library(maptools) # a package for converting the maps in the maps pkg to shapes
+#library(rgdal)    # the spatial abstraction library for moving 
 library(lattice)  # a plotting package for making lattice graphics
 library(classInt) # used to do binning
 
@@ -23,7 +24,7 @@ library(classInt) # used to do binning
 # or "county". (There are also a few for foreign countries like France and
 # Italy.) In each database, you can plot any region or group of regions.
 
-world = map(database="world")
+world <- map(database="world")
 names(world)
 head(world$names)
 # names in world database can all be plot as a region. For example:
@@ -32,9 +33,9 @@ map(database="world", regions=c("Cambodia","Thailand","Vietnam","Laos"))
 map(database="state",regions=c("virginia","north carolina","south carolina"))
 # you can add cities using map.cities command.
 
-nc_county = map(database="county",regions="north carolina")
+nc_county <- map(database="county",regions="north carolina")
 head(nc_county$names)
-triangle = map(database="county",
+triangle <- map(database="county",
                regions=c("north carolina,orange","north carolina,wake","north carolina,durham"),
                fill=T, plot=F)
 triangle$names
@@ -42,40 +43,33 @@ triangle$names
 # We can turn a map into a spatial polygons object and fill it with data,
 # turning it into a spatial polygon dataframe.
 
-IDs = sub("^north carolina,","",triangle$names)  
+IDs <- sub("^north carolina,","",triangle$names)  
 IDs
 
-tri_sp = map2SpatialPolygons(triangle,IDs,CRS("+proj=longlat"))
+tri_sp <- st_as_sf(triangle)
 
 plot(tri_sp, axes=T)
 
 # add data to make spatial polygons data frame
-population = c(266132, 132272, 892409) 
-# population data from office of state budget and management
-tri_pop = data.frame(IDs, population)
-rownames(tri_pop) = IDs
-tri_pop
+population <- c(266132, 132272, 892409) 
 
-tri_spdf = SpatialPolygonsDataFrame(tri_sp, tri_pop)
+tri_sp$pop <- population
 
-# make a map of population by county
-
-spplot(tri_spdf, 'population')
+plot(tri_sp['pop'])
 
 # If your data are in different projections, you need to change the projection
 # so that they are all in 
 # the same coordinate reference system.
 
-world = map(database="world", fill=T, plot=F)
-world_longlat = map2SpatialPolygons(world, IDs=world$names,
-                                    CRS("+proj=longlat +ellps=WGS84"))
+world <- map(database="world", fill=T, plot=F)
+world_longlat <- st_as_sf(world) 
 
 # use fucntion spTransform to transform to mercator
-world_merc = spTransform(world_longlat, CRS("+proj=merc"))
+world_merc <- st_transform(world_longlat, crs=CRS("+proj=merc"))
 # Lambert Azimuthal Equal Area
-world_laea = spTransform(world_longlat, CRS("+proj=laea"))
+world_laea <- st_transform(world_longlat, crs=CRS("+proj=laea"))
 # sinusoidal
-world_sinusoidal = spTransform(world_longlat, CRS("+proj=sinu"))
+world_sinusoidal <- st_transform(world_longlat, crs=CRS("+proj=sinu"))
 
 # plot the four together to see the difference. Mercator projection distorts
 # area far from the equator. LAEA is accurately represents area but not angles.
@@ -93,32 +87,19 @@ plot(world_sinusoidal)
 
 # OK, some slightly more complicated stuff. Data from MODIS fire detections in
 # the US in 2010.
-
-read.shape = function(shape_name, path=NULL) {
-    require(rgdal)
-    if (is.null(path)) {
-        path = getwd()
-    }
-    fileName = paste(shape_name, '.shp', sep='')    
-    shp = readOGR(file.path(path, fileName), shape_name)
-}  
-
-# use readOGR to bring in data. First argument is data source name (in this case
-# the folder that our data is in), and second argument is the name of the layer.
-# Use read.shape because it brings in the projection.
-
-fire2010 = read.shape("modis_fire_2010_365_conus", path="./data/MODISfire2010")
-
 # metadata for MODIS fire data available at:
 # http://firemapper.sc.egov.usda.gov/data/fireptdata/modisfire_2010_conus.htm
 
+fire2010 <- sf::st_read(dsn = './data/MODISfire2010',
+                        layer = 'modis_fire_2010_365_conus')
 
 class(fire2010)
 names(fire2010)  
-proj4string(fire2010)  # retrieves projection
+st_crs(fire2010)  # retrieves coordinate reference system
 dim(fire2010)
 
-plot(fire2010)
+# make a map of Julian day of each fire
+plot(fire2010["JULIAN"], cex = 0.25)
 
 # get summary statistics for each attribute
 
@@ -127,86 +108,86 @@ summary(fire2010)
 # subsetting: select fires that occurred in the last 6 months (days 182 to 365)
 # of 2010
 
-fire = subset(fire2010, fire2010$JULIAN > 182)
+fire <- subset(fire2010, JULIAN > 182)
 class(fire)
 names(fire)
 dim(fire)
 summary(fire)
-plot(fire)
+plot(fire['JULIAN'], cex = 0.25)
 
 # select the fires in NC. First we'll identify which state each fire occurred
 # in, then subset the ones from NC. 
-USA = map(database='state', plot=F, fill=T)
+USA <- map(database='state', plot=F, fill=T)
 names(USA)
 USA$names
-fire_proj = proj4string(fire)
-USA_sp = map2SpatialPolygons(USA, IDs=USA$names, CRS(fire_proj))
+USA_sf <- st_as_sf(USA)
 
+# make sure projection of USA polygon is same as fire points
+USA_sf <- st_transform(USA_sf, st_crs(fire))
 
 # overlay performs a "point in polygon" operation--meaning that it will return
 # us a vector giving the index of which polygon in USA_sp each point in firehot
 # is. We then index that to names(USA_sp) to get the name of the state for that
 # index.
-
-indices = over(fire, USA_sp)
-fire$state = names(USA_sp)[indices]
-names(fire)
+sf_use_s2(FALSE)
+fire_state <- st_intersection(fire, USA_sf)
 
 # Then, subset the ones from NC. We have to use grep because there are actually
 # three polygons for NC.
-firenc = fire[grep("north carolina", fire$state), ]
+firenc <- fire_state[grep("north carolina", fire_state$ID), ]
 dim(firenc)
 
 
+# make a map of fires by temperature. 
+addLegendToSFPlot <- function(values = c(0, 1), labels = c("Low", "High"), 
+                              palette = c("blue", "red"), ...){
 
-# make a map of fires by temperature. First make an NC spatial polygon to put
+    # Get the axis limits and calculate size
+    axisLimits <- par()$usr
+    xLength <- axisLimits[2] - axisLimits[1]
+    yLength <- axisLimits[4] - axisLimits[3]
+
+    # Define the colour palette
+    colourPalette <- leaflet::colorNumeric(palette, range(values))
+
+    # Add the legend
+    plotrix::color.legend(xl=axisLimits[2] - 0.1*xLength, xr=axisLimits[2],
+                          yb=axisLimits[3], yt=axisLimits[3] + 0.1 * yLength,
+                          legend = labels, rect.col = colourPalette(values), 
+                          gradient="y", ...)
+}
+
+#First make an NC spatial polygon to put
 # around the fire points.
 
-NC = map(database='state', regions='north carolina', fill=T, plot=F)
-names(NC)
-proj = CRS("+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs +towgs84=0,0,0")
-NC_sp = map2SpatialPolygons(NC, IDs=NC$names, proj)
+NC <- map(database='state', regions='north carolina', fill=T,
+          plot=F)
                             
+NC_st <- st_as_sf(NC)
+NC_st <- st_transform(NC_st, crs=st_crs(firenc))
+
+cuts <- cut(firenc$JULIAN, 10)
+colors <- heat.colors(10)[as.numeric(cuts)] 
+
+plot(st_geometry(NC_st))
+plot(st_geometry(firenc['JULIAN']), add = TRUE,
+     col = colors, pch = 19, cex = 0.5)
+addLegendToSFPlot(values = seq(from = 183, to = 363, length.out = 10), 
+                  labels = c("Low", "", "", "", "Medium", "", "", "", "", "High"),
+                  palette = heat.colors(10))
 
 
-# here you have to make all the "layout parameters" first to put into the spplot
-# function. Make the NC # outline, the scale, North arrow, etc.
-nc_outline = list("sp.polygons", NC_sp)
-scale = list("SpatialPolygonsRescale", layout.scale.bar(), offset=c(-83.5,34),
-             scale=2, fill=c("transparent", "black"))
-# text for scale bar
-start = list("sp.text", c(-83.5, 34.2), "0", cex=0.7)
-stop = list("sp.text", c(-81.5, 34.2), "2 degrees", cex=0.7)
-# north arrow
-arrow = list("SpatialPolygonsRescale", layout.north.arrow(), 
-             offset=c(-84.2,33.7), scale=0.7)
-
-# specify where we want the breaks using classIntervals. Can do "ﬁxed", "sd",
-# "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "ﬁsher", or
-# "jenks". You don't need to specify breaks, you'll get equal intervals by
-# default.
-q5 = classIntervals(firenc$TEMP, n=5, style="quantile")
-
-fire_layout = list(nc_outline, scale, start, stop, arrow)
-
-# finally, use spplot to make the plot. First argument is the object (type
-# spatial class), then attribute of interest. We need to specify xlim and ylim
-# so the plotting area includes the whole state (default is to draw frame around
-# data points). Cuts specifies where to put the breaks in the data (from class 
-# intervals above.) Layout is the list of all the layout items we added above.
-# col.regions chooses the color pallette. Can use "colorbrewer" package for more
-# color options). key.space moves the key and puts a border around it.
-
-spplot(firenc, 'TEMP', xlim=c(-85,-75), ylim=c(33.5,37), cuts=q5$brks,
-       sp.layout=fire_layout, col.regions=heat.colors(5)[5:1], cex=1,
-       key.space=list(space="right", border=TRUE,cex=0.7))  
+# cannot figure out how to combine in ggplot nicely. 
+#ggplot(NC_st) + geom_sf()
+#ggplot(firenc['JULIAN']) + geom_sf() 
+#geom_point(st_geometry(firenc['JULIAN']))
 
 # for the last step, let's export this as a KML (readable by google earth) using
 # write OGR and plot the locations of fires in NC in google earth. The first
 # argument is the object we want to export, the second is the filename (by
 # default it will go in our working directory), the layer we want to export, and
 # the file format.
-writeOGR(firenc, "firenctemp.kml", "TEMP", "KML")
+write_sf(firenc, "firenctemp.kml", "TEMP", driver="kml")
 
 ## Rasters ----------------------------------------
 ## download Rdata file here:
@@ -218,17 +199,14 @@ plot(bioStack, "mat")
 
 ?extract
 
-#bioStack_nad83 = spTransform(bioStack, 
-#                            CRSobj = CRS(proj4string(firenc)))
-
-fire_climate = extract(bioStack, firenc)
+fire_climate <- extract(bioStack, firenc)
 class(fire_climate)
 head(fire_climate)
 nrow(fire_climate)
 
-firenc@data = cbind(firenc@data, fire_climate)
-head(firenc@data)
-plot(TEMP ~ ap, data=firenc@data) 
+firenc <- cbind(firenc, fire_climate)
+head(firenc)
+plot(TEMP ~ ap, data=firenc) 
 ```
 
 Here is a quick demo of a new R package called `leaflet`
