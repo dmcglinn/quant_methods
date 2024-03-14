@@ -10,15 +10,10 @@ library(knitr)
 opts_knit$set(root.dir='../')
 ```
 ```{r}
-# install.packages(c("maps","sp","maptools","rgdal","lattice","classInt"))
+# install.packages(c("maps","sf", "raster"))
 
 library(maps)     # convinient pkg for maps of the world
-library(sp)       # the main pkg for defining spatial classes in R
 library(sf)
-#library(maptools) # a package for converting the maps in the maps pkg to shapes
-#library(rgdal)    # the spatial abstraction library for moving 
-library(lattice)  # a plotting package for making lattice graphics
-library(classInt) # used to do binning
 
 # First, make some maps. The "maps" package has databases="world","usa","state",
 # or "county". (There are also a few for foreign countries like France and
@@ -43,19 +38,16 @@ triangle$names
 # We can turn a map into a spatial polygons object and fill it with data,
 # turning it into a spatial polygon dataframe.
 
-IDs <- sub("^north carolina,","",triangle$names)  
-IDs
+tri_sf <- st_as_sf(triangle)
 
-tri_sp <- st_as_sf(triangle)
-
-plot(tri_sp, axes=T)
+plot(tri_sf, axes=T)
 
 # add data to make spatial polygons data frame
 population <- c(266132, 132272, 892409) 
 
-tri_sp$pop <- population
+tri_sf$pop <- population
 
-plot(tri_sp['pop'])
+plot(tri_sf['pop'])
 
 # If your data are in different projections, you need to change the projection
 # so that they are all in 
@@ -65,11 +57,12 @@ world <- map(database="world", fill=T, plot=F)
 world_longlat <- st_as_sf(world) 
 
 # use fucntion spTransform to transform to mercator
-world_merc <- st_transform(world_longlat, crs=CRS("+proj=merc"))
+world_merc <- st_transform(world_longlat, crs=st_crs("+proj=merc"))
 # Lambert Azimuthal Equal Area
-world_laea <- st_transform(world_longlat, crs=CRS("+proj=laea"))
+world_laea <- st_transform(world_longlat, crs=st_crs("+proj=laea"))
 # sinusoidal
-world_sinusoidal <- st_transform(world_longlat, crs=CRS("+proj=sinu"))
+world_sinusoidal <- st_transform(world_longlat,
+                                 crs=st_crs("+proj=sinu"))
 
 # plot the four together to see the difference. Mercator projection distorts
 # area far from the equator. LAEA is accurately represents area but not angles.
@@ -80,8 +73,9 @@ plot(world_merc)
 plot(world_laea)
 plot(world_sinusoidal)
 
-# A list of most of the projections supported by the PROJ4 framework is available here:
-# http://www.remotesensing.org/geotiff/proj_list/
+# A four page cheat sheet about coordinate reference systems (CRSs), including
+# projections, datums, and coordinate systems, and the use of these in R.
+#https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf
 # A fun projection link
 # http://xkcd.com/977/
 
@@ -172,6 +166,8 @@ colors <- heat.colors(10)[as.numeric(cuts)]
 plot(st_geometry(NC_st))
 plot(st_geometry(firenc['JULIAN']), add = TRUE,
      col = colors, pch = 19, cex = 0.5)
+
+
 addLegendToSFPlot(values = seq(from = 183, to = 363, length.out = 10), 
                   labels = c("Low", "", "", "", "Medium", "", "", "", "", "High"),
                   palette = heat.colors(10))
