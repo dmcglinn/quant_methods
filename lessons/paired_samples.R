@@ -1,11 +1,15 @@
 #'---
 #' title: The importance of controlling for block effects and the use of paired t-tests
+#' author: Dan McGlinn
 #' output: html_document
 #'---
 #'
 #' 
-#' It is common in studies that the effect of the variable you are interested
-#' in may be obscured because of variation due to a different variable.
+#' In complex systems such as a forest it is rare that the variable you are
+#' interested is only influenced by a single other variable. In fact, the driver
+#' variable that you are testing the effect of may be obscured because of
+#' variation due to a different variable.
+#' 
 #' For example, you might be interested in comparing the effect of 
 #' nutrient addition on plant growth but you know that plant growth is also 
 #' strongly driven by salinity. If we wish to apply our inference about nutrients
@@ -14,28 +18,26 @@
 #' salinity effect we are treating it more as a nuisance variable or a "block" 
 #' effect. 
 #' 
-#' Here I will demonstrate how to approach this problem incorrectly using 
-#' a linear model that ignores the block effect and then I will demonstrate
-#' how the model interpretation changes once the block effect is considered. 
-#' We will see that controlling for the block effect is the same as using a 
-#' paired (aka 1 sample) t-test. 
+#' Let's examine the incorrect approach to this analysis using
+#' a linear model that ignores the block effect, and then we will examine
+#' how the model interpretation changes once the block effect is correctly 
+#' considered. We will see that controlling for the block effect is the
+#' same as using a paired (aka 1 sample) t-test. 
 
 set.seed(1)
-#' First set sample size
-n <- 20
 
-#' Generate block heterogeneity
-
-block <- rep(1:n, each = 2)
+#' First setup the block variable
+nblock <- 20 
+block <- rep(1:nblock, each = 2)
 block
 
 #' Treatment will just have two levels: 0 = control, 1 = treatment
-trt <- rep(0:1, n)
+trt <- rep(0:1, nblock)
 trt
 
 #' set error or uncertainty of model
 noise <- 0.1
-err <- rnorm(n, mean = 0, sd = noise)
+err <- rnorm(length(trt), mean = 0, sd = noise)
 
 #' Now we can generate response variable y using a
 #' linear model where we know the coefficients. 
@@ -77,7 +79,7 @@ summary(lm(y ~ block + trt))
 #' differences in y in the two treatment levels. This is 
 #' easiest if we reshape the data to wide format
 dat <- data.frame(y, block, trt)
-dat_pair <-tidyr::pivot_wider(dat, names_from = trt, 
+dat_pair <- tidyr::pivot_wider(dat, names_from = trt, 
                               names_prefix = 'trt_',
                               values_from = y)
 head(dat_pair)
