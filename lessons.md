@@ -25,6 +25,7 @@ Quantitative topics covered in this course include:
     - <a href='./univariate_models.html'>OLS modeling and model selection</a>
     - Mini-sub lessons
         - <a href='./data_exploration.html'>Data exploration: the importance of plotting</a>
+        - <a href='./paired_samples.html'>Paired and block designs</a>
         - <a href='./partial_residual_plots.html'>Partial residual plots</a>
         - <a href='./standardized_beta_coefficients.html'>Standardized beta coefficients</a>
         - <a href='https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/'>Type I/II/III Anova explained (external link)
