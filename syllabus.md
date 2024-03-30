@@ -1,8 +1,8 @@
 ---
 title: "BIOL 470 / 570: Statistical Programming for Biologists"
 output:
- pdf_document: default
  html_document: default
+ pdf_document: default
 layout: page
 urlcolor: blue
 ---
@@ -128,7 +128,8 @@ Course Schedule:
 | 12   | Mar 26 | Project Feedback in class                      |
 | 13   | Apr 02 | Peer Code Review and Peer Feedback             |
 | 14   | Apr 09 | Project Feedback in class                      |
-| 15   | Apr 16 | Project Presentations; Course Evaluations      |
+| 15   | Apr 16 | Project Presentations                          |
+| 16   | Apr 23 | Project Presentations; Course Evaluations      |
 
 **Code and Written project components due Friday of Week 14** 
 
