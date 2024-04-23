@@ -37,7 +37,8 @@ any interesting findings with respect to the dune vegetation?
 hypotheses that you developed after examining the MDS plot. Specifically,
 carry out a test of the entire model (i.e., including all constrained axes)
 and also carry out tests at the scale of individual explanatory variables
-you included in your model if you included more than one variable. Plot your 
+you included in your model if you included more than one variable. Interpret
+the tests and the overall fit of the model to your data. Plot and interpret your 
 results.
 
 3. Do your two analyses agree with one another or complement one another or do

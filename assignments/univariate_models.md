@@ -39,6 +39,30 @@ The dataset includes tree abundances from a subset of a vegetation database of G
 
 Above shows a map of the regional and local location of the elevational transects included in the dataset (from [Fridley 2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
 
+Before we start making plots and building models questions you will want to restructure and 
+subset the data using the following R code: 
+
+```r  
+# we wish to model species cover across all sampled plots
+# create site x sp matrix for two species 
+sp_cov = with(trees, tapply(cover, list(plotID, spcode), 
+                           function(x) round(mean(x))))
+sp_cov = ifelse(is.na(sp_cov), 0, sp_cov)
+sp_cov = data.frame(plotID = row.names(sp_cov), sp_cov)
+# create environmental matrix
+cols_to_select = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
+env = aggregate(trees[ , cols_to_select], by = list(trees$plotID), 
+                function(x) x[1])
+names(env)[1] = 'plotID'
+# merge species and enviornmental matrices
+site_dat = merge(sp_cov, env, by='plotID')
+# subset species of interest
+abies = site_dat[ , c('ABIEFRA', cols_to_select)]
+acer  = site_dat[ , c('ACERRUB', cols_to_select)]
+names(abies)[1] = 'cover'
+names(acer)[1] = 'cover'
+```
+
 
 1\. Carry out an exploratory analysis using the tree dataset. Metadata for the
 tree study can be found [here](../data/tree_metadata.txt). Specifically, I would
@@ -70,29 +94,7 @@ For each species address the following additional questions:
 * are you able to explain variance in one species better than another, 
   why might this be the case?
 
-Prior to addressing the above questions you will want to restructure and 
-subset the data using the following R code: 
 
-```r  
-# we wish to model species cover across all sampled plots
-# create site x sp matrix for two species 
-sp_cov = with(trees, tapply(cover, list(plotID, spcode), 
-                           function(x) round(mean(x))))
-sp_cov = ifelse(is.na(sp_cov), 0, sp_cov)
-sp_cov = data.frame(plotID = row.names(sp_cov), sp_cov)
-# create environmental matrix
-cols_to_select = c('elev', 'tci', 'streamdist', 'disturb', 'beers')
-env = aggregate(trees[ , cols_to_select], by = list(trees$plotID), 
-                function(x) x[1])
-names(env)[1] = 'plotID'
-# merge species and enviornmental matrices
-site_dat = merge(sp_cov, env, by='plotID')
-# subset species of interest
-abies = site_dat[ , c('ABIEFRA', cols_to_select)]
-acer  = site_dat[ , c('ACERRUB', cols_to_select)]
-names(abies)[1] = 'cover'
-names(acer)[1] = 'cover'
-```
 
 2\. You may have noticed that the variable cover is defined as positive integers
 between 1 and 10. and is therefore better treated as a discrete rather than
