@@ -296,4 +296,4 @@ learn about food and housing assistance that is available to you. In addition,
 there are several resources on and off campus to help. You can visit the Cougar
 Pantry in the Stern Center (2nd floor), a student-run food pantry that provides
 dry-goods and hygiene products at no charge to any student in need. Please also
-consider reaching out to Professor ABC if you are comfortable in doing so.
+consider reaching out to the Professor if you are comfortable in doing so.
