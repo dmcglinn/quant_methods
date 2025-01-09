@@ -133,6 +133,8 @@ Course Schedule:
 
 **Code and Written project components due Friday of Week 14** 
 
+Please also see the more [detailed living course calendar](https://docs.google.com/spreadsheets/d/1n2hvlN-QcxnPaxFlPx_MzsNOjTWqOIvTKcrU30KVlUo/edit?gid=0#gid=0).
+
 Course Policies:
 ---------------
 
