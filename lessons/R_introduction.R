@@ -319,7 +319,7 @@ sd_patient_inflammation <- apply(dat, 1, sd)
 plot(avg_day_inflammation)
 #' notice how R fills in lots of pieces of missing information automatically. 
 #' specifically it assumes that the independent variable is simply an index from
-#' 1 to the length of the object in this case avg_day_inflamation. A safer more 
+#' 1 to the length of the object in this case avg_day_inflammation. A safer more 
 #' clear way to accomplish the same plot is to use the following:
 
 plot(1:length(avg_day_inflammation), avg_day_inflammation, xlab='day', 

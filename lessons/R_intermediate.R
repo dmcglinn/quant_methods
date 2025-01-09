@@ -41,7 +41,7 @@ dat <- read.csv('./data/tgpp.csv')
 #' or equally
 dat <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tgpp.csv')
 
-#' ## <a href="#rep" name="rep">#</a> Programming for repetive tasks
+#' ## <a href="#rep" name="rep">#</a> Programming for repetitive tasks
 
 #' Frequently in programming you have to carry out repetitive tasks
 #' for example you might want to know what the class of column of a data.frame
@@ -88,7 +88,7 @@ for (i in 1:11) {
 #' languages use `i = 1:11` and thus this is a frequent error for many students.
 #' Again I just want to emphasize we could have used a different name for our index
 #' something like `j` or `my_index` it did not have to be `i` this is simply the
-#' most common choice of an index in programming like in alebgra.
+#' most common choice of an index in programming like in algebra.
 #' 
 #' Also here it is important to note the syntax and code style of the for loop: 
 #+ eval = FALSE
@@ -183,7 +183,7 @@ for (i in 1:ncol(dat)) {
   }
 }
 #' 
-#' ###<a href="#nest" name="nest">#</a>Nested statements
+#' ## <a href="#nest" name="nest">#</a>Nested statements
 #' You can nest if statements (and for loops) within one another
 #' 
 dat_classes <- NULL
@@ -342,7 +342,7 @@ eval_class <- function(x) {
   return(x_classes)
 }
 
-#' Note above you would remove the preceeding `#` from each line of documentation
+#' Note above you would remove the preceding `#` from each line of documentation
 #' I had to include that here because R spin uses `#+` to identify formatted text.
 #' 
 #' This provides a nice format that is easily understandable by a human, and if 
