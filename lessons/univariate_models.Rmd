@@ -113,7 +113,7 @@ people.</i>
 ### The Principle of Parsimony (Occam’s Razor)
 
 Once you have decided on a small number of models to compare how do you decide 
-which model is the best? One approach is to use the the principle of parsimony 
+which model is the best? One approach is to use the principle of parsimony 
 which can be stated succinctly as: 
 
 > the correct explanation is the simplest explanation that is sufficient.
