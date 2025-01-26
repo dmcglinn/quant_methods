@@ -12,14 +12,19 @@ Read in tree data
 trees <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/treedata_subset.csv')
 # or download and import locally
 trees <- read.csv('./data/treedata_subset.csv')
+# convert the column "disturb" to a factor
+trees$disturb <- as.factor(trees$disturb)
 ```
 
 Examine this dataset and see how the data is structured, see function `str` 
 
-The contents of the metadata file ([`./data/tree_metadata.txt`](https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tree_metadata.txt)) is provided below:
+The contents of the metadata file
+([`./data/tree_metadata.txt`](https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/tree_metadata.txt))
+is provided below:
 
 
-The dataset includes tree abundances from a subset of a vegetation database of Great Smoky Mountains National Park (TN, NC).
+The dataset includes tree abundances from a subset of a vegetation database of
+Great Smoky Mountains National Park (TN, NC).
 
 * plotID: unique code for each spatial unit (note some sampled more than once)
 * date: when species occurrence recorded
@@ -37,10 +42,12 @@ The dataset includes tree abundances from a subset of a vegetation database of G
 
 ![](../smokies_transects.png) 
 
-Above shows a map of the regional and local location of the elevational transects included in the dataset (from [Fridley 2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
+Above shows a map of the regional and local location of the elevational
+transects included in the dataset (from [Fridley
+2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
 
-Before we start making plots and building models questions you will want to restructure and 
-subset the data using the following R code: 
+Before we start making plots and building models questions you will want to
+restructure and subset the data using the following R code: 
 
 ```r  
 # we wish to model species cover across all sampled plots
@@ -66,18 +73,19 @@ names(acer)[1] = 'cover'
 
 1\. Carry out an exploratory analysis using the tree dataset. Metadata for the
 tree study can be found [here](../data/tree_metadata.txt). Specifically, I would
-like you to develop and compare models for species cover for a habitat
-generalist [*Acer rubrum* (Red
-maple)](http://www.durhamtownship.com/blog-archives/pix/November1407.jpg) and a
+like you to visually examine how the explanatory variables relate to tree cover
+for a habitat generalist [*Acer rubrum* (Red maple)](http://www.durhamtownship.com/blog-archives/pix/November1407.jpg) and a
 habitat specialist [*Abies fraseri* (Frasier
 fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell.jpg).
 Because this dataset includes both continuous and discrete explanatory variables
-use the function `Anova` in the packages `car` as such
+use the function `Anova` in the packages `car` as such:
 
 ```r
-install.packages('car') # if you have not installed before
-library(car)            # load the library
-Anova(my_mod, type=3)   # example of a type 3 anova
+#install.packages('car') # if you have not installed before
+library(car)             # load the library
+# build the linear model
+my_mod <- lm(cover ~ elev + tci + ... , data = acer)
+Anova(my_mod, type=3)    # example of a type 3 anova
 ```
 
 This will estimate partial effect sizes, variance explained, and p-values for 
@@ -88,11 +96,13 @@ using `summary`.
 
 For each species address the following additional questions:
 
+* **what patterns did you notice in your visual examination of the data?**
 * how well does the exploratory model appear to explain cover?
-* which explanatory variables are the most important?
+* which explanatory variables does your model indicate are the most important? 
+* **are these the same variables that your visual examination uncovered?**
 * do model diagnostics indicate any problems with violations of OLS assumptions?
 * are you able to explain variance in one species better than another, 
-  why might this be the case?
+  why might this be the case (statically or ecologically)?
 
 
 
