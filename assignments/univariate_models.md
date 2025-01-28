@@ -77,14 +77,20 @@ like you to visually examine how the explanatory variables relate to tree cover
 for a habitat generalist [*Acer rubrum* (Red maple)](http://www.durhamtownship.com/blog-archives/pix/November1407.jpg) and a
 habitat specialist [*Abies fraseri* (Frasier
 fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell.jpg).
-Because this dataset includes both continuous and discrete explanatory variables
-use the function `Anova` in the packages `car` as such:
+
+After carrying out a visual examination of the correlations with tree cover go
+ahead and build linear multiple regression models and interpret them. This
+this dataset includes both continuous and discrete (i.e., `disturb`) explanatory variables so we will use both the functions `summary` and `car::Anova(..., type = 3)` to interpret 
+the model. For example, your code will likely look something like: 
 
 ```r
 #install.packages('car') # if you have not installed before
 library(car)             # load the library
 # build the linear model
 my_mod <- lm(cover ~ elev + tci + ... , data = acer)
+# the summary function provides a lot of useful information
+summary(my_mod)
+# to look at the effect of the discrete variable more directly
 Anova(my_mod, type=3)    # example of a type 3 anova
 ```
 
