@@ -722,7 +722,7 @@ very similar slopes which suggests that the added complexity is likely not
 warrented
 ```
 
-## <a href="tab" name="tab"#</a> Tabular model interpretation
+## <a href="#tab" name="tab">#</a> Tabular model interpretation
 
 Now that we've build our two models let's examine the model fits and the 
 statistical significance of the explanatory variables. 
