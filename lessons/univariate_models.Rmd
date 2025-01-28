@@ -46,6 +46,7 @@ links:
 * <a href="#phil">Modeling Philosophy</a>
 * <a href="#milk">The Milkweeds and Fertilizer Example</a>
 * <a href="#mod">Model Building and Graphing</a>
+* <a href="#tab">Tabular Model Interpretation
 * <a href="#sim">Understanding Regression via Simulation</a>
 
 ## <a href="#phil" name="phil">#</a> Modeling Philosophy
@@ -721,7 +722,7 @@ very similar slopes which suggests that the added complexity is likely not
 warrented
 ```
 
-## Tabular model interpretation
+## <a href="tab" name="tab"#</a> Tabular model interpretation
 
 Now that we've build our two models let's examine the model fits and the 
 statistical significance of the explanatory variables. 
