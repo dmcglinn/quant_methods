@@ -13,6 +13,15 @@ library(vegan)
 data(dune)
 data(dune.env)
 ?dune
+# there are few nomial variables in the dataset that make modeling a 
+# bit of a pain let's convert those to numeric vectors or 
+# to plain un-ranked factors so that they are easier to work with and interpret. 
+dune.env$Moisture <- as.numeric(dune.env$Moisture)
+dune.env$Manure <- as.numeric(dune.env$Manure)
+dune.env$Management <- factor(dune.env$Management, ordered = FALSE)
+dune.env$Use <- factor(dune.env$Use, ordered = FALSE)
+# clean up names so they are easier to work with
+names(dune.env) <- c('A1', 'Moist', 'Mang', 'Use', 'Man')
 ```
 
 1. Conduct an indirect ordination on the dune plant community. Specifically,
