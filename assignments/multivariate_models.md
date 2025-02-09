@@ -15,7 +15,8 @@ data(dune.env)
 ?dune
 # there are few nomial variables in the dataset that make modeling a 
 # bit of a pain let's convert those to numeric vectors or 
-# to plain un-ranked factors so that they are easier to work with and interpret. 
+# to plain un-ranked factors so that they are easier to work
+# with and interpret. 
 dune.env$Moisture <- as.numeric(dune.env$Moisture)
 dune.env$Manure <- as.numeric(dune.env$Manure)
 dune.env$Management <- factor(dune.env$Management, ordered = FALSE)
@@ -35,7 +36,7 @@ any interesting findings with respect to the dune vegetation?
     plot(dune_mds, type='n')
     text(dune_mds, 'sp', cex=.5)
     # generate vector of colors 
-    color_vect = rev(terrain.colors(6))[-1]
+    color_vect <- rev(terrain.colors(6))[-1]
     points(dune_mds, 'sites', pch=19, 
            col=color_vect[dune.env$Moist])
     legend('topright', paste("Moisture =", 1:5, sep=''), 
