@@ -8,12 +8,13 @@ layout: page
 Read in tree data
 
 ```r
-# read in directly from website: 
-trees <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/treedata_subset.csv')
-# or download and import locally
-trees <- read.csv('./data/treedata_subset.csv')
-# convert the column "disturb" to a factor
-trees$disturb <- as.factor(trees$disturb)
+# read in data directly from website: 
+# red maple dataset
+maple <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/maple.csv',  
+                  stringsAsFactors = TRUE)
+# Frasier fir dataset
+fir <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/data/fir.csv',
+                stringsAsFactors = TRUE)
 ```
 
 Examine this dataset and see how the data is structured, see function `str` 
@@ -46,32 +47,8 @@ Above shows a map of the regional and local location of the elevational
 transects included in the dataset (from [Fridley
 2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
 
-Before we start making plots and building models questions you will want to
-restructure and subset the data using the following R code: 
 
-```r  
-# we wish to model species cover across all sampled plots
-# create site x sp matrix for two species 
-sp_cov <- with(trees, tapply(cover, list(plotID, spcode), 
-                           function(x) round(mean(x))))
-sp_cov <- ifelse(is.na(sp_cov), 0, sp_cov)
-sp_cov <- data.frame(plotID = row.names(sp_cov), sp_cov)
-# create environmental matrix
-cols_to_select <- c('elev', 'tci', 'streamdist', 'disturb', 'beers')
-env <- aggregate(trees[ , cols_to_select], by = list(trees$plotID), 
-                function(x) x[1])
-names(env)[1] <- 'plotID'
-# merge species and enviornmental matrices
-site_dat <- merge(sp_cov, env, by='plotID')
-# subset species of interest
-maple <- site_dat[ , c('ABIEFRA', cols_to_select)]
-fir  <- site_dat[ , c('ACERRUB', cols_to_select)]
-names(maple)[1] <- 'cover'
-names(fir)[1] <- 'cover'
-```
-
-
-1\. Carry out an exploratory analysis using the tree dataset. Metadata for the
+1\. Carry out an exploratory analysis using the two tree datasets. Metadata for the
 tree study can be found [here](../data/tree_metadata.txt). Specifically, I would
 like you to visually examine how the explanatory variables relate to tree cover
 for a habitat generalist [*Acer rubrum* (Red maple)](http://www.durhamtownship.com/blog-archives/pix/November1407.jpg) and a
@@ -80,17 +57,20 @@ fir)](https://upload.wikimedia.org/wikipedia/commons/d/d0/Abies_fraseri_Mitchell
 
 After carrying out a visual examination of the correlations with tree cover go
 ahead and build linear multiple regression models and interpret them. This
-this dataset includes both continuous and discrete (i.e., `disturb`) explanatory variables so we will use both the functions `summary` and `car::Anova(..., type = 3)` to interpret 
-the model. For example, your code will likely look something like: 
+this dataset includes both continuous and discrete (i.e., `disturb`) explanatory
+variables so we will use both the functions `summary` and
+`car::Anova(..., type = 3)` to interpret the model. For example, your code will
+likely look something like: 
 
 ```r
 #install.packages('car') # if you have not installed before
 library(car)             # load the library
 # build the linear model
-my_mod <- lm(cover ~ elev + tci + ... , data = acer)
-# the summary function provides a lot of useful information
+my_mod <- lm(cover ~ elev + tci + ... , data = maple)
+# where ... represents all of the variables you decide to include in your model
+# the function summary() provides a lot of useful information
 summary(my_mod)
-# to look at the effect of the discrete variable more directly
+# to look at the effect of the discrete variable more directly try
 Anova(my_mod, type=3)    # example of a type 3 anova
 ```
 
