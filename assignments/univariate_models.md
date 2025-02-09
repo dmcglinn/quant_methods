@@ -38,7 +38,7 @@ Great Smoky Mountains National Park (TN, NC).
 
 Above shows a map of the regional and local location of the elevational
 transects included in the dataset (from [Fridley
-2009](http://plantecology.syr.edu/fridley/Fridley2009_jamc.pdf)).
+2009](https://drive.google.com/file/d/1FcO290WW4bdNFAO4nI3OTqkX6Aht8zuD/view)).
 
 
 1\. Carry out an exploratory analysis using the two tree datasets. Metadata for the
