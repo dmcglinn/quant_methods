@@ -27,7 +27,7 @@ names(dune.env) <- c('A1', 'Moist', 'Mang', 'Use', 'Man')
 1. Conduct an indirect ordination on the dune plant community. Specifically,
 visually examine a NMDS plot using the bray-curtis distance metric. Below is 
 some code to help you develop a potential plot that emphasizes the role of the
-environmental variable "Moisture". Describe how you interpret the
+environmental variable "Moist". Describe how you interpret the
 graphic. What is the goal of creating such a plot? Does this analysis suggest
 any interesting findings with respect to the dune vegetation?
 
@@ -37,7 +37,7 @@ any interesting findings with respect to the dune vegetation?
     # generate vector of colors 
     color_vect = rev(terrain.colors(6))[-1]
     points(dune_mds, 'sites', pch=19, 
-           col=color_vect[dune.env$Moisture])
+           col=color_vect[dune.env$Moist])
     legend('topright', paste("Moisture =", 1:5, sep=''), 
            col=color_vect, pch=19)
     ```
