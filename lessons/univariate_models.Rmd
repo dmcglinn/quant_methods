@@ -188,15 +188,17 @@ fruit mass.
 First let's read load the relevant R packages and the data in and look at the structure of the data
 
 ```{r load pkgs}
-#install.packages("ggplot2")       # for ggplot
-#install.packages("gridExtra")     # for grid.arrange to arrange ggplots
-#install.packages("scatterplot3d") # for scatterplot3d to make 3d graphic
-#install.packages("MASS")          # for stepAIC to automate model selection 
+#install.packages("ggplot2")
+#install.packages("gridExtra")
+#install.packages("scatterplot3d")
+#install.packages("MASS")
+#install.packages("marginaleffects")
 
-library(ggplot2)                   # to make fancy graphs
-library(gridExtra)                 # arrange ggplot graphs
-library(scatterplot3d)             # make 3d plot
-library(MASS)                      # use function Anova rather than base anova
+library(ggplot2)          # to make fancy graphs
+library(gridExtra)        # arrange ggplot graphs
+library(scatterplot3d)    # make 3d plot
+library(MASS)             # for stepAIC to automate model selection 
+library(marginaleffects)  # to plot model predictions
 ```
 
 Now that we have our libraries loaded let's read in the data
@@ -605,9 +607,10 @@ main_mod
 
 This particular model specifies two parallel regression lines that only differ
 in their y-intercept based on whether or not they were fertilized.
-
 ```{r}
-xrange = range(weeds$plant_ht_cm)
+# the traditional way to plot the fitted model predictions is to use the 
+# function predict 
+xrange <- range(weeds$plant_ht_cm)
 
 plot(fruit_mass_mg ~ plant_ht_cm, data = weeds, type = 'n', 
      xlab = 'Plant height (cm)', ylab = 'Fruit mass (mg)')
@@ -626,7 +629,6 @@ lines(xrange,
       col = 'blue', lty = 2)
 legend('topleft', c('Fertilized', 'Unfertilized'), col = c('red', 'blue'), 
        pch = c(1, 2), lty = c(1, 2), bty = 'n')
-
 ```
 
 Above in the R code we used a new function `predict()`. This function is useful
@@ -638,8 +640,20 @@ This is essentially a `data.frame` that must have the variables in the model
 included as column names. So in this case must have the variables `plant_ht_cm`
 and `trt` in `newdata`.
 
-Another way to think about this model is that it is specifying a 3d plane that
-can fit through the data. 
+More recently the `marginaleffects` package has make it easier to generate plots
+of fitted models, for example:
+
+```{r}
+plot_predictions(main_mod, condition = c('plant_ht_cm', 'trt'), points = 1) +
+  xlab("Plant height (cm)") + 
+  ylab("Fruit mass (mg)") 
+```
+
+As you can see the two approaches produce similar output but the newer approach
+is more efficient. 
+
+Another way to think about the main effect model is that it is specifying a 3d
+plane that can fit through the data.
 
 ```{r scatterplot3d}
 s3d <- scatterplot3d(weeds[ , c('trt', 'plant_ht_cm', 'fruit_mass_mg')], 
@@ -680,20 +694,27 @@ plot(fruit_mass_mg ~ plant_ht_cm, data = weeds, type = 'n',
      xlab = 'Plant height (cm)', ylab = 'Fruit mass (mg)')
 points(fruit_mass_mg ~ plant_ht_cm, data = weeds, subset = trt == "fertilized",
        pch = 1, col = 'red')
-xrange = range(weeds$plant_ht_cm[weeds$trt == "fertilized"])
+xrange <- range(weeds$plant_ht_cm[weeds$trt == "fertilized"])
 lines(xrange, 
       predict(int_mod, 
               newdata = data.frame(plant_ht_cm = xrange, trt = "fertilized")),
       col = 'red', lty = 1)
 points(fruit_mass_mg ~ plant_ht_cm, data = weeds, subset = trt == "unfertilized",
        pch = 2, col = 'blue')
-xrange = range(weeds$plant_ht_cm[weeds$trt == "unfertilized"])
+xrange <- range(weeds$plant_ht_cm[weeds$trt == "unfertilized"])
 lines(xrange, 
       predict(int_mod, 
               newdata = data.frame(plant_ht_cm = xrange, trt = "unfertilized")),
       col = 'blue', lty = 2)
 legend('topleft', c('Fertilized', 'Unfertilized'), col = c('red', 'blue'), 
        pch = c(1, 2), lty = c(1, 2), bty = 'n')
+```
+
+Or more efficiently we can simply use: 
+```{r}
+plot_predictions(int_mod, condition = c('plant_ht_cm', 'trt'), points = 1) +
+  xlab('Plant height (cm)') + 
+  ylab('Fruit mass (mg)')
 ```
 
 ##### **Exercise**
@@ -932,7 +953,7 @@ in fruit mass. We did not find that the effects of plant height on fruit mass
 depended on if the plant was fertilized.
 
 ```{r, echo = FALSE}
-xrange = range(weeds$plant_ht_cm)
+xrange <- range(weeds$plant_ht_cm)
 
 plot(fruit_mass_mg ~ plant_ht_cm, data = weeds, type = 'n', 
      xlab = 'Plant height (cm)', ylab = 'Fruit mass (mg)')
@@ -952,6 +973,7 @@ lines(xrange,
 legend('topleft', c('Fertilized', 'Unfertilized'), col = c('red', 'blue'), 
        pch = c(1, 2), lty = c(1, 2), bty = 'n')
 ```
+
 Above is the final best supported model (source code for this is provided
 when the main effect model is first introducted above)
 
