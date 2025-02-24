@@ -80,8 +80,15 @@ panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor=3, ...)
     symbols(0, 0, circles=radius, inches=FALSE, add=TRUE, fg=2)
 }
 
-pseudo_r2 = function(glm_mod) {
-    1 -  glm_mod$deviance / glm_mod$null.deviance
+pseudo_r2 <- function(mod, null_mod=NULL) {
+  if (class(mod) == 'glm')
+    r2 <- 1 -  glm_mod$deviance / glm_mod$null.deviance
+  if (class(mod) == 'gls') {
+    if (is.null(null_mod)) 
+      null_mod <- update(mod, . ~ 1)
+    r2 <- 1 - (as.numeric(logLik(mod) / logLik(null_mod)))
+  }
+  return(r2)
 }
 
 get_spat_mods = function(gls_mod) {

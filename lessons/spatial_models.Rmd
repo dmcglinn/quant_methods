@@ -24,9 +24,12 @@ variables.
 
 ## Readings
 
-* The R Book p778-785 on Generalized Least Squares models with spatially
-correlated errors
-* Numerical Ecology in R, p228-238 on detecting spatial dependence.
+* Crawley (2007) The R Book, pp. 778-785 on Generalized Least Squares models with
+spatially correlated errors
+* Borcard et al. (2011) Numerical Ecology in R, pp. 228-238 on detecting spatial
+dependence.
+* Pinheiro and Bates (2000) Mixed-Effects Models in S and S-PLUS, pp. 249-267 on
+Fitting Extended Linear Mdoels with gls
 * https://beckmw.wordpress.com/2013/01/07/breaking-the-rules-with-spatial-correlation/
 
 ## Outline
@@ -336,17 +339,35 @@ error.
 
 Crawley (2014) provides a straightforward description of these methods and a 
 few examples. Pinheiro and Bates (2000) provide a more detailed discussion with
-more examples and they provide a useful table and figure that is helpful when
-deciding which error model to chose from:
+more examples and they provide a useful table and figure (below) that are helpful
+when deciding which error model to chose from:
 
 This is Table 5.2 from Pinheiro and Bates (2000) in which *s* is the spatial lag
 and *rho* is the correlation parameter. This is a subset of the models 
 presented in Cressie (1993). 
 ![table](figures/isotropic_variogram_models_table.png)
 
-Graphically these models of spatial correlation can be visualized like this
-(Figure 5.9 of Pinheiro and Bates 2000):
+Graphically these models of spatial correlation can be visualized using variogram
+plots (Figure 5.9 of Pinheiro and Bates 2000):
 ![plots](figures/isotropic_variogram_models_plots.png)
+
+When we visually examine a vagriogram it is often useful to note the following 
+three features: 
+
+* **nugget** - semivariance at a spatial lag of zero
+* **range** - the degree of difference or semivariance between two spatially 
+independent samples
+* **sill** - the spatial distance at which samples are spatially independent (i.e.,
+variogram is flat)
+
+Here is an illustration of these three terms: 
+![variogram](figures/Schematic_variogram.png)
+
+The nugget should in theory be zero because if two samples have no distance
+between them they should in theory be the same value, but in practice it is often
+necessary to have a positive valued nugget to accurately describe the spatial
+corelation function. Note that adding a nugget into a spatial model requires 
+the addition of an extra parameter (i.e., an increase in model complexity). 
 
 ### Model fitting, interpretation, and comparison
 
@@ -398,7 +419,7 @@ Generalized Linear Models (GLS).
 
 **Note:** GLS models are distinct from General Linear Models (GLM) because GLS
 models are primarily concerned with modeling the covariance between samples
-while still adhering to the standard Normal distribution assumption for
+while still adhering to the standard Normal (i.e., Gaussian) distribution assumption for
 measurement error. In contract, GLMs are typically harnessed when the Normal
 distribution is not appropriate and we wish to use a different distribution for
 the error term such as Poisson or Binomial distributions. It is possible to
@@ -452,7 +473,7 @@ sum(vario_sr$variog * vario_sr$n.pairs) / sum(vario_sr$n.pairs)
 var(res)
 ```
 
-Ok so far we've learned that substrate density does not seem to be influencing
+Ok, so far we've learned that substrate density does not seem to be influencing
 richness spatially or otherwise and that there still remains autcorrelation in 
 richness. Let's examine the most common model of spatial (and temporal) 
 autocorrelation: the exponential model also know as Autoregressive 1  model or AR1. 
@@ -474,7 +495,7 @@ plot(Variogram(sr_exp, resType='normalized', maxDist = max_dist))
 # actually which is a bit surprising given the output of the raw residuals
 
 # let's look at the same model but with a nugget
-sr_exp_nug <- update(sr_exp, corr=corExp(c(0.5, 0.1), form=~x + y, nugget=T))
+sr_exp_nug <- update(sr_exp, corr=corExp(form=~x + y, nugget=T))
 # Notice above I had to put in starting values for the rate and nugget of the
 # spatial model. I found that if I left those off the model did not converge.
 # This may be due to the fact that the estimated value of the nugget is very 
