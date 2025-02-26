@@ -39,6 +39,8 @@ A list of data sources and software for data acquisition
 * [GBIF](http://www.gbif.org/)
     - [R package](https://github.com/ropensci/rgbif)
     - Note: Dan has cleaner scripts for this resource
+* [inaturalist](https://www.inaturalist.org/)
+    - [multi-taxon range maps](https://www.inaturalist.org/posts/106918)
 
 #### Arthropods
 * [Caterpillars Count](https://caterpillarscount.unc.edu/dataDownload/)
