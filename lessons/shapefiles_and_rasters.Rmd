@@ -5,14 +5,14 @@ output: html_document
 ---
 
 ```{r setup, echo=FALSE}
-# setup the R enviornment for kniting markdown doc properly
+# setup the R environment for knitting markdown doc properly
 library(knitr)
 opts_knit$set(root.dir='../')
 ```
 ```{r}
 # install.packages(c("maps","sf", "raster"))
 
-library(maps)     # convinient pkg for maps of the world
+library(maps)     # convenient pkg for maps of the world
 library(sf)
 
 # First, make some maps. The "maps" package has databases="world","usa","state",
@@ -79,7 +79,7 @@ plot(world_sinusoidal)
 # A fun projection link
 # http://xkcd.com/977/
 
-# OK, some slightly more complicated stuff. Data from MODIS fire detections in
+# OK, some slightly more complicated stuff. Data from MODIS fire detentions in
 # the US in 2010.
 # metadata for MODIS fire data available at:
 # http://firemapper.sc.egov.usda.gov/data/fireptdata/modisfire_2010_conus.htm
