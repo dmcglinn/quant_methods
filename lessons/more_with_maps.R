@@ -2,8 +2,9 @@ library(maps)
 library(sf)
 library(leaflet)
 library(viridis) # a color palette for maps
+library(readxl)
 
-# ancient human DNA project
+# ancient human DNA project -----------------
 # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/FFIDCW
 dat <- read.csv('./data/v62.0_HO_public.csv', skip = 1, na.strings = '..')
 head(dat)
@@ -36,4 +37,26 @@ leaflet(dat) %>%
   addLegend("bottomright", pal = happal,
             values = ~mtDNA_hap_simp, labels = "haplotypes",
             title = "mtDNA haplotype")
+
+# crab data -------------------------------------
+dat <- read_excel('./data/crabdat(MF).xlsx')
+head(dat)
+dat <- st_as_sf(dat, coords = c('longitude', 'latitude'))
+
+
+pal <- colorNumeric("viridis", domain = dat$width_mm)
+
+leaflet(dat) %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  addCircleMarkers(fillColor = ~pal(width_mm),
+                   stroke=FALSE,
+                   fillOpacity = 0.8,
+                   label = ~width_mm)  %>%
+  addProviderTiles(providers$Esri.NatGeoWorldMap) %>%
+  addLegend(data = dat,
+            position = "bottomright",
+            pal = pal, values = ~width_mm,
+            title = "Legend",
+            opacity = 1)
+
 
