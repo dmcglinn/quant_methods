@@ -213,7 +213,7 @@ ggplot() +
 #' argument is the object we want to export, the second is the filename (by
 #' default it will go in our working directory), the layer we want to export, and
 #' the file format.
-write_sf(firenc, "firenctemp.kml", "TEMP", driver="kml")
+write_sf(firenc, "firenctemp.kml", driver="kml")
 
 #' ## Rasters 
 #' Rasters are grids of data. A common data grid to work with is 
