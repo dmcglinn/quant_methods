@@ -4,6 +4,11 @@
 #' output: html_document
 #' ---
 
+#' Home Page - http://dmcglinn.github.io/quant_methods/ 
+#' GitHub Repo - https://github.com/dmcglinn/quant_methods 
+
+#' ### Source Code Link
+#' https://raw.githubusercontent.com/dmcglinn/quant_methods/gh-pages/lessons/shapefiles_and_rasters.R
 
 #+ echo=FALSE
 # setup the R environment for knitting markdown doc properly
@@ -11,7 +16,7 @@ knitr::opts_knit$set(root.dir='../')
 
 #' This lesson covers how to map and work with geospatial data in R. 
 #' First let's load the relevant libraries 
-# install.packages(c("maps","sf", "raster", "ggplot2"))
+# install.packages(c("maps","sf", "raster", "ggplot2", "leaflet"))
 
 library(maps)     # convenient pkg for maps of the world, state, and county
 library(sf)       # spatial features package that is helpful working with polygons
@@ -99,16 +104,13 @@ plot(world_sinusoidal)
 #' https://fsapps.nwcg.gov/afm/data/fireptdata/modisfire_2021_conus.htm
 #'
 #' To download the data use: 
-#+ eval=FALSE
+#+ eval=FALSE 
 download.file('https://fsapps.nwcg.gov/afm/data/fireptdata/modis_fire_2021_365_conus_shapefile.zip',
               destfile = './data/modis_fire_2021_365_conus_shapefile.zip')
-unzip('./data/modis_fire_2021_365_conus_shapefile.zip')
+unzip('./data/modis_fire_2021_365_conus_shapefile.zip', exdir = './data/')
+
 #' read in data 
-fire2021 <- sf::st_read(dsn = './data/modis_fire_2021_365_conus',
-                        layer = 'modis_fire_2021_365_conus')
-#+ echo=FALSE
-#fire2021 <- sf::st_read(dsn = './data/modis_fire_2021_365_conus',
-#                        layer = 'modis_fire_2021_365_conus')
+fire2021 <- sf::st_read(dsn = './data/modis_fire_2021_365_conus.shp')
 
 #' the shape file is read in as a data.frame with spatial attributes
 class(fire2021)    
@@ -140,8 +142,8 @@ summary(fire)
 plot(fire['JULIAN'], cex = 0.25)
 
 #' It is a little more difficult to do a geographicaly defined subset. 
-#' For example, let's select the fires in NC. First we'll identify which state
-#' each fire occurred in, then subset the ones from NC. 
+#' For example, let's select the fires in SC. First we'll identify which state
+#' each fire occurred in, then subset the ones from SC. 
 USA <- map(database='state', plot=FALSE, fill=TRUE)
 names(USA)
 USA$names
@@ -157,10 +159,10 @@ USA_sf <- st_transform(USA_sf, st_crs(fire2021))
 sf_use_s2(FALSE) 
 fire_state <- st_intersection(fire2021, USA_sf)
 
-#' Now let's subset the ones from NC. We have to use grep because there are actually
-#' three polygons for NC.
-firenc <- fire_state[grep("north carolina", fire_state$ID), ]
-dim(firenc)
+#' Now let's subset the ones from SC. We have to use grep because there are actually
+#' three polygons for SC.
+firesc <- fire_state[grep("south carolina", fire_state$ID), ]
+dim(firesc)
 
 
 #' We'll setup a legend for the map of fires by temperature. 
@@ -182,19 +184,19 @@ addLegendToSFPlot <- function(values = c(0, 1), labels = c("Low", "High"),
                           gradient="y", ...)
 }
 
-#' First make an NC spatial polygon to put around the fire points.
+#' First make an SC spatial polygon to put around the fire points.
 
-NC <- map(database='state', regions='north carolina', fill=T,
+SC <- map(database='state', regions='south carolina', fill=T,
           plot=F)
                             
-NC_st <- st_as_sf(NC)
-NC_st <- st_transform(NC_st, crs=st_crs(firenc))
+SC_st <- st_as_sf(SC)
+SC_st <- st_transform(SC_st, crs=st_crs(firesc))
 
-cuts <- cut(firenc$JULIAN, 10)
+cuts <- cut(firesc$JULIAN, 10)
 colors <- heat.colors(10)[as.numeric(cuts)] 
 
-plot(st_geometry(NC_st))
-plot(st_geometry(firenc['JULIAN']), add = TRUE,
+plot(st_geometry(SC_st))
+plot(st_geometry(firesc['JULIAN']), add = TRUE,
      col = colors, pch = 19, cex = 0.5)
 
 
@@ -205,15 +207,15 @@ addLegendToSFPlot(values = seq(from = 183, to = 363, length.out = 10),
 
 #' Here's where ggplot shines as it makes it easy to combine multiple maps
 ggplot() +                                            
-  geom_sf(data = NC_st) +                              # add in NC polygon
-  geom_sf(data = fire, aes(col = JULIAN), cex = 0.25)  # add in fire data
+  geom_sf(data = SC_st) +                              # add in SC polygon
+  geom_sf(data = firesc, aes(col = JULIAN), cex = 0.25)  # add in fire data
 
 #' For the last step, let's export this as a KML (readable by google earth) using
-#' write OGR and plot the locations of fires in NC in google earth. The first
+#' write OGR and plot the locations of fires in SC in google earth. The first
 #' argument is the object we want to export, the second is the filename (by
 #' default it will go in our working directory), the layer we want to export, and
 #' the file format.
-write_sf(firenc, "firenctemp.kml", driver="kml")
+write_sf(firesc, "firesctemp.kml", driver="kml")
 
 #' ## Rasters 
 #' Rasters are grids of data. A common data grid to work with is 
@@ -221,8 +223,6 @@ write_sf(firenc, "firenctemp.kml", driver="kml")
 #' You can download an Rdata file of bioclim climate data here:
 ## https://www.dropbox.com/s/gafxazc9575nf3j/bioclim_10m.Rdata?dl=0
 #+ eval = FALSE
-download.file('https://www.dropbox.com/s/gafxazc9575nf3j/bioclim_10m.Rdata?dl=0',
-              destfile = './data/bioclim_10m.Rdata')
 #' let's load load and plot the data
 load('./data/bioclim_10m.Rdata')
 bioStack
@@ -232,25 +232,25 @@ projection(bioStack)  # this is unprojected latlong like the fire data
 plot(bioStack, "mat")
 
 #' Let's extract the historical climate data at each of our fire locations
-fire_climate <- extract(bioStack, firenc)
+fire_climate <- extract(bioStack, firesc)
 class(fire_climate)
 head(fire_climate)
 nrow(fire_climate)
 
 #' merge the two datasets 
-firenc <- cbind(firenc, fire_climate)
-head(firenc)
+firesc <- cbind(firesc, fire_climate)
+head(firesc)
 
 # Fire temperatures in deg K at fire locations
 ggplot() + 
-  geom_sf(data = NC_st) + 
-  geom_sf(data = firenc, aes(col = TEMP), cex = 0.25) 
+  geom_sf(data = SC_st) + 
+  geom_sf(data = firesc, aes(col = TEMP), cex = 0.25) 
 # historical annual precip 
 ggplot() + 
-  geom_sf(data = NC_st) + 
-  geom_sf(data = firenc, aes(col = ap), cex = 0.25) 
+  geom_sf(data = SC_st) + 
+  geom_sf(data = firesc, aes(col = ap), cex = 0.25) 
 # relationship between annual precip and temp
-plot(TEMP ~ mat, data=firenc, xlab = 'Annual precip', ylab = 'Fire temp (K)') 
+plot(TEMP ~ mat, data=firesc, xlab = 'Annual precip', ylab = 'Fire temp (K)') 
 
 
 #' These maps are cool but they are static. Let's make an interactive map using
@@ -262,19 +262,19 @@ leaflet(data = mapStates) %>% addTiles() %>%
   addPolygons(fillColor = topo.colors(10, alpha = NULL), stroke = FALSE)
 
 #' we can add various provider tiles (i.e., maps) with additional data features
-m <- leaflet(data = firenc) %>% addTiles() %>%
-  addCircleMarkers(radius = 2, label = ~as.character(firenc$TEMP))
+m <- leaflet(data = firesc) %>% addTiles() %>%
+  addCircleMarkers(radius = 2, label = ~as.character(firesc$TEMP))
 m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
 
 
 #' it is possible to vary point radius and color based upon data fields
-m <- leaflet(data = firenc) %>% addTiles() %>%
-  addCircleMarkers(radius = ~(TEMP/max(TEMP)), label = ~as.character(firenc$TEMP))
+m <- leaflet(data = firesc) %>% addTiles() %>%
+  addCircleMarkers(radius = ~(TEMP/max(TEMP)), label = ~as.character(firesc$TEMP))
 m
 
-m <- leaflet(data = firenc) %>% addTiles() %>%
+m <- leaflet(data = firesc) %>% addTiles() %>%
   addCircleMarkers(radius = 2, color = ~TEMP,
-                   label = ~as.character(firenc$TEMP))
+                   label = ~as.character(firesc$TEMP))
 m
 
 
