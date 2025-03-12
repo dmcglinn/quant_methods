@@ -1,10 +1,22 @@
+#'---
+#'title: More with maps
+#'author: Dan McGlinn
+#'output: html_notebook
+#'---
+
+#+ echo=FALSE
+# setup the R environment for knitting markdown doc properly
+knitr::opts_knit$set(root.dir='../')
+
+#' import GIS libraries
 library(maps)
 library(sf)
 library(leaflet)
 library(viridis) # a color palette for maps
 library(readxl)
 
-# ancient human DNA project -----------------
+#' ## Ancient Human DNA
+#' Let's examine an ancient human DNA project 
 # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/FFIDCW
 dat <- read.csv('./data/v62.0_HO_public.csv', skip = 1, na.strings = '..')
 head(dat)
@@ -38,7 +50,8 @@ leaflet(dat) %>%
             values = ~mtDNA_hap_simp, labels = "haplotypes",
             title = "mtDNA haplotype")
 
-# crab data -------------------------------------
+#' ## Blue Crab Project
+#' let's import and map data on matrue Female bluecrabs
 dat <- read_excel('./data/crabdat(MF).xlsx')
 head(dat)
 dat <- st_as_sf(dat, coords = c('longitude', 'latitude'))
