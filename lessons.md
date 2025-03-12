@@ -35,6 +35,7 @@ Quantitative topics covered in this course include:
     - <a href='./spatial_models.html'>Spatial pattern detection and modeling</a>
 * GIS manipulations
     - <a href='./shapefiles_and_rasters.html'>Shapefiles and rasters</a>
+    - <a href='./more_with_maps.nb.html'>More Examples with Maps in R</a>
 * Simulations and Null models
     - <a href='./simulations.html'>Simulations in R</a>
         - <a href='https://cofc.zoom.us/rec/share/1HwN2CW05yiB3wX4nN8LPItC274xYONcnpIMV3oFi14Exr369hxwAAYEadRUvR0S.j-BGXPJWWPHvohtU?startTime=1712154965000'>Zoom recorded lecture</a>
