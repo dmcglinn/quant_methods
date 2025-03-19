@@ -10,7 +10,7 @@ analyzed as part of a project.
 Students are expected to contribute:
 
 * project code
-* oral presentation
+* oral presentations (Project Pitch & Final Presentation)
 
 Graduate students are also required to contribute: 
 
@@ -57,6 +57,16 @@ through you analysis with $ code and results interspersed with plain English
 descriptions of motivations and methodology. See for example <http://richfitz.github.io/wood/wood.html>
 
 ### Oral Presentation
+
+#### Project Pitch (early in the semester)
+
+A short presentation that may be accompanied by slides that covers your: 
+* question
+* methods / data
+* proposed or preliminary results
+* interpretation
+
+#### Final Presenation (late in the semester)
 
 A 10 minute presentation accompanied by slides on your: 
 
