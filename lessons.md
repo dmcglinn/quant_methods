@@ -8,7 +8,9 @@ Quantitative topics covered in this course include:
     - <a href='../motivation.html'>motivation</a>
     - <a href='./00-before-we-start.html'>before we start</a>
     - <a href='./rmarkdown_notes.html'>R markdown setup and usage</a>
-    - <a href='https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects'>Using Rstudio Projects (from Posit)</a>
+    - Projects
+         - <a href='https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects'>Using Rstudio Projects (from Posit)</a>
+         - <a href='https://thedavidchen.github.io/post/rstudio-why-use-projects/'>Why you should use Rstudio Projects (from blog of David Chen)
 * Introduction to R
     - <a href='./R_introduction.html'>basic</a> 
         - <a href='http://adv-r.had.co.nz/Data-structures.html'>data structures (from *Advanced R*)</a>
