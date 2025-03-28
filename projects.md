@@ -18,10 +18,10 @@ Graduate students are also required to contribute:
 
 ### Project Code
 
-The project code will be submitted via your personal project specific github 
-repository. 
-If your repository is private you will need to invite your instructor to be a 
-collaborator so that they can examine the code and test it out.
+The project code will be submitted via a link to a google drive folder that 
+Dan will share with the class. 
+
+
 The home directory of all projects should contain at least the following directories:
 
 * scripts
@@ -31,15 +31,16 @@ The home directory of all projects should contain at least the following directo
 All R code in the scripts directory must assume that the working directory is 
 the project home directory and all file paths must be relative to the project
 home directory. 
-**Points will be deducted for absolute file paths** as these decrease the portability
-and readability of code.
+**Points will be deducted for absolute file paths** as these decrease the portability, 
+reproducibility, and readability of code.
 
-Do not commit very large > 100 MB data files to the git repo. Instructions for 
+Do not add very large > 100 MB data files to the shared drive. Instructions for 
 how to download these files or other justifications for why the data are not
 included with the code are sufficient. 
 
-If the data are not available to reproduce the results then at minimum a representative example portion of the data must be included to provide a means
-of generating example results.  
+If the data are not available to reproduce the results then at minimum a
+representative example portion of the data must be included to provide a means
+of generating example results.
 
 The project directory should also contain a `README.md` file that describes (at a minimum):
 
@@ -53,8 +54,13 @@ Although not required your instructor and your future-self will find it very
 useful if you include a master script that controls project flow. 
 See for example <https://github.com/weecology/mete-spatial/blob/master/ddr_run_all.R>
 Another very effective approach is to use an Rmarkdown document that walks a reader
-through you analysis with $ code and results interspersed with plain English 
+through you analysis with code and results interspersed with plain English 
 descriptions of motivations and methodology. See for example <http://richfitz.github.io/wood/wood.html>
+
+#### Peer code review
+
+All project will be reviewed by two student peer reviewers using the following
+[template](./code_review).
 
 ### Oral Presentation
 
