@@ -10,6 +10,8 @@ title: Resources
 
 * Why are your files and directories a mess? <https://www.theverge.com/22684730/students-file-folder-directory-structure-education-gen-z>
 
+* How to name files <https://dataworks.faseb.org/helpdesk/kb/creating-effective-file-naming-schemes>
+
 * Getting your project files in order, Hao Ye's Notes on Data Organization in
 Spreadsheets and R. <https://uf-repro.github.io/data-organization/notes.html>
 
