@@ -81,11 +81,10 @@ Student Evaluation:
 * 5% Quizzes
 * 40% Assignments
 * 50% Project
-    - 10% project code
-    - 20% oral presentation
-    - 20% written description of analysis (e.g., Methods and Results section of
+    - 16.6% project code 
+    - 16.6% written description of analysis (i.e., Thesis, Methods and Results section of
        a paper)
-
+    - 16.6% oral presentation
 
 **_Project_** - The project in this course may span a wide range of potential
 topics including the analysis of data (collected by the student or a 3rd party),
