@@ -214,42 +214,52 @@ Final grades will be assigned based on the following scale:
 | RA-RF  | Repeat; include GPA/exclude hours  |          |                | 
 
 
-**_Students with Disabilities and Special Needs_** - Any student eligible for
-and needing accommodations because of a disability is requested to speak with
-the professor during the first two weeks of class or as soon as the student has
-been approved for services so that reasonable accommodations can be arranged.
-Center for Disability Services located in the Lightsey Center, Suite 104,
-953-1431, SNAP@cofc.edu. If you have a documented disability and need
-accommodations, please come talk with me and bring your Professor Notification
-Letter (PNL) as soon as possible.
+**_Students with Disabilities and Special Needs_** - The College will make
+reasonable accommodations for persons with documented disabilities. If you have
+a disability for which you are or may be requesting an accommodation, you are
+encouraged to contact the Center for Disability Services (CDS/SNAP program)
+located in the Lightsey Center, Suite 104, 953-1431, SNAP@cofc.edu. If you have
+a documented disability and need accommodations, please come talk with me and
+bring your Professor Notification Letter (PNL) as soon as possible. SNAP
+students are requested to make arrangements with the
+instructors well in advance of exams.
 
-**_Academic integrity_** - Lying, cheating, attempted cheating, and plagiarism
-are violations of our Honor Code that, when suspected, are investigated. Each
-incident will be examined to determine the degree of deception involved.
-Incidents where the instructor determines the student’s actions are related more
-to misunderstanding and confusion will be handled by the instructor. The
-instructor designs an intervention or assigns a grade reduction to help prevent
-the student from repeating the error. The response is recorded on a form and
-signed both by the instructor and the student. It is forwarded to the Office of
-the Dean of Students and placed in the student’s file.
+**_College of Charleston Honor Code and Academic Integrity_** - Lying, cheating,
+attempted cheating, and plagiarism are violations of our Honor Code that, when
+suspected, are investigated.  Each incident will be examined to determine the
+degree of deception involved. Incidents where the instructor determines the
+student’s actions are related more to a misunderstanding will be handled by the
+instructor.  A written intervention designed to help prevent the student from
+repeating the error will be given to the student.  The intervention, submitted
+by form and signed both by the instructor and the student, will be forwarded to
+the Dean of Students and placed in the student’s file. Cases of suspected
+academic dishonesty will be reported directly by the instructor and/or others
+having knowledge of the incident to the Dean of Students.  A student found
+responsible by the Honor Board for academic dishonesty will receive a XXF in the
+course, indicating failure of the course due to academic dishonesty.  This
+status indicator will appear on the student’s transcript for two years after
+which the student may petition for the XX to be expunged.  The F is permanent.
+Students should be aware that unauthorized collaboration--working together
+without permission-- is a form of cheating. Research conducted and/or papers
+written for other classes cannot be used in whole or in part for any assignment
+in this class without obtaining prior permission from the instructor. Students
+can find the complete Honor Code and all related processes in the Student
+Handbook at
+http://studentaffairs.cofc.edu/honor-system/studenthandbook/index.php
 
-Cases of suspected academic dishonesty will be reported directly by the
-instructor and/or others having knowledge of the incident to the Dean of
-Students. A student found responsible by the Honor Board for academic dishonesty
-will receive a XXF in the course, indicating failure of the course due to
-academic dishonesty. This status indicator will appear on the student’s
-transcript for two years after which the student may petition for the XX to be
-expunged. The F is permanent. 
-
-Students can find the complete Honor Code and all
-related processes in the Student Handbook at:
-http://deanofstudents.cofc.edu/honor-system/studenthandbook/
 
 **_Plagiarism_** - Plagiarism is any use of words or ideas produced by another
 person without proper attribution, and includes failing to paraphrase adequately
 or to cite sources properly. Plagiarism, both intentional and unintentional, is
 forbidden by the honor code. Please consult the instructor if you have any
 questions or concerns about how to use and cite sources to avoid plagiarism.
+
+**_Generative AI Statement_** - The use of generative artificial intelligence
+(GAI) tools is permitted as a resource and starting point in this course, and
+may be used for brainstorming, outlining, generating ideas, and collecting
+information about the basic understanding of a topic/idea. **All uses of GAI
+must be cited and have appropriate documentation and references.** Failure to do
+so constitutes an Honor Code violation and will be reported to the Honor Board.
 
 **_Collaboration_** - Many of your assignments will involve working with other
 students. Nevertheless, the work you submit must be completed independently and
@@ -263,7 +273,10 @@ honor code.
 has done for this or any other class or project, either in whole or in part, is
 a violation of the honor code, even if the work is revised.
 
-**_OAKS_** - OAKS, including Gradebook, will be used for this course throughout the semester to provide the syllabus and class materials and grades for each assignment, which will be regularly posted. The official course webpage will be used for disseminating lecture materials.
+**_OAKS_** - OAKS, including Gradebook, will be used for this course throughout
+the semester to provide the syllabus, turning in assignments, and grades for each
+assignment, which will be regularly posted. The official course webpage will be
+used for disseminating lecture materials.
 
 **_Inclement Weather, Pandemic or Substantial Interruption of Instruction_** -
 If in-person classes are suspended, faculty will announce to their students a
