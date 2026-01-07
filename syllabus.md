@@ -16,7 +16,7 @@ Course and Instructor info:
 * Meeting time: 8-9:15 am TR; in RITA 271
 * Instructor: Dr. Dan McGlinn
 * Email: mcglinndj@cofc.edu
-* Office: RITA 239
+* Office: RITA 225
 * Office hours: Tuesday 11 am or by appointment
 * Course website: <http://dmcglinn.github.io/quant_methods>
 
