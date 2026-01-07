@@ -21,6 +21,6 @@ it can be downloaded here:
 [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 If you have trouble installing these software then send Dan an email or make 
-an appointment. Alternatively use the [Rstudio server](spartina.biology.cofc.edu:8787)
+an appointment. Alternatively use the [Rstudio server](spartina.charleston.edu:8787/auth-sign-in?appUri=%2F)
 that is configured for class usage. 
 
