@@ -114,25 +114,25 @@ Course Schedule:
 | Week | Date   | Lecture Topic                                  |
 |------|--------|------------------------------------------------|
 | 1    | Jan 08 | Introduction to R                              |
-| 2    | Jan 14 | Intermediate R programming                     |
-| 3    | Jan 21 | Regression and Simple Models                   |
-| 4    | Jan 28 | Project Feedback in class                      |
-| 5    | Feb 04 | Multivariate Models                            |
-| 6    | Feb 11 | Project Feedback in class                      |
-| 7    | Feb 18 | Spatial Models                                 |
-| 8    | Feb 25 | Project Pitches                                |
-| 9    | Mar 04 | Spring Break                                   |
-| 10   | Mar 11 | GIS manipulations                              |
-| 11   | Mar 18 | Project Feedback in class                      |
-| 12   | Mar 25 | Project Feedback in class                      |
-| 13   | Apr 01 | Peer Code Review and Peer Feedback             |
-| 14   | Apr 08 | Project Feedback in class                      |
-| 15   | Apr 15 | Project Presentations                          |
-| 16   | Apr 22 | Project Presentations; Course Evaluations      |
+| 2    | Jan 13 | Intermediate R programming                     |
+| 3    | Jan 20 | Regression and Simple Models                   |
+| 4    | Jan 27 | Project Feedback in class                      |
+| 5    | Feb 03 | Multivariate Models                            |
+| 6    | Feb 10 | Project Feedback in class                      |
+| 7    | Feb 17 | Spatial Models                                 |
+| 8    | Feb 24 | Project Pitches                                |
+| 9    | Mar 03 | Spring Break                                   |
+| 10   | Mar 10 | GIS manipulations                              |
+| 11   | Mar 17 | Project Feedback in class                      |
+| 12   | Mar 24 | Project Feedback in class                      |
+| 13   | Mar 31 | Peer Code Review and Peer Feedback             |
+| 14   | Apr 07 | Project Feedback in class                      |
+| 15   | Apr 14 | Project Presentations                          |
+| 16   | Apr 21 | Project Presentations; Course Evaluations      |
 
 **Code and Written project components due Friday of Week 14** 
 
-Please also see the more [detailed living course calendar](https://docs.google.com/spreadsheets/d/1n2hvlN-QcxnPaxFlPx_MzsNOjTWqOIvTKcrU30KVlUo/edit?gid=0#gid=0).
+Please also see the more [detailed living course calendar](https://docs.google.com/spreadsheets/d/1t9m2ScNt8b28-46RnG0PqU-fITuFbX8ZBoSLUOCBCB0/edit?gid=0#gid=0).
 
 Course Policies:
 ---------------
