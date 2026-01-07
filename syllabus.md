@@ -130,7 +130,7 @@ Course Schedule:
 | 15   | Apr 14 | Project Presentations                          |
 | 16   | Apr 21 | Project Presentations; Course Evaluations      |
 
-**Code and Written project components due Friday of Week 14** 
+**Code and Written project components due Thursday April 30th** 
 
 Please also see the more [detailed living course calendar](https://docs.google.com/spreadsheets/d/1t9m2ScNt8b28-46RnG0PqU-fITuFbX8ZBoSLUOCBCB0/edit?gid=0#gid=0).
 
