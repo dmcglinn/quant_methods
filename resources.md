@@ -13,9 +13,9 @@ title: Resources
 * Getting your project files in order, Hao Ye's Notes on Data Organization in
 Spreadsheets and R. <https://uf-repro.github.io/data-organization/notes.html>
 
-* How to name files - by Jenny Bryan <https://www.youtube.com/watch?v=ES1LTlnpLMk>
-
-* Naming Things - by Jenny Bryan <http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf>
+* Naming Things - by Jenny Bryan
+    slides: <http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf>
+    video: <https://www.youtube.com/watch?v=ES1LTlnpLMk>
 
 * Wilson, G. et al. 2014. Best Practices for Scientific Computing. PLoS Biol
 12(1): e1001745. doi:10.1371/journal.pbio.1001745. URL: <http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745>
