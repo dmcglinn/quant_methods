@@ -31,11 +31,6 @@ doi:10.1186/1751-0473-8-7 URL: <http://www.scfbm.org/content/8/1/7>
 content <http://www.dataschool.io/>
 
 ## Statistics
-* Jack Weiss's courses on statistics for ecologists and environmental scientists
-    - [Statistical Methods in Ecology](https://sakai.unc.edu/access/content/group/3d1eb92e-7848-4f55-90c3-7c72a54e7e43/public/index.html)
-    - [Statistics for Environmental Science](https://sakai.unc.edu/access/content/group/2842013b-58f5-4453-aa8d-3e01bacbfc3d/public/Ecol562_Spring2012/index.html)
-* Code to accompany *A primer of ecological statistics* (Gotelli and Ellison 2012)
-    - <https://harvardforest.fas.harvard.edu/ellison/pubs/primer/datafiles2e>
 * Datasets to accompany *The R book* (Jones et al. 2022)
     - <https://bcs.wiley.com/he-bcs/Books?action=index&bcsId=12402&itemId=1119634326>
 * Introduction to Data Exploration and Analysis with R by Michael Mahoney
@@ -45,7 +40,7 @@ content <http://www.dataschool.io/>
     - [Statistics in R - Part 1](https://online.stat.psu.edu/stat484/)
     - [Statistics in R - Part 2](https://online.stat.psu.edu/stat485/)
 * Jason Fridley's R based plant ecology course
-    - <http://plantecology.syr.edu/fridley/bio793/nichenotes_portal.html>
+    - <https://www.fridleylab.org/courses/statnotes>
 * Patrick Breheny courses on statistics for biologists
     - <http://myweb.uiowa.edu/pbreheny/teaching.html>
 * Linear Models with R (free ebook)
@@ -55,14 +50,10 @@ content <http://www.dataschool.io/>
 * Anova
     - <https://online.stat.psu.edu/stat485/lesson/welcome-stat-485>
     - Type I/II/III:
-        - <http://goanna.cs.rmit.edu.au/~fscholer/anova.php>
+        - <https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/>
     - Contrasts: 
         - <http://www.clayford.net/statistics/tag/sum-contrasts/> 
-        - <http://www.unc.edu/courses/2006spring/ecol/145/001/docs/lectures/lecture30.htm> 
-* Ordination webpage
-    - Amazing resource for multivariate approaches for analyzing community
-    ecology data. 
-    - <http://ordination.okstate.edu/>
+
 * Anscombe's quartet
     - <https://en.wikipedia.org/wiki/Anscombe%27s_quartet>
 * Dynamic Ecology blog posts by Brian McGill related to statistics and data.
