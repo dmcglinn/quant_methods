@@ -15,7 +15,7 @@ downloaded here:
 
 [https://www.rstudio.com/products/rstudio/download/#download](https://www.rstudio.com/products/rstudio/download/#download)
 
-**git** is a version control system for tracking changes in files and collaborating,
+**git (optional)** is a version control system for tracking changes in files and collaborating,
 it can be downloaded here: 
 
 [https://git-scm.com/downloads](https://git-scm.com/downloads)

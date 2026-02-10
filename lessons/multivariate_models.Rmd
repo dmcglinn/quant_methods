@@ -128,17 +128,27 @@ As a reminder the metadata for the tree data is located [here](../data/tree_meta
 Quick note: In this lesson we will use the R package `dummies` to create dummy
 variables. This package is now defunct and no longer on the main package repository
 CRAN. To install you will have to use the package `remotes` and the function
-`install_github` specifically once `remotes` is installed use
-`remotes::install_github('cran/dummies')`
+`install_github` specifically you would use the following commands:
+
+```
+install.packages('remotes')
+remotes::install_github('cran/dummies')
+```
 
 ```{r load data}
 # load relevant packages and code for today's lesson
 library(vegan)
 library(dummies) # this package is no longer on cran see note above
+# if you have downloaded the utility functions script from github load them with:
 source('./scripts/utility_functions.R')
+# alternatively load them directly from the cloud: 
+source('https://raw.githubusercontent.com/dmcglinn/quant_methods/refs/heads/gh-pages/scripts/utility_functions.R')
 
 # load data
+# if you have downloaded the data from github into your data folder then read it in locally: 
 tree <- read.csv('./data/treedata_subset.csv')
+# alternatively load the data directly from the cloud: 
+tree <- read.csv('https://raw.githubusercontent.com/dmcglinn/quant_methods/refs/heads/gh-pages/data/treedata_subset.csv')
 
 # create a community site x species matrix by summing species cover values
 # we can do this with a for loop but it take a while to run
@@ -172,7 +182,10 @@ comm <- ifelse(is.na(comm), 0, comm)
 comm[1:5, 1:5]
 ```
 
-Now that we've created our matrix it is usually a good idea to make sure everything looks ok - the row and column sums (i.e., marginal sums) provide one reasonable metric to see overall how the data is structured in a very coarse way. 
+Now that we've created our matrix it is usually a good idea to make sure
+everything looks ok - the row and column sums (i.e., marginal sums) provide one
+reasonable metric to see overall how the data is structured in a very coarse
+way. You can think of primarily as data checking step.
 
 ```{r maginal sums}
 # visually explore the cover variable between species and sites
