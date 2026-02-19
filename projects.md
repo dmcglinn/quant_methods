@@ -72,6 +72,8 @@ A short presentation that may be accompanied by slides that covers your:
 * proposed or preliminary results
 * interpretation
 
+The rubric for the pitch can be found [here](./project_pitch_gradesheet.pdf)
+
 #### Final Presenation (late in the semester)
 
 A 10 minute presentation accompanied by slides on your: 
