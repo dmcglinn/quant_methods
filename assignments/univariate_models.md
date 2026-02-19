@@ -117,10 +117,3 @@ found and what conclusions we can take away from your analysis?
 exploratory models developed above. This is a very simple and not very
 robust machine learning stepwise algorithm that uses AIC to select a 
 best model. By default it does a backward selection routine. 
-
-5\. (optional) Develop a model for the number of species in each site 
-(i.e., unique plotID). This variable will also be discrete so the Poisson
-may be a good starting approximation. Side note: the Poisson
-distribution converges asymptotically on the Gaussian distribution as the 
-mean of the distribution increases. Thus Poisson regression does not differ
-much from traditional OLS when means are large. 
