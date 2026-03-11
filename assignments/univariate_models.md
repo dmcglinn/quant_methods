@@ -94,7 +94,7 @@ integers 0 to positive infinity so this may provide a good first approximation.
 Your new model calls will look as follows:
 
 ```r
-acer_poi = glm(cover ~ tci + elev + ... , data = my_data, 
+acer_poi <- glm(cover ~ tci + elev + ... , data = my_data, 
            family='poisson')
 ```
 
@@ -102,7 +102,7 @@ For assessing the degree of variation explained you can use a
 pseudo-R-squared statistic (note this is just one of many possible)
 
 ```r
-pseudo_r2 = function(glm_mod) {
+pseudo_r2 <- function(glm_mod) {
                 1 -  glm_mod$deviance / glm_mod$null.deviance
             }
 ```
