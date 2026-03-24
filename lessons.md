@@ -12,7 +12,7 @@ Quantitative topics covered in this course include:
          - <a href='https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects'>Using Rstudio Projects (from Posit)</a>
          - <a href='https://thedavidchen.github.io/post/rstudio-why-use-projects/'>Why you should use Rstudio Projects (from blog of David Chen)
 * Introduction to R
-    - <a href='./R_introduction.html'>basic</a> 
+    - [basic](./R_introduction) 
         - <a href='http://adv-r.had.co.nz/Data-structures.html'>data structures (from *Advanced R*)</a>
     - <a href='./R_intermediate.html'>intermediate</a>
     - <a href='https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R.html'>Best Practices for Writing R Code (from Soft. Carp.)</a>
