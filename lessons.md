@@ -6,7 +6,7 @@ Quantitative topics covered in this course include:
 
 * Background Information
     - <a href='../motivation.html'>motivation</a>
-    - <a href='./00-before-we-start.html'>before we start</a>
+    - <a href='./rstudio_intro.html'>Rstudio introduction</a>
     - <a href='./rmarkdown_notes.html'>R markdown setup and usage</a>
     - Projects
          - <a href='https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects'>Using Rstudio Projects (from Posit)</a>

@@ -1,7 +1,6 @@
 ---
-title: Before we start
+title: Rstudio Introduction
 author: Dan McGlinn and other Data Carpentry contributors 
-date: "January 11, 2016"
 output: html_document
 ---
 
@@ -15,7 +14,7 @@ output: html_document
 
 ------------
 
-# Before we get started
+# Setup an Rstudio Project
 
 * Start RStudio (presentation of RStudio -below- should happen here)
 * Under the `File` menu, click on `New project`, choose `New directory`, then
