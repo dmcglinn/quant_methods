@@ -66,7 +66,7 @@ key attributes.
 | .Rdata         | no         | R data               | Compressed file of an R object(s) - it may one or many R objects. Import with `load()` and export with `save()`                                   |
 | .xlsx          | no         | Excel spreadsheet    | A proprietary file type that is not suggested for longterm data accessibility                                                                     |
 | .csv           | yes        | comma seperated file | Typically a spreadsheet in which each column is separated by a comma                                                                              |
-| .md            | yes        | markdown file        | A simple way to generate a nice webpage (this file for example)                                                                                   |
+| .md            | yes        | markdown file        | A simple way to generate a nice webpage ([the page your reading right now for example](https://raw.githubusercontent.com/dmcglinn/quant_methods/refs/heads/gh-pages/lessons/file_types.md))                                                                                   |
 | .html          | yes        | webpage              | Viewable in an internet browser                                                                                                                   |
 | .docx          | no         | Word document        | A priorietary file type for editing documents - not suggested for longterm documentation                                                          |
 | .pdf           | no         | pdf                  | A vector based document.                                                                                                                          |
