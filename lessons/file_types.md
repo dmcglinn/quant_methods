@@ -61,7 +61,7 @@ key attributes.
 |----------------|------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | .R             | yes        | R script             | Contains R code (e.g., for an analysis)                                                                                                           |
 | .Rmd           | yes        | R markdown           | Combines R code with the output from the  R console with text that can be rendered (i.e., knit) into other formats such as .docx, .pdf, or .html. |
-| .Rhistory      | yes        | R history            | Contains all the commands executed in the R console                                                                                               |
+| .Rhistory      | yes        | R history            | Contains a record of all the commands executed in the R console                                                                                   |
 | .Rproj         | yes        | R project            | Used by RStudio to manage a specific project (typically you don't edit this file)                                                                 |
 | .Rdata         | no         | R data               | Compressed file of an R object(s) - it may one or many R objects. Import with `load()` and export with `save()`                                   |
 | .xlsx          | no         | Excel spreadsheet    | A proprietary file type that is not suggested for longterm data accessibility                                                                     |
