@@ -7,7 +7,7 @@ output: html_document
 Home Page - http://dmcglinn.github.io/quant_methods/ 
 GitHub Repo - https://github.com/dmcglinn/quant_methods 
 
-Very few people get excited or interested about file types yet they are important
+Very few students get excited about file types yet they are critical
 to understand if you are going to be successful as a quantitative scientist.
 Specifically, you should be able to: 
 
@@ -84,11 +84,11 @@ to collaborators, for completing HW where you want to show your work, and
 for taking a snapshot of the results of your code and data at a specific moment
 in time. 
 
-**Mac users should be aware** that the Mac OS will sometimes attach the file 
-extension `.txt` to files when you download them from the internet. So for
-example if you try to download a file called `mycode.R` it may rename this file
-`mycode.R.txt`. If that happens just rename the file by dropping the `.txt` part
-of the file name. 
+## Be Aware
+The Windows and Mac machines will sometimes attach the file extension `.txt` to files
+when you download them from the internet. So for example if you try to download
+a file called `mycode.R` it may rename this file `mycode.R.txt`. If that happens
+just rename the file by dropping the `.txt` part of the file name.
 
 Home Page - http://dmcglinn.github.io/quant_methods/ 
 GitHub Repo - https://github.com/dmcglinn/quant_methods 
